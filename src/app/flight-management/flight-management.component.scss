@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+.menu-bar {
+    /* width: 20%; */
+    /* display: block; */
+    /* flex: 1; */
+    position: relative;
+    display: inline-block;
+    background-color: #146C94;
+    min-height: 100vh;
+    align-items: center;
+    padding: 20px;
+    overflow: auto;
+}
+.page-content {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    padding: 30px;
+}
+.menu-button-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.menu-button {
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    white-space: nowrap;
+    border: 2px;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: #146C94;
+    color:white;
+    font-weight: bold;
+}
+.logo {
+    display: flex;
+    justify-content: space-evenly;
+}
+.logo-image {
+    vertical-align: middle;
+}
+
+.menu-button:hover {
+    background-color: #869ba5;
+}
+
+.homepage {
+    background-color: #146C94;
+    border: none;
+    color: white;
+}
+
+.page-title {
+    text-align: center;
+    white-space: nowrap;
+    font-size: 30px;
+    /* margin-top: 20px; */
+    font-weight: bold;
+    color: #146C94;
+}
+
+.add-flight {
+    float: right;
+    /* margin-right: 30px; */
+    white-space: nowrap;
+    border: none;
+    color:white;
+    border-radius: 10px;
+    width: 150px;
+    height: 30px;
+    background-color: #19A7CE;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.flight-filter-form {
+    margin:auto;
+    
+    align-items: center;
+    clear: both;
+    display: flex;
+    flex-direction: column;
+}
+.flight-filter-form form {
+    /* margin: 30px; */
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #146C94;
+    padding: 20px;
+    border-radius: 20px;
+}
+.form-section {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    padding: 10px;
+    /* align-content: center; */
+}
+.form-section label {
+    width: 50%;
+    /* padding: 20px; */
+    align-self: center;
+    color: #146C94;
+}
+.form-section input {
+    width: 50%;
+    /* padding: 20px;     */
+    align-self: center;
+    height: auto;
+    padding: 5px;
+    border-radius: 10px;
+    border-width: 2px;
+    border: 2px solid #146C94;
+}
+
+.form-section select {
+    flex: 50%;
+    /* padding: 20px;     */
+    align-self: center;
+    height: auto;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* Remove default arrow */
+    background-image: url('../../assets/Icon/select-arrow.png'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: .65em auto, 100%;
+    background-position-x: 96%;
+    background-position-y: 60%;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: #146C94;
+    border-width: 2px;
+}
+.form-section button {
+    border: none;
+    color:white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: #19A7CE;
+}
+.flight-search {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.flight-search label {
+    width: 15%;
+    margin-right: 20px;
+    text-wrap: nowrap;
+}
+.flight-search input {
+    width: 60%;
+    margin: 20px;
+    padding: 5px;
+    /* border-radius: 10px;
+    border-color: #146C94 solid;
+    border-width: 2px; */
+    border: 2px solid #146C94;
+    border-radius: 10px;
+}
+.flight-search button {
+    width: 25%;
+    margin-left: 20px;
+    border: none;
+    color:white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: #19A7CE;
+    /* justify-content: flex; */
+    /* float:right; */
+    /* justify-content: space-between; */
+}
+.flight-detail-table {
+    display: flex;
+    /* justify-content: center; */
+}
+table {
+    width: 85%;
+    /* display: flex; */
+    table-layout: fixed;
+    border-collapse: collapse;
+    /* background-color: #262626; */
+    color: white;
+}
+th {
+    vertical-align: top;
+    text-align: center;
+}
+th, td {
+    /* width: 10%; */
+    border: 1px solid white;
+    background-color: #262626;
+    /* border-collapse: collapse; */
+}
+/* table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+} */
+.flight-detail-edit-delete {
+    width: 15%;
+}
