@@ -16,7 +16,7 @@
     position: relative;
     padding: 30px;
     margin: 20px;
-    
+    margin-left: 163.477px;
 }
 .page-title {
     text-align: center;
@@ -75,6 +75,7 @@
     /* padding: 20px; */
     align-self: center;
     color: #146C94;
+    font-weight: bold;
 }
 .form-section input {
     width: 50%;
@@ -125,16 +126,25 @@
     width: 15%;
     margin-right: 20px;
     text-wrap: nowrap;
+    font-weight: bold;
+    color: #146C94;
 }
 .flight-search input {
     width: 60%;
     margin: 20px;
     padding: 5px;
+    padding-left: 35px;
     /* border-radius: 10px;
     border-color: #146C94 solid;
     border-width: 2px; */
     border: 2px solid #146C94;
     border-radius: 10px;
+    background-image: url('../../../assets/Icon/icons8-search-48.png'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 1.65em auto, 100%;
+    background-position-x: 1%;
+    background-position-y: 60%;
 }
 .flight-search button {
     width: 25%;
