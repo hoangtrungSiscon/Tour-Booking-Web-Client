@@ -42,10 +42,14 @@
     background-color: #146C94;
     color:white;
     font-weight: bold;
+    transition: 0.3s;
 }
 .logo {
     display: flex;
     justify-content: space-evenly;
+}
+.logo:hover {
+    cursor: pointer;
 }
 .logo-image {
     vertical-align: middle;
@@ -59,4 +63,7 @@
     background-color: #146C94;
     border: none;
     color: white;
+}
+.homepage:hover {
+    cursor: pointer;
 }
