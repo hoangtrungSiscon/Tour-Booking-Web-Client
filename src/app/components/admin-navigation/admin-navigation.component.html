@@ -8,10 +8,12 @@
         
     </div>
     <div class="menu-button-list">
-        <button class="menu-button">Quản lý chuyến bay</button>
-        <button class="menu-button">Quản lý vé</button>
+        <!-- <a routerLink="/admin-ticket-management"></a> -->
+        <button class="menu-button" routerLink="/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
+        <button class="menu-button" routerLink="/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
         <button class="menu-button">Quản lý khách hàng</button>
         <button class="menu-button">Thống kê</button>
         <button class="menu-button">LOG OUT</button>
     </div>
 </div>
+<router-outlet></router-outlet>

@@ -4,9 +4,8 @@
     </div>
     <div class="page-content">
         <div class="page-title">
-            QUẢN LÝ CHUYẾN BAY
+            QUẢN LÝ VÉ KHÁCH
         </div>
-            <button class="add-flight">Thêm chuyến bay</button>
             <div class="flight-filter-form">
                 <form>
                     <div class="form-field">
@@ -21,10 +20,26 @@
                         </select>
                     </div>
                     <div class="form-field">
-                        <label for="departure-date">Ngày xuất phát:</label><br>
-                        <input type="date" id="departure-date" name="departure-date" class="datepicker-box"><br></div>
+                        <label for="departure-location">Nơi đến:</label><br>
+                        <select name="arrival-location" id="arrival-location">
+                            <option value=""></option>
+                            <option value="TPHCM">TPHCM</option>
+                            <option value="TPHCM2">TPHCM2</option>
+                            <option value="TPHCM3">TPHCM3</option>
+                            <option value="TPHCM4">TPHCM4</option>
+                            <option value="TPHCM5">TPHCM5</option>
+                        </select>
+                    </div>
                     <div class="form-field">
-                        <label for="arrival-location">Nơi đến:</label><br>
+                        <label for="departure-date">Ngày xuất phát:</label>
+                        <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+                    </div>
+                    <div class="form-field">
+                        <label for="departure-date">Ngày đặt vé:</label>
+                        <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+                    </div>
+                    <div class="form-field">
+                        <label for="arrival-location">Loại ghế:</label><br>
                         <select name="arrival-location" id="arrival-location">
                             <option value=""></option>
                             <option value="TPHCM">TPHCM</option>
@@ -38,10 +53,14 @@
                         <button type="submit">Lọc</button>
                     </div>
                 </form>
-                <div class="flight-search">
-                    <label for="flight-id">Tìm kiếm mã chuyến</label><br>
-                    <input type="text" id="flight-id" name="flight-id">
-                    <button class="search-flight">Tìm kiếm</button>
+                <div class="ticket-search">
+                    <label for="ticket-search-id">Tìm kiếm</label>
+                    <select name="ticket-search-type" id="ticket-search-type" class="ticket-search-type">
+                        <option value="ticket-id-search-type">Mã vé</option>
+                        <option value="flight-id-search-type">Mã chuyến</option>
+                    </select>
+                    <input type="text" id="ticket-search-id" name="ticket-search-id">
+                    <button class="ticket-search-flight">Tìm kiếm</button>
                 </div>
                 
             </div>
@@ -106,6 +125,8 @@
                     <th mat-header-cell *matHeaderCellDef> </th>
                     <td mat-cell *matCellDef="let element"> Xóa </td>
                   </ng-container>
+                  
+                  
               
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

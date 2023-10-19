@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit  } from '@angular/core';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
@@ -33,15 +33,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-  selector: 'app-admin-flight-management',
-  templateUrl: './admin-flight-management.component.html',
-  styleUrls: ['./admin-flight-management.component.scss'],
+  selector: 'app-admin-ticket-management',
+  templateUrl: './admin-ticket-management.component.html',
+  styleUrls: ['./admin-ticket-management.component.scss']
 })
-export class AdminFlightManagementComponent {
-  displayedColumns: string[] = ['id_flight', 'id_plane', 'name_plane', 'departure_location', 'arrival_location', 'departure_date', 'flight_time', 'BSN_seats', 'ECO_seats', 'price'];
+export class AdminTicketManagementComponent {
+  displayedColumns: string[] = ['id_flight', 'id_plane', 'name_plane', 'departure_location', 'arrival_location', 'departure_date', 'flight_time', 'BSN_seats', 'ECO_seats', 'price', 'edit', 'delete'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
 }

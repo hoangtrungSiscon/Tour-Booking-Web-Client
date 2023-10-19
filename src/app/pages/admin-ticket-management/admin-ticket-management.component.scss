@@ -24,6 +24,7 @@
     font-size: 30px;
     font-weight: bold;
     color: #146C94;
+    margin-bottom: 30px;
 }
 
 .add-flight {
@@ -122,21 +123,40 @@
     border: 1px solid #19A7CE;
     cursor: pointer;
 }
-.flight-search {
+.ticket-search {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
 }
-.flight-search label {
-    width: 15%;
+.ticket-search label {
+    width: 10%;
     margin-right: 20px;
     text-wrap: nowrap;
     font-weight: bold;
     color: #146C94;
 }
-.flight-search input {
-    width: 60%;
+.ticket-search select {
+    width: 20%;
+    align-self: center;
+    height: auto;
+    padding-left: 35px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; /* Remove default arrow */
+    background-image: url('../../../assets/Icon/select-arrow.png'); /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: .65em auto, 100%;
+    background-position-x: 96%;
+    background-position-y: 60%;
+    padding: 5px;
+    border-radius: 10px;
+    border-color: #146C94;
+    border-width: 2px;
+}
+.ticket-search input {
+    width: 50%;
     margin: 20px;
     padding: 5px;
     padding-left: 35px;
@@ -149,8 +169,8 @@
     background-position-x: 1%;
     background-position-y: 60%;
 }
-.search-flight {
-    width: 25%;
+.ticket-search-flight {
+    width: 20%;
     margin-left: 20px;
     border: none;
     color:white;
@@ -160,7 +180,7 @@
     background-color: #19A7CE;
     transition: 0.3s;
 }
-.search-flight:hover {
+.ticket-search-flight:hover {
     background-color: transparent;
     color: #19A7CE;
     border: 1px solid #19A7CE;
@@ -170,18 +190,27 @@
     border: 3px solid #146C94;
     // padding-top: 5px;
     border-radius: 10px;
+    width: 100%;
+    overflow-x: auto;
 }
 .flight-table {
     width: 100%;
     background-color: white;
     color: black;
+    // text-wrap: nowrap;
 }
-.mat-column-id_flight, .mat-column-id_plane, .mat-column-name_plane, .mat-column-departure_location, .mat-column-arrival_location, .mat-column-departure_date, .mat-column-flight_time, .mat-column-BSN_seats, .mat-column-ECO_seats {
-    color: black;
-    text-align: center;
-    border-bottom: 1px solid currentColor;
-}
-.mat-column-price {
+.mat-column-id_flight,
+.mat-column-id_plane,
+.mat-column-name_plane,
+.mat-column-departure_location,
+.mat-column-arrival_location,
+.mat-column-departure_date,
+.mat-column-flight_time,
+.mat-column-BSN_seats,
+.mat-column-ECO_seats,
+.mat-column-price,
+.mat-column-edit,
+.mat-column-delete {
     color: black;
     text-align: center;
     border-bottom: 1px solid currentColor;
