@@ -8,8 +8,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
-import { AdminFlightManagementComponent } from './pages/admin-flight-management/admin-flight-management.component';
-import { AdminTicketManagementComponent } from './pages/admin-ticket-management/admin-ticket-management.component';
+import { AdminFlightManagementComponent } from './components/admin-flight-management/admin-flight-management.component';
+import { AdminTicketManagementComponent } from './components/admin-ticket-management/admin-ticket-management.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
