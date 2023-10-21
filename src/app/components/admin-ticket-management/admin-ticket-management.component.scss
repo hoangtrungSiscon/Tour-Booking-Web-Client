@@ -189,27 +189,29 @@
 .flight-data-table {
     border: 3px solid #146C94;
     // padding-top: 5px;
+    display: flex;
+    flex-direction: column;
     border-radius: 10px;
-    width: 100%;
+    // width: 1100px;
     overflow-x: auto;
 }
 .flight-table {
     width: 100%;
+    justify-content: center;
     background-color: white;
     color: black;
     // text-wrap: nowrap;
 }
-.mat-column-id_flight,
-.mat-column-id_plane,
-.mat-column-name_plane,
-.mat-column-departure_location,
-.mat-column-arrival_location,
-.mat-column-departure_date,
-.mat-column-flight_time,
-.mat-column-BSN_seats,
-.mat-column-ECO_seats,
+.mat-column-ticket_id,
+.mat-column-booking_date,
+.mat-column-customer_id,
+.mat-column-customer_name,
+.mat-column-flight_id,
+.mat-column-seat_type,
+.mat-column-quantity,
 .mat-column-price,
-.mat-column-edit,
+.mat-column-approve,
+.mat-column-cancel,
 .mat-column-delete {
     color: black;
     text-align: center;
@@ -218,6 +220,7 @@
 .mat-table {
     overflow-x: scroll;
     color: black;
+    position: sticky
 }
 // .mat-header-cell th {
 //     background-color: #146C94;
@@ -232,6 +235,7 @@
 .mat-row,
 .mat-header-row {
     min-width: 800px;
+    // text-wrap: nowrap;
 }
 mat-paginator {
     background-color: #146C94;
@@ -239,10 +243,15 @@ mat-paginator {
     & mat-select {
         background-color: #146C94;
     }
+    width: 100%;
 }
 mat-paginator select option {
     background-color: #146C94;
-} 
+}
+// mat-paginator {
+//     display: flex;
+//     justify-content: left;
+// } 
 // .mat-select-panel {
 //     background-color: blue;
 // }

@@ -11,6 +11,8 @@ import { AdminNavigationComponent } from './components/admin-navigation/admin-na
 import { AdminFlightManagementComponent } from './components/admin-flight-management/admin-flight-management.component';
 import { AdminTicketManagementComponent } from './components/admin-ticket-management/admin-ticket-management.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { EditFlightComponent } from './components/edit-flight/edit-flight.component';
+import { AddFlightComponent } from './components/add-flight/add-flight.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     AdminFlightManagementComponent,
     AdminTicketManagementComponent,
     routingComponents,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    EditFlightComponent,
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,

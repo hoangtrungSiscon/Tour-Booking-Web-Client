@@ -47,19 +47,19 @@
             </div>
             <div class="flight-data-table">
               <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
-                <ng-container matColumnDef="id_flight">
+                <ng-container matColumnDef="flight_id">
                     <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id_flight}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
                   </ng-container>
                 
-                  <ng-container matColumnDef="id_plane">
+                  <ng-container matColumnDef="plane_id">
                     <th mat-header-cell *matHeaderCellDef> Mã máy bay </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id_plane}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.plane_id}} </td>
                   </ng-container>
                 
-                  <ng-container matColumnDef="name_plane">
+                  <ng-container matColumnDef="plane_name">
                     <th mat-header-cell *matHeaderCellDef> Tên máy bay </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name_plane}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.plane_name}} </td>
                   </ng-container>
                 
                   <ng-container matColumnDef="departure_location">
@@ -111,8 +111,7 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               </table>
               <mat-paginator pageSize="10" hidePageSize="true"
-                showFirstLastButtons
-                aria-label="Select page of periodic elements">
+                showFirstLastButtons>
               </mat-paginator>
             </div>
             
