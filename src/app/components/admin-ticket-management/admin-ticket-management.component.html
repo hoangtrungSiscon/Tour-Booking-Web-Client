@@ -65,71 +65,75 @@
                 
             </div>
             <div class="flight-data-table">
-              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
-                <ng-container matColumnDef="ticket_id">
-                    <th mat-header-cell *matHeaderCellDef> Mã vé </th>
-                    <td mat-cell *matCellDef="let element"> {{element.ticket_id}} </td>
-                  </ng-container>
-                
-                  <ng-container matColumnDef="booking_date">
-                    <th mat-header-cell *matHeaderCellDef> Ngày đặt vé </th>
-                    <td mat-cell *matCellDef="let element"> {{element.booking_date}} </td>
-                  </ng-container>
-                
-                  <ng-container matColumnDef="customer_id">
-                    <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
-                    <td mat-cell *matCellDef="let element"> {{element.customer_id}} </td>
-                  </ng-container>
-                
-                  <ng-container matColumnDef="customer_name">
-                    <th mat-header-cell *matHeaderCellDef> Tên khách hàng </th>
-                    <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="flight_id">
-                    <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
-                    <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="seat_type">
-                    <th mat-header-cell *matHeaderCellDef> Loại vé </th>
-                    <td mat-cell *matCellDef="let element"> {{element.seat_type}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="quantity">
-                    <th mat-header-cell *matHeaderCellDef> Số lượng </th>
-                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="price">
-                    <th mat-header-cell *matHeaderCellDef> Giá </th>
-                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
-                  </ng-container>
-  
-                  <ng-container matColumnDef="approve">
-                    <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element"> Duyệt </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="cancel">
-                    <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element"> Hủy </td>
-                  </ng-container>
-
-                  <ng-container matColumnDef="delete">
-                    <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element"> Xóa </td>
-                  </ng-container>
+              <div class="table-container">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
+                  <ng-container matColumnDef="ticket_id">
+                      <th mat-header-cell *matHeaderCellDef> Mã vé </th>
+                      <td mat-cell *matCellDef="let element"> {{element.ticket_id}} </td>
+                    </ng-container>
                   
+                    <ng-container matColumnDef="booking_date">
+                      <th mat-header-cell *matHeaderCellDef> Ngày đặt vé </th>
+                      <td mat-cell *matCellDef="let element"> {{element.booking_date}} </td>
+                    </ng-container>
                   
+                    <ng-container matColumnDef="customer_id">
+                      <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
+                      <td mat-cell *matCellDef="let element"> {{element.customer_id}} </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="customer_name">
+                      <th mat-header-cell *matHeaderCellDef> Tên khách hàng </th>
+                      <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="flight_id">
+                      <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
+                      <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="seat_type">
+                      <th mat-header-cell *matHeaderCellDef> Loại vé </th>
+                      <td mat-cell *matCellDef="let element"> {{element.seat_type}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="quantity">
+                      <th mat-header-cell *matHeaderCellDef> Số lượng </th>
+                      <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef> Giá </th>
+                      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="approve">
+                      <th mat-header-cell *matHeaderCellDef> </th>
+                      <td mat-cell *matCellDef="let element"> <button>Duyệt</button> </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="cancel">
+                      <th mat-header-cell *matHeaderCellDef> </th>
+                      <td mat-cell *matCellDef="let element"> <button>Hủy</button> </td>
+                    </ng-container>
+  
+                    <ng-container matColumnDef="delete">
+                      <th mat-header-cell *matHeaderCellDef> </th>
+                      <td mat-cell *matCellDef="let element"> <button>Xóa</button> </td>
+                    </ng-container>
+                    
+                    
+                
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+              <div class="panigator-container">
+                <mat-paginator pageSize="10" hidePageSize="true"
+                  showFirstLastButtons>
+                </mat-paginator>
+              </div>
               
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              <mat-paginator pageSize="10" hidePageSize="true"
-                showFirstLastButtons
-                aria-label="Select page of periodic elements">
-              </mat-paginator>
             </div>
             
               
