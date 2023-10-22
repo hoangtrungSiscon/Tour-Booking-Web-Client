@@ -40,4 +40,5 @@ export const routingComponents = [
   AdminFlightManagementComponent,
   EditFlightComponent,
   AddFlightComponent
+  
 ];
