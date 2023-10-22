@@ -6,6 +6,14 @@
     flex-direction: row;
     min-width: 100% !important;
 }
+
+.admin-nav {
+    // width: 20%;
+    // width: 20%;
+    width: auto;
+    // display: none;
+}
+
 .page-content {
     width: 100%;
     display: inline-block;
@@ -13,5 +21,9 @@
     padding: 30px;
     margin: 20px;
     // margin-left: 193.477px;
-    margin-left: 250px;
+    // margin-left: 250px;
+    
+}
+table {
+    overflow: hidden
 }
