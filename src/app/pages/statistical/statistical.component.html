@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="page-content">
+        <h1>Thống kê</h1>
+        <div class="form">
+            <div class="row g-3">
+                <div class="col-lg-6 row2">
+                    <div class="card">
+                        <div class="statis-card">
+                            <div class="pie-chart card-img-top">
+                                <app-line-charts></app-line-charts>
+                            </div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Số vé ECO đặt trong các chuyến</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card row1">
+                        <div class="statis-card">
+                            <p>Số khách tạo tài khoản</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Khách đặt nhiều vé nhất</p>
+                        </div>
+                    </div>
+
+                    <div class="card row1">
+                        <div class="statis-card">
+                            <p>Số chuyến bay được nhiều người đặt nhất</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Ngày có số lượng khách đặt đông nhất</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3">
+                <div class="col-lg-6 row2">
+                    <div class="card">
+                        <div class="statis-card">
+                            <div class="pie-chart card-img-top">
+                                <app-line-charts-bsn></app-line-charts-bsn>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Số vé BSN đặt trong các chuyến</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="statis-card">
+                            <div class="pie-chart card-img-top">
+                                <app-pie-charts></app-pie-charts>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Số vé đặt trong mỗi chuyến</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card row1">
+                        <div class="statis-card">
+                            <p>Tổng doanh thu tháng *hiện tại*</p>
+                        </div>
+                        <div class="card-body">
+                            <p>Tổng doanh thu tháng *tháng trước*</p>
+                        </div>
+                    </div>
+                    <div class="card row3">
+                        <div class="statis-card">
+                            <div class="pie-chart card-img-top">
+                                <app-column-charts></app-column-charts>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Doanh thu các tháng từ ... đến ...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <nav aria-label="Page navigation example" class="PageNavi">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

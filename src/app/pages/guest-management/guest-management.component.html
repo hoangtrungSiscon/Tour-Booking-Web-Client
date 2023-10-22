@@ -1,0 +1,89 @@
+
+<div class="container">
+    
+    <div class="page-content">
+        <h1>QUẢN LÍ KHÁCH HÀNG</h1>
+        <div id="btnThem">
+            <a routerLink="new-account">
+                <button type="button" class="btn btn-primary">Thêm tài khoản</button>
+            </a>
+        </div>
+
+        <div class="form">
+            <div class="row g-3">
+                <div class="col-lg-2 col-md-2" id="TimKiem">
+                    <label for="select">Tìm kiếm</label>
+                </div>
+                <div class="col-lg-3 col-md-7">
+                    <select class="form-select" aria-label="Default select example" id="select">
+                        <option selected value="HoTen">Họ Tên</option>
+                        <option value="MaKH">Mã Khách Hàng</option>
+                        <option value="Phai">Phái</option>
+                        <option value="Gmail">Gmail</option>
+                        <option value="MaChuyen">Mã chuyến</option>
+                        <option value="MaVe">Mã vé</option>
+                    </select>
+                </div>
+                <div class="col-lg-5 col-md-6">
+                    <input type="text" class="form-control" id="search">
+                </div>
+                <div class="col-lg-2 col-md-3" id="btnTimKiem">
+                    <button type="button" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+            <ng-container matColumnDef="id_guest">
+                <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_guest}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="full_name">
+                <th mat-header-cell *matHeaderCellDef> Họ và tên </th>
+                <td mat-cell *matCellDef="let element"> {{element.full_name}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef> Phái </th>
+                <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+              </ng-container>
+            
+              <ng-container matColumnDef="gmail">
+                <th mat-header-cell *matHeaderCellDef> Gmail </th>
+                <td mat-cell *matCellDef="let element"> {{element.gmail}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id_flight">
+                <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_flight}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id_ticket">
+                <th mat-header-cell *matHeaderCellDef> Mã vé </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_ticket}} </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        <nav aria-label="Page navigation example" class="PageNavi">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+

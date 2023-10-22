@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
@@ -13,6 +12,17 @@ import { AdminTicketManagementComponent } from './pages/admin-ticket-management/
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { EditFlightComponent } from './pages/edit-flight/edit-flight.component';
 import { AddFlightComponent } from './pages/add-flight/add-flight.component';
+import { GuestManagementComponent } from './pages/guest-management/guest-management.component';
+import { AdminNaviComponent } from './components/admin-navi/admin-navi.component';
+import { NewAccountComponent } from './pages/new-account/new-account.component';
+import { StatisticalComponent } from './pages/statistical/statistical.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PieChartsComponent } from './components/pie-charts/pie-charts.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+import { LineChartsComponent } from './components/line-charts-eco/line-charts.component';
+import { LineChartsBSNComponent } from './components/line-charts-bsn/line-charts-bsn.component';
+import { ColumnChartsComponent } from './components/column-charts/column-charts.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +33,15 @@ import { AddFlightComponent } from './pages/add-flight/add-flight.component';
     routingComponents,
     AdminDashboardComponent,
     EditFlightComponent,
-    AddFlightComponent
+    AddFlightComponent,
+    GuestManagementComponent,
+    AdminNaviComponent,
+    NewAccountComponent,
+    StatisticalComponent,
+    PieChartsComponent,
+    LineChartsComponent,
+    LineChartsBSNComponent,
+    ColumnChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +50,13 @@ import { AddFlightComponent } from './pages/add-flight/add-flight.component';
     MatTableModule,
     MatTableModule,
     MatPaginatorModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSlideToggleModule,
+    CanvasJSAngularChartsModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

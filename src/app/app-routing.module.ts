@@ -5,14 +5,25 @@ import { AdminFlightManagementComponent } from './pages/admin-flight-management/
 import { EditFlightComponent } from './pages/edit-flight/edit-flight.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AddFlightComponent } from './pages/add-flight/add-flight.component';
+import { GuestManagementComponent } from './pages/guest-management/guest-management.component';
+import { AdminNaviComponent } from './components/admin-navi/admin-navi.component';
+import { NewAccountComponent } from './pages/new-account/new-account.component';
+import { StatisticalComponent } from './pages/statistical/statistical.component';
 
 const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
     { path: 'admin-ticket-management', component: AdminTicketManagementComponent },
     { path: 'edit-flight', component: EditFlightComponent },
-    { path: 'add-flight', component: AddFlightComponent}
+    { path: 'add-flight', component: AddFlightComponent},
+    {path: 'guest-management', component: GuestManagementComponent},
+    {path: 'statist',component: StatisticalComponent},
   ]},
+  {path: 'admin-navi', component: AdminNaviComponent},
+  
+  {path: 'new-account',component: NewAccountComponent},
+  
+  {path: 'guest-management/new-account',component: NewAccountComponent},
   // {path: 'admin-ticket-management', component: AdminTicketManagementComponent},
   // {path: 'admin-flight-management', component: AdminFlightManagementComponent},
   // {path: 'edit-flight', component: EditFlightComponent}
