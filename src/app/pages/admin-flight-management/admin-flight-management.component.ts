@@ -38,7 +38,9 @@ const ELEMENT_DATA: FlightDetails[] = [
   styleUrls: ['./admin-flight-management.component.scss'],
 })
 export class AdminFlightManagementComponent {
-  displayedColumns: string[] = ['flight_id', 'plane_id', 'plane_name', 'departure_location', 'arrival_location', 'departure_date', 'flight_time', 'BSN_seats', 'ECO_seats', 'price', 'edit', 'delete'];
+  displayedColumns: string[] = ['flight_id', 'plane_id', 
+  'plane_name', 'departure_location', 'arrival_location', 'departure_date', 'flight_time', 'BSN_seats', 'ECO_seats', 
+  'price', 'edit', 'delete'];
   dataSource = new MatTableDataSource<FlightDetails>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit() {

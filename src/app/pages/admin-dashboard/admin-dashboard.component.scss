@@ -1,7 +1,10 @@
 .container {
+    // display: flex;
+    // flex-direction: row;
+    // overflow: hidden
     display: flex;
     flex-direction: row;
-    overflow: hidden
+    min-width: 100% !important;
 }
 .page-content {
     width: 100%;
@@ -9,5 +12,6 @@
     position: relative;
     padding: 30px;
     margin: 20px;
-    margin-left: 193.477px;
+    // margin-left: 193.477px;
+    margin-left: 250px;
 }

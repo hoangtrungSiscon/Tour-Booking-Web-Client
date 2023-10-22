@@ -55,7 +55,7 @@
 }
 .flight-filter-form form {
     display: flex;
-    // width: 100%;
+    width: 100%;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
@@ -173,7 +173,7 @@
 }
 .table-container {
     display: flex;
-    width: 1000px;
+    width: 100%;
     overflow-x: auto;
     border-style: solid;
     border-color: #146C94;
@@ -183,6 +183,7 @@
 }
 .paginator-container {
     display: flex;
+    width: 100%;
 }
 .flight-table {
     width: 100%;
@@ -236,13 +237,13 @@ td button:hover {
         color: white;
     }
 }
-.mat-row,
-.mat-header-row {
-    min-width: 800px;
-}
+// .mat-row,
+// .mat-header-row {
+//     min-width: 800px;
+// }
 mat-paginator {
     background-color: #146C94;
     color: white;
-    width: 1000px;
+    width: 100%;
     flex-shrink: 0;
 }

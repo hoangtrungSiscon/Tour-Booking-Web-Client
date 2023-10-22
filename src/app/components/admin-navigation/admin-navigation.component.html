@@ -1,4 +1,4 @@
-<div class="menu-bar">
+<!-- <div class="menu-bar">
     <div class="logo">
         <img src="assets/Icon/icons8-plane-material-rounded (1)/icons8-plane-48.png" alt="logo" class="logo-image">
         <button class="homepage">
@@ -8,11 +8,38 @@
         
     </div>
     <div class="menu-button-list">
-        <!-- <a routerLink="/admin-ticket-management"></a> -->
-        <button class="menu-button" routerLink="/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
-        <button class="menu-button" routerLink="/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
+        <button class="menu-button" routerLink="/admin-dashboard/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
+        <button class="menu-button" routerLink="/admin-dashboard/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
         <button class="menu-button">Quản lý khách hàng</button>
         <button class="menu-button">Thống kê</button>
         <button class="menu-button">LOG OUT</button>
+    </div>
+</div> -->
+
+<div class="menu-bar">
+    <div class="logo">
+        <img src="../../../assets/Icon/icons8-plane-material-rounded (1)/icons8-plane-48.png" alt="logo" class="logo-image">
+        <button class="homepage">
+            <p style="margin: 0;">FLIGHTDOT</p>
+            <p style="margin: 0;">ADMIN</p>
+        </button>
+        
+    </div>
+    <div class="menu-button-list">
+        <div class="menu-button">
+            <a routerLink="/admin-dashboard/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</a>
+        </div>
+        <div class="menu-button">
+            <a routerLink="/admin-dashboard/admin-ticket-management" routerLinkActive="active">Quản lý vé</a>
+        </div>
+        <div class="menu-button">
+            <a routerLink="guest-management">Quản lý khách hàng</a>
+        </div>
+        <div class="menu-button">
+            <a routerLink="">Thống kê</a>
+        </div>
+        <div class="menu-button">
+            <a routerLink="">LOG OUT</a>
+        </div>
     </div>
 </div>

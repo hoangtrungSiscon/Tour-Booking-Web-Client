@@ -1,0 +1,102 @@
+<div class="page-title">
+    CHỈNH SỬA CHUYẾN BAY
+</div>
+<div class="flight-detail-form">
+    <form>
+        <div class="flight-detail-form-title">THÔNG TIN VÉ</div>
+
+        <div class="flight-data-fields">
+            <span style="text-align: left;
+            font-size: 20px;
+            width: 100%;
+            font-weight: bold;
+            color: #146C94;
+            margin: 0px 0px 10px 0px;">Thông tin chuyến bay</span>
+            <div class="form-field">
+                <label for="flight-id">Mã chuyến</label>
+                <input type="date" id="flight-id" name="flight-id" class="datepicker-box">
+            </div>
+    
+            <div class="form-field">
+                <label for="departure-location">Nơi xuất phát</label><br>
+                <select name="departure-location" id="departure-location">
+                    <option value=""></option>
+                    <option value="TPHCM">TPHCM</option>
+                    <option value="TPHCM2">TPHCM2</option>
+                    <option value="TPHCM3">TPHCM3</option>
+                    <option value="TPHCM4">TPHCM4</option>
+                    <option value="TPHCM5">TPHCM5</option>
+                </select>
+            </div>
+    
+            <div class="form-field">
+                <label for="arrival-location">Nơi đến</label><br>
+                <select name="arrival-location" id="arrival-location">
+                    <option value=""></option>
+                    <option value="TPHCM">TPHCM</option>
+                    <option value="TPHCM2">TPHCM2</option>
+                    <option value="TPHCM3">TPHCM3</option>
+                    <option value="TPHCM4">TPHCM4</option>
+                    <option value="TPHCM5">TPHCM5</option>
+                </select>
+            </div>
+    
+            <div class="form-field">
+                <label for="departure-date">Ngày đi</label>
+                <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+            </div>
+    
+            <div class="form-field">
+                <label for="flight-time">Giờ bay</label>
+                <input type="time" id="flight-time" name="flight-time">
+            </div>
+        </div>
+
+        <div class="plane-data-fields">
+            <span style="text-align: left;
+            font-size: 20px;
+            width: 100%;
+            font-weight: bold;
+            color: #146C94;
+            margin: 0px 0px 10px 0px;">Thông tin máy bay</span>
+            <div class="form-field">
+                <label for="plane-id">Mã máy bay</label><br>
+                <input type="text" id="plane-id" name="plane-id">
+            </div>
+            
+            <div class="form-field">
+                <label for="plane-name">Tên máy bay</label><br>
+                <input type="text" id="plane-name" name="plane-name">
+            </div>
+    
+            <div class="form-field">
+                <label for="price">Giá</label><br>
+                <input type="text" id="price" name="price">
+            </div>
+    
+            <div class="form-field">
+                <label for="BSN-number">Số lượng ghế BSN</label><br>
+                <input type="text" id="BSN-number" name="BSN-number">
+            </div>
+    
+            <div class="form-field">
+                <label for="ECO-number">Số lượng ghế ECO</label><br>
+                <input type="text" id="ECO-number" name="ECO-number">
+            </div>
+    
+            <div class="form-field">
+                <label for="BSN-number-booked">Số lượng ghế BSN</label><br>
+                <input type="text" id="BSN-number-booked" name="BSN-number-booked">
+            </div>
+    
+            <div class="form-field">
+                <label for="ECO-number-booked">Số lượng ghế ECO</label><br>
+                <input type="text" id="ECO-number-booked" name="ECO-number-booked">
+            </div>
+        </div>
+        <div class="form-action">
+            <button class="cancel-edit" [routerLink]="['/admin-dashboard', 'admin-flight-management']">Quay lại</button>
+            <button type="submit" class="accept-edit" [routerLink]="['/admin-dashboard', 'admin-flight-management']">Chỉnh sửa</button>
+        </div>
+    </form>
+</div>

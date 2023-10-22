@@ -1,0 +1,131 @@
+<div class="page-title">
+  QUẢN LÝ VÉ KHÁCH
+</div>
+<div class="ticket-filter-form">
+  <form>
+    <div class="form-field">
+      <label for="departure-location">Nơi xuất phát</label><br>
+      <select name="arrival-location" id="arrival-location">
+        <option value=""></option>
+        <option value="TPHCM">TPHCM</option>
+        <option value="TPHCM2">TPHCM2</option>
+        <option value="TPHCM3">TPHCM3</option>
+        <option value="TPHCM4">TPHCM4</option>
+        <option value="TPHCM5">TPHCM5</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="departure-location">Nơi đến</label><br>
+      <select name="arrival-location" id="arrival-location">
+        <option value=""></option>
+        <option value="TPHCM">TPHCM</option>
+        <option value="TPHCM2">TPHCM2</option>
+        <option value="TPHCM3">TPHCM3</option>
+        <option value="TPHCM4">TPHCM4</option>
+        <option value="TPHCM5">TPHCM5</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="departure-date">Ngày xuất phát</label>
+      <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+    </div>
+    <div class="form-field">
+      <label for="departure-date">Ngày đặt vé</label>
+      <input type="date" id="booking-date" name="booking-date" class="datepicker-box">
+    </div>
+    <div class="form-field">
+      <label for="arrival-location">Loại ghế</label><br>
+      <select name="seat-type" id="seat-type">
+        <option value=""></option>
+        <option value="TPHCM">TPHCM</option>
+        <option value="TPHCM2">TPHCM2</option>
+        <option value="TPHCM3">TPHCM3</option>
+        <option value="TPHCM4">TPHCM4</option>
+        <option value="TPHCM5">TPHCM5</option>
+      </select>
+    </div>
+    <div class="form-field" style="justify-content: right;">
+      <button type="submit">Lọc</button>
+    </div>
+  </form>
+  <div class="ticket-search">
+    <label for="ticket-search-id">Tìm kiếm</label>
+    <select name="ticket-search-type" id="ticket-search-type" class="ticket-search-type">
+      <option value="ticket-id-search-type">Mã vé</option>
+      <option value="flight-id-search-type">Mã chuyến</option>
+    </select>
+    <input type="text" id="ticket-search-id" name="ticket-search-id">
+    <button class="ticket-search-flight">Tìm kiếm</button>
+  </div>
+
+</div>
+<div class="ticket-data-table">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
+      <ng-container matColumnDef="ticket_id">
+        <th mat-header-cell *matHeaderCellDef> Mã vé </th>
+        <td mat-cell *matCellDef="let element"> {{element.ticket_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="booking_date">
+        <th mat-header-cell *matHeaderCellDef> Ngày đặt vé </th>
+        <td mat-cell *matCellDef="let element"> {{element.booking_date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer_id">
+        <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
+        <td mat-cell *matCellDef="let element"> {{element.customer_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="customer_name">
+        <th mat-header-cell *matHeaderCellDef> Tên khách hàng </th>
+        <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="flight_id">
+        <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
+        <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="seat_type">
+        <th mat-header-cell *matHeaderCellDef> Loại vé </th>
+        <td mat-cell *matCellDef="let element"> {{element.seat_type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Số lượng </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Giá </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="approve">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button>Duyệt</button> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cancel">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button>Hủy</button> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button>Xóa</button> </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <div class="paginator-container">
+    <mat-paginator pageSize="10" hidePageSize="true" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+
+</div>
