@@ -4,32 +4,35 @@
     box-sizing: border-box;
     text-decoration: none;
     color: #146C94;
-    
+    font-size: 18px;
 }
 
 form{
     border: 3px solid #19A7CE;
     border-radius: 10px;
     padding:30px;
-    height: min-content;
+    height: auto;
 }
 .container {
     display: flex;
     flex-direction: row;
     min-width: 100% !important;
-    
 }
 
 .page-content {
-    margin-left: 250px;
+    // margin-left: 250px;
     width: 100%;
     display: inline-block;
     position: relative;
     padding: 30px;
 }
-h1{
+.page-title {
     text-align: center;
-    margin-bottom: 5%;
+    white-space: nowrap;
+    font-size: 30px;
+    font-weight: bold;
+    color: #146C94;
+    margin-bottom: 50px;
 }
 
 h2{
@@ -41,31 +44,6 @@ h2{
     align-items: center;
 }
 
-.PageNavi{
-    position: relative;
-    margin-top: -5%;
-}
-.pagination{
-    display: flex;
-    justify-content: center;
-    
-}
-.page-link{
-    border: 3px solid#19A7CE;
-    border-radius: 10px !important;
-    margin-right: 10px;
-    text-align: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-}
-.page-link:hover{
-    background-color: #146C94;
-    color: white;
-}
-.page-link:hover span{
-    color: white;
-}
 .card{
     width: 35vw;
     border: 3px solid #19A7CE;
@@ -125,3 +103,4 @@ h2{
         align-items: center;
     }
 }
+// ----------------------------------------------------------------------------

@@ -19,12 +19,13 @@ const routes: Routes = [
     { path: 'add-flight', component: AddFlightComponent},
     {path: 'guest-management', component: GuestManagementComponent},
     {path: 'statist',component: StatisticalComponent},
+    {path: 'guest-management/new-account',component: NewAccountComponent},
   ]},
   {path: 'admin-navi', component: AdminNaviComponent},
   
-  {path: 'new-account',component: NewAccountComponent},
+  // {path: 'new-account',component: NewAccountComponent},
   
-  {path: 'guest-management/new-account',component: NewAccountComponent},
+  
   // {path: 'admin-ticket-management', component: AdminTicketManagementComponent},
   // {path: 'admin-flight-management', component: AdminFlightManagementComponent},
   // {path: 'edit-flight', component: EditFlightComponent}

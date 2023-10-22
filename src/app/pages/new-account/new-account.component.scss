@@ -4,61 +4,67 @@
     box-sizing: border-box;
     text-decoration: none;
     color: #146C94;
-    
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden
+}
+.page-content {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    padding: 30px;
+    margin: 20px;
+}
+.page-title {
+    text-align: center;
+    white-space: nowrap;
+    font-size: 30px;
+    font-weight: bold;
+    color: #146C94;
+    margin-bottom: 50px;
 }
 form{
     border: 3px solid #19A7CE;
     border-radius: 10px;
     padding:30px
 }
-.container {
-    display: flex;
-    flex-direction: row;
-    min-width: 100% !important;
-    
+button{
+    background-color: #19A7CE;
+    border: none;
+    color: white;
+    width: 130px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+button:hover {
+    background-color: white;
+    border: 1px solid #19A7CE;
+    color: #19A7CE;
+    cursor: pointer;
+    width: 130px;
+    padding: 5px;
+    border-radius: 10px;
 }
 
-.page-content {
-    margin-left: 250px;
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    padding: 30px;
-}
-h1{
-    text-align: center;
-    margin-bottom: 5%;
-}
-button{
-    color: white !important;
-    min-height: 40px;
-    width: 135px;
-    background-color: #19A7CE;
-    
-}
 #quay-lai{
     margin-right: 15px;
-    background-color: white;
-    border: 3px solid;
-    color: #146C94 !important;
 }
-#quay-lai:hover{
-    margin-right: 15px;
-    background-color: #146C94;
-    border: 3px solid;
-    color: white !important;
-}
-button:hover{
-    background-color: #146C94;
-    color: white;
-}
+
 .buttons{
     display: flex;
-    margin-top: 10%;
+    margin-top: 5%;
     justify-content: right;
 }
 h2{
-    margin-bottom: 50px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #146C94;
+    margin-bottom: 30px;
 }
 .form{
     // display: inline;
@@ -90,28 +96,4 @@ input, select{
     margin-right: 12%;
 }
 
-.PageNavi{
-    position: relative;
-    top: 5%;
-}
-.pagination{
-    display: flex;
-    justify-content: center;
-    
-}
-.page-link{
-    border: 3px solid#19A7CE;
-    border-radius: 10px !important;
-    margin-right: 10px;
-    text-align: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-}
-.page-link:hover{
-    background-color: #146C94;
-    color: white;
-}
-.page-link:hover span{
-    color: white;
-}
+// ---------------------------------------------------------------------------------

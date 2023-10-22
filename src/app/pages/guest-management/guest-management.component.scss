@@ -1,207 +1,3 @@
-// * {
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-//     text-decoration: none;
-//     color: #146C94;
-    
-// }
-// table, th, td {
-//     border: 1px solid black;
-//     border-collapse: collapse;
-// }
-// table{
-//     width: 100%;
-//     border-radius: 10px;
-//     margin-top: 5%;
-// }
-// th{
-//     text-align: center;
-// }
-// .container {
-//     display: flex;
-//     flex-direction: row;
-//     min-width: 100% !important;
-    
-// }
-
-// .page-content {
-//     margin-left: 250px;
-//     width: 100%;
-//     display: inline-block;
-//     position: relative;
-//     padding: 30px;
-// }
-// h1{
-//     text-align: center;
-// }
-// button{
-//     color: white !important;
-//     height: 40px;
-//     width: 135px;
-//     background-color: #19A7CE;
-// }
-// button:hover{
-//     background-color: #146C94;
-//     color: white;
-// }
-
-// #btnThem{
-//     display: flex;
-//     justify-content: right;
-//     margin-bottom: 15px;
-//     margin-top: 5%;
-// }
-// .form{
-//     // display: inline;
-//     margin-bottom: 15px;
-//     height: 40px;
-// }
-
-// #TimKiem{
-//     height: 40px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-// }
-// #select{
-//     border: 2px solid#19A7CE;
-//     width: 90%;
-//     height: 40px;
-// }
-// .form-select{
-//     background-image: url(../../../assets/Icon/select-arrow.png);
-//     position: relative;
-// }
-// #search{
-//     background-image: url(../../../assets/Icon/icons8-search-48.png);
-//     background-repeat: no-repeat;
-//     background-position: 99%;
-//     background-size: 30px;
-//     position: relative;
-//     border: 2px solid#19A7CE;
-//     height: 40px;
-//     width: 90%;
-// }
-// #btnTimKiem{
-//     display: flex;
-//     justify-content: right;
-    
-// }
-// #btnTimKiem button{
-//     width: 135px;
-// }
-
-// .PageNavi{
-//     position: relative;
-//     top: 5%;
-// }
-// .pagination{
-//     display: flex;
-//     justify-content: center;
-    
-// }
-// .page-link{
-//     border: 3px solid#19A7CE;
-//     border-radius: 10px !important;
-//     margin-right: 10px;
-//     text-align: center;
-//     justify-content: center;
-//     width: 30px;
-//     height: 30px;
-// }
-// .page-link:hover{
-//     background-color: #146C94;
-//     color: white;
-// }
-// .page-link:hover span{
-//     color: white;
-// }
-
-// .flight-data-table {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-// }
-// .table-container {
-//     display: flex;
-//     width: 100%;
-//     overflow-x: auto;
-//     border-style: solid;
-//     border-color: #146C94;
-//     border-width: 3px 3px 3px 3px;
-//     border-radius: 10px 10px 0px 0px;
-//     background-color: #146C94;
-// }
-// .paginator-container {
-//     display: flex;
-//     width: 100%;
-// }
-// .flight-table {
-//     width: 100%;
-//     justify-content: center;
-//     background-color: white;
-//     color: black;
-//     // text-wrap: nowrap;
-// }
-// .mat-column-flight_id,
-// .mat-column-plane_id,
-// .mat-column-plane_name,
-// .mat-column-departure_location,
-// .mat-column-arrival_location,
-// .mat-column-departure_date,
-// .mat-column-flight_time,
-// .mat-column-BSN_seats,
-// .mat-column-ECO_seats,
-// .mat-column-price,
-// .mat-column-edit,
-// .mat-column-delete {
-//     color: black;
-//     text-align: center;
-//     border-bottom: 1px solid currentColor;
-// }
-// .mat-table {
-//     overflow-x: scroll;
-//     color: black;
-//     text-wrap: nowrap;
-// }
-// td button {
-//     background-color: #19A7CE;
-//     border: none;
-//     color: white;
-//     width: 50px;
-//     padding: 5px;
-//     border-radius: 10px;
-//     transition: 0.3s;
-// }
-// td button:hover {
-//     background-color: white;
-//     border: 1px solid #19A7CE;
-//     color: #19A7CE;
-//     cursor: pointer;
-//     width: 50px;
-//     padding: 5px;
-//     border-radius: 10px;
-// }
-// .flight-table {
-//     th {
-//         background-color: #146C94;
-//         color: white;
-//     }
-// }
-// // .mat-row,
-// // .mat-header-row {
-// //     min-width: 800px;
-// // }
-// mat-paginator {
-//     background-color: #146C94;
-//     color: white;
-//     width: 100%;
-//     flex-shrink: 0;
-// }
-
-//-------------------------------------------------------
-
 * {
     margin: 0;
     padding: 0;
@@ -228,47 +24,35 @@
     font-size: 30px;
     font-weight: bold;
     color: #146C94;
+    margin-bottom: 30px;
 }
-
-.add-flight {
-    float: right;
-    white-space: nowrap;
-    border: none;
-    color:white;
-    border-radius: 10px;
-    width: 150px;
-    height: 30px;
+button{
     background-color: #19A7CE;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    border: none;
+    color: white;
+    width: 130px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
     transition: 0.3s;
 }
-.add-flight:hover {
-    background-color: transparent;
-    color: #19A7CE;
+button:hover {
+    background-color: white;
     border: 1px solid #19A7CE;
+    color: #19A7CE;
     cursor: pointer;
+    width: 130px;
+    padding: 5px;
+    border-radius: 10px;
 }
-.flight-filter-form {
-    margin:auto;
+#Them{
+    display: flex;
+    margin:50px auto 30px auto;
+}
+#btnThem{
     
-    align-items: center;
-    clear: both;
-    display: flex;
-    flex-direction: column;
 }
-.flight-filter-form form {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    border-style: solid;
-    border-width: 3px;
-    border-color: #146C94;
-    padding: 20px;
-    border-radius: 20px;
-}
+
 .form-field {
     width: 50%;
     display: flex;
@@ -277,13 +61,13 @@
     padding: 10px;
 }
 .form-field label {
-    width: 30%;
+    width: 40%;
     align-self: center;
     color: #146C94;
     font-weight: bold;
 }
 .form-field input {
-    width: 70%;
+    width: 60%;
     align-self: center;
     height: auto;
     padding: 5px;
@@ -293,7 +77,7 @@
 }
 
 .form-field select {
-    flex: 70%;
+    flex: 60%;
     align-self: center;
     height: auto;
 
@@ -326,51 +110,8 @@
     border: 1px solid #19A7CE;
     cursor: pointer;
 }
-.flight-search {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-.flight-search label {
-    width: 15%;
-    margin-right: 20px;
-    text-wrap: nowrap;
-    font-weight: bold;
-    color: #146C94;
-}
-.flight-search input {
-    width: 60%;
-    margin: 20px;
-    padding: 5px;
-    padding-left: 35px;
-    border: 2px solid #146C94;
-    border-radius: 10px;
-    background-image: url('../../../assets/Icon/icons8-search-48.png'); /* Add custom arrow */
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 1.65em auto, 100%;
-    background-position-x: 1%;
-    background-position-y: 60%;
-}
-.search-flight {
-    width: 25%;
-    margin-left: 20px;
-    border: none;
-    color:white;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    background-color: #19A7CE;
-    transition: 0.3s;
-}
-.search-flight:hover {
-    background-color: transparent;
-    color: #19A7CE;
-    border: 1px solid #19A7CE;
-    cursor: pointer;
-}
-.flight-data-table {
+
+.guest-data-table {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -384,6 +125,7 @@
     border-width: 3px 3px 3px 3px;
     border-radius: 10px 10px 0px 0px;
     background-color: #146C94;
+    white-space: nowrap;
 }
 .paginator-container {
     display: flex;
@@ -394,20 +136,16 @@
     justify-content: center;
     background-color: white;
     color: black;
-    // text-wrap: nowrap;
+    text-wrap: wrap;
+    min-width: 1000px;
+    overflow-x: auto;
 }
-.mat-column-flight_id,
-.mat-column-plane_id,
-.mat-column-plane_name,
-.mat-column-departure_location,
-.mat-column-arrival_location,
-.mat-column-departure_date,
-.mat-column-flight_time,
-.mat-column-BSN_seats,
-.mat-column-ECO_seats,
-.mat-column-price,
-.mat-column-edit,
-.mat-column-delete {
+.mat-column-id_guest,
+.mat-column-full_name,
+.mat-column-gender,
+.mat-column-gmail,
+.mat-column-id_flight,
+.mat-column-id_ticket{
     color: black;
     text-align: center;
     border-bottom: 1px solid currentColor;
@@ -417,37 +155,55 @@
     color: black;
     text-wrap: nowrap;
 }
-td button {
-    background-color: #19A7CE;
-    border: none;
-    color: white;
-    width: 50px;
-    padding: 5px;
-    border-radius: 10px;
-    transition: 0.3s;
-}
-td button:hover {
-    background-color: white;
-    border: 1px solid #19A7CE;
-    color: #19A7CE;
-    cursor: pointer;
-    width: 50px;
-    padding: 5px;
-    border-radius: 10px;
-}
-.flight-table {
+
+.guest-data-table {
     th {
         background-color: #146C94;
         color: white;
     }
 }
-// .mat-row,
-// .mat-header-row {
-//     min-width: 800px;
-// }
 mat-paginator {
     background-color: #146C94;
     color: white;
     width: 100%;
     flex-shrink: 0;
 }
+// --------------------------------------------------------------------------
+.form{
+    // display: inline;
+    margin-bottom: 15px;
+    height: 40px;
+}
+
+#TimKiem{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#select{
+    border: 2px solid#19A7CE;
+    width: 90%;
+    height: 40px;
+}
+.form-select{
+    background-image: url(../../../assets/Icon/select-arrow.png);
+    position: relative;
+}
+#search{
+    background-image: url(../../../assets/Icon/icons8-search-48.png);
+    background-repeat: no-repeat;
+    background-position: 99%;
+    background-size: 30px;
+    position: relative;
+    border: 2px solid#19A7CE;
+    height: 40px;
+    width: 90%;
+}
+#btnTimKiem{
+    display: flex;
+    justify-content: left;
+    
+}
+
