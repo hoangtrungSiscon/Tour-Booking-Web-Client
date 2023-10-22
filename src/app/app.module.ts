@@ -24,6 +24,23 @@ import { LineChartsComponent } from './components/line-charts-eco/line-charts.co
 import { LineChartsBSNComponent } from './components/line-charts-bsn/line-charts-bsn.component';
 import { ColumnChartsComponent } from './components/column-charts/column-charts.component';
 
+
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ForgetPassComponent } from './pages/forget-pass/forget-pass.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { HeaderHomeComponent } from './components/header-home/header-home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +58,15 @@ import { ColumnChartsComponent } from './components/column-charts/column-charts.
     PieChartsComponent,
     LineChartsComponent,
     LineChartsBSNComponent,
-    ColumnChartsComponent
+    ColumnChartsComponent,
+    HomeComponent,
+    LoginComponent,
+    ForgetPassComponent,
+    SignUpComponent,
+    HeaderComponent,
+    FooterComponent,
+    HeaderHomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +81,18 @@ import { ColumnChartsComponent } from './components/column-charts/column-charts.
     MatTableModule,
     MatSlideToggleModule,
     CanvasJSAngularChartsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    FormsModule, FormsModule, ReactiveFormsModule,
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

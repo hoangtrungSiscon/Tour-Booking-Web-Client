@@ -1,0 +1,241 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --blue-1-color: #146C94;
+    --blue-2-color: #19A7CE;
+    --blue-3-color: #AFD3E2;
+    --white-color: #fff;
+    --gray-color: #D9D9D9;
+}
+.body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+.background-img{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    opacity: 0.8;
+    height: 400px;
+    width: 100%;
+    background-image: url(~src/assets/img/background2.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.input-date,.input-sreach{
+
+    font-size: 20px;
+    color:#146C94 !important;
+    padding-inline: 8px;
+    font-weight: bold;
+    border: 2px solid #146C94;
+    height: 50px;
+}
+.input-sreach{
+    width: 70%;
+    min-width: auto;
+}
+.input-date{
+    margin-bottom: 10px;
+}
+::placeholder{
+    font-size: 16px;
+    color: #146C94 !important;
+}
+.btn-sreach{
+    color: #fff;
+    background-color: #146C94;
+    width: 100px;
+    min-width: 40px;
+    height: 50px;
+    
+}
+.div-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.margin{
+    margin: 40px;
+}
+.font-title{
+    border: none;
+    
+    font-weight: bold;
+    color:#146C94
+}
+
+.accordion-border{
+    border: 1px solid black !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.accordion-button{
+    padding-inline: 10px;
+}
+.accordion-body{
+    padding-inline: 10px;
+}
+.accordion-button:focus{
+    background-color: #146C94;
+    box-shadow: none;
+    color:#fff
+}
+
+.div-border-img-p{
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.margin-bottom{
+    margin-bottom: 20px;
+}
+.div-contact{
+    width: 600px;
+    min-width: 100px;
+    height: 200px;
+    border: 2px solid #19A7CE;
+    border-radius: 20px;
+}
+.div-box-have{
+    border: 2px solid #146C94;
+    background-color: #fff;
+    border-radius: 15px;
+    height: 120px;
+}
+.div-center-row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+.text-title{
+    color: #146C94;
+    font-size: 18px;
+    font-weight: bold;
+}
+.div-border{
+    border-radius: 10px;
+    border: 2px solid #19A7CE;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.rotatingText { 
+    align-items: center;
+    display: flex;
+    height: 40px;
+    text-align: center;
+    color:#146C94;
+    margin-top: -40px;
+  }
+  
+  .rotatingText-content { 
+    position: relative;
+    width: 100%;
+  }
+  
+  .rotatingText-description { 
+    margin-bottom: 0px;
+    font-size: 14px;
+    margin: 0;
+    margin-top: -30px;
+    @media (min-width: 768px) { 
+      font-size: 18px;
+    }
+  }
+  
+  .rotatingText-adjective { 
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 40px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    
+    top: 0;
+    
+    
+    @media (min-width: 768px) { 
+      font-size: 20px;
+    }
+    
+    &:nth-of-type(1) { 
+      animation: rotate-text-up 1.5s .75s; 
+    }
+    
+    &:nth-of-type(2) { 
+      animation: rotate-text-up 1.5s 2s; 
+    }  
+    &:nth-of-type(3) { 
+        animation: rotate-text-up 1.5s 3.25s; 
+      } 
+      &:nth-of-type(4) { 
+        animation: rotate-text-up 1.5s 4.5s; 
+      } 
+    &:nth-of-type(5) { 
+      animation: fade-text-in 1.5s 5.75s forwards;
+    }
+  }
+  
+  // Animations
+  @keyframes rotate-text-up { 
+    0% {
+      transform: translate3d(0, 80px, 0);
+      opacity: 0;
+    }
+    
+    20%, 80% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+    
+    100% {
+      transform: translate3d(0, -40px, 0);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fade-text-in { 
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 80px, 0);
+    }
+    
+    50%, 100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+#carouselExample1 .carousel-item img {
+    object-fit: cover;
+    object-position: center;
+    height: 600px;
+    width: 350px;
+}
+#carouselExample2 .carousel-item img {
+    object-fit: cover;
+    object-position: center;
+    height: 600px;
+    width: 350px;
+}
+

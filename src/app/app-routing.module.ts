@@ -9,7 +9,10 @@ import { GuestManagementComponent } from './pages/guest-management/guest-managem
 import { AdminNaviComponent } from './components/admin-navi/admin-navi.component';
 import { NewAccountComponent } from './pages/new-account/new-account.component';
 import { StatisticalComponent } from './pages/statistical/statistical.component';
-
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ForgetPassComponent } from './pages/forget-pass/forget-pass.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
@@ -18,12 +21,18 @@ const routes: Routes = [
     { path: 'add-flight', component: AddFlightComponent},
     {path: 'guest-management', component: GuestManagementComponent},
     {path: 'statist',component: StatisticalComponent},
-  ]},
+    
+  ],component: AdminDashboardComponent},
   {path: 'admin-navi', component: AdminNaviComponent},
   
   {path: 'new-account',component: NewAccountComponent},
   
   {path: 'guest-management/new-account',component: NewAccountComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'forget-pass', component: ForgetPassComponent},
+  { path: 'sign-up', component: SignUpComponent},
+  { path: '', redirectTo: '/home' , pathMatch: 'full'}
   // {path: 'admin-ticket-management', component: AdminTicketManagementComponent},
   // {path: 'admin-flight-management', component: AdminFlightManagementComponent},
   // {path: 'edit-flight', component: EditFlightComponent}

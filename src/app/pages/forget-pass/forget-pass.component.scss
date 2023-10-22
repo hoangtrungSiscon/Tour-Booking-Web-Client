@@ -1,0 +1,93 @@
+:root {
+    --blue-1-color: #146C94;
+    --blue-2-color: #19A7CE;
+    --blue-3-color: #AFD3E2;
+    --white-color: #fff;
+    --gray-color: #D9D9D9;
+}
+* {
+    box-sizing: border-box;
+}
+.div-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.forgetPass-container {
+    width: 450px;
+    min-width: 200px;
+    height: 460px;
+    border: 2px solid #146C94;
+    border-radius: 24px;
+    padding: 24px;
+}
+h1{
+    color:#146C94;
+    font-weight: 500;
+    font-size: 30px;
+}
+.form-group{
+    position: relative;
+    width: 100%;
+    input{
+        width: 100%;
+        border: 2px solid #146C94;
+        height: 54px;
+        padding: 0 15px;
+        border-radius: 15px;
+        font-size:14px;
+    }
+}
+#password-container:focus,#username-container:focus{
+    outline: none;
+    border: 3px solid #19A7CE;
+}
+// input:focus{
+
+// }
+.eye-icon{
+    position: absolute;
+    right:15px;
+    top:59px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent !important;
+}
+label{
+    font-size: 16px;
+    color: #146C94;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    
+}
+
+.button-submit{
+    width: 160px;
+    height: 60px;
+    background-color:#19A7CE;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color:white;
+    position: relative;
+}
+.button-resend{
+    width: 100px;
+    height: 54px;
+    background-color:#19A7CE;
+    border-radius: 15px;
+    margin-left: 28px;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    color:white;
+    position: relative;
+}
+.button-submit:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
