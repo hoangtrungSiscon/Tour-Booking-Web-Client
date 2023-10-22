@@ -10,6 +10,7 @@ import { AdminNaviComponent } from './components/admin-navi/admin-navi.component
 import { NewAccountComponent } from './pages/new-account/new-account.component';
 import { StatisticalComponent } from './pages/statistical/statistical.component';
 
+
 const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
