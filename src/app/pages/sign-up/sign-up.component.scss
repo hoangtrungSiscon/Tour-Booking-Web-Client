@@ -58,7 +58,21 @@ h1{
 // }
 
 :host ::ng-deep .mat-step-icon-selected {
-    color: #fff;
+    color: black !important;
+    background-color: #fff;
+}
+:host ::ng-deep .mat-step-icon-state-edit {
+    color: black !important;
+    background-color: #fff;
+}
+:host ::ng-deep .mat-step-label-selected {
+    font-weight: bold !important;
+    
+}
+:host ::ng-deep .mat-horizontal-stepper-header-container{
+    border-radius: 10px;
+    margin-top: 10px;
+    height: 60px;
     background-color: #146C94; // your styles
 }
 
