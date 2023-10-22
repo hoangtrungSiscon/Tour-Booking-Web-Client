@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
@@ -48,12 +47,7 @@ import { ColumnChartsComponent } from './components/column-charts/column-charts.
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatTableModule,
     MatPaginatorModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTableModule,
     MatSlideToggleModule,
     CanvasJSAngularChartsModule,
     MatGridListModule
