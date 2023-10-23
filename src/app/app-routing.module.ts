@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'add-flight', component: AddFlightComponent},
     {path: 'guest-management', component: GuestManagementComponent},
     {path: 'statist',component: StatisticalComponent},
-    
+    { path: '', redirectTo: 'admin-flight-management', pathMatch: 'full' }
   ],component: AdminDashboardComponent},
   {path: 'admin-navi', component: AdminNaviComponent},
   
