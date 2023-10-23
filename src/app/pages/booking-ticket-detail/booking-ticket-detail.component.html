@@ -1,0 +1,63 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <h1 class="text-center color-2">ĐẶT VÉ</h1>
+    <div class="ticket-info border-color-1">
+        <div class="row">
+            <h2 class="color-2 ms-3">THÔNG TIN ĐẶT VÉ</h2>
+            <div class="ticket-info-detail col-12 ">
+                <div class="row border-color-2 p-3">
+                    <div class="col-7">
+                        <h3 class="color-1">NƠI ĐI - NƠI ĐẾN</h3>
+                        <H2 class="color-2">VIETNAM - THAILAND</H2>
+                        <h3 class="color-1">NGÀY/GIỜ: <span class="color-2">28 tháng 9 năm 2023</span></h3>
+                    </div>
+                    <div class="col-5">
+                        <h3 class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></h3>
+                        <h3 class="color-1">MÃ CHUYẾN: <span class="color-2">ALVN01</span></h3>
+                        <h3 class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputName" class="form-label fs-4 color-2 fw-bold mt-4">Họ và tên</label>
+                        <input type="text" id="inputName"  class="form-control">
+                        <label for="inputEmail" class="form-label fs-4 color-2 fw-bold mt-4">Gmail</label>
+                        <input type="text" id="inputEmail" class="form-control">
+                        <label for="inputPhone" class="form-label fs-4 color-2 fw-bold mt-4">Số điện thoại</label>
+                        <input type="text" id="inputPhone" class="form-control">
+                        
+                        <p class="fs-4 color-2 fw-bold mt-4">Loại ghế</p>
+                        <div class="chair-check">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success w-100 h-100" for="success-outlined">BSN</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-danger w-100 h-100" for="danger-outlined">ECO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 color-2 text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis ratione pariatur, amet doloribus veritatis, illo deserunt mollitia saepe ea sed eligendi nisi inventore minus quos? Officiis ex autem quia facilis?</p>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputQuantily" class="form-label fs-4 color-2 fw-bold mt-4">Số lượng đặt</label>
+                        <input type="text" id="inputQuantily" class="form-control">
+                        <label for="inputSum" class="form-label fs-4 color-2 fw-bold mt-4">Tổng giá</label>
+                        <input type="text" id="inputSum" class="form-control">
+                        <label for="inputDate" class="form-label fs-4 color-2 fw-bold mt-4">Ngày đặt</label>
+                        <input type="date" id="inputDate" required class="form-control">
+                        <div class="ticket-btn mt-6 d-flex justify-content-end">
+                            <input type="submit" (click)="showOnInit()" class="btn btn-primary px-5 py-3 background-color-1 fw-bold" value="Đặt vé">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

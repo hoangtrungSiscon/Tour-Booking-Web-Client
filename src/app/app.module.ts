@@ -42,6 +42,8 @@ import { BookingHistoryComponent } from './pages/booking-history/booking-history
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
+import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +73,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ChangePassComponent,
     ViewProfileComponent,
     BookingHistoryComponent,
+    BookingTicketComponent,
+    BookingTicketDetailComponent
   ],
   imports: [
     BrowserModule,

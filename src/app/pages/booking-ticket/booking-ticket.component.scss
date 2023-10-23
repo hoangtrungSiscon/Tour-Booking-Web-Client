@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+.test-1 {
+    height: 100hv;
+    border: #146C94 solid 3px;
+    border-radius: 5px;
+}
+
+.test-2 {
+    height: 100hv;
+    margin-left: 40px;
+
+}
+
+.border-color-2 {
+    border: #19A7CE solid 3px;
+    border-radius: 5px;
+}
+
+.color-1 {
+    color: #19A7CE;
+}
+
+.color-2 {
+    color: #146C94;
+}
+
+.background-white {
+    background-color: white;
+}
+
+.color-black {
+    color: black;
+}
+
+.w-40 {
+    width: 40% !important
+}
+
+.form-control {
+    border-radius: 5px;
+    border: #146C94 solid 2px;
+}
+
+/* Thông tin bên trái */
+.icon-down {
+    width: 26px;
+}
+
+.btn-normal {
+    background-color: white;
+    color: #19A7CE;
+    border: solid 2px #19A7CE;
+}
+
+.btn-normal .btn-active {
+    background-color:#19A7CE;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Thông tin vé */
+.ticket-items {
+    /* max-height: 100vh;
+    overflow-y: auto; */
+    overflow: hidden;
+    
+}
+
+.ticket-items::-webkit-scrollbar {
+    display: none;
+}
+
+.ticket {
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.ticket p {
+    font-weight: bold;
+}
+
+.ticket-info {
+    display: flex;
+    align-items: center;
+}
+
+.chair-info {
+    display: flex;
+}
+
+.chair-info> :last-child {
+    margin-left: 20px;
+}
+
+/* Điều hướng */
+.directional {
+    margin-top: 20px;
+}

@@ -16,6 +16,10 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ChangePassComponent} from './pages/change-pass/change-pass.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
+import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
+import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
+
+
 const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
@@ -38,6 +42,8 @@ const routes: Routes = [
   { path: 'change-pass', component:ChangePassComponent},
   { path: 'view-profile', component:ViewProfileComponent},
   { path: 'booking-history', component:BookingHistoryComponent},
+  { path: 'booking-ticket', component: BookingTicketComponent },
+  { path: 'booking-ticket-detail', component: BookingTicketDetailComponent },
 ];
 
 @NgModule({
