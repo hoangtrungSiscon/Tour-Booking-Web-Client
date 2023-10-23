@@ -13,10 +13,12 @@ button{
 
 .lighter{
     color: #6AC6DF;
+    font-size: 25px;
 }
 
 .harder{
     color: #146C94;
+    font-size: 25px;
 }
 
 .cover{
@@ -41,4 +43,32 @@ button{
 }
 button{
     font-weight: bold;
+        width: 160px;
+        height: 50px;
+        background-color:#19A7CE;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        color:white;
 }
+
+input{
+    height: 50px;
+    border: 4px solid #146C94;
+}
+
+a{
+    border: #19A7CE 2px solid ;
+    border-radius: 10px;
+    margin: 10px;
+    color: #146C94;
+}
+
+.abc{
+    background-color: #146C94;
+    color: white;
+}
+
+
+  

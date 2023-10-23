@@ -12,16 +12,42 @@
       <div class="col-4"></div>
       <div class="col-md-4">
         <form class="row g-3">
-            <legend>QUÊN MẬT KHẨU</legend>
+          <h1 style="margin-bottom: 20px;">ĐỔI MẬT KHẨU</h1>
           <div class="container">
             <div class="row">
-                <label for="inputEmail3" class="form-label">Gmail</label>
-                <input type="text" class="form-control" id="inputEmail3" placeholder="abc@gmail.com">      
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between;align-items: flex-end;">
+                    <label>MẬT KHẨU CŨ</label>
+                </div>
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <button class="eye-icon" (click)="viewpass()">
+                    <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
+                </button>
             </div>
-            <div class="row">
-                <div class="col-12 text-center"><button class="btn btn-primary btn-lg btn-block" >Xác nhận</button></div>
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between;align-items: flex-end;">
+                    <label>MẬT KHẨU MỚI</label>
+                </div>
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <button class="eye-icon" (click)="viewpass()">
+                    <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
+                </button>
             </div>
+            <div class="form-group">
+                <div style="display: flex; justify-content: space-between;align-items: flex-end;">
+                    <label> NHẬP LẠI MẬT KHẨU MỚI</label>
+                </div>
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <button class="eye-icon" (click)="viewpass()">
+                    <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
+                </button>
+            </div>   
+            </div>
+            
         </div>
+        <div class="row">
+          <div class="col-12 text-center "><button class="button-submit" >XÁC NHẬN</button></div>
+      </div>
         </form>
       </div>
       <div class="col-4">
