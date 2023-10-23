@@ -22,7 +22,7 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { LineChartsComponent } from './components/line-charts-eco/line-charts.component';
 import { LineChartsBSNComponent } from './components/line-charts-bsn/line-charts-bsn.component';
 import { ColumnChartsComponent } from './components/column-charts/column-charts.component';
-
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +50,8 @@ import { ColumnChartsComponent } from './components/column-charts/column-charts.
     MatPaginatorModule,
     MatSlideToggleModule,
     CanvasJSAngularChartsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

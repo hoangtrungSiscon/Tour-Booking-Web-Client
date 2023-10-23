@@ -12,9 +12,15 @@
             <div class="col-md-6">
                 <label for="inputPassword" class="form-label" id="labelPassword">
                     <div>Mật khẩu</div>
-                    <div id="show">Show</div>
+                    
+                    <!-- <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây"> -->
+                <div class="eye-icon" (click)="viewpass()">
+                    <mat-icon id="eye-icon" style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>   
+                    <div id="show" [textContent]="text"></div>      
+                </div>
+                
                 </label>
-                <input type="password" class="form-control" id="inputPassword">
+                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu của bạn vào đây">
             </div>
             <div class="col-md-6">
                 <label for="inputName" class="form-label">Họ tên</label>
@@ -22,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputPhoneNumber" class="form-label">Số điện thoại</label>
-                <input type="tel" class="form-control" id="inputPassword">
+                <input type="tel" class="form-control" id="inputPhoneNumber">
             </div>
             <div class="col-md-6">
                 <label for="inputGmail" class="form-label">Gmail</label>
