@@ -2,7 +2,7 @@
 <div class="container">
     
     <div class="page-content">
-        <h1>Thêm tài khoản mới</h1>
+        <h1 class="page-title">Thêm tài khoản mới</h1>
         <form class="row g-3">
             <h2>Khách hàng mới</h2>
             <div class="col-md-6">
@@ -12,9 +12,15 @@
             <div class="col-md-6">
                 <label for="inputPassword" class="form-label" id="labelPassword">
                     <div>Mật khẩu</div>
-                    <div id="show">Show</div>
+                    
+                    <!-- <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây"> -->
+                <div class="eye-icon" (click)="viewpass()">
+                    <mat-icon id="eye-icon" style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>   
+                    <div id="show" [textContent]="text"></div>      
+                </div>
+                
                 </label>
-                <input type="password" class="form-control" id="inputPassword">
+                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu của bạn vào đây">
             </div>
             <div class="col-md-6">
                 <label for="inputName" class="form-label">Họ tên</label>
@@ -22,7 +28,7 @@
             </div>
             <div class="col-md-6">
                 <label for="inputPhoneNumber" class="form-label">Số điện thoại</label>
-                <input type="tel" class="form-control" id="inputPassword">
+                <input type="tel" class="form-control" id="inputPhoneNumber">
             </div>
             <div class="col-md-6">
                 <label for="inputGmail" class="form-label">Gmail</label>
@@ -36,27 +42,13 @@
                 </select>
             </div>
             <div class="buttons">
-                <button type="submit" class="btn btn-primary" id="quay-lai">Quay lại</button>
-                <button type="submit" class="btn btn-primary">Thêm tài khoản</button>
+                <button type="submit" class="btn btn-primary" id="quay-lai" [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
+                <button type="submit" class="btn btn-primary"
+                [routerLink]="['/admin-dashboard', 'guest-management']">
+                Thêm tài khoản</button>
             </div>
         </form>
-        <nav aria-label="Page navigation example" class="PageNavi">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        <span aria-hidden="true">«</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        
     </div>
 </div>
 

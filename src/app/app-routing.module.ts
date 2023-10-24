@@ -20,6 +20,7 @@ import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.co
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 
 
+
 const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
     { path: 'add-flight', component: AddFlightComponent},
     { path: 'guest-management', component: GuestManagementComponent},
     { path: 'statist',component: StatisticalComponent},
-    { path: '', redirectTo: 'admin-flight-management', pathMatch: 'full' }
+    { path: '', redirectTo: 'admin-flight-management', pathMatch: 'full' },
+    { path: 'guest-management/new-account',component: NewAccountComponent},
   ],component: AdminDashboardComponent},
   
   { path: 'new-account',component: NewAccountComponent},
@@ -51,11 +53,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-// export const routingComponents = [
-//   // AdminDashboardComponent,
-//   AdminTicketManagementComponent,
-//   AdminFlightManagementComponent,
-//   EditFlightComponent,
-//   AddFlightComponent
-  
-// ];
