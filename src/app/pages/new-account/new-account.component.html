@@ -42,8 +42,10 @@
                 </select>
             </div>
             <div class="buttons">
-                <button type="submit" class="btn btn-primary" id="quay-lai">Quay lại</button>
-                <button type="submit" class="btn btn-primary">Thêm tài khoản</button>
+                <button type="submit" class="btn btn-primary" id="quay-lai" [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
+                <button type="submit" class="btn btn-primary"
+                [routerLink]="['/admin-dashboard', 'guest-management']">
+                Thêm tài khoản</button>
             </div>
         </form>
         
