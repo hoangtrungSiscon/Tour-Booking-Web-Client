@@ -1,29 +1,23 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <div class="container my-5">
-  <h1 class="text-center my-2 color-2">CHUYẾN BAY</h1>
+  <h1 class="text-center my-2 color-2 fw-bold">CHUYẾN BAY</h1>
   <div class="row">
     <div class="col-3">
-      <label for="inputText" class="form-label fs-4 color-2 fw-bold">Tìm mã chuyến bay</label>
+      <label for="inputText" class="form-label fs-4 color-2 fw-bold ms-5">Tìm mã chuyến bay</label>
       <!-- <input type="text" class="color-1" readonly class="form-control-plaintext" value="Tìm mã chuyến bay"> -->
     </div>
     <div class="col-7">
-      <input type="text" id="inputText" class="form-control" placeholder="Nhập mã chuyến bay">
-      <!-- <input type="password" class="form-control" id="inputPassword2" placeholder="Nhập mã chuyến bay"> -->
+      <input type="text" id="inputText" class="form-control form-control-search" placeholder="Nhập mã chuyến bay">
     </div>
     <div class="col-2">
-      <button type="submit" class="btn btn-primary mb-3">Tìm kiếm</button>
+      <button type="submit" class="btn btn-primary mb-3 background-1 fw-bold btn-search">Tìm kiếm</button>
     </div>
-
-    <!-- <label for="inputText" class="form-label fs-4 color-2 fw-bold mt-4">Ngày đặt</label>
-                        <input type="text" id="inputText" class="form-control"> -->
   </div>
   <div class="row test">
     <!-- Lựa chọn điểm điểm -->
     <div class="col-3 test-1">
-      <h2 class="color-2">Điểm xuất phát
-        <img class="icon-down" src="assets/Icon/Polygon 1.png" alt="#">
-      </h2>
+      <h2 class="color-2 ms-2 mt-2 fw-bold">ĐIỂM XUẤT PHÁT</h2>
       <input type="radio" class="btn-check" name="check1" id="check-1" autocomplete="off" checked>
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-1">Thanh Hóa</label>
       <input type="radio" class="btn-check" name="check1" id="check-2" autocomplete="off" checked>
@@ -38,9 +32,7 @@
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-6">Cần Thơ</label>
       <input type="radio" class="btn-check" name="check1" id="check-7" autocomplete="off" checked>
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-7">Quảng Nam</label>
-      <h3 class="color-2">Điểm đến
-        <img class="icon-down" src="assets/Icon/Polygon 1.png" alt="#">
-      </h3>
+      <h3 class="color-2 ms-2 mt-2 fw-bold">ĐIỂM ĐẾN</h3>
       <input type="radio" class="btn-check" name="check2" id="check-8" autocomplete="off" checked>
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-8">BSN</label>
       <input type="radio" class="btn-check" name="check2" id="check-9" autocomplete="off" checked>
@@ -55,13 +47,13 @@
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-13">BSN</label>
       <input type="radio" class="btn-check" name="check2" id="check-14" autocomplete="off" checked>
       <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-14">BSN</label>
-      <h2 class="color-2">Ngày xuất phát</h2>
-      <div class="input-group mb-3">
+      <h2 class="color-2 ms-2 mt-2 fw-bold">Ngày xuất phát</h2>
+      <div class="input-group mb-3 px-2">
         <input type="datetime-local" class="form-control" aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default">
       </div>
       <div class="text-center">
-        <button type="button" class="btn btn-primary my-2 px-5" data-bs-toggle="tooltip" data-bs-placement="left"
+        <button type="button" class="btn btn-primary my-2 px-5 background-1" data-bs-toggle="tooltip" data-bs-placement="left"
           title="Tooltip on left">
           Lọc
         </button>
@@ -69,17 +61,17 @@
 
     </div>
     <!-- Thông tin vé -->
-    <div class="col-8 test-2 border-color-2">
+    <div class="col-8 test-2 border-color-2 px-4 py-3">
       <!-- Hiện thị vé -->
-      <h3 class="color-2">Vé</h3>
+      <h1 class="color-2 fw-bold">VÉ</h1>
       <!-- Đầu Nội dung vé -->
       <div class="ticket-items">
         <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2">
           <div class="container">
             <div class="row ticket-info">
               <div class="col-5">
-                <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                <H3 class="color-2">VIETNAM - THAILAND</H3>
+                <p class="color-1 dt fw-bold">NƠI ĐI - NƠI ĐẾN</p>
+                <h3 class="color-2 fw-bold">VIETNAM - THAILAND</h3>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
                   <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
@@ -88,7 +80,7 @@
               </div>
               <div class="col-5 background-white color-1 fw-bold ">
                 <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                <p class="color-2">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
+                <p class="color-2 fw-bold">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
                   <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
@@ -96,7 +88,7 @@
                 <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
               </div>
               <div class="col-2 background-white color-1 fw-bold ">
-                <a routerLink="/datve-info" class="btn btn-primary">ĐẶT VÉ</a>
+                <a routerLink="/datve-info" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
               </div>
             </div>
           </div>
@@ -106,7 +98,7 @@
             <div class="row ticket-info">
               <div class="col-5">
                 <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                <H3 class="color-2">VIETNAM - THAILAND</H3>
+                <H3 class="color-2 fw-bold">VIETNAM - THAILAND</H3>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
                   <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
@@ -123,7 +115,7 @@
                 <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
               </div>
               <div class="col-2 background-white color-1 fw-bold ">
-                <a routerLink="/datve-info" class="btn btn-primary">ĐẶT VÉ</a>
+                <a routerLink="/datve-info" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
               </div>
             </div>
           </div>
@@ -133,7 +125,7 @@
             <div class="row ticket-info">
               <div class="col-5">
                 <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                <H3 class="color-2">VIETNAM - THAILAND</H3>
+                <H3 class="color-2 fw-bold">VIETNAM - THAILAND</H3>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
                   <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
@@ -150,7 +142,7 @@
                 <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
               </div>
               <div class="col-2 background-white color-1 fw-bold ">
-                <a routerLink="/datve-info" class="btn btn-primary">ĐẶT VÉ</a>
+                <a routerLink="/datve-info" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
               </div>
             </div>
           </div>
@@ -160,7 +152,7 @@
             <div class="row ticket-info">
               <div class="col-5">
                 <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                <H3 class="color-2">VIETNAM - THAILAND</H3>
+                <H3 class="color-2 fw-bold">VIETNAM - THAILAND</H3>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
                   <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
@@ -177,7 +169,7 @@
                 <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
               </div>
               <div class="col-2 background-white color-1 fw-bold ">
-                <a routerLink="/datve-info" class="btn btn-primary">ĐẶT VÉ</a>
+                <a routerLink="/datve-info" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
               </div>
             </div>
           </div>
@@ -187,7 +179,7 @@
             <div class="row ticket-info">
               <div class="col-5">
                 <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                <H3 class="color-2">VIETNAM - THAILAND</H3>
+                <H3 class="color-2 fw-bold">VIETNAM - THAILAND</H3>
                 <div class="chair-info">
                   <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
                   <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
@@ -204,7 +196,7 @@
                 <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
               </div>
               <div class="col-2 background-white color-1 fw-bold ">
-                <a routerLink="/datve-info" class="btn btn-primary">ĐẶT VÉ</a>
+                <a routerLink="/datve-info" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
               </div>
             </div>
           </div>
@@ -222,6 +214,7 @@
           <li class="page-item"><a class="page-link" href="#">1</a></li>
           <li class="page-item"><a class="page-link" href="#">2</a></li>
           <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">...</a></li>
           <li class="page-item">
             <a class="page-link" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>

@@ -37,6 +37,20 @@
     padding: 30px 100px;
 }
 
+.form-control-input {
+    height: 50px;
+    border-color: rgba(25, 167, 206, 0.5) ;
+}
+
+.text-second {
+    font-weight: 400;
+    line-height: 34px;
+}
+
+.h-50px {
+    height: 50px;
+}
+
 .btn-outline-danger {
     --bs-btn-color: #146C94;
     --bs-btn-border-color: #146C94;
@@ -70,4 +84,8 @@
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: #146C94;
     --bs-gradient: none
+}
+
+.swal2-popup .swal2-styled.swal2-confirm {
+    background-color: #19A7CE;
 }

@@ -14,6 +14,11 @@
 
 }
 
+.border-color-1 {
+    border: #146C94 solid 3px;
+    border-radius: 5px;
+}
+
 .border-color-2 {
     border: #19A7CE solid 3px;
     border-radius: 5px;
@@ -25,6 +30,16 @@
 
 .color-2 {
     color: #146C94;
+}
+
+.background-1 {
+    background-color: #19A7CE;
+    border-color: #19A7CE;
+}
+
+.background-2 {
+    background-color: #146C94;
+    border-color: #146C94;
 }
 
 .background-white {
@@ -39,9 +54,34 @@
     width: 40% !important
 }
 
+.form-control.form-control-search {
+    border: #146C94 solid 3px;
+}
+
 .form-control {
-    border-radius: 5px;
-    border: #146C94 solid 2px;
+    border: #146C94 solid 3px;
+    border-radius: 14px;
+}
+
+.font-text-64 {
+    font-size: 64px !important;
+}
+
+.font-text-48 {
+    font-size: 48px !important;
+}
+
+.font-text-36 {
+    font-size: 36px !important;
+}
+
+.font-text-28 {
+    font-size: 28px !important;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    background-color: #19A7CE;
+    border-color: #19A7CE;
 }
 
 /* Thông tin bên trái */
@@ -59,6 +99,11 @@
     background-color:#19A7CE;
     color: white;
     border-radius: 5px;
+}
+
+
+.btn-search{
+    font-size: 17px;
 }
 
 /* Thông tin vé */
@@ -83,7 +128,9 @@
 
 .ticket p {
     font-weight: bold;
+    /* font-size: 20px; */
 }
+
 
 .ticket-info {
     display: flex;
