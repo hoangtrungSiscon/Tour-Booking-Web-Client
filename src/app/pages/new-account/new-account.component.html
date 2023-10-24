@@ -2,15 +2,15 @@
 <div class="container">
     
     <div class="page-content">
-        <h1 class="page-title">Thêm tài khoản mới</h1>
+        <h1 class="page-title">THÊM TÀI KHOẢN MỚI</h1>
         <form class="row g-3">
-            <h2>Khách hàng mới</h2>
-            <div class="col-md-6">
-                <label for="inputTaiKhoan" class="form-label">Tài Khoản</label>
-                <input type="text" class="form-control" id="inputTaiKhoan">
+            <h1 style="font-weight: bold;padding-bottom: 20px;"> Thông tin khách hàng mới</h1>
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tài Khoản</label>
+                <input type="text" class="form-control" id="inputTaiKhoan" style="padding-inline: 10px;height: 50px; border: 2px solid #146C94">
             </div>
-            <div class="col-md-6">
-                <label for="inputPassword" class="form-label" id="labelPassword">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputPassword" class="form-label" id="labelPassword" style="font-weight: bold;font-size: 20px;">
                     <div>Mật khẩu</div>
                     
                     <!-- <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây"> -->
@@ -20,30 +20,30 @@
                 </div>
                 
                 </label>
-                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu của bạn vào đây">
+                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" placeholder="Nhập mật khẩu của bạn vào đây">
             </div>
-            <div class="col-md-6">
-                <label for="inputName" class="form-label">Họ tên</label>
-                <input type="text" class="form-control" id="inputName">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputName" class="form-label" style="font-weight: bold;font-size: 20px;">Họ tên</label>
+                <input type="text" class="form-control" id="inputName" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
             </div>
-            <div class="col-md-6">
-                <label for="inputPhoneNumber" class="form-label">Số điện thoại</label>
-                <input type="tel" class="form-control" id="inputPhoneNumber">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputPhoneNumber" class="form-label" style="font-weight: bold;font-size: 20px;">Số điện thoại</label>
+                <input type="tel" class="form-control" id="inputPhoneNumber" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
             </div>
-            <div class="col-md-6">
-                <label for="inputGmail" class="form-label">Gmail</label>
-                <input type="email" class="form-control" id="inputGmail">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputGmail" class="form-label" style="font-weight: bold;font-size: 20px;">Gmail</label>
+                <input type="email" class="form-control" id="inputGmail" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
             </div>
-            <div class="col-md-6">
-                <label for="inputGender" class="form-label">Giới tính</label>
-                <select class="form-select" aria-label="Default select example" id="inputGender">
+            <div class="col-md-6" style="margin-top: 10px;">
+                <label for="inputGender" class="form-label" style="font-weight: bold;font-size: 20px;">Giới tính</label>
+                <select class="form-select" aria-label="Default select example" id="inputGender" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
                     <option selected value="HoTen">Nam</option>
                     <option value="MaKH">Nữ</option>
                 </select>
             </div>
             <div class="buttons">
-                <button type="submit" class="btn btn-primary" id="quay-lai" [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
-                <button type="submit" class="btn btn-primary"
+                <button type="submit" class="btn btn-primary" style="height: 50px;" id="quay-lai" [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
+                <button type="submit" class="btn btn-primary" style="height: 50px;"
                 [routerLink]="['/admin-dashboard', 'guest-management']">
                 Thêm tài khoản</button>
             </div>

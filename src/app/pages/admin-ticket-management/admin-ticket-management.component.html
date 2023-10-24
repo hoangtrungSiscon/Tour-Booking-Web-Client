@@ -4,8 +4,8 @@
 <div class="ticket-filter-form">
   <form>
     <div class="form-field">
-      <label for="departure-location">Nơi xuất phát</label><br>
-      <select name="arrival-location" id="arrival-location">
+      <label for="departure-location" style="font-size: 20px;">Nơi xuất phát</label><br>
+      <select name="arrival-location" id="arrival-location" style="height: 40px;">
         <option value=""></option>
         <option value="TPHCM">TPHCM</option>
         <option value="TPHCM2">TPHCM2</option>
@@ -15,8 +15,8 @@
       </select>
     </div>
     <div class="form-field">
-      <label for="departure-location">Nơi đến</label><br>
-      <select name="arrival-location" id="arrival-location">
+      <label for="departure-location" style="font-size: 20px;">Nơi đến</label><br>
+      <select name="arrival-location" id="arrival-location" style="height: 40px;">
         <option value=""></option>
         <option value="TPHCM">TPHCM</option>
         <option value="TPHCM2">TPHCM2</option>
@@ -26,36 +26,33 @@
       </select>
     </div>
     <div class="form-field">
-      <label for="departure-date">Ngày xuất phát</label>
-      <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+      <label for="departure-date" style="font-size: 20px;">Ngày xuất phát</label>
+      <input type="date" id="departure-date" name="departure-date" class="datepicker-box" style="height: 40px;">
     </div>
     <div class="form-field">
-      <label for="departure-date">Ngày đặt vé</label>
-      <input type="date" id="booking-date" name="booking-date" class="datepicker-box">
+      <label for="departure-date" style="font-size: 20px;">Ngày đặt vé</label>
+      <input type="date" id="booking-date" name="booking-date" class="datepicker-box" style="height: 40px;">
     </div>
     <div class="form-field">
-      <label for="arrival-location">Loại ghế</label><br>
-      <select name="seat-type" id="seat-type">
+      <label for="arrival-location" style="font-size: 20px;">Loại ghế</label><br>
+      <select name="seat-type" id="seat-type" style="height: 40px;">
         <option value=""></option>
-        <option value="TPHCM">TPHCM</option>
-        <option value="TPHCM2">TPHCM2</option>
-        <option value="TPHCM3">TPHCM3</option>
-        <option value="TPHCM4">TPHCM4</option>
-        <option value="TPHCM5">TPHCM5</option>
+        <option value="TPHCM">BSN</option>
+        <option value="TPHCM2">ECO</option>
       </select>
     </div>
     <div class="form-field" style="justify-content: right;">
-      <button type="submit">Lọc</button>
+      <button type="submit" style="height: 40px;">Lọc</button>
     </div>
   </form>
   <div class="ticket-search">
-    <label for="ticket-search-id">Tìm kiếm</label>
-    <select name="ticket-search-type" id="ticket-search-type" class="ticket-search-type">
+    <label for="ticket-search-id" style="font-size: 20px;">Tìm kiếm theo</label>
+    <select name="ticket-search-type" id="ticket-search-type" class="ticket-search-type" style="height: 40px;">
       <option value="ticket-id-search-type">Mã vé</option>
       <option value="flight-id-search-type">Mã chuyến</option>
     </select>
-    <input type="text" id="ticket-search-id" name="ticket-search-id">
-    <button class="ticket-search-flight">Tìm kiếm</button>
+    <input type="text" id="ticket-search-id" name="ticket-search-id" style="height: 40px;">
+    <button class="ticket-search-flight" style="height: 40px;">Tìm kiếm</button>
   </div>
 
 </div>

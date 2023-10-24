@@ -17,7 +17,7 @@
                         <div class="col-5">
                             <h3 class="color-1 fw-bold font-20">MÁY BAY: <span class="color-2">VNAIRLINE</span></h3>
                             <h3 class="color-1 fw-bold font-20">MÃ CHUYẾN: <span class="color-2">ALVN01</span></h3>
-                            <h3 class="color-1 fw-bold font-20">GIÁ VÉ: <span class="color-2">2.000.000</span></h3>
+                            <h3 class="color-1 fw-bold font-20">GIÁ ĐƠN VÉ: <span class="color-2">2.000.000</span></h3>
                         </div>
                     </div>
                 </div>
@@ -30,10 +30,21 @@
                             <input type="text" id="inputEmail" class="form-control form-control-input bor-ra">
                             <label for="inputPhone" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số điện thoại</label>
                             <input type="text" id="inputPhone" class="form-control form-control-input bor-ra">
+                            <label for="inputGender" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Giới tính</label>
+                            <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
                             
+                            <p class="mt-4 color-2 text-justify fs-5 text-second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis ratione pariatur, amet doloribus veritatis, illo deserunt mollitia saepe ea sed eligendi nisi inventore minus quos? Officiis ex autem quia facilis?</p>
+                        </div>
+                        <div class="col-6">
+                            <label for="inputQuantily" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số lượng đặt</label>
+                            <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
+                            <label for="inputSum" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Tổng giá</label>
+                            <input type="text" id="inputSum" class="form-control form-control-input bor-ra" readonly>
+                            <label for="inputDate" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Ngày đặt</label>
+                            <input type="date" id="inputDate" required class="form-control form-control-input bor-ra">
                             <p class="fs-4 color-2 fw-bold mt-4 font-18">Loại ghế</p>
                             <div class="chair-check">
-                                <div class="row">
+                                <div class="row"  style="margin-top: -4px;">
                                     <div class="col-6 h-50px">
                                         <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
                                         <label class="btn btn-outline-success w-100 h-100 form-control-input d-flex justify-content-center align-items-center" for="success-outlined">BSN</label>
@@ -44,15 +55,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-4 color-2 text-justify fs-5 text-second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis ratione pariatur, amet doloribus veritatis, illo deserunt mollitia saepe ea sed eligendi nisi inventore minus quos? Officiis ex autem quia facilis?</p>
-                        </div>
-                        <div class="col-6">
-                            <label for="inputQuantily" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số lượng đặt</label>
-                            <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
-                            <label for="inputSum" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Tổng giá</label>
-                            <input type="text" id="inputSum" class="form-control form-control-input bor-ra">
-                            <label for="inputDate" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Ngày đặt</label>
-                            <input type="date" id="inputDate" required class="form-control form-control-input bor-ra">
                             <div class="ticket-btn mt-6 d-flex justify-content-end h-50px">
                                 <input type="submit" (click)="showOnInit()" class="btn btn-primary px-5 py-2 background-color-1 fw-bold border-color-1" value="Đặt vé">
                             </div>

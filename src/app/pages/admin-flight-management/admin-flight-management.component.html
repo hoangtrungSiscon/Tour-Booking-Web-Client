@@ -1,12 +1,12 @@
 <div class="page-title">
   QUẢN LÝ CHUYẾN BAY
 </div>
-<button class="add-flight" routerLink="/admin-dashboard/add-flight">Thêm chuyến bay</button>
+<button class="add-flight" routerLink="/admin-dashboard/add-flight" style="height: 50px;background-color:#146C94;">Thêm chuyến bay</button>
 <div class="flight-filter-form">
   <form>
     <div class="form-field">
-      <label for="departure-location">Nơi xuất phát</label><br>
-      <select name="arrival-location" id="arrival-location">
+      <label for="departure-location" class="font-20">Nơi xuất phát</label><br>
+      <select name="arrival-location" id="arrival-location" style="height: 40px;">
         <option value=""></option>
         <option value="TPHCM">TPHCM</option>
         <option value="TPHCM2">TPHCM2</option>
@@ -16,12 +16,12 @@
       </select>
     </div>
     <div class="form-field">
-      <label for="departure-date">Ngày xuất phát</label><br>
-      <input type="date" id="departure-date" name="departure-date" class="datepicker-box"><br>
+      <label for="departure-date" class="font-20">Ngày xuất phát</label><br>
+      <input type="date" id="departure-date" name="departure-date" class="datepicker-box" style="height: 40px;"><br>
     </div>
     <div class="form-field">
-      <label for="arrival-location">Nơi đến</label><br>
-      <select name="arrival-location" id="arrival-location">
+      <label for="arrival-location" class="font-20">Nơi đến</label><br>
+      <select name="arrival-location" id="arrival-location" style="height: 40px;">
         <option value=""></option>
         <option value="TPHCM">TPHCM</option>
         <option value="TPHCM2">TPHCM2</option>
@@ -31,13 +31,13 @@
       </select>
     </div>
     <div class="form-field" style="justify-content: right;">
-      <button type="submit">Lọc</button>
+      <button type="submit" style="height: 40px;">Lọc</button>
     </div>
   </form>
   <div class="flight-search">
-    <label for="flight-id">Tìm kiếm mã chuyến</label><br>
-    <input type="text" id="flight-id" name="flight-id">
-    <button class="search-flight">Tìm kiếm</button>
+    <label for="flight-id" class="font-18">Tìm kiếm theo mã chuyến bay</label>
+    <input type="text" id="flight-id" name="flight-id" style="margin-left: 60px;height: 40px;">
+    <button class="search-flight" style="height: 40px;">Tìm kiếm</button>
   </div>
 
 </div>
