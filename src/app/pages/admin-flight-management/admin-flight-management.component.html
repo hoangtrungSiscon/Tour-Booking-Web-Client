@@ -52,7 +52,7 @@
 <div class="flight-data-table">
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
-      <ng-container matColumnDef="flight_id">
+      <!-- <ng-container matColumnDef="flight_id">
         <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
         <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
       </ng-container>
@@ -100,6 +100,58 @@
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Giá </th>
         <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container> -->
+
+
+
+      <ng-container matColumnDef="MaChuyenBay">
+        <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
+        <td mat-cell *matCellDef="let element"> {{element.MaChuyenBay}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="MaMayBay">
+        <th mat-header-cell *matHeaderCellDef> Mã máy bay </th>
+        <td mat-cell *matCellDef="let element"> {{element.MaMayBay}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="TenMayBay">
+        <th mat-header-cell *matHeaderCellDef> Tên máy bay </th>
+        <td mat-cell *matCellDef="let element"> {{element.TenMayBay}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NoiXuatPhat">
+        <th mat-header-cell *matHeaderCellDef> Nơi xuất phát </th>
+        <td mat-cell *matCellDef="let element"> {{element.NoiXuatPhat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NoiDen">
+        <th mat-header-cell *matHeaderCellDef> Nơi hạ cánh </th>
+        <td mat-cell *matCellDef="let element"> {{element.NoiDen}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NgayXuatPhat">
+        <th mat-header-cell *matHeaderCellDef> Ngày xuất phát </th>
+        <td mat-cell *matCellDef="let element"> {{element.NgayXuatPhat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="GioBay">
+        <th mat-header-cell *matHeaderCellDef> Giờ bay </th>
+        <td mat-cell *matCellDef="let element"> {{element.GioBay}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SoLuongVeBsn">
+        <th mat-header-cell *matHeaderCellDef> Số ghế<br> BSN </th>
+        <td mat-cell *matCellDef="let element"> {{element.SoLuongVeBsn}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SoLuongVeEco">
+        <th mat-header-cell *matHeaderCellDef> Số ghế <br> ECO </th>
+        <td mat-cell *matCellDef="let element"> {{element.SoLuongVeEco}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="DonGia">
+        <th mat-header-cell *matHeaderCellDef> Giá </th>
+        <td mat-cell *matCellDef="let element"> {{element.DonGia}} </td>
       </ng-container>
 
       <ng-container matColumnDef="edit">
@@ -110,7 +162,7 @@
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button>Xóa</button> </td>
+        <td mat-cell *matCellDef="let element"> <button (click)="myClickFunction($event, element.MaChuyenBay)">Xóa</button> </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -125,5 +177,34 @@
     </mat-paginator>
   </div>
 
+  <!-- <script>
+    function alertID() {
+      alert("element.flight_id");
+    }
+    </script> -->
 
+    <!-- <script>
+      angular.module('myApp', [])
+        .controller('myCtrl', ['$scope', function($scope) {
+          $scope.count = 0;
+          $scope.myFunc = function() {
+            $scope.count++;
+          };
+        }]);
+      </script> -->
 </div>
+
+<!-- <tr *ngFor="let item of flightList$|async"> -->
+  <!-- flight_id: item.MaChuyenBay,
+        plane_id: item.MaMayBay,
+        plane_name: item.TenMayBay,
+        departure_location: item.NoiXuatPhat,
+        arrival_location: item.NoiDen,
+        departure_date: item.NgayXuatPhat,
+        flight_time: item.GioBay,
+        BSN_seats: item.SoLuongVeBsn,
+        ECO_seats: item.SoLuongVeEco,
+        price: item.DonGia, -->
+  <!-- <td>{{item.MaChuyenBay}}</td> -->
+
+<!-- </tr> -->

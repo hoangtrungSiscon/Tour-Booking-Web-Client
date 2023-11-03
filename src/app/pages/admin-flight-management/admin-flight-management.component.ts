@@ -1,36 +1,21 @@
-import { Time } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
-import {MatTableModule, MatTableDataSource} from '@angular/material/table';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
+import { FlightApiService } from 'src/app/services/flight-api.service';
 
 export interface FlightDetails {
-  flight_id: string;
-  plane_id: string;
-  plane_name: string;
-  departure_location: string;
-  arrival_location: string;
-  departure_date: string;
-  flight_time: string;
-  BSN_seats: number;
-  ECO_seats: number;
-  price: number;
+  MaChuyenBay: any;
+  MaMayBay: any;
+  TenMayBay: any;
+  NoiXuatPhat: any;
+  NoiDen: any;
+  NgayXuatPhat: any;
+  GioBay: any;
+  SoLuongVeBsn: any;
+  SoLuongVeEco: any;
+  DonGia: any;
 }
-
-const ELEMENT_DATA: FlightDetails[] = [
-  {flight_id: '1', plane_id: 'plane1', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00' , BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '2', plane_id: 'plane2', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '3', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '4', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '5', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '6', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '7', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '8', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '9', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '10', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '11', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '12', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000},
-  {flight_id: '13', plane_id: 'plane3', plane_name: 'Boeing 737-800', departure_location: 'Ho Chi Minh asdjla asdas asda d asdasdasd', arrival_location: 'Singapore', departure_date: '2022-10-01', flight_time: '12:00', BSN_seats: 100, ECO_seats: 100, price: 100000000},
-];
 
 @Component({
   selector: 'app-admin-flight-management',
@@ -38,12 +23,150 @@ const ELEMENT_DATA: FlightDetails[] = [
   styleUrls: ['./admin-flight-management.component.scss'],
 })
 export class AdminFlightManagementComponent {
-  displayedColumns: string[] = ['flight_id', 'plane_id', 
-  'plane_name', 'departure_location', 'arrival_location', 'departure_date', 'flight_time', 'BSN_seats', 'ECO_seats', 
-  'price', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<FlightDetails>(ELEMENT_DATA);
+  flightList: any[] = [];
+  public displayedColumns: string[] = [
+    'MaChuyenBay',
+    'MaMayBay',
+    'TenMayBay',
+    'NoiXuatPhat',
+    'NoiDen',
+    'NgayXuatPhat',
+    'GioBay',
+    'SoLuongVeBsn',
+    'SoLuongVeEco',
+    'DonGia',
+    'edit',
+    'delete',
+  ];
+  // flightList$!: Observable<FlightDetails[]>;
+  // dataSource!: MatTableDataSource<FlightDetails>;
+
+  // // public dataSource: FlightDetails[] = [];
+
+  // constructor(private service: FlightApiService) {}
+
+  // public displayedColumns: string[] = [
+  //   'flight_id',
+  //   'plane_id',
+  //   'plane_name',
+  //   'departure_location',
+  //   'arrival_location',
+  //   'departure_date',
+  //   'flight_time',
+  //   'BSN_seats',
+  //   'ECO_seats',
+  //   'price',
+  //   'edit',
+  //   'delete',
+  // ];
+
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  // ngOnInit(): void {
+  //   // this.flightList$ = this.service.getFlightList();
+
+  //   this.service.getFlightList().subscribe((data : FlightDetails[]) => {
+  //     this.dataSource = new MatTableDataSource<FlightDetails>(data);
+  //     // this.dataSource = data;
+  //     this.dataSource.paginator = this.paginator;
+  //     console.log(this.dataSource.data)
+  //   });
+  // }
+
+  myClickFunction(event: any, id: any): void {
+    alert(id);
+    console.log(event);
+  }
+  // dataSource: any[] = [];
+  dataSource = new MatTableDataSource<FlightDetails>(); 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  ngAfterViewInit() {
+  // listFlight !: FlightDetails[];
+  constructor(private service: FlightApiService) {
+    // this.service.getFlightList().subscribe(x => {
+    //   // this.dataSource.data = x;
+
+    //   this.flightList = x;
+    //   this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+    //   console.log(this.dataSource.data)
+    // })
+    this.getFlight();
+  }
+  ngOnInit(){
+    this.dataSource = new MatTableDataSource<FlightDetails>();
+    // this.getFlight();
+    // this.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    // console.log(this.data)
+    // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+    // console.log(this.flightList)
+    // console.log(this.getFlight())
+    // console.table(this.dataSource.data)
+    // console.log(this.flightList)
+    console.log(this.dataSource.data)
+  }
+
+  getFlight() : any{
+    this.service.getFlightList().subscribe(data => {
+      // this.flightList = data;
+      // this.dataSource.data = this.flightList;
+      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+      // console.log(data);
+      // console.log(this.flightList)
+      // return data;
+      // this.flightList = [...data];
+      // angular.copy
+      // console.log(data);
+      // this.flightList.push(data);
+      // console.log(this.flightList)
+      // data.forEach(element => {
+      //   this.flightList.push(element)
+      // });
+
+      data.forEach(element => {
+        this.dataSource.data.push(element)
+      });
+      // console.log(this.dataSource.data)
+      // console.log(this.flightList)
+    })
+    // console.log(this.flightList)
+  }
+  
+  // ngOnInit(){
+  //   this.fetchFlight();
+  // }
+  
+  // fetchFlight(){
+  //   this.service.getFlightList().subscribe(data => {
+  //     this.listFlight = data;
+  //     this.dataSource = new MatTableDataSource(this.listFlight)
+  //     console.log(this.listFlight)
+  //     data.forEach(element => {
+  //       this.dataSource.push(element)
+  //     });
+  //     // this.dataSource.paginator = this.paginator;
+  //   })
+  //   // this.service.getFlightList().forEach(element => {
+  //   //   this.dataSource
+  //   // });
+  // }
+
+  // public displayedColumns: string[] = [
+  //   'flight_id',
+  //   'plane_id',
+  //   'plane_name',
+  //   'departure_location',
+  //   'arrival_location',
+  //   'departure_date',
+  //   'flight_time',
+  //   'BSN_seats',
+  //   'ECO_seats',
+  //   'price',
+  //   'edit',
+  //   'delete',
+  // ];
+  
+  ngafterViewInit(){
     this.dataSource.paginator = this.paginator;
+    // console.log(this.dataSource.data)
   }
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminNavigationComponent } from './components/admin-navigation/admin-navigation.component';
@@ -44,6 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
+import { FlightApiService } from './services/flight-api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,10 +95,10 @@ import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/book
     MatFormFieldModule,
     MatStepperModule,
     FormsModule, FormsModule, ReactiveFormsModule,
-    
+    HttpClientModule,
 
   ],
-  providers: [],
+  providers: [FlightApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
