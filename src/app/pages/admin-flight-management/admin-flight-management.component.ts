@@ -89,7 +89,29 @@ export class AdminFlightManagementComponent {
     //   this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
     //   console.log(this.dataSource.data)
     // })
-    this.getFlight();
+    // this.getFlight();
+    this.service.getFlightList().subscribe(data => {
+      // this.flightList = data;
+      // this.dataSource.data = this.flightList;
+      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+      // console.log(data);
+      // console.log(this.flightList)
+      // return data;
+      // this.flightList = [...data];
+      // angular.copy
+      // console.log(data);
+      // this.flightList.push(data);
+      // console.log(this.flightList)
+      // data.forEach(element => {
+      //   this.flightList.push(element)
+      // });
+
+      data.forEach(element => {
+        this.dataSource.data.push(element)
+      });
+      // console.log(this.dataSource.data)
+      // console.log(this.flightList)
+    })
   }
   ngOnInit(){
     this.dataSource = new MatTableDataSource<FlightDetails>();
@@ -102,7 +124,7 @@ export class AdminFlightManagementComponent {
     // console.log(this.getFlight())
     // console.table(this.dataSource.data)
     // console.log(this.flightList)
-    console.log(this.dataSource.data)
+    // console.log(this.dataSource.data)
   }
 
   getFlight() : any{
@@ -164,9 +186,8 @@ export class AdminFlightManagementComponent {
   //   'edit',
   //   'delete',
   // ];
-  
-  ngafterViewInit(){
+  ngAfterViewInit(){
     this.dataSource.paginator = this.paginator;
-    // console.log(this.dataSource.data)
+    console.log(this.dataSource.data)
   }
 }
