@@ -45,5 +45,6 @@ export class AdminFlightManagementComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource.data)
   }
 }
