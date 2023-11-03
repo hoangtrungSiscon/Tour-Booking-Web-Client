@@ -138,9 +138,9 @@ export class AdminFlightManagementComponent {
       //   this.flightList.push(element)
       // });
 
-      data.forEach(element => {
-        this.dataSource.data.push(element)
-      });
+      // data.forEach(element => {
+      //   this.dataSource.data.push(element)
+      // });
       // console.log(this.dataSource.data)
       // console.log(this.flightList)
     })
