@@ -23,7 +23,8 @@ export interface FlightDetails {
   styleUrls: ['./admin-flight-management.component.scss'],
 })
 export class AdminFlightManagementComponent {
-  flightList: any[] = [];
+  dataSource = new MatTableDataSource<FlightDetails>();
+  flightList: FlightDetails[] = [];
   public displayedColumns: string[] = [
     'MaChuyenBay',
     'MaMayBay',
@@ -78,7 +79,7 @@ export class AdminFlightManagementComponent {
     console.log(event);
   }
   // dataSource: any[] = [];
-  dataSource = new MatTableDataSource<FlightDetails>(); 
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // listFlight !: FlightDetails[];
   constructor(private service: FlightApiService) {
@@ -94,27 +95,18 @@ export class AdminFlightManagementComponent {
       // this.flightList = data;
       // this.dataSource.data = this.flightList;
       // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-      // console.log(data);
-      // console.log(this.flightList)
-      // return data;
-      // this.flightList = [...data];
-      // angular.copy
-      // console.log(data);
-      // this.flightList.push(data);
-      // console.log(this.flightList)
-      // data.forEach(element => {
-      //   this.flightList.push(element)
-      // });
+
 
       data.forEach(element => {
-        this.dataSource.data.push(element)
+        this.flightList.push(
+          element
+        )
       });
-      // console.log(this.dataSource.data)
-      // console.log(this.flightList)
+
     })
   }
   ngOnInit(){
-    this.dataSource = new MatTableDataSource<FlightDetails>();
+    // this.dataSource = new MatTableDataSource<FlightDetails>();
     // this.getFlight();
     // this.paginator = this.paginator;
     // this.dataSource.sort = this.sort;
@@ -125,6 +117,8 @@ export class AdminFlightManagementComponent {
     // console.table(this.dataSource.data)
     // console.log(this.flightList)
     // console.log(this.dataSource.data)
+    this.dataSource.data = this.flightList
+    console.log(this.dataSource.data)
   }
 
   getFlight() : any{
@@ -186,8 +180,10 @@ export class AdminFlightManagementComponent {
   //   'edit',
   //   'delete',
   // ];
+   
   ngAfterViewInit(){
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource.data)
+    // console.log(this.dataSource.data)
+    // console.log(this.dataSource.data)
   }
 }
