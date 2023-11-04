@@ -39,7 +39,7 @@ export class AdminFlightManagementComponent {
     'edit',
     'delete',
   ];
-  // flightList$!: Observable<FlightDetails[]>;
+  flightList$: Observable<FlightDetails[]>[] = [];
   // dataSource!: MatTableDataSource<FlightDetails>;
 
   // // public dataSource: FlightDetails[] = [];
@@ -91,21 +91,33 @@ export class AdminFlightManagementComponent {
     //   console.log(this.dataSource.data)
     // })
     // this.getFlight();
-    this.service.getFlightList().subscribe(data => {
+   
       // this.flightList = data;
       // this.dataSource.data = this.flightList;
       // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
 
+      // console.log(data)
+      // data.forEach(element => {
+      //   this.flightList.push(
+      //     element
+      //   )
+      // });
+      
+      // console.log(this.flightList)
 
-      data.forEach(element => {
-        this.flightList.push(
-          element
-        )
-      });
-
-    })
+      // if (this.dataSource){
+      //   this.dataSource.data = this.flightList;
+      // }
+      // else {
+        // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+      // }
+    //   this.service.getFlightList().subscribe(data => {
+    //   this.flightList = data;
+    //   this.dataSource.data = this.flightList;
+    //   console.log(this.dataSource.data)
+    // })
   }
-  ngOnInit(){
+  ngOnInit() : void{
     // this.dataSource = new MatTableDataSource<FlightDetails>();
     // this.getFlight();
     // this.paginator = this.paginator;
@@ -117,8 +129,32 @@ export class AdminFlightManagementComponent {
     // console.table(this.dataSource.data)
     // console.log(this.flightList)
     // console.log(this.dataSource.data)
-    this.dataSource.data = this.flightList
-    console.log(this.dataSource.data)
+    // this.dataSource.data = this.flightList
+    this.service.getFlightList().subscribe(data => {
+      // this.flightList = data;
+      // this.dataSource.data = this.flightList;
+      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
+
+      // console.log(data)
+      // data.forEach(element => {
+      //   this.flightList.push(
+      //     element
+      //   )
+      // });
+      this.flightList$ = data;
+      // this.flightList.push(data)
+      // console.log(this.flightList$)
+
+      // if (this.dataSource){
+      //   this.dataSource.data = this.flightList;
+      // }
+      // else {
+      // }
+
+      // this.dataSource.data = this.flightList$;
+      // console.log(this.dataSource.data)
+
+    })
   }
 
   getFlight() : any{
@@ -182,8 +218,11 @@ export class AdminFlightManagementComponent {
   // ];
    
   ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
     // console.log(this.dataSource.data)
     // console.log(this.dataSource.data)
+    // console.log(this.flightList)
+    // console.log(this.dataSource.data)
+    console.log(this.flightList$)
   }
 }
