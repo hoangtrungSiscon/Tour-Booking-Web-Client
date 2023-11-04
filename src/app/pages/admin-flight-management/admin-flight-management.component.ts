@@ -24,7 +24,7 @@ export interface FlightDetails {
 })
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
-  flightList: FlightDetails[] = [];
+  flightList: any[] = [];
   public displayedColumns: string[] = [
     'MaChuyenBay',
     'MaMayBay',
@@ -136,23 +136,23 @@ export class AdminFlightManagementComponent {
       // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
 
       // console.log(data)
-      // data.forEach(element => {
-      //   this.flightList.push(
-      //     element
-      //   )
-      // });
-      this.flightList$ = data;
+      data.forEach(element => {
+        this.flightList.push(
+          element
+        )
+      });
+      // this.flightList$ = data;
       // this.flightList.push(data)
       // console.log(this.flightList$)
 
       // if (this.dataSource){
-      //   this.dataSource.data = this.flightList;
+        this.dataSource.data = this.flightList;
       // }
       // else {
       // }
 
       // this.dataSource.data = this.flightList$;
-      // console.log(this.dataSource.data)
+      console.log(this.dataSource.data)
 
     })
   }
@@ -222,7 +222,7 @@ export class AdminFlightManagementComponent {
     // console.log(this.dataSource.data)
     // console.log(this.dataSource.data)
     // console.log(this.flightList)
-    // console.log(this.dataSource.data)
-    console.log(this.flightList$)
+    console.log(this.dataSource.data)
+    // console.log(this.flightList$)
   }
 }
