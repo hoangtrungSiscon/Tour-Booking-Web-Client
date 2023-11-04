@@ -1,20 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/services/flight-api.service';
-
+import Swal from 'sweetalert2';
 export interface FlightDetails {
-  MaChuyenBay: any;
-  MaMayBay: any;
-  TenMayBay: any;
-  NoiXuatPhat: any;
-  NoiDen: any;
-  NgayXuatPhat: any;
-  GioBay: any;
-  SoLuongVeBsn: any;
-  SoLuongVeEco: any;
-  DonGia: any;
+  maChuyenBay: any;
+  maMayBay: any;
+  tenMayBay: any;
+  noiXuatPhat: any;
+  noiDen: any;
+  ngayXuatPhat: any;
+  gioBay: any;
+  soLuongVeBsn: any;
+  soLuongVeEco: any;
+  donGia: any;
 }
 
 @Component({
@@ -40,189 +40,85 @@ export class AdminFlightManagementComponent {
     'delete',
   ];
   flightList$: Observable<FlightDetails[]>[] = [];
-  // dataSource!: MatTableDataSource<FlightDetails>;
 
-  // // public dataSource: FlightDetails[] = [];
 
-  // constructor(private service: FlightApiService) {}
+  deleteFlight(event: any, id: any): void {
+    // alert(id);
+    // this.service.deleteFlight(id).subscribe(
+    //   () => {
+    //     console.log('Deleted successfully');
+    //     window.location.reload();
+    //     // this.refreshPage();
+    //   }
+    // );
 
-  // public displayedColumns: string[] = [
-  //   'flight_id',
-  //   'plane_id',
-  //   'plane_name',
-  //   'departure_location',
-  //   'arrival_location',
-  //   'departure_date',
-  //   'flight_time',
-  //   'BSN_seats',
-  //   'ECO_seats',
-  //   'price',
-  //   'edit',
-  //   'delete',
-  // ];
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  // ngOnInit(): void {
-  //   // this.flightList$ = this.service.getFlightList();
-
-  //   this.service.getFlightList().subscribe((data : FlightDetails[]) => {
-  //     this.dataSource = new MatTableDataSource<FlightDetails>(data);
-  //     // this.dataSource = data;
-  //     this.dataSource.paginator = this.paginator;
-  //     console.log(this.dataSource.data)
-  //   });
-  // }
-
-  myClickFunction(event: any, id: any): void {
-    alert(id);
-    console.log(event);
+    Swal.fire({
+      title: 'Xóa thông tin chuyến bay này?',
+      text: "Thông tin chuyến bay bị xóa không thể được khôi phục lại!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Xóa',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.deleteFlight(id).subscribe(
+          () => {
+            console.log('Deleted successfully');
+            Swal.fire(
+              'Đã xóa!',
+              'Xóa thông tin chuyến bay thành công.',
+              'success'
+            ).then(() => {
+              window.location.reload();
+            })
+          },
+          (error) => {
+            Swal.fire(
+              'Xóa không thành công!',
+              'Đã xảy ra lỗi khi xóa thông tin chuyến bay này.',
+              'error'
+            );
+          }
+        );
+        
+      }
+    })
   }
-  // dataSource: any[] = [];
+
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   // listFlight !: FlightDetails[];
   constructor(private service: FlightApiService) {
-    // this.service.getFlightList().subscribe(x => {
-    //   // this.dataSource.data = x;
 
-    //   this.flightList = x;
-    //   this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-    //   console.log(this.dataSource.data)
-    // })
-    // this.getFlight();
-   
-      // this.flightList = data;
-      // this.dataSource.data = this.flightList;
-      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-
-      // console.log(data)
-      // data.forEach(element => {
-      //   this.flightList.push(
-      //     element
-      //   )
-      // });
-      
-      // console.log(this.flightList)
-
-      // if (this.dataSource){
-      //   this.dataSource.data = this.flightList;
-      // }
-      // else {
-        // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-      // }
-    //   this.service.getFlightList().subscribe(data => {
-    //   this.flightList = data;
-    //   this.dataSource.data = this.flightList;
-    //   console.log(this.dataSource.data)
-    // })
   }
-  ngOnInit() : void{
-    // this.dataSource = new MatTableDataSource<FlightDetails>();
-    // this.getFlight();
-    // this.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-    // console.log(this.data)
-    // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-    // console.log(this.flightList)
-    // console.log(this.getFlight())
-    // console.table(this.dataSource.data)
-    // console.log(this.flightList)
-    // console.log(this.dataSource.data)
-    // this.dataSource.data = this.flightList
-    this.service.getFlightList().subscribe(data => {
-      // this.flightList = data;
-      // this.dataSource.data = this.flightList;
-      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
 
-      // console.log(data)
+  // refreshPage(): void{
+  //   window.location.reload();
+  // }
+  ngOnInit() : void{
+
+    this.service.getFlightList().subscribe(data => {
       data.forEach(element => {
         this.flightList.push(
           element
         )
       });
-      // this.flightList$ = data;
-      // this.flightList.push(data)
-      // console.log(this.flightList$)
 
-      // if (this.dataSource){
         this.dataSource.data = this.flightList;
-      // }
-      // else {
-      // }
 
-      // this.dataSource.data = this.flightList$;
       console.log(this.dataSource.data)
 
     })
   }
 
-  getFlight() : any{
-    this.service.getFlightList().subscribe(data => {
-      // this.flightList = data;
-      // this.dataSource.data = this.flightList;
-      // this.dataSource = new MatTableDataSource<FlightDetails>(this.flightList);
-      // console.log(data);
-      // console.log(this.flightList)
-      // return data;
-      // this.flightList = [...data];
-      // angular.copy
-      // console.log(data);
-      // this.flightList.push(data);
-      // console.log(this.flightList)
-      // data.forEach(element => {
-      //   this.flightList.push(element)
-      // });
-
-      // data.forEach(element => {
-      //   this.dataSource.data.push(element)
-      // });
-      // console.log(this.dataSource.data)
-      // console.log(this.flightList)
-    })
-    // console.log(this.flightList)
-  }
   
-  // ngOnInit(){
-  //   this.fetchFlight();
-  // }
-  
-  // fetchFlight(){
-  //   this.service.getFlightList().subscribe(data => {
-  //     this.listFlight = data;
-  //     this.dataSource = new MatTableDataSource(this.listFlight)
-  //     console.log(this.listFlight)
-  //     data.forEach(element => {
-  //       this.dataSource.push(element)
-  //     });
-  //     // this.dataSource.paginator = this.paginator;
-  //   })
-  //   // this.service.getFlightList().forEach(element => {
-  //   //   this.dataSource
-  //   // });
-  // }
-
-  // public displayedColumns: string[] = [
-  //   'flight_id',
-  //   'plane_id',
-  //   'plane_name',
-  //   'departure_location',
-  //   'arrival_location',
-  //   'departure_date',
-  //   'flight_time',
-  //   'BSN_seats',
-  //   'ECO_seats',
-  //   'price',
-  //   'edit',
-  //   'delete',
-  // ];
    
   ngAfterViewInit(){
-    // this.dataSource.paginator = this.paginator;
-    // console.log(this.dataSource.data)
-    // console.log(this.dataSource.data)
-    // console.log(this.flightList)
+
     console.log(this.dataSource.data)
-    // console.log(this.flightList$)
+    this.dataSource.paginator = this.paginator;
   }
 }
