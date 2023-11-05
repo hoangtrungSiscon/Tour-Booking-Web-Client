@@ -117,7 +117,7 @@ button:hover {
     display: flex;
     width: 100%;
 }
-.flight-table {
+.guest-table {
     width: 100%;
     justify-content: center;
     background-color: white;
@@ -126,12 +126,13 @@ button:hover {
     min-width: 1000px;
     overflow-x: auto;
 }
-.mat-column-id_guest,
-.mat-column-full_name,
-.mat-column-gender,
-.mat-column-gmail,
-.mat-column-id_flight,
-.mat-column-id_ticket{
+.mat-column-MaKhachHang,
+.mat-column-HoTenKh,
+.mat-column-Sdt,
+.mat-column-Phai,
+.mat-column-GmailKh,
+.mat-column-MaChuyenBay,
+.mat-column-MaVe{
     color: black;
     text-align: center;
     border-bottom: 1px solid currentColor;
