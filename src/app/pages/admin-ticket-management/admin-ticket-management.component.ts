@@ -51,6 +51,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     'loaiVe',
     'soLuong',
     'tongGia',
+    'tinhTrang',
     'approve',
     'cancel', 
     'delete'
