@@ -1,41 +1,45 @@
-import { Component, ViewChild } from '@angular/core';
+
 import { Time } from '@angular/common';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-
-export interface PeriodicElement {
-  id_guest: string;
-  full_name: string;
-  gender: string;
-  gmail: string;
-  id_flight: string;
-  id_ticket: string;
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Observable } from 'rxjs';
+import { GuestApiService } from 'src/app/services/guest-api.service';
+import Swal from 'sweetalert2';
+export interface GuestDetails {
+  MaKhachHang: any;
+  HoTenKh: any;
+  Sdt:any;
+  Phai: any;
+  GmailKh: any;
+  MaChuyenBay: any;
+  MaVe: any;
   
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id_guest: '1', full_name: 'Anh A', gender: 'Nam', gmail: 'A@gmail.com', id_flight: '1', id_ticket: '01'},
-  //Generate 10 more for ELEMENT_DATA
-  {id_guest: '2', full_name: 'Anh B', gender: 'Nam', gmail: 'B@gmail.com', id_flight: '2', id_ticket: '02'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   {MaKhachHang: '1', HoTenKh: 'Anh A', Phai: 'Nam', GmailKh: 'A@GmailKh.com', MaChuyenBay: '1', MaVe: '01'},
+//   //Generate 10 more for ELEMENT_DATA
+//   {MaKhachHang: '2', HoTenKh: 'Anh B', Phai: 'Nam', GmailKh: 'B@GmailKh.com', MaChuyenBay: '2', MaVe: '02'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
 
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-  {id_guest: '3', full_name: 'Co C', gender: 'Nữ', gmail: 'C@gmail.com', id_flight: '3', id_ticket: '03'},
-];
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
+// ];
 
 @Component({
   selector: 'app-guest-management',
@@ -43,12 +47,58 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./guest-management.component.scss']
 })
 export class GuestManagementComponent {
-  displayedColumns: string[] = ['id_guest', 'full_name', 'gender', 'gmail', 'id_flight', 'id_ticket'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  // displayedColumns: any[] = ['MaKhachHang', 'HoTenKh', 'Phai', 'GmailKh', 'MaChuyenBay', 'MaVe'];
+  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  // }
+
+
+  dataSource = new MatTableDataSource<GuestDetails>();
+  GuestList: any[] = [];
+  public displayedColumns: string[] = [
+    'MaKhachHang',
+    'HoTenKh',
+    'Sdt',
+    'Phai',
+    'GmailKh',
+    'MaChuyenBay',
+    'MaVe',
+    
+  ];
+  GuestList$: Observable<GuestDetails[]>[] = [];
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  ngAfterViewInit() {
+  constructor(private service: GuestApiService) {
+
+  }
+
+  ngOnInit() : void{
+
+    this.service.getGuestList().subscribe(data => {
+      data.forEach(element => {
+        this.GuestList.push(
+          element
+        )
+      });
+
+        this.dataSource.data = this.GuestList;
+
+      console.log(this.dataSource.data)
+
+    })
+  }
+
+  
+   
+  ngAfterViewInit(){
+
+    console.log(this.dataSource.data)
     this.dataSource.paginator = this.paginator;
   }
+
 }
 
 
