@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ChiTietVeService {
 
-    protected url: string = 'api/chiTietVe';
+    // protected url: string = 'api/chiTietVe';
+    protected url: string = "https://localhost:7000/api/chiTietVe";
     constructor(protected http: HttpClient) { }
 
     public getAll(): Observable<any> {
