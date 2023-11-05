@@ -44,7 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
-import { FlightApiService } from './services/flight-api.service';
+import { FlightApiService } from './shared/services/flight-api.service';
 @NgModule({
   declarations: [
     AppComponent,
