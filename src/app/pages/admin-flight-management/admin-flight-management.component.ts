@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
@@ -14,6 +14,10 @@ import { FlightDetails } from 'src/app/models/FlightDetailModel';
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
   flightList: any[] = [];
+  searchValue: string = '';
+  departureLocation: string = '';
+  arrivalLocation: string = '';
+  departureDate: string = '';
   public displayedColumns: string[] = [
     'MaChuyenBay',
     'MaMayBay',
@@ -28,19 +32,10 @@ export class AdminFlightManagementComponent {
     'edit',
     'delete',
   ];
-  flightList$: Observable<FlightDetails[]>[] = [];
+  
 
 
   deleteFlight(event: any, id: any): void {
-    // alert(id);
-    // this.service.deleteFlight(id).subscribe(
-    //   () => {
-    //     console.log('Deleted successfully');
-    //     window.location.reload();
-    //     // this.refreshPage();
-    //   }
-    // );
-
 
     Swal.fire({
       title: 'Xóa thông tin chuyến bay này?',
@@ -75,6 +70,88 @@ export class AdminFlightManagementComponent {
         
       }
     })
+  }
+  search(event: any, searchValue: any) {
+    if (this.searchValue == '') {
+      this.dataSource.data = [];
+      this.flightList = [];
+      this.ngOnInit();
+    }
+    else {
+
+      this.flightList = [];
+      // this.ngOnInit();
+      this.dataSource.data = [];
+      // this.dataSource.data = this.flightList.filter((flight) => {
+      //   // return flight.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase());
+      //   console.log(flight);
+      // });
+      this.service.getFlightList().subscribe(data => {
+        data.forEach(element => {
+          if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
+            this.flightList.push(
+              element
+            )
+          }
+          
+        });
+          this.dataSource.data = this.flightList;
+  
+        console.log(this.dataSource.data)
+  
+      })
+    }
+    // console.log(this.searchValue)
+    // this.dataSource.data = this.flightList.filter((flight) => {
+    //   return flight.MaChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase());
+    // });
+  }
+
+  filter(event : any
+    // , departureLocation : any, departureDate : any, arrivalLocation : any
+    ){
+    if (
+
+      this.departureLocation == '' &&
+      this.arrivalLocation == '' &&
+      this.departureDate == ''
+    ) {
+      this.dataSource.data = [];
+      this.flightList = [];
+      this.ngOnInit();
+    }
+    else {
+      this.flightList = [];
+
+      this.dataSource.data = [];
+
+      if (
+        this.departureLocation != '' &&
+        this.arrivalLocation != '' &&
+        this.departureDate != ''
+      ){
+        this.service.getFlightList().subscribe(data => {
+          data.forEach(element => {
+            if (
+              // element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())
+              element.ngayXuatPhat.slice(0,10) == this.departureDate &&
+              element.noiXuatPhat == this.departureLocation &&
+              element.noiDen == this.arrivalLocation
+            
+            ){
+              this.flightList.push(
+                element
+              )
+            }
+            
+          });
+          this.dataSource.data = this.flightList;
+    
+          console.log(this.dataSource.data)
+    
+        })
+      }
+    }
   }
 
   
