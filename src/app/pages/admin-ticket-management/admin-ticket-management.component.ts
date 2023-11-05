@@ -67,7 +67,9 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+    }, 1000);
   }
 
   createForm(){

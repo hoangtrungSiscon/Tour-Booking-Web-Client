@@ -13,6 +13,7 @@ import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 })
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   flightList: any[] = [];
   searchValue: string = '';
   departureLocation: string = '';
@@ -155,7 +156,7 @@ export class AdminFlightManagementComponent {
   }
 
   
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
   // listFlight !: FlightDetails[];
   constructor(private service: FlightApiService) {
 
@@ -176,7 +177,7 @@ export class AdminFlightManagementComponent {
         this.dataSource.data = this.flightList;
 
       console.log(this.dataSource.data)
-
+      this.dataSource.paginator = this.paginator;
     })
   }
 
@@ -184,8 +185,11 @@ export class AdminFlightManagementComponent {
    
   ngAfterViewInit(){
 
-    console.log(this.dataSource.data)
-    this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource.data)
+    // console.log(this.dataSource.data)
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+    }, 1000);
+    
+    // console.log(this.dataSource.data)
   }
 }
