@@ -182,7 +182,7 @@
 .table-container {
     display: flex;
     width: 100%;
-    overflow-x: auto;
+    overflow-x: scroll;
     border-style: solid;
     border-color: #146C94;
     border-width: 3px 3px 3px 3px;
@@ -200,16 +200,33 @@
     color: black;
     // text-wrap: nowrap;
 }
-.mat-column-flight_id,
-.mat-column-plane_id,
-.mat-column-plane_name,
-.mat-column-departure_location,
-.mat-column-arrival_location,
-.mat-column-departure_date,
-.mat-column-flight_time,
-.mat-column-BSN_seats,
-.mat-column-ECO_seats,
-.mat-column-price,
+// .mat-column-flight_id,
+// .mat-column-plane_id,
+// .mat-column-plane_name,
+// .mat-column-departure_location,
+// .mat-column-arrival_location,
+// .mat-column-departure_date,
+// .mat-column-flight_time,
+// .mat-column-BSN_seats,
+// .mat-column-ECO_seats,
+// .mat-column-price,
+// .mat-column-edit,
+// .mat-column-delete {
+//     color: black;
+//     text-align: center;
+//     border-bottom: 1px solid currentColor;
+// }
+
+.mat-column-MaChuyenBay,
+.mat-column-MaMayBay,
+.mat-column-TenMayBay,
+.mat-column-NoiXuatPhat,
+.mat-column-NoiDen,
+.mat-column-NgayXuatPhat,
+.mat-column-GioBay,
+.mat-column-SoLuongVeBsn,
+.mat-column-SoLuongVeEco,
+.mat-column-DonGia,
 .mat-column-edit,
 .mat-column-delete {
     color: black;

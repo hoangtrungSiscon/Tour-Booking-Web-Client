@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'admin-dashboard', children: [
     { path: 'admin-flight-management', component: AdminFlightManagementComponent },
     { path: 'admin-ticket-management', component: AdminTicketManagementComponent },
-    { path: 'edit-flight', component: EditFlightComponent },
+    { path: 'edit-flight/:id', component: EditFlightComponent },
     { path: 'add-flight', component: AddFlightComponent},
     { path: 'guest-management', component: GuestManagementComponent},
     { path: 'statist',component: StatisticalComponent},
