@@ -38,7 +38,7 @@ export class EditFlightComponent {
       console.log(this.planeList)
     })
     this.flightService.getFlightListById(this.router.url.replace('/admin-dashboard/edit-flight/','')).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.editFlightRequest = data[0];
       // this.editFlightRequest.gioBay = this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2];
       // console.log(this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2])
@@ -46,6 +46,12 @@ export class EditFlightComponent {
       this.flightTime_Minute = this.editFlightRequest.gioBay.split(':')[1];
       this.flightTime_Second = this.editFlightRequest.gioBay.split(':')[2];
       this.editFlightRequest.ngayXuatPhat = this.editFlightRequest.ngayXuatPhat.split('T')[0];
+      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0)
+      // if the default value is 255133, I want to make it to 255,133
+      // this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
+      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0).toPrecision(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      console.log(this.editFlightRequest.donGia)
     })
 
     console.log(this.router.url.replace('/admin-dashboard/edit-flight/',''))
@@ -60,9 +66,9 @@ export class EditFlightComponent {
 
   }
 
-  addFlight(){
+  updateFlight(){
     if (
-      this.editFlightRequest.maChuyenBay == '' ||
+      // this.editFlightRequest.maChuyenBay == '' ||
       this.editFlightRequest.maMayBay == '' ||
       this.editFlightRequest.tenMayBay == '' ||
       this.editFlightRequest.noiXuatPhat == '' ||
@@ -83,6 +89,9 @@ export class EditFlightComponent {
     }
     else {
       this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
+      // if (this.editFlightRequest.donGia.includes(',')) {
+      //   this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
+      // }
       this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
       // this.flightService.addFlight(this.editFlightRequest).subscribe();
       console.log(this.editFlightRequest);
@@ -105,7 +114,8 @@ export class EditFlightComponent {
                 'Chỉnh sửa thông tin chuyến bay thành công.',
                 'success'
               ).then(() => {
-                this.router.navigate(['/admin-flight-management']);
+                this.router.navigate(['/admin-dashboard', 'admin-flight-management']);
+                
               })
             },
             (error) => {

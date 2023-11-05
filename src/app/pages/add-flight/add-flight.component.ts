@@ -137,7 +137,7 @@ export class AddFlightComponent implements OnInit {
         default:
           break;
       }
-      this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "/" + this.addFlightRequest.maMayBay
+      this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "-" + this.addFlightRequest.maMayBay
       
       // this.addFlightRequest.maChuyenBay =  + this.addFlightRequest.noiXuatPhat + "TO" + this.addFlightRequest.noiDen + this.addFlightRequest.maMayBay
       
