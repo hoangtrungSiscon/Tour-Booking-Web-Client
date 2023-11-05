@@ -4,18 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/services/flight-api.service';
 import Swal from 'sweetalert2';
-export interface FlightDetails {
-  maChuyenBay: any;
-  maMayBay: any;
-  tenMayBay: any;
-  noiXuatPhat: any;
-  noiDen: any;
-  ngayXuatPhat: any;
-  gioBay: any;
-  soLuongVeBsn: any;
-  soLuongVeEco: any;
-  donGia: any;
-}
+import { FlightDetails } from 'src/app/models/FlightDetailModel';
 
 @Component({
   selector: 'app-admin-flight-management',
