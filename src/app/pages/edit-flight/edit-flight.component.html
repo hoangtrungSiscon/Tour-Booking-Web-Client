@@ -2,7 +2,7 @@
     CHỈNH SỬA CHUYẾN BAY
 </div>
 <div class="flight-detail-form">
-    <form>
+    <form #form="ngForm" (ngSubmit)="addFlight()">
         <h1 style="font-weight: bold;padding-bottom: 10px;color: #146C94;">THÔNG TIN CHUYẾN BAY</h1>
 
         <div class="flight-data-fields">
@@ -14,41 +14,79 @@
             margin: 0px 0px 10px 0px;">Thông tin chuyến bay</span>
             <div class="form-field">
                 <label for="flight-id">Mã chuyến</label>
-                <input type="date" id="flight-id" name="flight-id" class="datepicker-box">
+                <input type="text" id="flight-id" name="flight-id"
+                
+                [(ngModel)]="editFlightRequest.maChuyenBay">
             </div>
     
             <div class="form-field">
                 <label for="departure-location">Nơi xuất phát</label><br>
-                <select name="departure-location" id="departure-location">
-                    <option value=""></option>
-                    <option value="TPHCM">TPHCM</option>
-                    <option value="TPHCM2">TPHCM2</option>
-                    <option value="TPHCM3">TPHCM3</option>
-                    <option value="TPHCM4">TPHCM4</option>
-                    <option value="TPHCM5">TPHCM5</option>
+                <select name="departure-location" id="departure-location"
+                
+                [(ngModel)]="editFlightRequest.noiXuatPhat">
+                    <option value="" id=""></option>
+                    <option value="VIETNAM" id="VN">Việt Nam</option>
+                    <option value="THAILAND" id="TH">Thái Lan</option>
+                    <option value="ENGLAND" id="EN">Anh</option>
+                    <option value="JAPAN" id="JP">Nhật Bản</option>
+                    <option value="AMERICA" id="US">Mỹ</option>
+                    <option value="FRANCE" id="FR">Pháp</option>
+                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="SINGAPORE" id="SG">Singapore</option>
+                    <option value="HONGKONG" id="HK">Hồng Kông</option>
                 </select>
             </div>
     
             <div class="form-field">
                 <label for="arrival-location">Nơi đến</label><br>
-                <select name="arrival-location" id="arrival-location">
-                    <option value=""></option>
-                    <option value="TPHCM">TPHCM</option>
-                    <option value="TPHCM2">TPHCM2</option>
-                    <option value="TPHCM3">TPHCM3</option>
-                    <option value="TPHCM4">TPHCM4</option>
-                    <option value="TPHCM5">TPHCM5</option>
+                <select name="arrival-location" id="arrival-location"
+                
+                [(ngModel)]="editFlightRequest.noiDen">
+                    <option value="" id=""></option>
+                    <option value="VIETNAM" id="VN">Việt Nam</option>
+                    <option value="THAILAND" id="TH">Thái Lan</option>
+                    <option value="ENGLAND" id="EN">Anh</option>
+                    <option value="JAPAN" id="JP">Nhật Bản</option>
+                    <option value="AMERICA" id="US">Mỹ</option>
+                    <option value="FRANCE" id="FR">Pháp</option>
+                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="SINGAPORE" id="SG">Singapore</option>
+                    <option value="HONGKONG" id="HK">Hồng Kông</option>
                 </select>
             </div>
     
             <div class="form-field">
                 <label for="departure-date">Ngày đi</label>
-                <input type="date" id="departure-date" name="departure-date" class="datepicker-box">
+                <input type="date" id="departure-date" name="departure-date" class="datepicker-box"
+                
+                [(ngModel)]="editFlightRequest.ngayXuatPhat">
             </div>
     
             <div class="form-field">
                 <label for="flight-time">Giờ bay</label>
-                <input type="time" id="flight-time" name="flight-time">
+                <input type="number" id="flight-time-hour" name="flight-time-hour" min="0" max="23"
+                oninput="this.value = !!this.value && Math.abs(this.value) <= 23 ? Math.abs(this.value) : null;
+                if (this.value < 10) {
+                    this.value = '0' + this.value
+                }"
+                style="width: 20%;"
+                [(ngModel)]="flightTime_Hour">
+                
+                <input type="number" id="flight-time-minute" name="flight-time-minute" min="0" max="59"
+                oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
+                if (this.value < 10) {
+                    this.value = '0' + this.value
+                }"
+                style="width: 20%;"
+                [(ngModel)]="flightTime_Minute">
+                
+                <input type="number" id="flight-time-second" name="flight-time-second" min="0" max="59"
+                oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
+                if (this.value < 10) {
+                    this.value = '0' + this.value
+                }"
+                style="width: 20%;"
+                [(ngModel)]="flightTime_Second">
             </div>
         </div>
 
@@ -61,44 +99,64 @@
             margin: 0px 0px 10px 0px;">Thông tin máy bay</span>
             <div class="form-field">
                 <label for="plane-id">Mã máy bay</label><br>
-                <input type="text" id="plane-id" name="plane-id">
+                <select name="plane-id" id="plane-id"
+                #mySelect
+                [(ngModel)]="editFlightRequest.maMayBay"
+                (ngModelChange)="updatePlaneName($event, mySelect.value)"
+                >
+                    <option value="" id=""></option>
+                    <option *ngFor="let plane of planeList" value="{{plane.maMayBay}}" #planeIdSelectValue>
+                        {{plane.maMayBay}}
+                    </option>
+                </select>
             </div>
             
             <div class="form-field">
                 <label for="plane-name">Tên máy bay</label><br>
-                <input type="text" id="plane-name" name="plane-name">
+                <input type="text" id="plane-name" name="plane-name"
+                disabled="disabled"
+                [(ngModel)]="editFlightRequest.tenMayBay">
             </div>
     
             
     
             <div class="form-field">
                 <label for="BSN-number">Số lượng ghế BSN</label><br>
-                <input type="text" id="BSN-number" name="BSN-number">
+                <input type="text" id="BSN-number" name="BSN-number"
+                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
+                [(ngModel)]="editFlightRequest.soLuongVeBsn">
             </div>
             <div class="form-field">
                 <label for="BSN-number-booked">Số lượng ghế BSN đặt</label><br>
-                <input type="text" id="BSN-number-booked" name="BSN-number-booked">
+                <input type="text" id="BSN-number-booked" name="BSN-number-booked"
+                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null">
+                
             </div>
             <div class="form-field">
                 <label for="ECO-number">Số lượng ghế ECO</label><br>
-                <input type="text" id="ECO-number" name="ECO-number">
+                <input type="text" id="ECO-number" name="ECO-number"
+                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
+                [(ngModel)]="editFlightRequest.soLuongVeEco">
             </div>
-    
-            
-    
             <div class="form-field">
                 <label for="ECO-number-booked">Số lượng ghế ECO đặt</label><br>
                 <input type="text" id="ECO-number-booked" name="ECO-number-booked">
             </div>
-
             <div class="form-field">
                 <label for="price">Giá</label><br>
-                <input type="text" id="price" name="price">
+                <input type="text" id="price" name="price"
+                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString()"
+                [(ngModel)]="editFlightRequest.donGia">
             </div>
         </div>
+        <!-- [routerLink]="['/admin-dashboard', 'admin-flight-management']" -->
         <div class="form-action">
             <button class="cancel-edit" [routerLink]="['/admin-dashboard', 'admin-flight-management']">Quay lại</button>
-            <button type="submit" class="accept-edit" [routerLink]="['/admin-dashboard', 'admin-flight-management']">Chỉnh sửa</button>
+            <button type="submit" class="accept-edit"
+            
+           
+            
+            >Chỉnh sửa</button>
         </div>
     </form>
 </div>
