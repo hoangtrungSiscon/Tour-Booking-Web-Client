@@ -27,16 +27,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgetPassComponent } from './pages/forget-pass/forget-pass.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
-import {FormBuilder, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ChangePassComponent} from './pages/change-pass/change-pass.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -44,6 +44,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,8 +94,8 @@ import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/book
     MatMenuModule,
     MatFormFieldModule,
     MatStepperModule,
-    FormsModule, FormsModule, ReactiveFormsModule,
-    
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],
