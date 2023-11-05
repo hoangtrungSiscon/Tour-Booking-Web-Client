@@ -67,6 +67,10 @@
 <div class="ticket-data-table">
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
+      <ng-container matColumnDef="maCTV">
+        <th mat-header-cell *matHeaderCellDef> Mã chi tiết vé</th>
+        <td mat-cell *matCellDef="let element"> {{element.maCTV}} </td>
+      </ng-container>
       <ng-container matColumnDef="maVe">
         <th mat-header-cell *matHeaderCellDef> Mã vé </th>
         <td mat-cell *matCellDef="let element"> {{element.maVe}} </td>
@@ -100,11 +104,6 @@
       <ng-container matColumnDef="soLuong">
         <th mat-header-cell *matHeaderCellDef> Số lượng </th>
         <td mat-cell *matCellDef="let element"> {{element.soLuong}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="tinhTrang">
-        <th mat-header-cell *matHeaderCellDef> Tình Trạng </th>
-        <td mat-cell *matCellDef="let element"> {{element.tinhTrang}} </td>
       </ng-container>
 
       <ng-container matColumnDef="tongGia">

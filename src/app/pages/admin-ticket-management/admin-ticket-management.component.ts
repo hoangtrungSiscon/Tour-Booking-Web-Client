@@ -7,6 +7,7 @@ import { ChiTietVe } from 'src/app/shared/models/chiTietVe';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface TicketDetails {
+  maCTV: number,
   maVe: number;
   ngayDatVe: Date;
   maKh: number;
@@ -26,6 +27,7 @@ export interface TicketDetails {
 export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
   form: FormGroup | any;
   displayedColumns: string[] = [
+    'maCTV', 
     'maVe',
     'ngayDatVe',
     'maKh',
@@ -33,7 +35,6 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     'maChuyenBay',
     'loaiVe',
     'soLuong',
-    'tinhTrang',
     'tongGia',
     'tinhTrang',
     'approve',
@@ -82,6 +83,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
 
   onApprove(element: TicketDetails){
     let request: ChiTietVe = {
+      MaCTV: element.maCTV,
       MaVe: element.maVe,
 
       LoaiVe: element.loaiVe,
@@ -96,6 +98,8 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     try{
       this.chiTietVeService.update(request).subscribe();
       alert("Duyệt thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
       this.getAllChiTietVe();
     }
     catch{
@@ -105,6 +109,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
 
   onCancle(element: TicketDetails){
     let request: ChiTietVe = {
+      MaCTV: element.maCTV,
       MaVe: element.maVe,
 
       LoaiVe: element.loaiVe,
@@ -118,6 +123,8 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     };try{
       this.chiTietVeService.update(request).subscribe();
       alert("Hủy thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
       this.getAllChiTietVe();
     }
     catch{
@@ -131,6 +138,8 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
         this.getAllChiTietVe();
       });
       alert("Xóa vé thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
       this.getAllChiTietVe();
     }
     catch{

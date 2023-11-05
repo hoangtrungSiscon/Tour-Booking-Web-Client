@@ -1,4 +1,5 @@
 export interface ChiTietVe{
+    MaCTV: number;
     MaVe: number;
 
     LoaiVe: string;
