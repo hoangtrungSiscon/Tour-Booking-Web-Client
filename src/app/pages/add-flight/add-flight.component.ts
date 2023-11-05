@@ -50,30 +50,98 @@ export class AddFlightComponent implements OnInit {
 
   addFlight(){
     if (
-      this.addFlightRequest.maChuyenBay == '' ||
       this.addFlightRequest.maMayBay == '' ||
       this.addFlightRequest.tenMayBay == '' ||
       this.addFlightRequest.noiXuatPhat == '' ||
       this.addFlightRequest.noiDen == '' ||
       this.addFlightRequest.ngayXuatPhat == '' ||
-      this.addFlightRequest.gioBay == '' ||
       this.addFlightRequest.soLuongVeBsn == '' ||
       this.addFlightRequest.soLuongVeEco == '' ||
-      this.addFlightRequest.donGia == ''
+      this.addFlightRequest.donGia == ''||
+      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00' && this.flightTime_Second == '00')
     ){
       // 
       Swal.fire({
         icon: 'error',
-        title: 'Chưa nhập đầy đủ thông tin!',
-        text: 'Vui lòng nhập đầy đủ thông tin chuyến bay!',
+        title: 'Thông tin không hợp lệ!',
+        text: 'Vui lòng nhập đầy đủ thông tin của chuyến bay và đảm bảo thông tin hợp lệ!',
         // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
       })
     }
     else {
       this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
       this.addFlightRequest.donGia = this.addFlightRequest.donGia.replace(/,/g, '');
-      // this.flightService.addFlight(this.addFlightRequest).subscribe();
-      console.log(this.addFlightRequest);
+
+      console.log(this.addFlightRequest.ngayXuatPhat);
+      let tmpDepartureLocation
+      let tmpArrivalLocation
+      switch (this.addFlightRequest.noiXuatPhat) {
+        case "VIETNAM":
+          tmpDepartureLocation = "VN"
+          break;
+        case "THAILAND":
+          tmpDepartureLocation = "TH"
+          break;
+        case "ENGLAND":
+          tmpDepartureLocation = "EN"
+          break;
+        case "FRANCE":
+          tmpDepartureLocation = "FR"
+          break;
+        case "JAPAN":
+          tmpDepartureLocation = "JP"
+          break;
+        case "AMERICA":
+          tmpDepartureLocation = "US"
+          break;
+        case "CHINA":
+          tmpDepartureLocation = "CN"
+          break;
+        case "SINGAPORE":
+          tmpDepartureLocation = "SG"
+          break;
+        case "HONGKONG":
+          tmpDepartureLocation = "HK"
+          break;
+        default:
+          break;
+      }
+      switch (this.addFlightRequest.noiDen) {
+        case "VIETNAM":
+          tmpArrivalLocation = "VN"
+          break;
+        case "THAILAND":
+          tmpArrivalLocation = "TH"
+          break;
+        case "ENGLAND":
+          tmpArrivalLocation = "EN"
+          break;
+        case "FRANCE":
+          tmpArrivalLocation = "FR"
+          break;
+        case "JAPAN":
+          tmpArrivalLocation = "JP"
+          break;
+        case "AMERICA":
+          tmpArrivalLocation = "US"
+          break;
+        case "CHINA":
+          tmpArrivalLocation = "CN"
+          break;
+        case "SINGAPORE":
+          tmpArrivalLocation = "SG"
+          break;
+        case "HONGKONG":
+          tmpArrivalLocation = "HK"
+          break;
+        default:
+          break;
+      }
+      this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "/" + this.addFlightRequest.maMayBay
+      
+      // this.addFlightRequest.maChuyenBay =  + this.addFlightRequest.noiXuatPhat + "TO" + this.addFlightRequest.noiDen + this.addFlightRequest.maMayBay
+      
+      console.log(this.addFlightRequest)
       Swal.fire({
         title: 'Thêm thông tin chuyến bay này?',
         text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay này không?",
@@ -107,6 +175,11 @@ export class AddFlightComponent implements OnInit {
           
         }
       })
+
+
+
+
+
     }
     
     // console.log(this.)
