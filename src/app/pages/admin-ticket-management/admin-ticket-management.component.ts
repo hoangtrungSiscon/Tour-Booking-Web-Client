@@ -18,23 +18,6 @@ export interface TicketDetails {
   tinhTrang: string;
 }
 
-// const ELEMENT_DATA: TicketDetails[] = [
-//   {ticket_id: '1', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '2', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '3', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '4', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '5', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '6', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '7', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '8', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '9', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '10', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '11', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '12', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-//   {ticket_id: '13', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-
-// ];
-
 @Component({
   selector: 'app-admin-ticket-management',
   templateUrl: './admin-ticket-management.component.html',
@@ -50,6 +33,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     'maChuyenBay',
     'loaiVe',
     'soLuong',
+    'tinhTrang',
     'tongGia',
     'approve',
     'cancel', 
@@ -67,9 +51,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-    }, 1000);
+    this.dataSource.paginator = this.paginator;
   }
 
   createForm(){
@@ -110,7 +92,14 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       TinhTrang: 'Đã duyệt',
       TongGia: element.tongGia,
     };
-    this.chiTietVeService.update(request).subscribe();
+    try{
+      this.chiTietVeService.update(request).subscribe();
+      alert("Duyệt thành công!");
+      this.getAllChiTietVe();
+    }
+    catch{
+      alert("Duyệt thất bại!");
+    }
   }
 
   onCancle(element: TicketDetails){
@@ -125,14 +114,28 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       
       TinhTrang: 'Đã hủy',
       TongGia: element.tongGia,
-    };
-    this.chiTietVeService.update(request).subscribe();
+    };try{
+      this.chiTietVeService.update(request).subscribe();
+      alert("Hủy thành công!");
+      this.getAllChiTietVe();
+    }
+    catch{
+      alert("Hủy thất bại!");
+    }
   }
 
   onDelete(elementId: number){
-    this.chiTietVeService.delete(elementId).subscribe(()=>{
+    try{
+      this.chiTietVeService.delete(elementId).subscribe(()=>{
+        this.getAllChiTietVe();
+      });
+      alert("Xóa vé thành công!");
       this.getAllChiTietVe();
-    });
+    }
+    catch{
+      alert("Xóa vé thất bại!");
+    }
+    
   }
 
 }

@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ChuyenBayService {
 
-    // protected url: string = 'api/chuyenbay';
-    protected url: string = "https://localhost:7000/api/chuyenbay";
+    protected url: string = 'https://localhost:7000/api/chuyenbay';
     constructor(protected http: HttpClient) { }
 
     public getAll(): Observable<any> {

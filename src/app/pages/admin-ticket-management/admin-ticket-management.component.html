@@ -102,6 +102,11 @@
         <td mat-cell *matCellDef="let element"> {{element.soLuong}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="tinhTrang">
+        <th mat-header-cell *matHeaderCellDef> Tình Trạng </th>
+        <td mat-cell *matCellDef="let element"> {{element.tinhTrang}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="tongGia">
         <th mat-header-cell *matHeaderCellDef> Giá </th>
         <td mat-cell *matCellDef="let element"> {{element.tongGia}} </td>
