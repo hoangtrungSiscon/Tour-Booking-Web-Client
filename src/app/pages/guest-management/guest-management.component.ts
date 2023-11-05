@@ -12,8 +12,9 @@ export interface GuestDetails {
   Sdt:any;
   Phai: any;
   GmailKh: any;
-  MaChuyenBay: any;
-  MaVe: any;
+  MaTaiKhoan: any
+  // MaChuyenBay: any;
+  // MaVe: any;
   
 }
 
@@ -63,9 +64,9 @@ export class GuestManagementComponent {
     'Sdt',
     'Phai',
     'GmailKh',
-    'MaChuyenBay',
-    'MaVe',
-    
+    // 'MaChuyenBay',
+    // 'MaVe',
+    'MaTaiKhoan'
   ];
   GuestList$: Observable<GuestDetails[]>[] = [];
 
