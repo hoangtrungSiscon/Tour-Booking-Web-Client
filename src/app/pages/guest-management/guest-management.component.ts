@@ -66,7 +66,7 @@ export class GuestManagementComponent {
     'GmailKh',
     // 'MaChuyenBay',
     // 'MaVe',
-    'MaTaiKhoan'
+    // 'MaTaiKhoan'
   ];
   GuestList$: Observable<GuestDetails[]>[] = [];
 
