@@ -38,12 +38,12 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
-import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
+import { BookingHistoryComponent } from './pages/booking/booking-history/booking-history.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
-import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
+import { BookingTicketComponent } from './pages/booking/booking-ticket/booking-ticket.component';
+import { BookingTicketDetailComponent } from './pages/booking/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
 @NgModule({
   declarations: [
@@ -73,9 +73,6 @@ import { FlightApiService } from './shared/services/flight-api.service';
     AppComponent,
     ChangePassComponent,
     ViewProfileComponent,
-    BookingHistoryComponent,
-    BookingTicketComponent,
-    BookingTicketDetailComponent
   ],
   imports: [
     BrowserModule,

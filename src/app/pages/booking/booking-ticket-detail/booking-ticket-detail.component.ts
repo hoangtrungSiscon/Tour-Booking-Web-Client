@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
+import { ChuyenBayService } from '../../../shared/services/chuyenBay.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./booking-ticket-detail.component.scss']
 })
 export class BookingTicketDetailComponent {
-  constructor() {}
+  constructor() { }
 
   showOnInit() {
     Swal.fire(

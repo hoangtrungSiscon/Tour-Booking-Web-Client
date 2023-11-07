@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
+import { ChuyenBayService } from '../../../shared/services/chuyenBay.service';
 
 @Component({
   selector: 'app-booking-ticket',
