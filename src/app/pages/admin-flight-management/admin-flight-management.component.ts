@@ -37,7 +37,6 @@ export class AdminFlightManagementComponent {
 
 
   deleteFlight(event: any, id: any): void {
-
     Swal.fire({
       title: 'Xóa thông tin chuyến bay này?',
       text: "Thông tin chuyến bay bị xóa không thể được khôi phục lại!",
