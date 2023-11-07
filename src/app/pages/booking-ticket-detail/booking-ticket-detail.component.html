@@ -1,69 +1,172 @@
+<!-- <app-header-home></app-header-home>
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <h1 class="text-center my-2 color-2 fw-bold" style="margin-bottom: 30px !important">DANH SÁCH CHUYẾN BAY</h1>
+    <div class="row">
+        <div class="col-3">
+            <label for="inputText" class="form-label fs-4 color-2 fw-bold ms-5">Tìm mã chuyến bay</label>
+        </div>
+        <div class="col-7" style="margin-bottom: 10px;margin-top: -10px;height: fit-content;">
+            <input type="text" id="inputText" class="form-control form-control-search" placeholder="Nhập mã chuyến bay">
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary mb-3 background-1 fw-bold btn-search"
+                style="margin-bottom: 10px;margin-top: -10px;height: fit-content;border-radius: 10px; width: 120px;height: 40px;">Tìm
+                kiếm</button>
+        </div>
+    </div>
+    <div class="row test">
+        <div class="col-3 test-1"
+            style="border:3px solid #146C94;border-radius:  15px;padding: 10px;height: fit-content;margin-right: 50px;margin-left: 10px;">
+            <form [formGroup]="form">
 
-
-    <app-header></app-header>
-    <app-navbar></app-navbar>
-    <div class="container my-5" >
-        <h1 class="text-center color-2 fw-bold">ĐẶT VÉ</h1>
-        <div class="ticket-info border-color-1" style="border-radius: 15px;">
-            <div class="row">
-                <h1 class="color-2 ms-3 fw-bold">THÔNG TIN ĐẶT VÉ</h1>
-                <div class="ticket-info-detail col-12 border-ra" style="border-radius: 20px;display: flex;justify-content: center;align-items: center;">
-                    <div class="row border-color-2 p-3 border-ra" style="border-radius: 20px;width: 1000px;">
-                        <div class="col-7">
-                            <h3 class="color-1 fw-bold font-20">NƠI ĐI - NƠI ĐẾN</h3>
-                            <h1 class="color-2 fw-bold font-28">VIETNAM - THAILAND</h1>
-                            <h3 class="color-1 fw-bold font-20">NGÀY/GIỜ: <span class="color-2">28 tháng 9 năm 2023</span></h3>
-                        </div>
-                        <div class="col-5">
-                            <h3 class="color-1 fw-bold font-20">MÁY BAY: <span class="color-2">VNAIRLINE</span></h3>
-                            <h3 class="color-1 fw-bold font-20">MÃ CHUYẾN: <span class="color-2">ALVN01</span></h3>
-                            <h3 class="color-1 fw-bold font-20">GIÁ ĐƠN VÉ: <span class="color-2">2.000.000</span></h3>
-                        </div>
-                    </div>
+                <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM XUẤT PHÁT</h2>
+                <div
+                    style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
+                    <ng-container *ngFor="let place of fromPlace; let i = index">
+                        <input type="radio" class="btn-check" name="check1" [id]="'check1-' + i">
+                        <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" [for]="'check1-' + i"
+                            (click)="inputFromPlace(place)"> {{place}} </label>
+                    </ng-container>
                 </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="inputName" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Họ và tên</label>
-                            <input type="text" id="inputName"  class="form-control form-control-input bor-ra">
-                            <label for="inputEmail" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Gmail</label>
-                            <input type="text" id="inputEmail" class="form-control form-control-input bor-ra">
-                            <label for="inputPhone" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số điện thoại</label>
-                            <input type="text" id="inputPhone" class="form-control form-control-input bor-ra">
-                            <label for="inputGender" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Giới tính</label>
-                            <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
-                            
-                            <p class="mt-4 color-2 text-justify fs-5 text-second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis ratione pariatur, amet doloribus veritatis, illo deserunt mollitia saepe ea sed eligendi nisi inventore minus quos? Officiis ex autem quia facilis?</p>
-                        </div>
-                        <div class="col-6">
-                            <label for="inputQuantily" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số lượng đặt</label>
-                            <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
-                            <label for="inputSum" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Tổng giá</label>
-                            <input type="text" id="inputSum" class="form-control form-control-input bor-ra" readonly>
-                            <label for="inputDate" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Ngày đặt</label>
-                            <input type="date" id="inputDate" required class="form-control form-control-input bor-ra">
-                            <p class="fs-4 color-2 fw-bold mt-4 font-18">Loại ghế</p>
-                            <div class="chair-check">
-                                <div class="row"  style="margin-top: -4px;">
-                                    <div class="col-6 h-50px">
-                                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-                                        <label class="btn btn-outline-success w-100 h-100 form-control-input d-flex justify-content-center align-items-center" for="success-outlined">BSN</label>
+
+                <h1 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM ĐẾN</h1>
+                <div
+                    style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
+                    <ng-container *ngFor="let place of toPlace; let i = index">
+                        <input type="radio" class="btn-check" name="check2" [id]="'check2-' + i">
+                        <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" [for]="'check2-' + i"
+                            (click)="inputToPlace(place)"> {{place}} </label>
+                    </ng-container>
+                </div>
+
+                <h2 class="color-2 ms-2 mt-2 fw-bold">NGÀY XUẤT PHÁT</h2>
+                <div class="input-group mb-3 px-2">
+                    <input type="date" class="form-control" formControlName="startDate"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <ng-container *ngIf="textError != ''">
+                    <span style="color: red;">{{textError}} </span>
+                </ng-container>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary my-2 px-5 background-1" data-bs-toggle="tooltip"
+                        data-bs-placement="left" title="Tooltip on left" (click)="onSubmit()">
+                        Lọc
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-8 test-2 border-color-2 px-4 py-3" style="padding:10px;border-radius: 15px;">
+            <h1 class="color-2 fw-bold">VÉ</h1>
+            <div class="ticket-items">
+                <ng-container *ngFor="let ticket of tickets">
+                    <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"
+                        style="border-radius: 15px;">
+                        <div class="container">
+                            <div class="row ticket-info">
+                                <div class="col-5">
+                                    <p class="color-1 dt fw-bold">NƠI ĐI - NƠI ĐẾN</p>
+                                    <h1 class="color-2 fw-bold">{{ticket?.noiXuatPhat}} - {{ticket?.noiDen}} </h1>
+                                    <div class="chair-info">
+                                        <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
+                                        <p class="color-1">SL CÒN: <span class="color-2"> {{ticket?.soLuongVeBsn}}
+                                            </span></p>
                                     </div>
-                                    <div class="col-6 h-50px">
-                                        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-                                        <label class="btn btn-outline-danger w-100 h-100 form-control-input d-flex justify-content-center align-items-center" for="danger-outlined">ECO</label>
+                                    <p class="color-1">NGÀY/GIỜ: <span class="color-2"> {{ticket?.ngayXuatPhat | date:
+                                            'dd/MM/yyyy'}} /
+                                            {{ticket?.gioBay}} </span></p>
+                                </div>
+                                <div class="col-5 background-white color-1 fw-bold ">
+                                    <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
+                                    <p class="color-2 fw-bold">MÃ CHUYẾN BAY:<span class="color-1">
+                                            {{ticket.maChuyenBay}}</span></p>
+                                    <div class="chair-info">
+                                        <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
+                                        <p class="color-1">SL CÒN: <span class="color-2"> {{ticket?.soLuongVeEco}}
+                                            </span></p>
                                     </div>
+                                    <p class="color-1">GIÁ VÉ: <span class="color-2">{{ticket.donGia}}</span></p>
+                                </div>
+                                <div class="col-2 background-white color-1 fw-bold ">
+                                    <a routerLink="/booking-ticket-detail"
+                                        class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
                                 </div>
                             </div>
-                            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px">
-                                <input type="submit" (click)="showOnInit()" class="btn btn-primary px-5 py-2 background-color-1 fw-bold border-color-1" value="Đặt vé">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer> -->
+
+
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="container my-5" >
+    <h1 class="text-center color-2 fw-bold">ĐẶT VÉ</h1>
+    <div class="ticket-info border-color-1" style="border-radius: 15px;">
+        <div class="row">
+            <h1 class="color-2 ms-3 fw-bold">THÔNG TIN ĐẶT VÉ</h1>
+            <div class="ticket-info-detail col-12 border-ra" style="border-radius: 20px;display: flex;justify-content: center;align-items: center;">
+                <div class="row border-color-2 p-3 border-ra" style="border-radius: 20px;width: 1000px;">
+                    <div class="col-7">
+                        <h3 class="color-1 fw-bold font-20">NƠI ĐI - NƠI ĐẾN</h3>
+                        <h1 class="color-2 fw-bold font-28">VIETNAM - THAILAND</h1>
+                        <h3 class="color-1 fw-bold font-20">NGÀY/GIỜ: <span class="color-2">28 tháng 9 năm 2023</span></h3>
+                    </div>
+                    <div class="col-5">
+                        <h3 class="color-1 fw-bold font-20">MÁY BAY: <span class="color-2">VNAIRLINE</span></h3>
+                        <h3 class="color-1 fw-bold font-20">MÃ CHUYẾN: <span class="color-2">ALVN01</span></h3>
+                        <h3 class="color-1 fw-bold font-20">GIÁ ĐƠN VÉ: <span class="color-2">2.000.000</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="inputName" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Họ và tên</label>
+                        <input type="text" id="inputName"  class="form-control form-control-input bor-ra">
+                        <label for="inputEmail" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Gmail</label>
+                        <input type="text" id="inputEmail" class="form-control form-control-input bor-ra">
+                        <label for="inputPhone" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số điện thoại</label>
+                        <input type="text" id="inputPhone" class="form-control form-control-input bor-ra">
+                        <label for="inputGender" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Giới tính</label>
+                        <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
+                        
+                        <p class="mt-4 color-2 text-justify fs-5 text-second">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis ratione pariatur, amet doloribus veritatis, illo deserunt mollitia saepe ea sed eligendi nisi inventore minus quos? Officiis ex autem quia facilis?</p>
+                    </div>
+                    <div class="col-6">
+                        <label for="inputQuantily" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Số lượng đặt</label>
+                        <input type="text" id="inputQuantily" class="form-control form-control-input bor-ra">
+                        <label for="inputSum" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Tổng giá</label>
+                        <input type="text" id="inputSum" class="form-control form-control-input bor-ra" readonly>
+                        <label for="inputDate" class="form-label fs-4 color-2 fw-bold mt-4 font-18">Ngày đặt</label>
+                        <input type="date" id="inputDate" required class="form-control form-control-input bor-ra">
+                        <p class="fs-4 color-2 fw-bold mt-4 font-18">Loại ghế</p>
+                        <div class="chair-check">
+                            <div class="row"  style="margin-top: -4px;">
+                                <div class="col-6 h-50px">
+                                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success w-100 h-100 form-control-input d-flex justify-content-center align-items-center" for="success-outlined">BSN</label>
+                                </div>
+                                <div class="col-6 h-50px">
+                                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-danger w-100 h-100 form-control-input d-flex justify-content-center align-items-center" for="danger-outlined">ECO</label>
+                                </div>
                             </div>
+                        </div>
+                        <div class="ticket-btn mt-6 d-flex justify-content-end h-50px">
+                            <input type="submit" (click)="showOnInit()" class="btn btn-primary px-5 py-2 background-color-1 fw-bold border-color-1" value="Đặt vé">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <app-footer></app-footer>
+</div>
+<app-footer></app-footer>
 
 
