@@ -13,34 +13,8 @@ export interface GuestDetails {
   Phai: any;
   GmailKh: any;
   MaTaiKhoan: any
-  // MaChuyenBay: any;
-  // MaVe: any;
-  
 }
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {MaKhachHang: '1', HoTenKh: 'Anh A', Phai: 'Nam', GmailKh: 'A@GmailKh.com', MaChuyenBay: '1', MaVe: '01'},
-//   //Generate 10 more for ELEMENT_DATA
-//   {MaKhachHang: '2', HoTenKh: 'Anh B', Phai: 'Nam', GmailKh: 'B@GmailKh.com', MaChuyenBay: '2', MaVe: '02'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-//   {MaKhachHang: '3', HoTenKh: 'Co C', Phai: 'Nữ', GmailKh: 'C@GmailKh.com', MaChuyenBay: '3', MaVe: '03'},
-// ];
 
 @Component({
   selector: 'app-guest-management',
@@ -48,14 +22,6 @@ export interface GuestDetails {
   styleUrls: ['./guest-management.component.scss']
 })
 export class GuestManagementComponent {
-  // displayedColumns: any[] = ['MaKhachHang', 'HoTenKh', 'Phai', 'GmailKh', 'MaChuyenBay', 'MaVe'];
-  // dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  // }
-
-
   dataSource = new MatTableDataSource<GuestDetails>();
   GuestList: any[] = [];
   public displayedColumns: string[] = [
@@ -64,9 +30,6 @@ export class GuestManagementComponent {
     'Sdt',
     'Phai',
     'GmailKh',
-    // 'MaChuyenBay',
-    // 'MaVe',
-    // 'MaTaiKhoan'
   ];
   GuestList$: Observable<GuestDetails[]>[] = [];
 
@@ -85,9 +48,8 @@ export class GuestManagementComponent {
         )
       });
 
-        this.dataSource.data = this.GuestList;
+      this.dataSource.data = this.GuestList;
 
-      console.log(this.dataSource.data)
 
     })
   }
@@ -95,8 +57,6 @@ export class GuestManagementComponent {
   
    
   ngAfterViewInit(){
-
-    console.log(this.dataSource.data)
     this.dataSource.paginator = this.paginator;
   }
 

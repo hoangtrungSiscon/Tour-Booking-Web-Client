@@ -43,10 +43,6 @@
         <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
         <td mat-cell *matCellDef="let element"> {{element.makhachhang}} </td>
       </ng-container>
-      <!-- <ng-container matColumnDef="MaTaiKhoan" class="guest-table">
-        <th mat-header-cell *matHeaderCellDef> Mã tài khoản </th>
-        <td mat-cell *matCellDef="let element"> {{element.maTaiKhoan}} </td>
-      </ng-container> -->
       <ng-container matColumnDef="HoTenKh" class="guest-table">
         <th mat-header-cell *matHeaderCellDef> Họ và tên </th>
         <td mat-cell *matCellDef="let element"> {{element.hoTenKh}} </td>
@@ -68,26 +64,6 @@
     </table>
   </div>
   <div class="paginator-container">
-    <mat-paginator pageSize="10" hidePageSize="true" showFirstLastButtons>
+    <mat-paginator pageSize="20" hidePageSize="true" showFirstLastButtons>
     </mat-paginator>
   </div>
-  <!-- <div>
-  <table class="table table-striped">
-    <thead>
-      <th>IDKhachHang</th>
-      <th>HoTen</th>
-      <th>Phai</th>
-      <th>Gmail</th>
-      <th>MaChuyen</th>
-      <th>MaVe</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of guestList$|async">
-        <td>{{item.maKh}}</td>
-        <td>{{item.tenKh}}</td>
-        <td>{{item.phai}}</td>
-        <td>{{item.gmailKh}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
