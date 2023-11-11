@@ -33,9 +33,7 @@ export class AddFlightComponent implements OnInit {
   }
   ngOnInit(): void {
     this.planeService.getPlaneList().subscribe(data => {
-      console.log(data)
       this.planeList = data;
-      console.log(this.planeList)
     })
   }
 
@@ -60,19 +58,15 @@ export class AddFlightComponent implements OnInit {
       this.addFlightRequest.donGia == ''||
       (this.flightTime_Hour == '00' && this.flightTime_Minute == '00' && this.flightTime_Second == '00')
     ){
-      // 
       Swal.fire({
         icon: 'error',
         title: 'Thông tin không hợp lệ!',
         text: 'Vui lòng nhập đầy đủ thông tin của chuyến bay và đảm bảo thông tin hợp lệ!',
-        // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
       })
     }
     else {
       this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
       this.addFlightRequest.donGia = this.addFlightRequest.donGia.replace(/,/g, '');
-
-      console.log(this.addFlightRequest.ngayXuatPhat);
       let tmpDepartureLocation
       let tmpArrivalLocation
       switch (this.addFlightRequest.noiXuatPhat) {
@@ -139,9 +133,6 @@ export class AddFlightComponent implements OnInit {
       }
       this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "-" + this.addFlightRequest.maMayBay
       
-      // this.addFlightRequest.maChuyenBay =  + this.addFlightRequest.noiXuatPhat + "TO" + this.addFlightRequest.noiDen + this.addFlightRequest.maMayBay
-      
-      console.log(this.addFlightRequest)
       Swal.fire({
         title: 'Thêm thông tin chuyến bay này?',
         text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay này không?",
@@ -155,7 +146,6 @@ export class AddFlightComponent implements OnInit {
         if (result.isConfirmed) {
           this.flightService.addFlight(this.addFlightRequest).subscribe(
             () => {
-              console.log('Deleted successfully');
               Swal.fire(
                 'Đã thêm thông tin chuyến bay!',
                 'Thêm thông tin chuyến bay thành công.',
@@ -175,14 +165,6 @@ export class AddFlightComponent implements OnInit {
           
         }
       })
-
-
-
-
-
     }
-    
-    // console.log(this.)
   }
-
 }

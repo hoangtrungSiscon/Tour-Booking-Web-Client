@@ -56,7 +56,6 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
     }, 1000);
-    
   }
 
   createForm(){

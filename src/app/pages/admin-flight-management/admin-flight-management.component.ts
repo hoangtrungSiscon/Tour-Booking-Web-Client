@@ -50,7 +50,6 @@ export class AdminFlightManagementComponent {
       if (result.isConfirmed) {
         this.service.deleteFlight(id).subscribe(
           () => {
-            console.log('Deleted successfully');
             Swal.fire(
               'Đã xóa!',
               'Xóa thông tin chuyến bay thành công.',
@@ -80,12 +79,7 @@ export class AdminFlightManagementComponent {
     else {
 
       this.flightList = [];
-      // this.ngOnInit();
       this.dataSource.data = [];
-      // this.dataSource.data = this.flightList.filter((flight) => {
-      //   // return flight.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase());
-      //   console.log(flight);
-      // });
       this.service.getFlightList().subscribe(data => {
         data.forEach(element => {
           if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
@@ -95,20 +89,13 @@ export class AdminFlightManagementComponent {
           }
           
         });
-          this.dataSource.data = this.flightList;
-  
-        console.log(this.dataSource.data)
-  
+        this.dataSource.data = this.flightList;
+
       })
     }
-    // console.log(this.searchValue)
-    // this.dataSource.data = this.flightList.filter((flight) => {
-    //   return flight.MaChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase());
-    // });
   }
 
   filter(event : any
-    // , departureLocation : any, departureDate : any, arrivalLocation : any
     ){
     if (
 
@@ -133,7 +120,6 @@ export class AdminFlightManagementComponent {
         this.service.getFlightList().subscribe(data => {
           data.forEach(element => {
             if (
-              // element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())
               element.ngayXuatPhat.slice(0,10) == this.departureDate &&
               element.noiXuatPhat == this.departureLocation &&
               element.noiDen == this.arrivalLocation
@@ -146,24 +132,15 @@ export class AdminFlightManagementComponent {
             
           });
           this.dataSource.data = this.flightList;
-    
-          console.log(this.dataSource.data)
-    
         })
       }
     }
   }
 
-  
-  
-  // listFlight !: FlightDetails[];
   constructor(private service: FlightApiService) {
 
   }
 
-  // refreshPage(): void{
-  //   window.location.reload();
-  // }
   ngOnInit() : void{
 
     this.service.getFlightList().subscribe(data => {
@@ -173,22 +150,15 @@ export class AdminFlightManagementComponent {
         )
       });
 
-        this.dataSource.data = this.flightList;
-
-      console.log(this.dataSource.data)
-      this.dataSource.paginator = this.paginator;
+      this.dataSource.data = this.flightList;
     })
   }
 
   
    
   ngAfterViewInit(){
-
-    // console.log(this.dataSource.data)
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
     }, 1000);
-    
-    // console.log(this.dataSource.data)
   }
 }
