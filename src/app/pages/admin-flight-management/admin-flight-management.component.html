@@ -56,9 +56,10 @@
 
 </div>
 <div class="flight-data-table"
-*ngIf="flightList.length > 0"
+
 >
-  <div class="table-container">
+  <div class="table-container"
+  *ngIf="flightList.length > 0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
 
       <ng-container matColumnDef="MaChuyenBay">
@@ -126,7 +127,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-
+  <p *ngIf="flightList.length <= 0">
+    Không tìm thấy thông tin chuyến bay
+  </p>
 
 
   <div class="paginator-container">
@@ -134,7 +137,3 @@
     </mat-paginator>
   </div>
 </div>
-<p 
-*ngIf="flightList.length <= 0">
-  Không tìm thấy thông tin chuyến bay
-</p>

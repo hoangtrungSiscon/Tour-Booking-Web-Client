@@ -114,7 +114,7 @@
                 <select name="plane-id" id="plane-id"
                 #mySelect
                 [(ngModel)]="addFlightRequest.maMayBay"
-                (ngModelChange)="updatePlaneName($event, mySelect.value)"
+                (ngModelChange)="updatePlaneInfo($event, mySelect.value)"
                 >
                     <option value="" id=""></option>
                     <option *ngFor="let plane of planeList" value="{{plane.maMayBay}}" #planeIdSelectValue>

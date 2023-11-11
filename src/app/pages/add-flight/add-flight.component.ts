@@ -36,11 +36,11 @@ export class AddFlightComponent implements OnInit {
     })
   }
 
-  updatePlaneName(event: any, id: any) : void{
+  updatePlaneInfo(event: any, id: any) : void{
     const element = this.planeList.find(element => element.maMayBay == id);
     if (element) {
       this.addFlightRequest.tenMayBay = element.tenMayBay;
-
+      
     }
 
   }
