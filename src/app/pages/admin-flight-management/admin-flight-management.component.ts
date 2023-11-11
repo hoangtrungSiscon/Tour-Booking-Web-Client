@@ -19,7 +19,6 @@ export class AdminFlightManagementComponent {
   departureLocation: string = '';
   arrivalLocation: string = '';
   departureDate: string = '';
-  dataIsAvailable: boolean = false;
   public displayedColumns: string[] = [
     'MaChuyenBay',
     'MaMayBay',
@@ -161,8 +160,5 @@ export class AdminFlightManagementComponent {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
     }, 0);
-    // setTimeout(() => {
-    //   this.dataIsAvailable = true;
-    // }, 2000);
   }
 }
