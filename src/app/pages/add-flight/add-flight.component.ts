@@ -26,7 +26,6 @@ export class AddFlightComponent implements OnInit {
   }
   public flightTime_Hour: string = '00';
   public flightTime_Minute: string = '00';
-  public flightTime_Second: string = '00';
   public planeList: any[] = []
   constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router) {
 
@@ -56,7 +55,7 @@ export class AddFlightComponent implements OnInit {
       this.addFlightRequest.soLuongVeBsn == '' ||
       this.addFlightRequest.soLuongVeEco == '' ||
       this.addFlightRequest.donGia == ''||
-      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00' && this.flightTime_Second == '00')
+      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00')
     ){
       Swal.fire({
         icon: 'error',
@@ -65,7 +64,7 @@ export class AddFlightComponent implements OnInit {
       })
     }
     else {
-      this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
+      this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ "00";
       this.addFlightRequest.donGia = this.addFlightRequest.donGia.replace(/,/g, '');
       let tmpDepartureLocation
       let tmpArrivalLocation
@@ -96,6 +95,9 @@ export class AddFlightComponent implements OnInit {
           break;
         case "HONGKONG":
           tmpDepartureLocation = "HK"
+          break;
+        case "KOREA":
+          tmpDepartureLocation = "KR"
           break;
         default:
           break;
@@ -128,11 +130,14 @@ export class AddFlightComponent implements OnInit {
         case "HONGKONG":
           tmpArrivalLocation = "HK"
           break;
+        case "KOREA":
+          tmpArrivalLocation = "KR"
+          break;
         default:
           break;
       }
       this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "-" + this.addFlightRequest.maMayBay
-      
+      console.log(this.addFlightRequest)
       Swal.fire({
         title: 'Thêm thông tin chuyến bay này?',
         text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay này không?",
