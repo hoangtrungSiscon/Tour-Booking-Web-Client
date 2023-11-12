@@ -91,11 +91,7 @@ export class EditFlightComponent {
     }
     else {
       this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ "00";
-      // if (this.editFlightRequest.donGia.includes(',')) {
-      //   this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
-      // }
       this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '').replace(/ đ/g, '');
-      // this.flightService.addFlight(this.editFlightRequest).subscribe();
       console.log(this.editFlightRequest);
       Swal.fire({
         title: 'Chỉnh sửa thông tin chuyến bay này?',
