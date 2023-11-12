@@ -165,7 +165,7 @@ export class AddFlightComponent implements OnInit {
                 'Thêm thông tin chuyến bay thành công.',
                 'success'
               ).then(() => {
-                this.router.navigate(['/admin-flight-management']);
+                this.router.navigateByUrl('/admin-dashboard/admin-flight-management');
               })
             },
             (error) => {
