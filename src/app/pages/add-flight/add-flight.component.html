@@ -28,15 +28,15 @@
                 [(ngModel)]="addFlightRequest.noiXuatPhat">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAND" id="TH">Thái Lan</option>
-                    <option value="ENGLAND" id="EN">Anh</option>
-                    <option value="JAPAN" id="JP">Nhật Bản</option>
-                    <option value="AMERICA" id="US">Mỹ</option>
-                    <option value="FRANCE" id="FR">Pháp</option>
-                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="THAILAN" id="TH">Thái Lan</option>
+                    <option value="ANH" id="UK">Anh</option>
+                    <option value="NHATBAN" id="JP">Nhật Bản</option>
+                    <option value="MY" id="US">Mỹ</option>
+                    <option value="PHAP" id="FR">Pháp</option>
+                    <option value="NGA" id="RU">Nga</option>
                     <option value="SINGAPORE" id="SG">Singapore</option>
                     <option value="HONGKONG" id="HK">Hồng Kông</option>
-                    <option value="KOREA" id="KR">Hàn Quốc</option>
+                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -47,15 +47,15 @@
                 [(ngModel)]="addFlightRequest.noiDen">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAND" id="TH">Thái Lan</option>
-                    <option value="ENGLAND" id="EN">Anh</option>
-                    <option value="JAPAN" id="JP">Nhật Bản</option>
-                    <option value="AMERICA" id="US">Mỹ</option>
-                    <option value="FRANCE" id="FR">Pháp</option>
-                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="THAILAN" id="TH">Thái Lan</option>
+                    <option value="ANH" id="UK">Anh</option>
+                    <option value="NHATBAN" id="JP">Nhật Bản</option>
+                    <option value="MY" id="US">Mỹ</option>
+                    <option value="PHAP" id="FR">Pháp</option>
+                    <option value="NGA" id="RU">Nga</option>
                     <option value="SINGAPORE" id="SG">Singapore</option>
                     <option value="HONGKONG" id="HK">Hồng Kông</option>
-                    <option value="KOREA" id="KR">Hàn Quốc</option>
+                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -137,29 +137,34 @@
                 <label for="BSN-number">Số lượng ghế BSN</label><br>
                 <input type="text" id="BSN-number" name="BSN-number"
                 oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
-                [(ngModel)]="addFlightRequest.soLuongVeBsn">
+                [(ngModel)]="BSN_Seats" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="BSN-number-booked">Số lượng ghế BSN đặt</label><br>
-                <input type="text" id="BSN-number-booked" name="BSN-number-booked"
-                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null">
+                <input type="text" id="BSN-number-booked" name="BSN-number-booked" placeholder="0" readonly="readonly"
+                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
+                style="text-align: right;">
                 
             </div>
             <div class="form-field">
                 <label for="ECO-number">Số lượng ghế ECO</label><br>
                 <input type="text" id="ECO-number" name="ECO-number"
                 oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
-                [(ngModel)]="addFlightRequest.soLuongVeEco">
+                [(ngModel)]="ECO_Seats" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="ECO-number-booked">Số lượng ghế ECO đặt</label><br>
-                <input type="text" id="ECO-number-booked" name="ECO-number-booked">
+                <input type="text" id="ECO-number-booked" name="ECO-number-booked" placeholder="0" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="price">Giá</label><br>
                 <input type="text" id="price" name="price"
-                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString()"
-                [(ngModel)]="addFlightRequest.donGia">
+                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString() + ' đ'"
+                [(ngModel)]="addFlightRequest.donGia"
+                style="text-align: right;">
             </div>
         </div>
         <div class="form-action">
