@@ -94,7 +94,7 @@
 
       <ng-container matColumnDef="GioBay">
         <th mat-header-cell *matHeaderCellDef> Giờ bay </th>
-        <td mat-cell *matCellDef="let element"> {{element.gioBay}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.gioBay.slice(0,5)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="SoLuongVeBsn">
@@ -108,8 +108,8 @@
       </ng-container>
 
       <ng-container matColumnDef="DonGia">
-        <th mat-header-cell *matHeaderCellDef> Giá </th>
-        <td mat-cell *matCellDef="let element"> {{element.donGia}} </td>
+        <th mat-header-cell *matHeaderCellDef> Giá (đ) </th>
+        <td mat-cell *matCellDef="let element"> {{element.donGia | number:'1.0-3'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="edit">
