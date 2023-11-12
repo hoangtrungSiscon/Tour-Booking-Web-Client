@@ -15,7 +15,9 @@
             <div class="form-field">
                 <label for="flight-id">Mã chuyến</label>
                 <input type="text" id="flight-id" name="flight-id"
-                
+                readonly="readonly"
+                disabled="disabled"
+
                 [(ngModel)]="editFlightRequest.maChuyenBay">
             </div>
     
@@ -26,14 +28,15 @@
                 [(ngModel)]="editFlightRequest.noiXuatPhat">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAND" id="TH">Thái Lan</option>
-                    <option value="ENGLAND" id="EN">Anh</option>
-                    <option value="JAPAN" id="JP">Nhật Bản</option>
-                    <option value="AMERICA" id="US">Mỹ</option>
-                    <option value="FRANCE" id="FR">Pháp</option>
-                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="THAILAN" id="TH">Thái Lan</option>
+                    <option value="ANH" id="UK">Anh</option>
+                    <option value="NHATBAN" id="JP">Nhật Bản</option>
+                    <option value="MY" id="US">Mỹ</option>
+                    <option value="PHAP" id="FR">Pháp</option>
+                    <option value="NGA" id="RU">Nga</option>
                     <option value="SINGAPORE" id="SG">Singapore</option>
                     <option value="HONGKONG" id="HK">Hồng Kông</option>
+                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -44,14 +47,15 @@
                 [(ngModel)]="editFlightRequest.noiDen">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAND" id="TH">Thái Lan</option>
-                    <option value="ENGLAND" id="EN">Anh</option>
-                    <option value="JAPAN" id="JP">Nhật Bản</option>
-                    <option value="AMERICA" id="US">Mỹ</option>
-                    <option value="FRANCE" id="FR">Pháp</option>
-                    <option value="RUSSIA" id="RU">Nga</option>
+                    <option value="THAILAN" id="TH">Thái Lan</option>
+                    <option value="ANH" id="UK">Anh</option>
+                    <option value="NHATBAN" id="JP">Nhật Bản</option>
+                    <option value="MY" id="US">Mỹ</option>
+                    <option value="PHAP" id="FR">Pháp</option>
+                    <option value="NGA" id="RU">Nga</option>
                     <option value="SINGAPORE" id="SG">Singapore</option>
                     <option value="HONGKONG" id="HK">Hồng Kông</option>
+                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -71,7 +75,11 @@
                 }"
                 style="width: 20%;"
                 [(ngModel)]="flightTime_Hour">
-                
+                <span style="width: 10%;
+                align-self: center;
+    color: #146C94;
+    font-weight: bold;
+    text-align: center">giờ</span>
                 <input type="number" id="flight-time-minute" name="flight-time-minute" min="0" max="59"
                 oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
                 if (this.value < 10) {
@@ -79,14 +87,18 @@
                 }"
                 style="width: 20%;"
                 [(ngModel)]="flightTime_Minute">
-                
-                <input type="number" id="flight-time-second" name="flight-time-second" min="0" max="59"
+                <span style="width: 10%;
+                align-self: center;
+    color: #146C94;
+    font-weight: bold;
+    text-align: center">phút</span>
+                <!-- <input type="number" id="flight-time-second" name="flight-time-second" min="0" max="59"
                 oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
                 if (this.value < 10) {
                     this.value = '0' + this.value
                 }"
                 style="width: 20%;"
-                [(ngModel)]="flightTime_Second">
+                [(ngModel)]="flightTime_Second"> -->
             </div>
         </div>
 
@@ -102,7 +114,7 @@
                 <select name="plane-id" id="plane-id"
                 #mySelect
                 [(ngModel)]="editFlightRequest.maMayBay"
-                (ngModelChange)="updatePlaneName($event, mySelect.value)"
+                (ngModelChange)="updatePlaneInfo($event, mySelect.value)"
                 >
                     <option value="" id=""></option>
                     <option *ngFor="let plane of planeList" value="{{plane.maMayBay}}" #planeIdSelectValue>
@@ -124,29 +136,34 @@
                 <label for="BSN-number">Số lượng ghế BSN</label><br>
                 <input type="text" id="BSN-number" name="BSN-number"
                 oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
-                [(ngModel)]="editFlightRequest.soLuongVeBsn">
+                [(ngModel)]="BSN_Seats" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="BSN-number-booked">Số lượng ghế BSN đặt</label><br>
-                <input type="text" id="BSN-number-booked" name="BSN-number-booked"
-                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null">
+                <input type="text" id="BSN-number-booked" name="BSN-number-booked" placeholder="0" readonly="readonly"
+                oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
+                style="text-align: right;">
                 
             </div>
             <div class="form-field">
                 <label for="ECO-number">Số lượng ghế ECO</label><br>
                 <input type="text" id="ECO-number" name="ECO-number"
                 oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
-                [(ngModel)]="editFlightRequest.soLuongVeEco">
+                [(ngModel)]="ECO_Seats" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="ECO-number-booked">Số lượng ghế ECO đặt</label><br>
-                <input type="text" id="ECO-number-booked" name="ECO-number-booked">
+                <input type="text" id="ECO-number-booked" name="ECO-number-booked" placeholder="0" readonly="readonly"
+                style="text-align: right;">
             </div>
             <div class="form-field">
                 <label for="price">Giá</label><br>
                 <input type="text" id="price" name="price"
-                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString()"
-                [(ngModel)]="editFlightRequest.donGia">
+                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString() + ' đ'"
+                [(ngModel)]="editFlightRequest.donGia"
+                style="text-align: right;">
             </div>
         </div>
         <!-- [routerLink]="['/admin-dashboard', 'admin-flight-management']" -->
