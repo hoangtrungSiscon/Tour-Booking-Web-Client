@@ -26,42 +26,44 @@ export class EditFlightComponent {
   }
   public flightTime_Hour: string = '00';
   public flightTime_Minute: string = '00';
-  public flightTime_Second: string = '00';
   public planeList: any[] = []
+  BSN_Seats: number = 0;
+  ECO_Seats: number = 0;
   constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router) {
 
   }
   ngOnInit(): void {
     this.planeService.getPlaneList().subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.planeList = data;
-      console.log(this.planeList)
+      // console.log(this.planeList)
+      
     })
     this.flightService.getFlightListById(this.router.url.replace('/admin-dashboard/edit-flight/','')).subscribe(data => {
-      // console.log(data)
       this.editFlightRequest = data[0];
-      // this.editFlightRequest.gioBay = this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2];
-      // console.log(this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2])
+      console.log(this.editFlightRequest)
       this.flightTime_Hour = this.editFlightRequest.gioBay.split(':')[0];
       this.flightTime_Minute = this.editFlightRequest.gioBay.split(':')[1];
-      this.flightTime_Second = this.editFlightRequest.gioBay.split(':')[2];
       this.editFlightRequest.ngayXuatPhat = this.editFlightRequest.ngayXuatPhat.split('T')[0];
-      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0)
-      // if the default value is 255133, I want to make it to 255,133
-      // this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
-      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0).toPrecision(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " đ";
+      // this.BSN_Seats = this.editFlightRequest.so
+      // this.ECO_Seats = this.editFlightRequest.soLuongVeEco
       console.log(this.editFlightRequest.donGia)
     })
-
+    setTimeout(() => {
+      this.BSN_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheBsn;
+      this.ECO_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheEco;
+    }, 1000);
+    
     console.log(this.router.url.replace('/admin-dashboard/edit-flight/',''))
   }
 
-  updatePlaneName(event: any, id: any) : void{
+  updatePlaneInfo(event: any, id: any) : void{
     const element = this.planeList.find(element => element.maMayBay == id);
     if (element) {
       this.editFlightRequest.tenMayBay = element.tenMayBay;
-
+      this.BSN_Seats = element.slgheBsn;
+      this.ECO_Seats = element.slgheEco;
     }
 
   }
@@ -74,9 +76,6 @@ export class EditFlightComponent {
       this.editFlightRequest.noiXuatPhat == '' ||
       this.editFlightRequest.noiDen == '' ||
       this.editFlightRequest.ngayXuatPhat == '' ||
-      this.editFlightRequest.gioBay == '' ||
-      this.editFlightRequest.soLuongVeBsn == '' ||
-      this.editFlightRequest.soLuongVeEco == '' ||
       this.editFlightRequest.donGia == ''
     ){
       // 
@@ -86,13 +85,16 @@ export class EditFlightComponent {
         text: 'Vui lòng nhập đầy đủ thông tin chuyến bay!',
         // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
       })
+      // .then(() => {
+      //   this.router.navigateByUrl('/admin-dashboard/admin-flight-management');
+      // })
     }
     else {
-      this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
+      this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ "00";
       // if (this.editFlightRequest.donGia.includes(',')) {
       //   this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
       // }
-      this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '').replace(/ đ/g, '');
       // this.flightService.addFlight(this.editFlightRequest).subscribe();
       console.log(this.editFlightRequest);
       Swal.fire({
