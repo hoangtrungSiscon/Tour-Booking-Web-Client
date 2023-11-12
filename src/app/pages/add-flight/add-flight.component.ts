@@ -149,7 +149,7 @@ export class AddFlightComponent implements OnInit {
       console.log(this.addFlightRequest)
       Swal.fire({
         title: 'Thêm thông tin chuyến bay này?',
-        text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay này không?",
+        text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay mới này không? Mã chuyến bay không thể được chỉnh sửa sau khi thông tin chuyến bay đã được tạo!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
