@@ -73,24 +73,12 @@ export class AdminFlightManagementComponent {
   search(event: any, searchValue: any) {
     if (this.searchValue == '') {
       this.dataSource.data = [];
-      this.flightList = [];
       this.ngOnInit();
     }
     else {
-
-      this.flightList = [];
       this.dataSource.data = [];
-      this.service.getFlightList().subscribe(data => {
-        data.forEach(element => {
-          if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
-            this.flightList.push(
-              element
-            )
-          }
-          
-        });
-        this.dataSource.data = this.flightList;
-
+      this.service.getFlightListById(this.searchValue).subscribe(data => {
+        this.dataSource.data = data;
       })
     }
   }
@@ -104,7 +92,6 @@ export class AdminFlightManagementComponent {
       this.departureDate == ''
     ) {
       this.dataSource.data = [];
-      this.flightList = [];
       this.ngOnInit();
     }
     else {
@@ -144,13 +131,7 @@ export class AdminFlightManagementComponent {
   ngOnInit() : void{
 
     this.service.getFlightList().subscribe(data => {
-      data.forEach(element => {
-        this.flightList.push(
-          element
-        )
-      });
-
-      this.dataSource.data = this.flightList;
+      this.dataSource.data = data;
     })
   }
 
