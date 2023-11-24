@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import Swal from 'sweetalert2';
 import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-flight-management',
@@ -124,7 +125,7 @@ export class AdminFlightManagementComponent {
     }
   }
 
-  constructor(private service: FlightApiService) {
+  constructor(private service: FlightApiService, private router: Router) {
 
   }
 
@@ -135,7 +136,9 @@ export class AdminFlightManagementComponent {
     })
   }
 
-  
+  toEdit(flightId : string){
+    this.router.navigate(['/admin-dashboard/edit-flight', flightId])
+  }
    
   ngAfterViewInit(){
     setTimeout(() => {

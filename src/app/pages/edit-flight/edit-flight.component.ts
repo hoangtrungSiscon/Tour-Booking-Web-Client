@@ -5,6 +5,7 @@ import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import { PlaneApiService } from 'src/app/shared/services/plane-api.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-flight',
@@ -29,25 +30,22 @@ export class EditFlightComponent {
   public planeList: any[] = []
   BSN_Seats: number = 0;
   ECO_Seats: number = 0;
-  constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router) {
+  constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router, private ActivatedRoute: ActivatedRoute) {
 
   }
   ngOnInit(): void {
     this.planeService.getPlaneList().subscribe(data => {
-      // console.log(data)
+      
       this.planeList = data;
-      // console.log(this.planeList)
       
     })
-    this.flightService.getFlightListById(this.router.url.replace('/admin-dashboard/edit-flight/','')).subscribe(data => {
+      this.flightService.getFlightListById(this.ActivatedRoute.snapshot.paramMap.get('id') as string).subscribe(data => {  
       this.editFlightRequest = data[0];
       console.log(this.editFlightRequest)
       this.flightTime_Hour = this.editFlightRequest.gioBay.split(':')[0];
       this.flightTime_Minute = this.editFlightRequest.gioBay.split(':')[1];
       this.editFlightRequest.ngayXuatPhat = this.editFlightRequest.ngayXuatPhat.split('T')[0];
       this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " đ";
-      // this.BSN_Seats = this.editFlightRequest.so
-      // this.ECO_Seats = this.editFlightRequest.soLuongVeEco
       console.log(this.editFlightRequest.donGia)
     })
     setTimeout(() => {
@@ -85,9 +83,6 @@ export class EditFlightComponent {
         text: 'Vui lòng nhập đầy đủ thông tin chuyến bay!',
         // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
       })
-      // .then(() => {
-      //   this.router.navigateByUrl('/admin-dashboard/admin-flight-management');
-      // })
     }
     else {
       this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ "00";
@@ -106,7 +101,6 @@ export class EditFlightComponent {
         if (result.isConfirmed) {
           this.flightService.updateFlight(this.editFlightRequest.maChuyenBay, this.editFlightRequest).subscribe(
             () => {
-              // console.log('Deleted successfully');
               Swal.fire(
                 'Chỉnh sửa thành công!',
                 'Chỉnh sửa thông tin chuyến bay thành công.',
@@ -128,7 +122,5 @@ export class EditFlightComponent {
         }
       })
     }
-    
-    // console.log(this.)
   }
 }

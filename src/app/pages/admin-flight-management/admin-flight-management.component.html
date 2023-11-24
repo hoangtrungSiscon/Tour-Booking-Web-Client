@@ -114,8 +114,11 @@
 
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button routerLink="/admin-dashboard/edit-flight/{{element.maChuyenBay}}"
-            routerLinkActive="active">Sửa</button> </td>
+        <td mat-cell *matCellDef="let element"> 
+          <!-- <button routerLink="/admin-dashboard/edit-flight/{{element.maChuyenBay}}"
+            routerLinkActive="active">Sửa</button> -->
+            <button (click)="toEdit(element.maChuyenBay)">Sửa</button>
+          </td>
       </ng-container>
 
       <ng-container matColumnDef="delete">

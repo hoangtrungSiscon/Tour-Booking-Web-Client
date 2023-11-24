@@ -24,7 +24,7 @@
             <div class="form-field">
                 <label for="departure-location">Nơi xuất phát</label><br>
                 <select name="departure-location" id="departure-location"
-                
+                disabled="disabled"
                 [(ngModel)]="editFlightRequest.noiXuatPhat">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
@@ -43,7 +43,7 @@
             <div class="form-field">
                 <label for="arrival-location">Nơi đến</label><br>
                 <select name="arrival-location" id="arrival-location"
-                
+                disabled="disabled"
                 [(ngModel)]="editFlightRequest.noiDen">
                     <option value="" id=""></option>
                     <option value="VIETNAM" id="VN">Việt Nam</option>
@@ -63,6 +63,7 @@
                 <label for="departure-date">Ngày đi</label>
                 <input type="date" id="departure-date" name="departure-date" class="datepicker-box"
                 style="text-align: right;"
+                disabled="disabled"
                 [(ngModel)]="editFlightRequest.ngayXuatPhat">
             </div>
     
@@ -112,6 +113,7 @@
             <div class="form-field">
                 <label for="plane-id">Mã máy bay</label><br>
                 <select name="plane-id" id="plane-id"
+                disabled="disabled"
                 #mySelect
                 [(ngModel)]="editFlightRequest.maMayBay"
                 (ngModelChange)="updatePlaneInfo($event, mySelect.value)"
@@ -144,7 +146,8 @@
                 <label for="BSN-number-booked">Số lượng ghế BSN đặt</label><br>
                 <input type="text" id="BSN-number-booked" name="BSN-number-booked" placeholder="0" readonly="readonly"
                 oninput="this.value = !!this.value && Math.abs(this.value) >=0 ? Math.abs(this.value) : null"
-                style="text-align: right;">
+                style="text-align: right;"
+                [(ngModel)]="editFlightRequest.soLuongVeBsn">
                 
             </div>
             <div class="form-field">
@@ -157,7 +160,8 @@
             <div class="form-field">
                 <label for="ECO-number-booked">Số lượng ghế ECO đặt</label><br>
                 <input type="text" id="ECO-number-booked" name="ECO-number-booked" placeholder="0" readonly="readonly"
-                style="text-align: right;">
+                style="text-align: right;"
+                [(ngModel)]="editFlightRequest.soLuongVeEco">
             </div>
             <div class="form-field">
                 <label for="price">Giá</label><br>
