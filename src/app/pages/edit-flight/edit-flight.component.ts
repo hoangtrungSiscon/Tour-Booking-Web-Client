@@ -53,7 +53,6 @@ export class EditFlightComponent {
       this.ECO_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheEco;
     }, 1000);
     
-    console.log(this.router.url.replace('/admin-dashboard/edit-flight/',''))
   }
 
   updatePlaneInfo(event: any, id: any) : void{

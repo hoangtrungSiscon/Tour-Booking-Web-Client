@@ -45,6 +45,7 @@ const routes: Routes = [
   { path: 'view-profile', component:ViewProfileComponent},
   { path: 'booking-history', component:BookingHistoryComponent},
   { path: 'booking-ticket', component: BookingTicketComponent },
+  // { path: 'booking-ticket/:date?&:origin?:destination?', component: BookingTicketComponent },
   { path: 'booking-ticket-detail', component: BookingTicketDetailComponent },
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-booking-ticket',
@@ -13,10 +14,19 @@ export class BookingTicketComponent {
   toPlace: string[] = ['VIETNAM', 'THAILAN', 'ANH', 'NHATBAN', 'HANQUOC', 'MY', 'PHAP', 'NGA', 'SINGAPORE', 'HONGKONG'];
   tickets: any[] = [];
   textError: string = '';
-  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService) { }
+  date: string = '';
+  origin: string = '';
+  destination: string = '';
+  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService, private acitiveRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
+    this.acitiveRoute.queryParams.subscribe(params => {
+      this.date = params['date'] || '';
+      this.origin = params['origin'] || '';
+      this.destination = params['destination'] || '';
+      // Gọi hàm filter hoặc thực hiện các thao tác cần thiết dựa trên các tham số này
+    });
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe(data => this.tickets = data);
   }
