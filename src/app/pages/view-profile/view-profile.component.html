@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
       <div class="col-2"></div>
       <div class="col-md-8">
-        <form class="row g-3">
+        <form class="row g-3" [formGroup]="form">
           <h1 style="margin-bottom: 20px;">THÔNG TIN TÀI KHOẢN</h1>
           <div class="container">
             <div class="row">
@@ -21,23 +21,23 @@
               <div class="col-md-6">
                 <!-- Input Username -->
                 <label for="inputUsername" class="form-label">Tên tài khoản</label>
-                <input type="text" class="form-control" id="inputUsername">
+                <input type="text" class="form-control" id="inputUsername" formControlName="Makhachhang">
                 <!-- Input Ho ten -->
                 <label for="inputName" class="form-label">Họ và tên</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Nguyễn Phương Đại">
+                <input type="text" class="form-control" id="inputName" placeholder="Tên khách hàng" formControlName="HoTenKh">
                 <!-- Input Gmaiil -->
                 <label for="inputEmail3" class="form-label">Gmail</label>
-                <input type="text" class="form-control" id="inputEmail3" placeholder="abc@gmail.com">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="abc@gmail.com" formControlName="GmailKh">
                 
               </div>
             <!-- Col ben phai -->
               <div class="col-md-6">
                 <!-- Input Gioi Tinh -->
                 <label for="inputGender" class="form-label">Giới tính</label>
-                <input type="text" class="" id="inputGender" placeholder="Nam">
+                <input type="text" class="" id="inputGender" placeholder="Nam" formControlName="Phai">
                 <!-- Input so dien thoai -->
                 <label for="inputTel" class="form-label">Số điện thoại</label>
-                <input type="tel" class="" id="inputTel">
+                <input type="tel" class="" id="inputTel" formControlName="Sdt">
                 
               </div>
               <div>

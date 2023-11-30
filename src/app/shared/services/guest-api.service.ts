@@ -12,7 +12,7 @@ export class GuestApiService {
     // return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
     return this.http.get<any>(this.guestAPIUrl + '/ThongTinkhachhangs');
   }
-  getGuestListById(id:string):Observable<any[]>{
+  getGuestListById(id:number):Observable<any[]>{
     return this.http.get<any>(this.guestAPIUrl +`/ThongTinkhachhangs/${id}`);
   }
   addGuest(data:any){

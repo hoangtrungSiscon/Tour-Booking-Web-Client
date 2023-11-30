@@ -1,35 +1,35 @@
 <app-header></app-header>
-<mat-horizontal-stepper style="display: flex;align-items: center;justify-content: center;background-color: #fff;color: #146C94;">
+<mat-horizontal-stepper  [formGroup]="form" style="display: flex;align-items: center;justify-content: center;background-color: #fff;color: #146C94;">
     <mat-step label="Đăng kí tài khoản" style="background-color: #146C94;color: black !important;" >
         <section class="container-fluid div-center" style="height: calc(100vh);margin-bottom: 10px;margin-top: -40px;">
             
-            <div class="signUp-container" style="margin-top: 20px;">
+            <div class="signUp-container" style="margin-top: 20px;" >
                 <h1 style="margin-bottom: 20px;">ĐĂNG KÍ</h1>
 
                     <div class="form-group">
                         <label style="margin-top: 0;">TÀI KHOẢN</label>
-                        <input type="text" name="new_user_name" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây">
+                        <input type="text" name="new_user_name" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây" formControlName="taiKhoan1">
                     </div>
                     <div class="form-group">
                         <label>HỌ VÀ TÊN</label>
-                        <input type="text" name="new_user_fullname" class="input-container" id="fullname-container" placeholder="Nhập tài khoản của bạn vào đây">
+                        <input type="text" name="new_user_fullname" class="input-container" id="fullname-container" placeholder="Nhập tài khoản của bạn vào đây" formControlName="tenKH">
                     </div>
                     <div class="form-group">
                         <label>SỐ ĐIỆN THOẠI</label>
-                        <input type="text" name="new_user_phone" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây">
+                        <input type="text" name="new_user_phone" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây" formControlName="sdt">
                     </div>
                     <div class="form-group">
                         <label>GMAIL</label>
-                        <input type="text" name="new_user_gmail" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây">
+                        <input type="text" name="new_user_gmail" class="input-container" id="username-container" placeholder="Nhập tài khoản của bạn vào đây" formControlName="gamilKH">
                     </div>
                     <div class="form-group">
                         <label>GIỚI TÍNH</label>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="user-gender" id="inlineRadio1" value="Nam">
+                            <input class="form-check-input" type="radio" name="user-gender" id="inlineRadio1" value="Nam" (click)="setPhai('Nam')">
                             <label class="form-check-label" for="inlineRadio1">Nam</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="user-gender" id="inlineRadio2" value="Nữ">
+                            <input class="form-check-input" type="radio" name="user-gender" id="inlineRadio2" value="Nữ" (click)="setPhai('Nữ')">
                             <label class="form-check-label" for="inlineRadio2">Nữ</label>
                           </div>                 
                     </div>
@@ -50,7 +50,7 @@
                     <div style="display: flex; justify-content: space-between;align-items: flex-end;">
                         <label>MẬT KHẨU MỚI</label>
                     </div>
-                    <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                    <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây" formControlName="matKhau">
                     <button class="eye-icon" (click)="viewpass()">
                         <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                     </button>
@@ -59,11 +59,12 @@
                     <div style="display: flex; justify-content: space-between;align-items: flex-end;">
                         <label> NHẬP LẠI MẬT KHẨU MỚI</label>
                     </div>
-                    <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                    <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây" [formControl]="checkPass">
                     <button class="eye-icon" (click)="viewpass()">
                         <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                     </button>
                 </div>
+                    <div class="" style="color: red;"> {{message}}  </div>
                     <div class="div-center div-spacebetween" style="margin-top: 20px;">
                         <button mat-button matStepperPrevious class="btn-previous">Trở lại</button>
                         <button mat-button matStepperNext class="btn-next" (click)="alertSuccess()">Tiếp theo</button>                    

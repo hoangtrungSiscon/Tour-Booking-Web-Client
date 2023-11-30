@@ -18,4 +18,7 @@ export class ChuyenBayService {
         return this.http.post(`${this.url}/filterChuyenBay`, request);
     }
 
+    public getByCode(code: string | null): Observable<any> {
+        return this.http.get(`${this.url}/GetByCode?code=${code}`);
+    }   
 }

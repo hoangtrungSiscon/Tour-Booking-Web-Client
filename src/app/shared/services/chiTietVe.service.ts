@@ -26,4 +26,8 @@ export class ChiTietVeService {
         return this.http.put(`${this.url}/Update`, request);
     }
 
+    public create(request: any): Observable<any> {
+        return this.http.post(`${this.url}/Create`, request);
+    }
+
 }
