@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
+import { Router, Routes } from '@angular/router';
+import { CookieService } from '../../shared/services/cookie.service';
 
 @Component({
   selector: 'app-booking-ticket',
@@ -13,7 +15,7 @@ export class BookingTicketComponent {
   toPlace: string[] = ['VIETNAM', 'THAILAN', 'ANH', 'NHATBAN', 'HANQUOC', 'MY', 'PHAP', 'NGA', 'SINGAPORE', 'HONGKONG'];
   tickets: any[] = [];
   textError: string = '';
-  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService) { }
+  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService, private cookieService:CookieService, private router:Router) { }
 
 
   ngOnInit() {
@@ -46,6 +48,15 @@ export class BookingTicketComponent {
     }
     else {
       this.textError = "Vui lòng chọn đầy đủ thông tin!!!";
+    }
+  }
+
+  canAccess(url: string){
+    if(this.cookieService.getCookie('access_token')){
+      this.router.navigate([`/${url}`]);
+    }
+    else{
+      this.router.navigate(['/login']);
     }
   }
 }
