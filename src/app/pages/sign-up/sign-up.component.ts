@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
     this.form=this.createForm();
     this.checkPass.valueChanges.pipe(debounceTime(300)).subscribe((data) => {
       if(this.form.get('matKhau').value != data){
-        this.message="Error message"
+        this.message="Not the same"
       }
       else{
         this.message = ""
@@ -51,8 +51,9 @@ export class SignUpComponent implements OnInit {
   viewpass(){
     this.visible = !this.visible;
     this.changetype = !this.changetype;
-
   }
+
+  
   alertSuccess(){
     this.authService.register(this.form.value).subscribe(()=>{
       Swal.fire('Chúc mừng',
