@@ -8,20 +8,25 @@ import { CookieService } from '../../shared/services/cookie.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit{
-  visible:boolean = true;
-  changetype:boolean = true;
+export class LoginComponent implements OnInit {
+  visible: boolean = true;
+  changetype: boolean = true;
   hide = true;
   form: FormGroup | any;
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private cookieService: CookieService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.form = this.createForm();
   }
-  
-  createForm(){
+
+  createForm() {
     let form = this.formBuilder.group({
       taiKhoan1: [''],
       matKhau: [''],
@@ -30,36 +35,32 @@ export class LoginComponent implements OnInit{
     return form;
   }
 
-  viewpass(){
+  viewpass() {
     this.visible = !this.visible;
     this.changetype = !this.changetype;
   }
 
-  onLogin(){
-    this.authService.login(this.form.value).subscribe(async (data: string) => {
-      
-      if(data){
-        let list: string[] = data.split(' ');
-        let token: string = list[1];
-        let maTaiKhoan = Number.parseInt(list[0]);
-        let vaiTro = Number.parseInt(list[2]);
-        this.cookieService.setCookie('access_token', token);
-        this.authService.setUserId(maTaiKhoan);
-        this.authService.setVaiTro(vaiTro);
-        if (vaiTro==1){
-          this.router.navigate(['/home'])
+  onLogin() {
+    this.authService
+      .login(this.form.value)
+      .subscribe(async (data: string | any) => {
+        if (data && data != 'false') {
+          let list: string[] = data.split(' ');
+          let token: string = list[1];
+          let maTaiKhoan = Number.parseInt(list[0]);
+          let vaiTro = Number.parseInt(list[2]);
+          this.cookieService.setCookie('access_token', token);
+          this.authService.setUserId(maTaiKhoan);
+          console.log(data);
+          this.authService.setVaiTro(vaiTro);
+          if (vaiTro == 1) {
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/home']);
+          }
+        } else {
+          Swal.fire('Đăng nhập không thành công!', 'Sai giá trị', 'error');
         }
-        else{
-          this.router.navigate(['/home'])
-        }
-        
-      }
-      else{
-        Swal.fire('Đăng nhập không thành công!',
-        'Sai giá trị',
-        'error')
-      }
-      
-    })
+      });
   }
 }
