@@ -16,11 +16,12 @@
       </div>
       <div class="col-12 col-xl-5">
         <form class="d-flex row">
-          <input class="form-control me-2 input-date " type="date" name="date_flight" value="">
+          <input class="form-control me-2 input-date " type="date" name="date_flight" [(ngModel)]="date">
           <div  style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
             
-            <input class="form-control me-2 input-sreach col-1" type="search" placeholder="NƠI CẦN ĐẾN" aria-label="Search" name="date_flight" value="">
-          <button class="btn btn-outline-success btn-sreach col-1" type="submit">TÌM</button>
+            <input class="form-control me-2 input-sreach col-1" type="search" placeholder="NƠI CẦN ĐẾN" aria-label="Search" name="date_flight" value="" [(ngModel)]="departure">
+          <button class="btn btn-outline-success btn-sreach col-1" type="submit" (click)="searchFlight()"
+          [routerLink]="['/booking-ticket']" [queryParams]="{ date: date, origin: departure }">TÌM</button>
           </div>
         </form>
 

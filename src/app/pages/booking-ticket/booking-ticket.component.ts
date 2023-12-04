@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-booking-ticket',
@@ -37,14 +38,21 @@ export class BookingTicketComponent {
   ];
   tickets: any[] = [];
   textError: string = '';
-  constructor(
-    private formBuilder: FormBuilder,
-    private chuyenBayService: ChuyenBayService,
+  date: string = '';
+  origin: string = '';
+  destination: string = '';
+  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService, private acitiveRoute: ActivatedRoute,
     private router: Router,
-    private cookieService: CookieService
-  ) {}
+    private cookieService: CookieService) { }
+
 
   ngOnInit() {
+    this.acitiveRoute.queryParams.subscribe(params => {
+      this.date = params['date'] || '';
+      this.origin = params['origin'] || '';
+      this.destination = params['destination'] || '';
+      // Gọi hàm filter hoặc thực hiện các thao tác cần thiết dựa trên các tham số này
+    });
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
   }

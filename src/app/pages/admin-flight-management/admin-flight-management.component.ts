@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import Swal from 'sweetalert2';
 import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-flight-management',
@@ -73,24 +74,12 @@ export class AdminFlightManagementComponent {
   search(event: any, searchValue: any) {
     if (this.searchValue == '') {
       this.dataSource.data = [];
-      this.flightList = [];
       this.ngOnInit();
     }
     else {
-
-      this.flightList = [];
       this.dataSource.data = [];
-      this.service.getFlightList().subscribe(data => {
-        data.forEach(element => {
-          if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
-            this.flightList.push(
-              element
-            )
-          }
-          
-        });
-        this.dataSource.data = this.flightList;
-
+      this.service.getFlightListById(this.searchValue).subscribe(data => {
+        this.dataSource.data = data;
       })
     }
   }
@@ -104,7 +93,6 @@ export class AdminFlightManagementComponent {
       this.departureDate == ''
     ) {
       this.dataSource.data = [];
-      this.flightList = [];
       this.ngOnInit();
     }
     else {
@@ -137,28 +125,24 @@ export class AdminFlightManagementComponent {
     }
   }
 
-  constructor(private service: FlightApiService) {
+  constructor(private service: FlightApiService, private router: Router) {
 
   }
 
   ngOnInit() : void{
 
     this.service.getFlightList().subscribe(data => {
-      data.forEach(element => {
-        this.flightList.push(
-          element
-        )
-      });
-
-      this.dataSource.data = this.flightList;
+      this.dataSource.data = data;
     })
   }
 
-  
+  toEdit(flightId : string){
+    this.router.navigate(['/admin-dashboard/edit-flight', flightId])
+  }
    
   ngAfterViewInit(){
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
-    }, 1000);
+    }, 0);
   }
 }

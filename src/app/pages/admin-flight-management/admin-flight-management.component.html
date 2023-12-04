@@ -56,9 +56,10 @@
 
 </div>
 <div class="flight-data-table"
-*ngIf="flightList.length > 0"
+
 >
-  <div class="table-container">
+  <div class="table-container"
+  *ngIf="dataSource.data.length > 0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
 
       <ng-container matColumnDef="MaChuyenBay">
@@ -93,7 +94,7 @@
 
       <ng-container matColumnDef="GioBay">
         <th mat-header-cell *matHeaderCellDef> Giờ bay </th>
-        <td mat-cell *matCellDef="let element"> {{element.gioBay}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.gioBay.slice(0,5)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="SoLuongVeBsn">
@@ -107,14 +108,17 @@
       </ng-container>
 
       <ng-container matColumnDef="DonGia">
-        <th mat-header-cell *matHeaderCellDef> Giá </th>
-        <td mat-cell *matCellDef="let element"> {{element.donGia}} </td>
+        <th mat-header-cell *matHeaderCellDef> Giá (đ) </th>
+        <td mat-cell *matCellDef="let element"> {{element.donGia | number:'1.0-3'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button routerLink="/admin-dashboard/edit-flight/{{element.maChuyenBay}}"
-            routerLinkActive="active">Sửa</button> </td>
+        <td mat-cell *matCellDef="let element"> 
+          <!-- <button routerLink="/admin-dashboard/edit-flight/{{element.maChuyenBay}}"
+            routerLinkActive="active">Sửa</button> -->
+            <button (click)="toEdit(element.maChuyenBay)">Sửa</button>
+          </td>
       </ng-container>
 
       <ng-container matColumnDef="delete">
@@ -126,7 +130,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-
+  <p *ngIf="dataSource.data.length <= 0">
+    Không tìm thấy thông tin chuyến bay
+  </p>
 
 
   <div class="paginator-container">
@@ -134,7 +140,3 @@
     </mat-paginator>
   </div>
 </div>
-<p 
-*ngIf="flightList.length <= 0">
-  Không tìm thấy thông tin chuyến bay
-</p>
