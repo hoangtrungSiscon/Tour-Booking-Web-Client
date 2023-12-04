@@ -34,7 +34,7 @@ export class AdminFlightManagementComponent {
     'edit',
     'delete',
   ];
-  
+
 
 
   deleteFlight(event: any, id: any): void {
@@ -67,7 +67,7 @@ export class AdminFlightManagementComponent {
             );
           }
         );
-        
+
       }
     })
   }
@@ -84,63 +84,32 @@ export class AdminFlightManagementComponent {
     }
   }
 
-  filter(event : any
-    ){
-    if (
+  filter(event: any) {
+    this.flightList = [];
 
-      this.departureLocation == '' &&
-      this.arrivalLocation == '' &&
-      this.departureDate == ''
-    ) {
-      this.dataSource.data = [];
-      this.ngOnInit();
-    }
-    else {
-      this.flightList = [];
-
-      this.dataSource.data = [];
-
-      if (
-        this.departureLocation != '' &&
-        this.arrivalLocation != '' &&
-        this.departureDate != ''
-      ){
-        this.service.getFlightList().subscribe(data => {
-          data.forEach(element => {
-            if (
-              element.ngayXuatPhat.slice(0,10) == this.departureDate &&
-              element.noiXuatPhat == this.departureLocation &&
-              element.noiDen == this.arrivalLocation
-            
-            ){
-              this.flightList.push(
-                element
-              )
-            }
-            
-          });
-          this.dataSource.data = this.flightList;
-        })
-      }
-    }
+    this.dataSource.data = [];
+    console.log(this.arrivalLocation + ' ' + this.departureLocation + ' ' + this.departureDate + ' ' + this.searchValue);
+    this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
+      this.dataSource.data = data
+    })
   }
 
   constructor(private service: FlightApiService, private router: Router) {
 
   }
 
-  ngOnInit() : void{
+  ngOnInit(): void {
 
-    this.service.getFlightList().subscribe(data => {
+    this.service.getFlightList("", "", "", "").subscribe(data => {
       this.dataSource.data = data;
     })
   }
 
-  toEdit(flightId : string){
+  toEdit(flightId: string) {
     this.router.navigate(['/admin-dashboard/edit-flight', flightId])
   }
-   
-  ngAfterViewInit(){
+
+  ngAfterViewInit() {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
     }, 0);

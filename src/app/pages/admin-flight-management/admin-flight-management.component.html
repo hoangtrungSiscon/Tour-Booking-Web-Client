@@ -10,14 +10,15 @@
       [(ngModel)]="departureLocation">
         <option value="" id=""></option>
         <option value="VIETNAM" id="VN">Việt Nam</option>
-        <option value="THAILAND" id="TH">Thái Lan</option>
-        <option value="ENGLAND" id="EN">Anh</option>
-        <option value="JAPAN" id="JP">Nhật Bản</option>
-        <option value="AMERICA" id="US">Mỹ</option>
-        <option value="FRANCE" id="FR">Pháp</option>
-        <option value="RUSSIA" id="RU">Nga</option>
+        <option value="THAILAN" id="TH">Thái Lan</option>
+        <option value="ANH" id="UK">Anh</option>
+        <option value="NHATBAN" id="JP">Nhật Bản</option>
+        <option value="MY" id="US">Mỹ</option>
+        <option value="PHAP" id="FR">Pháp</option>
+        <option value="NGA" id="RU">Nga</option>
         <option value="SINGAPORE" id="SG">Singapore</option>
         <option value="HONGKONG" id="HK">Hồng Kông</option>
+        <option value="HANQUOC" id="KR">Hàn Quốc</option>
       </select>
     </div>
     <div class="form-field">
@@ -31,27 +32,27 @@
       [(ngModel)]="arrivalLocation">
         <option value="" id=""></option>
         <option value="VIETNAM" id="VN">Việt Nam</option>
-        <option value="THAILAND" id="TH">Thái Lan</option>
-        <option value="ENGLAND" id="EN">Anh</option>
-        <option value="JAPAN" id="JP">Nhật Bản</option>
-        <option value="AMERICA" id="US">Mỹ</option>
-        <option value="FRANCE" id="FR">Pháp</option>
-        <option value="RUSSIA" id="RU">Nga</option>
+        <option value="THAILAN" id="TH">Thái Lan</option>
+        <option value="ANH" id="UK">Anh</option>
+        <option value="NHATBAN" id="JP">Nhật Bản</option>
+        <option value="MY" id="US">Mỹ</option>
+        <option value="PHAP" id="FR">Pháp</option>
+        <option value="NGA" id="RU">Nga</option>
         <option value="SINGAPORE" id="SG">Singapore</option>
         <option value="HONGKONG" id="HK">Hồng Kông</option>
-        <option value="KOREA" id="KR">Hàn Quốc</option>
+        <option value="HANQUOC" id="KR">Hàn Quốc</option>
       </select>
     </div>
-    <div class="form-field" style="justify-content: right;">
+    <!-- <div class="form-field" style="justify-content: right;">
       <button type="submit" style="height: 40px;"
       (click)="filter($event)"
       >Lọc</button>
-    </div>
+    </div> -->
   </form>
   <div class="flight-search">
     <label for="flight-id" class="font-18">Tìm theo mã chuyến</label>
     <input type="text" id="flight-id" name="flight-id" style="margin-left: 60px;height: 40px;" [(ngModel)]="searchValue">
-    <button class="search-flight" style="height: 40px;" (click)="search($event, searchValue)">Tìm kiếm</button>
+    <button class="search-flight" style="height: 40px;" (click)="filter($event)">Tìm kiếm</button>
   </div>
 
 </div>

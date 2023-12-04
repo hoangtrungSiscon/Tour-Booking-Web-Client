@@ -4,6 +4,7 @@ import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
 import { ActivatedRoute } from '@angular/router';
+import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
 
 @Component({
   selector: 'app-booking-ticket',
@@ -46,18 +47,55 @@ export class BookingTicketComponent {
     private chuyenBayService: ChuyenBayService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private transferDataService: TransferDataService) {
+      if (this.data){
+        this.date = this.data.date;
+        this.origin = this.data.origin;
+        this.destination = this.data.destination;
+        this.form = this.createForm();
+        this.updateTicketList();
+        this.transferDataService.clearData();
+      }
+      else {
+        this.form = this.createForm();
+        this.date = ''
+        this.origin = ''
+        this.destination = ''
+        this.updateTicketList();
+        this.transferDataService.clearData();
+      }
+    }
 
-
+  data = this.transferDataService.getData();
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.date = params['date'] || '';
-      this.origin = params['origin'] || '';
-      this.destination = params['destination'] || '';
+    // this.activatedRoute.queryParams.subscribe(params => {
+      // this.date = '';
+      // this.origin = '';
+      // this.destination = '';
 
+      // this.form = this.createForm();
+      // this.updateTicketList();
+    // });
+
+    if (this.data){
+      this.date = this.data.date;
+      this.origin = this.data.origin;
+      this.destination = this.data.destination;
       this.form = this.createForm();
       this.updateTicketList();
-    });
+      this.transferDataService.clearData();
+    }
+    else {
+      this.form = this.createForm();
+      this.date = ''
+      this.origin = ''
+      this.destination = ''
+      this.updateTicketList();
+      this.transferDataService.clearData();
+    }
+
+    
 
       // this.inputFromPlace(this.origin);
       // this.inputToPlace(this.destination);
