@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   public date : any = "";
   public departure : any = "";
+  public destination : any = "";
   constructor(private router: Router) {
 
   }
   searchFlight() {
     // console.log(this.date);
     // console.log(this.departure);
-    // this.router.navigate(['/booking-ticket', this.date, this.departure]);
+    // this.router.navigate(['/booking-ticket', this.date, this.departure, this.destination]);
   }
 }

@@ -52,9 +52,27 @@ export class BookingTicketComponent {
       this.origin = params['origin'] || '';
       this.destination = params['destination'] || '';
       // Gọi hàm filter hoặc thực hiện các thao tác cần thiết dựa trên các tham số này
+      console.log(this.date, this.origin, this.destination);
+      this.form = this.createForm();
+      this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
+      this.form.get('fromPlace').setValue(this.origin);
+      this.form.get('toPlace').setValue(this.destination);
+      this.form.get('startDate').setValue(this.date);
+      this.form
+        .get('startDate')
+        .setValue(
+          new Date(this.form.value.startDate).toISOString().substring(0, 10)
+        );
+      this.chuyenBayService
+        .filterChuyenBay(this.form.value)
+        .subscribe((data) => (this.tickets = data));
+      this.textError = '';
+      // this.chuyenBayService
+      //   .filterChuyenBay({ startDate: this.date, fromPlace: this.origin, toPlace: this.destination })
+      //   .subscribe((data) => (this.tickets = data));
     });
-    this.form = this.createForm();
-    this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
+    // this.form = this.createForm();
+    // this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
   }
 
   ngOnDestroy() {}

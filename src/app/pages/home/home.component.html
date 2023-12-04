@@ -19,9 +19,37 @@
           <input class="form-control me-2 input-date " type="date" name="date_flight" [(ngModel)]="date">
           <div  style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
             
-            <input class="form-control me-2 input-sreach col-1" type="search" placeholder="NƠI CẦN ĐẾN" aria-label="Search" name="date_flight" value="" [(ngModel)]="departure">
+            <!-- <input class="form-control me-2 input-sreach col-1" type="search" placeholder="NƠI CẦN ĐẾN" aria-label="Search" name="date_flight" value="" [(ngModel)]="departure"> -->
+            <select class="form-control me-2" name="arrival-location" id="arrival-location" style="height: 40px;"
+            [(ngModel)]="departure">
+              <option value="" id=""></option>
+              <option value="VIETNAM" id="VN">Việt Nam</option>
+              <option value="THAILAN" id="TH">Thái Lan</option>
+              <option value="ANH" id="UK">Anh</option>
+              <option value="NHATBAN" id="JP">Nhật Bản</option>
+              <option value="MY" id="US">Mỹ</option>
+              <option value="PHAP" id="FR">Pháp</option>
+              <option value="NGA" id="RU">Nga</option>
+              <option value="SINGAPORE" id="SG">Singapore</option>
+              <option value="HONGKONG" id="HK">Hồng Kông</option>
+              <option value="HANQUOC" id="KR">Hàn Quốc</option>
+            </select>
+            <select class="form-control me-2" name="arrival-location" id="arrival-location" style="height: 40px;"
+            [(ngModel)]="destination">
+              <option value="" id=""></option>
+              <option value="VIETNAM" id="VN">Việt Nam</option>
+              <option value="THAILAN" id="TH">Thái Lan</option>
+              <option value="ANH" id="UK">Anh</option>
+              <option value="NHATBAN" id="JP">Nhật Bản</option>
+              <option value="MY" id="US">Mỹ</option>
+              <option value="PHAP" id="FR">Pháp</option>
+              <option value="NGA" id="RU">Nga</option>
+              <option value="SINGAPORE" id="SG">Singapore</option>
+              <option value="HONGKONG" id="HK">Hồng Kông</option>
+              <option value="HANQUOC" id="KR">Hàn Quốc</option>
+            </select>
           <button class="btn btn-outline-success btn-sreach col-1" type="submit" (click)="searchFlight()"
-          [routerLink]="['/booking-ticket']" [queryParams]="{ date: date, origin: departure }">TÌM</button>
+          [routerLink]="['/booking-ticket']" [queryParams]="{ date: date, origin: departure, destination: destination }">TÌM</button>
           </div>
         </form>
 
