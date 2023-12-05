@@ -95,21 +95,7 @@ export class BookingTicketComponent {
     this.SubmitForm.toPlace = place;
   }
 
-  onSubmit() {
-    // if (this.form.value.startDate != '') this.form.value.startDate = ''
-    // if (this.form.value.fromPlace != '') this.form.value.fromPlace = ''
-    // if (this.form.value.toPlace != '') this.form.value.toPlace = ''
-
-    // this.form
-    //     .get('startDate')
-    //     .setValue(
-    //       new Date(this.form.value.startDate).toISOString().substring(0, 10)
-    //     );
-    //   this.chuyenBayService
-    //     .filterChuyenBay(this.form.value)
-    //     .subscribe((data) => (this.tickets = data));
-    
-    
+  onSubmit() {  
     this.SubmitForm.startDate = this.inputStartDate
     console.log(this.SubmitForm)
     this.chuyenBayService

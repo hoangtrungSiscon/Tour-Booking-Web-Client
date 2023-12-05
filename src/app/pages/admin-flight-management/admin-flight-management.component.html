@@ -48,6 +48,12 @@
       (click)="filter($event)"
       >Lọc</button>
     </div> -->
+    <div class="form-field" style="align-items:center;justify-content: right;">
+      <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 0px"
+        (click)="reloadValue($event)">
+          <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
+        </button>
+    </div>
   </form>
   <div class="flight-search">
     <label for="flight-id" class="font-18">Tìm theo mã chuyến</label>

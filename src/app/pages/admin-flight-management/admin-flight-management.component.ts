@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  flightList: any[] = [];
   searchValue: string = '';
   departureLocation: string = '';
   arrivalLocation: string = '';
@@ -85,8 +84,6 @@ export class AdminFlightManagementComponent {
   }
 
   filter(event: any) {
-    this.flightList = [];
-
     this.dataSource.data = [];
     console.log(this.arrivalLocation + ' ' + this.departureLocation + ' ' + this.departureDate + ' ' + this.searchValue);
     this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
@@ -113,5 +110,13 @@ export class AdminFlightManagementComponent {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
     }, 0);
+  }
+  reloadValue(event: any) {
+    this.arrivalLocation = '';
+    this.departureLocation = '';
+    this.departureDate = '';
+    this.searchValue = '';
+
+    this.ngOnInit();
   }
 }
