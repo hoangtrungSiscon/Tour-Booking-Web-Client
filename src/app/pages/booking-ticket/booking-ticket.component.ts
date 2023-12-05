@@ -57,6 +57,15 @@ export class BookingTicketComponent {
     startDate: '',
   };
   ngOnInit() {
+    if (this.data){
+      this.SubmitForm.fromPlace = this.data.origin;
+      this.SubmitForm.toPlace = this.data.destination;
+      this.SubmitForm.startDate = this.data.date;
+      this.chuyenBayService
+      .filterChuyenBay(this.SubmitForm)
+      .subscribe((data) => (this.tickets = data));
+      this.transferDataService.clearData();
+    }
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
     console.log(this.data)
