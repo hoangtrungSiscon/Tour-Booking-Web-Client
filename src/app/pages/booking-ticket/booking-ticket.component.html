@@ -234,7 +234,6 @@
  -->
 <app-header-home></app-header-home>
 <app-navbar></app-navbar>
-<button (click)="refreshPage()">Refresh</button>
 <div class="container my-5">
   <h1
     class="text-center my-2 color-2 fw-bold"
@@ -290,9 +289,14 @@
     >
       <form [formGroup]="form">
         <!-- Điểm xuất phát bắt đầu -->
+        <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 20px"
+        class="ms-2 mt-2" (click)="reloadValue($event)">
+          <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
+        </button>
         <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px">
           ĐIỂM XUẤT PHÁT
         </h2>
+        
         <div
           style="
             display: flex;
@@ -360,6 +364,7 @@
             formControlName="startDate"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
+            [(ngModel)]="inputStartDate"
           />
         </div>
         <!-- Ngày xuất phát kết thúc -->

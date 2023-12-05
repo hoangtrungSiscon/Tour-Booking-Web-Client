@@ -3,9 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
-import { ActivatedRoute } from '@angular/router';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
-
+export interface submitForm {
+  fromPlace: string;
+  toPlace: string;
+  startDate: string;
+}
 @Component({
   selector: 'app-booking-ticket',
   templateUrl: './booking-ticket.component.html',
@@ -39,76 +42,24 @@ export class BookingTicketComponent {
   ];
   tickets: any[] = [];
   textError: string = '';
-  date: string = '';
-  origin: string = '';
-  destination: string = '';
+  inputStartDate: string = '';
   constructor(
     private formBuilder: FormBuilder,
     private chuyenBayService: ChuyenBayService,
-    private activatedRoute: ActivatedRoute,
     private router: Router,
     private cookieService: CookieService,
-    private transferDataService: TransferDataService) {
-      if (this.data){
-        this.date = this.data.date;
-        this.origin = this.data.origin;
-        this.destination = this.data.destination;
-        this.form = this.createForm();
-        this.updateTicketList();
-        this.transferDataService.clearData();
-      }
-      else {
-        this.form = this.createForm();
-        this.date = ''
-        this.origin = ''
-        this.destination = ''
-        this.updateTicketList();
-        this.transferDataService.clearData();
-      }
-    }
-
+    private transferDataService: TransferDataService
+  ) {}
   data = this.transferDataService.getData();
+  SubmitForm: submitForm = {
+    fromPlace: '',
+    toPlace: '',
+    startDate: '',
+  };
   ngOnInit() {
-    // this.activatedRoute.queryParams.subscribe(params => {
-      // this.date = '';
-      // this.origin = '';
-      // this.destination = '';
-
-      // this.form = this.createForm();
-      // this.updateTicketList();
-    // });
-
-    if (this.data){
-      this.date = this.data.date;
-      this.origin = this.data.origin;
-      this.destination = this.data.destination;
-      this.form = this.createForm();
-      this.updateTicketList();
-      this.transferDataService.clearData();
-    }
-    else {
-      this.form = this.createForm();
-      this.date = ''
-      this.origin = ''
-      this.destination = ''
-      this.updateTicketList();
-      this.transferDataService.clearData();
-    }
-
-    
-
-      // this.inputFromPlace(this.origin);
-      // this.inputToPlace(this.destination);
-      // this.form.get('startDate').setValue(this.date);
-      // if (this.date == '' && this.origin == '' && this.destination == '') {
-      //   this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
-      // }
-      // else {
-      //   this.chuyenBayService
-      //     .filterChuyenBay({ startDate: this.date, fromPlace: this.origin, toPlace: this.destination })
-      //     .subscribe((data) => (this.tickets = data));
-      // }
-    
+    this.form = this.createForm();
+    this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
+    console.log(this.data)
   }
 
   ngOnDestroy() {}
@@ -120,23 +71,27 @@ export class BookingTicketComponent {
       startDate: this.formBuilder.control(['']),
     });
   }
-
+  selectedFromPlace: string | null = null;
   inputFromPlace(place: string) {
     this.form.get('fromPlace').setValue(place);
-    console.log(this.form.value);
+    this.SubmitForm.fromPlace = place;
+    // if (this.selectedFromPlace === place) {
+    //   this.selectedFromPlace = null; // Deselect nếu đã chọn
+    // } else {
+    //   this.selectedFromPlace = place; // Chọn nếu chưa được chọn
+    // }
   }
   inputToPlace(place: string) {
     this.form.get('toPlace').setValue(place);
-    console.log(this.form.value)
+    this.SubmitForm.toPlace = place;
   }
 
   onSubmit() {
-    // if (
-    //   this.form.value.startDate != '' &&
-    //   this.form.value.fromPlace != '' &&
-    //   this.form.value.toPlace != ''
-    // ) {
-    //   this.form
+    // if (this.form.value.startDate != '') this.form.value.startDate = ''
+    // if (this.form.value.fromPlace != '') this.form.value.fromPlace = ''
+    // if (this.form.value.toPlace != '') this.form.value.toPlace = ''
+
+    // this.form
     //     .get('startDate')
     //     .setValue(
     //       new Date(this.form.value.startDate).toISOString().substring(0, 10)
@@ -144,87 +99,13 @@ export class BookingTicketComponent {
     //   this.chuyenBayService
     //     .filterChuyenBay(this.form.value)
     //     .subscribe((data) => (this.tickets = data));
-    //   this.textError = '';
-    // } else {
-    //   this.textError = 'Vui lòng chọn đầy đủ thông tin!!!';
-    // }
-
-    // if (
-    //   this.form.value.startDate != '' &&
-    //   this.form.value.fromPlace != '' &&
-    //   this.form.value.toPlace != ''
-    // ) {
-    //   this.form
-    //     .get('startDate')
-    //     .setValue(
-    //       new Date(this.form.value.startDate).toISOString().substring(0, 10)
-    //     );
-    //     const queryParams = {
-    //       date: this.form.value.startDate,
-    //       origin: this.form.value.fromPlace,
-    //       destination: this.form.value.toPlace,
-    //     };
-    //     console.log(queryParams)
-    //     this.router.navigate([], {
-    //       relativeTo: this.activatedRoute,
-    //       queryParams,
-    //       queryParamsHandling: 'merge', // Giữ lại các query params khác
-    //     });
-    // } else {
-    //   this.textError = 'Vui lòng chọn đầy đủ thông tin!!!';
-    // }
-
-    this.form
-    .get('startDate')
-    .setValue(
-      new Date(this.form.value.startDate).toISOString().substring(0, 10)
-    );
-    const queryParams = {
-      date: this.form.value.startDate,
-      origin: this.form.value.fromPlace,
-      destination: this.form.value.toPlace,
-    };
-    console.log(queryParams)
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams,
-      queryParamsHandling: 'merge', // Giữ lại các query params khác
-    });
-
-    // const queryParams = {
-    //   date: this.form.get('startDate').value,
-    //   origin: this.form.get('origin').value,
-    //   destination: this.form.get('destination').value,
-    // };
-
-    // this.router.navigate([], {
-    //   relativeTo: this.activatedRoute,
-    //   queryParams,
-    //   queryParamsHandling: 'merge', // Giữ lại các query params khác
-    // });
-  }
-
-  updateTicketList() {
-    if (this.date === '' && this.origin === '' && this.destination === '') {
-      this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
-    } else {
-      this.chuyenBayService
-        .filterChuyenBay({ startDate: this.date, fromPlace: this.origin, toPlace: this.destination })
-        .subscribe((data) => (this.tickets = data));
-    }
-  }
-
-  refreshPage() {
-    const queryParams = {
-      date: '',
-      origin: '',
-      destination: '',
-    };
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams,
-      queryParamsHandling: 'merge',
-    });
+    
+    
+    this.SubmitForm.startDate = this.inputStartDate
+    console.log(this.SubmitForm)
+    this.chuyenBayService
+      .filterChuyenBay(this.SubmitForm)
+      .subscribe((data) => (this.tickets = data));
   }
 
   checkLogin(ma: string) {
@@ -233,5 +114,8 @@ export class BookingTicketComponent {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+  reloadValue(event: any) {
+    window.location.reload();
   }
 }
