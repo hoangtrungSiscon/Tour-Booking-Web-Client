@@ -116,7 +116,7 @@
                 disabled="disabled"
                 #mySelect
                 [(ngModel)]="editFlightRequest.maMayBay"
-                (ngModelChange)="updatePlaneInfo($event, mySelect.value)"
+                (ngModelChange)="updatePlaneInfo(mySelect.value)"
                 >
                     <option value="" id=""></option>
                     <option *ngFor="let plane of planeList" value="{{plane.maMayBay}}" #planeIdSelectValue>

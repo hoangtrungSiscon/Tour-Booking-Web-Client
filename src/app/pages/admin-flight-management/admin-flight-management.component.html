@@ -50,7 +50,7 @@
     </div> -->
     <div class="form-field" style="align-items:center;justify-content: right;">
       <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 0px"
-        (click)="reloadValue($event)">
+        (click)="reloadValue()">
           <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
         </button>
     </div>
@@ -58,7 +58,7 @@
   <div class="flight-search">
     <label for="flight-id" class="font-18">Tìm theo mã chuyến</label>
     <input type="text" id="flight-id" name="flight-id" style="margin-left: 60px;height: 40px;" [(ngModel)]="searchValue">
-    <button class="search-flight" style="height: 40px;" (click)="filter($event)">Tìm kiếm</button>
+    <button class="search-flight" style="height: 40px;" (click)="filter()">Tìm kiếm</button>
   </div>
 
 </div>
@@ -130,7 +130,7 @@
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="deleteFlight($event, element.maChuyenBay)">Xóa</button> </td>
+        <td mat-cell *matCellDef="let element"> <button (click)="deleteFlight(element.maChuyenBay)">Xóa</button> </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -36,7 +36,7 @@ export class AdminFlightManagementComponent {
 
 
 
-  deleteFlight(event: any, id: any): void {
+  deleteFlight(id: any): void {
     Swal.fire({
       title: 'Xóa thông tin chuyến bay này?',
       text: "Thông tin chuyến bay bị xóa không thể được khôi phục lại!",
@@ -55,7 +55,9 @@ export class AdminFlightManagementComponent {
               'Xóa thông tin chuyến bay thành công.',
               'success'
             ).then(() => {
-              window.location.reload();
+              this.service.getFlightList("", "", "", "").subscribe(data => {
+                this.dataSource.data = data;
+              })
             })
           },
           (error) => {
@@ -70,7 +72,7 @@ export class AdminFlightManagementComponent {
       }
     })
   }
-  search(event: any, searchValue: any) {
+  search(searchValue: any) {
     if (this.searchValue == '') {
       this.dataSource.data = [];
       this.ngOnInit();
@@ -83,7 +85,7 @@ export class AdminFlightManagementComponent {
     }
   }
 
-  filter(event: any) {
+  filter() {
     this.dataSource.data = [];
     console.log(this.arrivalLocation + ' ' + this.departureLocation + ' ' + this.departureDate + ' ' + this.searchValue);
     this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
@@ -111,7 +113,7 @@ export class AdminFlightManagementComponent {
       this.dataSource.paginator = this.paginator;
     }, 0);
   }
-  reloadValue(event: any) {
+  reloadValue() {
     this.arrivalLocation = '';
     this.departureLocation = '';
     this.departureDate = '';

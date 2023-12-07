@@ -110,7 +110,9 @@ export class BookingTicketComponent {
       this.router.navigate(['/login']);
     }
   }
-  reloadValue(event: any) {
-    window.location.reload();
+  reloadValue() {
+    // window.location.reload();
+    // this.router.navigate(['/booking-ticket']);
+    this.ngOnInit();
   }
 }

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home']);
           }
         } else {
-          Swal.fire('Đăng nhập không thành công!', 'Sai giá trị', 'error');
+          Swal.fire('Đăng nhập không thành công!', 'Tên tài khoản hoặc mật khẩu không chính xác. Xin vui lòng thử lại', 'error');
         }
       });
   }

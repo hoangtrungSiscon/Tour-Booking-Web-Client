@@ -55,7 +55,7 @@ export class EditFlightComponent {
     
   }
 
-  updatePlaneInfo(event: any, id: any) : void{
+  updatePlaneInfo(id: any) : void{
     const element = this.planeList.find(element => element.maMayBay == id);
     if (element) {
       this.editFlightRequest.tenMayBay = element.tenMayBay;
