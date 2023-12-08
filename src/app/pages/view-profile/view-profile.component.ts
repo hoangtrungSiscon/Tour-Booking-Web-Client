@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { GuestApiService } from '../../shared/services/guest-api.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -40,12 +41,21 @@ export class ViewProfileComponent {
   createForm(){
     return this.formBuilder.group({
       Makhachhang: [0],
-      // MaKh: [0],
-     // maTaiKhoan: [0],
-      HoTenKh:[''],
+      HoTenKh:['', Validators.required],
       Phai: [''],
-      Sdt: [''],
-      GmailKh: [''],
+      Sdt: ['',[
+        // Validators.pattern('^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$')
+        Validators.required,
+        Validators.pattern(/^\d+$/), // Chỉ chấp nhận số
+        Validators.minLength(9),     // Độ dài ít nhất là 9
+        Validators.maxLength(11)     // Độ dài tối đa là 11
+        ]
+      ],
+      GmailKh: ['', [
+        Validators.email,
+        Validators.required
+        ]
+      ],
       TenTaiKhoan: [''],
       MaTaiKhoan: [''],
     })  
@@ -68,6 +78,7 @@ export class ViewProfileComponent {
       maChuyenBay: '',
       maVe: 0
     }
+    console.log(updateGuest)
     Swal.fire({
       title: 'Chỉnh sửa',
       text: "Bạn có muốn lưu các thay đổi về thông tin cá nhân của mình không?",
