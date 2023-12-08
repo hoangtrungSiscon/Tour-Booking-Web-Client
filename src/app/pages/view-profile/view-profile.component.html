@@ -31,10 +31,10 @@
                 <!-- Input Gmaiil -->
                 <label for="inputEmail3" class="form-label">Gmail</label>
                 <input type="text" class="form-control" id="inputEmail3" placeholder="abc@gmail.com" formControlName="GmailKh">
-                <div *ngIf="form.get('GmailKh').hasError('required') && form.get('GmailKh').touched">
+                <div *ngIf="form.get('GmailKh').hasError('required') && form.get('GmailKh').touched" style="color: red; margin-top: 10px;margin-left: 10px">
                   Không được để trống
                 </div>
-                <div *ngIf="form.get('GmailKh').hasError('email') && form.get('GmailKh').touched">
+                <div *ngIf="form.get('GmailKh').hasError('email') && form.get('GmailKh').touched" style="color: red; margin-top: 10px;margin-left: 10px">
                   Email không hợp lệ
                 </div>
 

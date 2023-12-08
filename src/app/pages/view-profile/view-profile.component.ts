@@ -67,46 +67,54 @@ export class ViewProfileComponent {
     this.showPassword = !this.showPassword;
   }
   updateInfo(){
-    var updateGuest = {
-      makhachhang: this.form.value.Makhachhang,
-      maTaiKhoan: this.form.value.MaTaiKhoan,
-      hoTenKh: this.form.value.HoTenKh,
-      phai: this.form.value.Phai,
-      sdt: this.form.value.Sdt,
-      gmailKh: this.form.value.GmailKh,
-      tenTaiKhoan: this.form.value.TenTaiKhoan,
-      maChuyenBay: '',
-      maVe: 0
+    if (this.form.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Lỗi',
+        text: 'Vui lòng kiểm tra lại các thông tin vừa nhập và đảm bảo các thông tin đó hợp lệ.'
+      })
     }
-    console.log(updateGuest)
-    Swal.fire({
-      title: 'Chỉnh sửa',
-      text: "Bạn có muốn lưu các thay đổi về thông tin cá nhân của mình không?",
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Lưu chỉnh sửa',
-      cancelButtonText: 'Hủy'  
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.guestApiService.updateGuest(this.form.value.Makhachhang, updateGuest).subscribe(() => {
-          Swal.fire(
-            'Đã cập nhật!',
-            'Đã cập nhật thành công thông tin cá nhân của bạn',
-            'success'
-          ).then(() => {
-            this.ngOnInit()
-          })
-        }, (error) => {
-          Swal.fire(
-            'Lỗi cập nhật!',
-            'Đã xảy ra lỗi khi hệ thống cập nhật thông tin cá nhân của bạn. Vui lòng thử lại',
-            'error'
-          );
-        })
+    else {
+      var updateGuest = {
+        makhachhang: this.form.value.Makhachhang,
+        maTaiKhoan: this.form.value.MaTaiKhoan,
+        hoTenKh: this.form.value.HoTenKh,
+        phai: this.form.value.Phai,
+        sdt: this.form.value.Sdt,
+        gmailKh: this.form.value.GmailKh,
+        tenTaiKhoan: this.form.value.TenTaiKhoan,
+        maChuyenBay: '',
+        maVe: 0
       }
-    })
-    
+      console.log(updateGuest)
+      Swal.fire({
+        title: 'Chỉnh sửa',
+        text: "Bạn có muốn lưu các thay đổi về thông tin cá nhân của mình không?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Lưu chỉnh sửa',
+        cancelButtonText: 'Hủy'  
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.guestApiService.updateGuest(this.form.value.Makhachhang, updateGuest).subscribe(() => {
+            Swal.fire(
+              'Đã cập nhật!',
+              'Đã cập nhật thành công thông tin cá nhân của bạn',
+              'success'
+            ).then(() => {
+              this.ngOnInit()
+            })
+          }, (error) => {
+            Swal.fire(
+              'Lỗi cập nhật!',
+              'Đã xảy ra lỗi khi hệ thống cập nhật thông tin cá nhân của bạn. Vui lòng thử lại',
+              'error'
+            );
+          })
+        }
+      })
+    }
   }
 }
