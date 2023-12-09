@@ -9,7 +9,7 @@
                             <div class="pie-chart card-img-top">
                                 <app-line-charts></app-line-charts>
                             </div>
-                            
+
                         </div>
                         <div class="card-body">
                             <p class="card-text">Số vé ECO đặt trong các chuyến</p>
@@ -20,9 +20,15 @@
                     <div class="card row1">
                         <div class="statis-card">
                             <p>Số khách tạo tài khoản</p>
+                            <p class="detail">Tổng số tài khoản được tạo: {{ tongSoTaiKhoan }}</p>
+                            <p class="detail">Đa số là nam giới</p>
                         </div>
                         <div class="card-body">
                             <p>Khách đặt nhiều vé nhất</p>
+                            <p class="detail">Khách đã đặt nhiều vé nhất là: {{ mostTicketsCustomerNames }}</p>
+                            <p class="detail" *ngIf="mostTicketsCustomer && mostTicketsCustomer.length > 0">
+                                Với số lượng vé đã đặt là: {{ mostTicketsCustomer[0]?.ticketCount }}
+                            </p>
                         </div>
                     </div>
 
@@ -71,11 +77,12 @@
                     <div class="card row3">
                         <div class="statis-card">
                             <div class="pie-chart card-img-top">
-                                <app-column-charts></app-column-charts>
+                                <app-column-charts (chartDataUpdated)="onChartDataUpdated($event)"></app-column-charts>
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Doanh thu các tháng từ ... đến ...</p>
+                            <p>Doanh thu các tháng từ {{ thangNhoNhat | date: 'MM/yyyy' }} đến {{
+                                doanhThuCacThang[0]?.ngayDatVe | date: 'MM/yyyy' }}</p>
                         </div>
                     </div>
                 </div>
@@ -83,6 +90,6 @@
         </div>
 
 
-        
+
     </div>
 </div>
