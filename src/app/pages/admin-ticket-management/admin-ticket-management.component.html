@@ -2,55 +2,57 @@
   QUẢN LÝ VÉ KHÁCH
 </div>
 <div class="ticket-filter-form">
-  <form>
+  <form [formGroup]="form">
     <div class="form-field">
       <label for="departure-location" style="font-size: 20px;">Nơi xuất phát</label><br>
-      <select name="arrival-location" id="arrival-location" style="height: 40px;">
+      <select name="arrival-location" id="arrival-location" style="height: 40px;" formControlName="fromPlace">
         <option value="" id=""></option>
         <option value="VIETNAM" id="VN">Việt Nam</option>
         <option value="THAILAND" id="TH">Thái Lan</option>
-        <option value="ENGLAND" id="EN">Anh</option>
-        <option value="JAPAN" id="JP">Nhật Bản</option>
-        <option value="AMERICA" id="US">Mỹ</option>
-        <option value="FRANCE" id="FR">Pháp</option>
-        <option value="RUSSIA" id="RU">Nga</option>
+        <option value="ANH" id="EN">Anh</option>
+        <option value="NHATBAN" id="JP">Nhật Bản</option>
+        <option value="MY" id="US">Mỹ</option>
+        <option value="PHAP" id="FR">Pháp</option>
+        <option value="NGA" id="RU">Nga</option>
         <option value="SINGAPORE" id="SG">Singapore</option>
         <option value="HONGKONG" id="HK">Hồng Kông</option>
+        <option value="KOREA" id="KR">Hàn Quốc</option>
       </select>
     </div>
     <div class="form-field">
       <label for="departure-location" style="font-size: 20px;">Nơi đến</label><br>
-      <select name="arrival-location" id="arrival-location" style="height: 40px;">
+      <select name="arrival-location" id="arrival-location" style="height: 40px;" formControlName="toPlace">
         <option value="" id=""></option>
         <option value="VIETNAM" id="VN">Việt Nam</option>
         <option value="THAILAND" id="TH">Thái Lan</option>
-        <option value="ENGLAND" id="EN">Anh</option>
-        <option value="JAPAN" id="JP">Nhật Bản</option>
-        <option value="AMERICA" id="US">Mỹ</option>
-        <option value="FRANCE" id="FR">Pháp</option>
-        <option value="RUSSIA" id="RU">Nga</option>
+        <option value="ANH" id="EN">Anh</option>
+        <option value="NHATBAN" id="JP">Nhật Bản</option>
+        <option value="MY" id="US">Mỹ</option>
+        <option value="PHAP" id="FR">Pháp</option>
+        <option value="NGA" id="RU">Nga</option>
         <option value="SINGAPORE" id="SG">Singapore</option>
         <option value="HONGKONG" id="HK">Hồng Kông</option>
+        <option value="KOREA" id="KR">Hàn Quốc</option>
       </select>
     </div>
     <div class="form-field">
       <label for="departure-date" style="font-size: 20px;">Ngày xuất phát</label>
-      <input type="date" id="departure-date" name="departure-date" class="datepicker-box" style="height: 40px;">
+      <input type="date" id="departure-date" name="departure-date" class="datepicker-box" style="height: 40px;" formControlName="startDate">
     </div>
     <div class="form-field">
       <label for="departure-date" style="font-size: 20px;">Ngày đặt vé</label>
-      <input type="date" id="booking-date" name="booking-date" class="datepicker-box" style="height: 40px;">
+      <input type="date" id="booking-date" name="booking-date" class="datepicker-box" style="height: 40px;" formControlName="bookDate">
     </div>
     <div class="form-field">
       <label for="arrival-location" style="font-size: 20px;">Loại ghế</label><br>
-      <select name="seat-type" id="seat-type" style="height: 40px;">
+      <select name="seat-type" id="seat-type" style="height: 40px;" formControlName="typeSeat">
         <option value=""></option>
-        <option value="TPHCM">BSN</option>
-        <option value="TPHCM2">ECO</option>
+        <option value="BSN  ">BSN</option>
+        <option value="ECO  ">ECO</option>
       </select>
     </div>
     <div class="form-field" style="justify-content: right;">
-      <button type="submit" style="height: 40px;">Lọc</button>
+      <button type="submit" style="height: 40px;" (click)="onSubmit()">Lọc</button>
     </div>
   </form>
   <div class="ticket-search">
@@ -67,59 +69,66 @@
 <div class="ticket-data-table">
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 flight-table">
-      <ng-container matColumnDef="ticket_id">
+      <ng-container matColumnDef="maCTV">
+        <th mat-header-cell *matHeaderCellDef> Mã chi tiết vé</th>
+        <td mat-cell *matCellDef="let element"> {{element.maCTV}} </td>
+      </ng-container>
+      <ng-container matColumnDef="maVe">
         <th mat-header-cell *matHeaderCellDef> Mã vé </th>
-        <td mat-cell *matCellDef="let element"> {{element.ticket_id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.maVe}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="booking_date">
+      <ng-container matColumnDef="ngayDatVe">
         <th mat-header-cell *matHeaderCellDef> Ngày đặt vé </th>
-        <td mat-cell *matCellDef="let element"> {{element.booking_date}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.ngayDatVe | date: "MM/dd/yyyy"}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="customer_id">
+      <ng-container matColumnDef="maKh">
         <th mat-header-cell *matHeaderCellDef> Mã khách hàng </th>
-        <td mat-cell *matCellDef="let element"> {{element.customer_id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.maKh}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="customer_name">
+      <ng-container matColumnDef="tenKhachHang">
         <th mat-header-cell *matHeaderCellDef> Tên khách hàng </th>
-        <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.tenKhachHang}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="flight_id">
+      <ng-container matColumnDef="maChuyenBay">
         <th mat-header-cell *matHeaderCellDef> Mã chuyến </th>
-        <td mat-cell *matCellDef="let element"> {{element.flight_id}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.maChuyenBay}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="seat_type">
+      <ng-container matColumnDef="loaiVe">
         <th mat-header-cell *matHeaderCellDef> Loại vé </th>
-        <td mat-cell *matCellDef="let element"> {{element.seat_type}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.loaiVe}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="quantity">
+      <ng-container matColumnDef="soLuong">
         <th mat-header-cell *matHeaderCellDef> Số lượng </th>
-        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.soLuong}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="price">
+      <ng-container matColumnDef="tongGia">
         <th mat-header-cell *matHeaderCellDef> Giá </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.tongGia}} </td>
       </ng-container>
-
+      <ng-container matColumnDef="tinhTrang">
+        <th mat-header-cell *matHeaderCellDef> Tình trạng </th>
+        <td mat-cell *matCellDef="let element"> {{element.tinhTrang}} </td>
+      </ng-container>
       <ng-container matColumnDef="approve">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button>Duyệt</button> </td>
+        <td mat-cell *matCellDef="let element"> <button (click)="onApprove(element)">Duyệt</button> </td>
       </ng-container>
 
       <ng-container matColumnDef="cancel">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button>Hủy</button> </td>
+        <td mat-cell *matCellDef="let element"> <button (click)="onCancle(element)">Hủy</button> </td>
       </ng-container>
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button>Xóa</button> </td>
+        <td mat-cell *matCellDef="let element"> <button (click)="onDelete(element.maVe)">Xóa</button> </td>
       </ng-container>
 
 
@@ -129,7 +138,7 @@
     </table>
   </div>
   <div class="paginator-container">
-    <mat-paginator pageSize="10" hidePageSize="true" showFirstLastButtons>
+    <mat-paginator pageSize="20" hidePageSize="true" showFirstLastButtons>
     </mat-paginator>
   </div>
 

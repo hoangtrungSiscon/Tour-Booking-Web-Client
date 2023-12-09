@@ -1,59 +1,153 @@
 import { Time } from '@angular/common';
-import { Component, ViewChild, AfterViewInit  } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit  } from '@angular/core';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { ChiTietVeService } from 'src/app/shared/services/chiTietVe.service';
+import { ChiTietVe } from 'src/app/shared/models/chiTietVe';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 export interface TicketDetails {
-  ticket_id: string;
-  booking_date: string;
-  customer_id: string;
-  customer_name: string;
-  flight_id: string;
-  seat_type: string;
-  quantity: number;
-  price: number;
+  maCTV: number,
+  maVe: number;
+  ngayDatVe: Date;
+  maKh: number;
+  tenKhachHang: string;
+  maChuyenBay: string;
+  loaiVe: string;
+  soLuong: number;
+  tongGia: number;
+  tinhTrang: string;
 }
-
-const ELEMENT_DATA: TicketDetails[] = [
-  {ticket_id: '1', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '2', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '3', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '4', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '5', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '6', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '7', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '8', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '9', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '10', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '11', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '12', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-  {ticket_id: '13', booking_date: '2022-10-01', customer_id: '1', customer_name: 'Nguyen Van A', flight_id: '1', seat_type: 'ECO', quantity: 1, price: 100},
-
-];
 
 @Component({
   selector: 'app-admin-ticket-management',
   templateUrl: './admin-ticket-management.component.html',
   styleUrls: ['./admin-ticket-management.component.scss']
 })
-export class AdminTicketManagementComponent {
+export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
+  form: FormGroup | any;
   displayedColumns: string[] = [
-    'ticket_id',
-    'booking_date',
-    'customer_id',
-    'customer_name',
-    'flight_id',
-    'seat_type',
-    'quantity',
-    'price',
+    'maCTV', 
+    'maVe',
+    'ngayDatVe',
+    'maKh',
+    'tenKhachHang',
+    'maChuyenBay',
+    'loaiVe',
+    'soLuong',
+    'tongGia',
+    'tinhTrang',
     'approve',
     'cancel', 
     'delete'
   ];
-  dataSource = new MatTableDataSource<TicketDetails>(ELEMENT_DATA);
+  chiTietVes: TicketDetails[] = [];
+  dataSource: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
+  constructor(private chiTietVeService: ChiTietVeService, private formBuilder: FormBuilder){}
+
+  ngOnInit(){
+    this.form = this.createForm();
+    this.getAllChiTietVe();
+  }
+
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+    }, 1000);
+  }
+
+  createForm(){
+    return this.formBuilder.group({
+      fromPlace: this.formBuilder.control(''),
+      toPlace: this.formBuilder.control(''),
+      bookDate: this.formBuilder.control(''),
+      startDate: this.formBuilder.control(''),
+      typeSeat: this.formBuilder.control(''),
+    })
+  }
+
+  onSubmit(){
+    this.chiTietVeService.filterChiTietVe(this.form.value).subscribe(data => {
+      this.chiTietVes = data;
+      this.dataSource = new MatTableDataSource<TicketDetails>(this.chiTietVes);
+    })
+  }
+
+  getAllChiTietVe(){
+    this.chiTietVeService.getAll().subscribe(data=> {
+      this.chiTietVes = data;
+      this.dataSource = new MatTableDataSource<TicketDetails>(this.chiTietVes);
+    })
+  }
+
+
+  onApprove(element: TicketDetails){
+    let request: ChiTietVe = {
+      MaCTV: element.maCTV,
+      MaVe: element.maVe,
+
+      LoaiVe: element.loaiVe,
+      
+      MaChuyenBay: element.maChuyenBay,
+      
+      SoLuong: element.soLuong,
+      
+      TinhTrang: 'Đã duyệt',
+      TongGia: element.tongGia,
+    };
+    try{
+      this.chiTietVeService.update(request).subscribe();
+      alert("Duyệt thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
+      this.getAllChiTietVe();
+    }
+    catch{
+      alert("Duyệt thất bại!");
+    }
+  }
+
+  onCancle(element: TicketDetails){
+    let request: ChiTietVe = {
+      MaCTV: element.maCTV,
+      MaVe: element.maVe,
+
+      LoaiVe: element.loaiVe,
+      
+      MaChuyenBay: element.maChuyenBay,
+      
+      SoLuong: element.soLuong,
+      
+      TinhTrang: 'Đã hủy',
+      TongGia: element.tongGia,
+    };try{
+      this.chiTietVeService.update(request).subscribe();
+      alert("Hủy thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
+      this.getAllChiTietVe();
+    }
+    catch{
+      alert("Hủy thất bại!");
+    }
+  }
+
+  onDelete(elementId: number){
+    try{
+      this.chiTietVeService.delete(elementId).subscribe(()=>{
+        this.getAllChiTietVe();
+      });
+      alert("Xóa vé thành công!");
+      this.dataSource.data = [];
+      this.chiTietVes = [];
+      this.getAllChiTietVe();
+    }
+    catch{
+      alert("Xóa vé thất bại!");
+    }
+    
   }
 
 }

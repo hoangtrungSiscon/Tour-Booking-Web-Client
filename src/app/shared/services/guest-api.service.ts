@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GuestApiService {
-  readonly guestAPIUrl = "https://localhost:7016/api";
+  readonly guestAPIUrl = "https://localhost:7000/api";
   constructor(private http:HttpClient) { }
 
   getGuestList():Observable<any[]> {

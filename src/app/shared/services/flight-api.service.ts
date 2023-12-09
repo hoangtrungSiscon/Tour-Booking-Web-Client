@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FlightApiService {
 
-  readonly flightAPIUrl = "https://localhost:7005/api";
+  readonly flightAPIUrl = "https://localhost:7000/api";
 
   constructor(private http:HttpClient) { }
 

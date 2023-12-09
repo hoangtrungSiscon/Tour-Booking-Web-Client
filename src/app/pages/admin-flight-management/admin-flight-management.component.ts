@@ -1,21 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
-import { FlightApiService } from 'src/app/services/flight-api.service';
+import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import Swal from 'sweetalert2';
-export interface FlightDetails {
-  maChuyenBay: any;
-  maMayBay: any;
-  tenMayBay: any;
-  noiXuatPhat: any;
-  noiDen: any;
-  ngayXuatPhat: any;
-  gioBay: any;
-  soLuongVeBsn: any;
-  soLuongVeEco: any;
-  donGia: any;
-}
+import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 
 @Component({
   selector: 'app-admin-flight-management',
@@ -24,7 +13,12 @@ export interface FlightDetails {
 })
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   flightList: any[] = [];
+  searchValue: string = '';
+  departureLocation: string = '';
+  arrivalLocation: string = '';
+  departureDate: string = '';
   public displayedColumns: string[] = [
     'MaChuyenBay',
     'MaMayBay',
@@ -39,20 +33,10 @@ export class AdminFlightManagementComponent {
     'edit',
     'delete',
   ];
-  flightList$: Observable<FlightDetails[]>[] = [];
+  
 
 
   deleteFlight(event: any, id: any): void {
-    // alert(id);
-    // this.service.deleteFlight(id).subscribe(
-    //   () => {
-    //     console.log('Deleted successfully');
-    //     window.location.reload();
-    //     // this.refreshPage();
-    //   }
-    // );
-
-
     Swal.fire({
       title: 'Xóa thông tin chuyến bay này?',
       text: "Thông tin chuyến bay bị xóa không thể được khôi phục lại!",
@@ -66,7 +50,6 @@ export class AdminFlightManagementComponent {
       if (result.isConfirmed) {
         this.service.deleteFlight(id).subscribe(
           () => {
-            console.log('Deleted successfully');
             Swal.fire(
               'Đã xóa!',
               'Xóa thông tin chuyến bay thành công.',
@@ -87,17 +70,77 @@ export class AdminFlightManagementComponent {
       }
     })
   }
+  search(event: any, searchValue: any) {
+    if (this.searchValue == '') {
+      this.dataSource.data = [];
+      this.flightList = [];
+      this.ngOnInit();
+    }
+    else {
 
-  
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // listFlight !: FlightDetails[];
+      this.flightList = [];
+      this.dataSource.data = [];
+      this.service.getFlightList().subscribe(data => {
+        data.forEach(element => {
+          if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
+            this.flightList.push(
+              element
+            )
+          }
+          
+        });
+        this.dataSource.data = this.flightList;
+
+      })
+    }
+  }
+
+  filter(event : any
+    ){
+    if (
+
+      this.departureLocation == '' &&
+      this.arrivalLocation == '' &&
+      this.departureDate == ''
+    ) {
+      this.dataSource.data = [];
+      this.flightList = [];
+      this.ngOnInit();
+    }
+    else {
+      this.flightList = [];
+
+      this.dataSource.data = [];
+
+      if (
+        this.departureLocation != '' &&
+        this.arrivalLocation != '' &&
+        this.departureDate != ''
+      ){
+        this.service.getFlightList().subscribe(data => {
+          data.forEach(element => {
+            if (
+              element.ngayXuatPhat.slice(0,10) == this.departureDate &&
+              element.noiXuatPhat == this.departureLocation &&
+              element.noiDen == this.arrivalLocation
+            
+            ){
+              this.flightList.push(
+                element
+              )
+            }
+            
+          });
+          this.dataSource.data = this.flightList;
+        })
+      }
+    }
+  }
+
   constructor(private service: FlightApiService) {
 
   }
 
-  // refreshPage(): void{
-  //   window.location.reload();
-  // }
   ngOnInit() : void{
 
     this.service.getFlightList().subscribe(data => {
@@ -107,18 +150,15 @@ export class AdminFlightManagementComponent {
         )
       });
 
-        this.dataSource.data = this.flightList;
-
-      console.log(this.dataSource.data)
-
+      this.dataSource.data = this.flightList;
     })
   }
 
   
    
   ngAfterViewInit(){
-
-    console.log(this.dataSource.data)
-    this.dataSource.paginator = this.paginator;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+    }, 1000);
   }
 }

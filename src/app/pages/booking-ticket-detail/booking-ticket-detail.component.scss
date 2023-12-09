@@ -1,3 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+
+
+.border-color-1 {
+    border: #146C94 solid 3px;
+    border-radius: 5px;
+}
+
+.border-color-2 {
+    border: #19A7CE solid 3px;
+    border-radius: 5px;
+}
+
 .color-1 {
     color: #19A7CE;
 }
@@ -5,113 +29,125 @@
 .color-2 {
     color: #146C94;
 }
-.border-ra{
-    border-radius: 15px;
-}
-.body{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden;
-}
-.background-color-1 {
+
+.background-1 {
     background-color: #19A7CE;
+    border-color: #19A7CE;
 }
 
-.background-color-2{
+.background-2 {
     background-color: #146C94;
+    border-color: #146C94;
 }
 
-.mt-6{
-    margin-top: 54px !important;
+.background-white {
+    background-color: white;
 }
 
-.text-justify {
-    text-align: justify;
+.color-black {
+    color: black;
 }
 
-.border-color-1 {
-    border: #19A7CE solid 3px;
-    border-radius: 5px;
+.w-40 {
+    width: 40% !important
 }
 
-.border-color-2 {
+.form-control.form-control-search {
     border: #146C94 solid 3px;
-    border-radius: 5px;
 }
-.font-18{
-    font-size: 18px !important;
+
+.form-control {
+    border: #146C94 solid 3px;
+    border-radius: 14px;
 }
-.font-20{
-    font-size: 20px !important;
+
+.font-text-64 {
+    font-size: 64px !important;
 }
-.font-22{
-    font-size: 22px !important;
+
+.font-text-48 {
+    font-size: 48px !important;
 }
-.font-24{
-    font-size: 24px !important;
+
+.font-text-36 {
+    font-size: 36px !important;
 }
-.font-28{
+
+.font-text-28 {
     font-size: 28px !important;
 }
-.bor-ra{
-    border: 3px solid #146C94 !important;
-    border-radius: 10px !important;
-}
-.ticket-info {
-    padding: 40px 100px;
-}
 
-.form-control-input {
-    height: 50px;
-    border-color: rgba(25, 167, 206, 0.5) ;
-}
-
-.text-second {
-    font-weight: 400;
-    line-height: 34px;
-}
-
-.h-50px {
-    height: 50px;
-}
-
-.btn-outline-danger {
-    --bs-btn-color: #146C94;
-    --bs-btn-border-color: #146C94;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #146C94;
-    --bs-btn-hover-border-color: #146C94;
-    --bs-btn-focus-shadow-rgb: 220, 53, 69;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #146C94;
-    --bs-btn-active-border-color: #146C94;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #146C94;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #146C94;
-    --bs-gradient: none
-}
-
-
-.btn-outline-success {
-    --bs-btn-color: #146C94;
-    --bs-btn-border-color: #146C94;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #146C94;
-    --bs-btn-hover-border-color: #146C94;
-    --bs-btn-focus-shadow-rgb: 25, 135, 84;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #146C94;
-    --bs-btn-active-border-color: #146C94;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #146C94;
-    --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #146C94;
-    --bs-gradient: none
-}
-
-.swal2-popup .swal2-styled.swal2-confirm {
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
     background-color: #19A7CE;
+    border-color: #19A7CE;
+}
+
+/* Thông tin bên trái */
+.icon-down {
+    width: 26px;
+}
+
+.btn-normal {
+    background-color: white;
+    color: #19A7CE;
+    border: solid 2px #19A7CE;
+}
+
+.btn-normal .btn-active {
+    background-color: #19A7CE;
+    color: white;
+    border-radius: 5px;
+}
+
+
+.btn-search {
+    font-size: 17px;
+}
+
+/* Thông tin vé */
+.ticket-items {
+    max-height: 760px;
+    overflow-y: auto;
+    // overflow: hidden;
+
+}
+
+.ticket-items::-webkit-scrollbar {
+    display: none;
+}
+
+.ticket {
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.ticket p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.ticket-info {
+    display: flex;
+    align-items: center;
+}
+
+.chair-info {
+    display: flex;
+}
+
+.chair-info> :last-child {
+    margin-left: 20px;
+}
+
+/* Điều hướng */
+.directional {
+    margin-top: 20px;
 }

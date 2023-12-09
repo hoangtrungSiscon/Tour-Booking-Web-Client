@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 
 @Component({
   selector: 'app-booking-ticket',
@@ -6,5 +8,44 @@ import { Component } from '@angular/core';
   styleUrls: ['./booking-ticket.component.scss']
 })
 export class BookingTicketComponent {
+  form: FormGroup | any;
+  fromPlace: string[] = ['VIETNAM', 'THAILAN', 'ANH', 'NHATBAN', 'HANQUOC', 'MY', 'PHAP', 'NGA', 'SINGAPORE', 'HONGKONG']
+  toPlace: string[] = ['VIETNAM', 'THAILAN', 'ANH', 'NHATBAN', 'HANQUOC', 'MY', 'PHAP', 'NGA', 'SINGAPORE', 'HONGKONG'];
+  tickets: any[] = [];
+  textError: string = '';
+  constructor(private formBuilder: FormBuilder, private chuyenBayService: ChuyenBayService) { }
 
+
+  ngOnInit() {
+    this.form = this.createForm();
+    this.chuyenBayService.getAll().subscribe(data => this.tickets = data);
+  }
+
+  ngOnDestroy() { }
+
+  createForm() {
+    return this.formBuilder.group({
+      fromPlace: this.formBuilder.control(['']),
+      toPlace: this.formBuilder.control(['']),
+      startDate: this.formBuilder.control(['']),
+    })
+  }
+
+  inputFromPlace(place: string) {
+    this.form.get('fromPlace').setValue(place);
+  }
+  inputToPlace(place: string) {
+    this.form.get('toPlace').setValue(place);
+  }
+
+  onSubmit() {
+    if (this.form.value.startDate != '' && this.form.value.fromPlace != '' && this.form.value.toPlace != '') {
+      this.form.get('startDate').setValue(new Date(this.form.value.startDate).toISOString().substring(0, 10));
+      this.chuyenBayService.filterChuyenBay(this.form.value).subscribe((data) => this.tickets = data);
+      this.textError = "";
+    }
+    else {
+      this.textError = "Vui lòng chọn đầy đủ thông tin!!!";
+    }
+  }
 }
