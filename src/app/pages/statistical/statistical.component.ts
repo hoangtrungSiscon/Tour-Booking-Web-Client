@@ -1,12 +1,16 @@
 import { TicketApiService } from './../../shared/services/ticket-api.service';
 import { GuestApiService } from './../../shared/services/guest-api.service';
 import { Component, OnInit } from '@angular/core';
-import { da } from 'date-fns/locale';
+import { FlightApiService } from 'src/app/shared/services/flight-api.service';
+import { DatePipe, registerLocaleData } from '@angular/common'; // Import DatePipe and CurrencyPipe
+import localeVi from '@angular/common/locales/vi';
 
+registerLocaleData(localeVi);
 @Component({
   selector: 'app-statistical',
   templateUrl: './statistical.component.html',
-  styleUrls: ['./statistical.component.scss']
+  styleUrls: ['./statistical.component.scss'],
+  providers: [DatePipe]
 })
 export class StatisticalComponent implements OnInit {
   doanhThuCacThang: any[] = [];
@@ -15,16 +19,158 @@ export class StatisticalComponent implements OnInit {
   soLuongKhachHang: number = 0;
   mostTicketsCustomer: any;
   mostTicketsCustomerNames: string = '';
+  mostBookedFlightCode: string='';
+  ticketList: any[] = [];
+  mostBookedDate: string = '';
+  currentMonth: string | null ='';
+  currentMonthTotalRevenue: string | null ='';
+  previousMonth: string | null ='';
+  previousMonthTotalRevenue: string | null = '';
   constructor(
     private ticketService: TicketApiService,
     private guestService: GuestApiService,
+    private flightService: FlightApiService,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {
     this.loadData();
+    this.loadCurrentMonthTotalRevenue();
     this.loadGuestData();
     this.loadMostTicketsCustomer();
+    this.loadMostBookedFlightCode();
+    this.loadTicketList();
+    this.loadPreviousMonthTotalRevenue();
   }
+  loadPreviousMonthTotalRevenue(): void {
+    const currentDate = new Date();
+  
+    // Set the locale to 'vi' for Vietnamese
+    const monthNamesVi: string[] = [
+      'tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6',
+      'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'
+    ];
+  
+    // Get the date of the last month
+    const lastMonthDate = new Date(currentDate);
+    lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+  
+    // Set the currentMonth and previousMonthTotalRevenue properties
+    this.previousMonth = monthNamesVi[lastMonthDate.getMonth()]; // Fix here
+    this.previousMonthTotalRevenue = this.datePipe.transform(lastMonthDate, 'MMMM', 'vi') || '';
+  
+    this.ticketService.getPreviousMonthTotalRevenue().subscribe(
+      (totalpreviousRevenue: number | null) => {
+        // Perform null check before formatting the total revenue
+        if (totalpreviousRevenue !== null) {
+          // Convert totalRevenue to a string and append ' VND'
+          this.previousMonthTotalRevenue = totalpreviousRevenue.toString() + ' VND';
+        } else {
+          this.previousMonthTotalRevenue = '';
+        }
+  
+        console.log(this.previousMonthTotalRevenue);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+  loadCurrentMonthTotalRevenue(): void {
+    const currentDate = new Date();
+
+    // Set the locale to 'vi' for Vietnamese
+    const monthNamesVi: string[] = [
+      'tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6',
+      'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'
+    ];
+    
+    this.currentMonth = this.datePipe.transform(currentDate, 'MMMM', 'vi') || '';
+    this.currentMonth = monthNamesVi[currentDate.getMonth()];
+
+    this.ticketService.getCurrentMonthTotalRevenue().subscribe(
+      (totalRevenue: number | null) => {
+        // Perform null check before formatting the total revenue
+        if (totalRevenue !== null) {
+          // Convert totalRevenue to a string and append ' VND'
+          this.currentMonthTotalRevenue = totalRevenue.toString() + ' VND';
+        } else {
+          this.currentMonthTotalRevenue = '';
+        }
+
+        console.log(this.currentMonthTotalRevenue);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+  private parseCurrencyString(currencyString: string): number {
+    // Remove non-numeric characters from the currency string
+    const numericString = currencyString.replace(/[^0-9.-]/g, '');
+  
+    // Parse the numeric string to a float
+    return parseFloat(numericString);
+  }
+  
+  
+  loadTicketList(): void {
+    this.ticketService.getTicketList().subscribe(
+      (data: any[]) => {
+        this.ticketList = data;
+        
+        this.findMostBookedDate();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+  findMostBookedDate(): void {
+    // Create an object to store the count of each date
+    const dateCounts = this.ticketList.reduce((acc, ticket) => {
+      // Assuming 'ngayXuatPhat' is the property containing the date
+      const date = new Date(ticket.ngayDatVe);
+  
+      // Format the date to 'dd/MM/yyyy'
+      const formattedDate = date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  
+      // Increment the count for the formatted date in the accumulator
+      acc[formattedDate] = (acc[formattedDate] || 0) + 1;
+  
+      return acc;
+    }, {});
+  
+    // Find the formatted date with the highest count
+    const mostBookedDate = Object.keys(dateCounts).reduce((a, b) => dateCounts[a] > dateCounts[b] ? a : b);
+  
+    // Set the mostBookedDate property
+    this.mostBookedDate = mostBookedDate;
+    console.log(mostBookedDate);
+    // Log the result to the console
+  }
+  
+  
+  loadMostBookedFlightCode(): void {
+    this.flightService.getMostBookedFlight().subscribe(
+      (data: any[]) => {
+        if (data && data.length > 0) {
+          this.mostBookedFlightCode = data[0].maChuyenBay.substring(6);
+          console.log(this.mostBookedFlightCode);
+        } else {
+          this.mostBookedFlightCode = ''; // or provide a default value
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+  
+
   async loadMostTicketsCustomer(): Promise<void> {
     try {
       const data = await this.ticketService.getTicketList().toPromise();
@@ -58,7 +204,6 @@ export class StatisticalComponent implements OnInit {
         ticketsByCustomer.set(customerName, 1);
       }
     }
-    console.log(ticketsByCustomer);
     
     return ticketsByCustomer;
   }
@@ -78,8 +223,6 @@ export class StatisticalComponent implements OnInit {
         mostTicketsCustomers.push({ hoTenKH: customerName, ticketCount: maxTickets });
       }
     }
-  
-    console.log(mostTicketsCustomers);
     this.mostTicketsCustomerNames = mostTicketsCustomers.map(customer => customer.hoTenKH).join(', ');
     return mostTicketsCustomers;
   }

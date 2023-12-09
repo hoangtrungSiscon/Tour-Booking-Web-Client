@@ -34,10 +34,14 @@
 
                     <div class="card row1">
                         <div class="statis-card">
-                            <p>Số chuyến bay được nhiều người đặt nhất</p>
+                            <p>Chuyến bay được nhiều người đặt nhất</p>
+                            <p class="detail" style="padding-top: 3%;" *ngIf="mostBookedFlightCode">
+                                Là chuyến bay: {{ mostBookedFlightCode }}
+                            </p>                                                          
                         </div>
                         <div class="card-body">
                             <p>Ngày có số lượng khách đặt đông nhất</p>
+                            <p class="detail" style="padding-top: 3%;">Là ngày: {{mostBookedDate}}</p>
                         </div>
                     </div>
                 </div>
@@ -68,10 +72,14 @@
                 <div class="col-lg-6">
                     <div class="card row1">
                         <div class="statis-card">
-                            <p>Tổng doanh thu tháng *hiện tại*</p>
+                            <p>Tổng doanh thu tháng hiện tại</p>
+                            <p class="detail" style="padding-top: 3%;">Tổng doanh thu {{ currentMonth }} là:
+                                {{ currentMonthTotalRevenue}}</p>
                         </div>
                         <div class="card-body">
-                            <p>Tổng doanh thu tháng *tháng trước*</p>
+                            <p>Tổng doanh thu tháng tháng trước</p>
+                            <p class="detail" style="padding-top: 3%;">Tổng doanh thu {{ previousMonth }} là:
+                                {{ previousMonthTotalRevenue}}</p>
                         </div>
                     </div>
                     <div class="card row3">
