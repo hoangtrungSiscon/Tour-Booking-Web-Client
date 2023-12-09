@@ -3,7 +3,7 @@
     
     <div class="page-content">
         <h1 class="page-title">THÊM TÀI KHOẢN MỚI</h1>
-        <form class="row g-3">
+        <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
             <h1 style="font-weight: bold;padding-bottom: 20px;"> Thông tin khách hàng mới</h1>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tài Khoản</label>

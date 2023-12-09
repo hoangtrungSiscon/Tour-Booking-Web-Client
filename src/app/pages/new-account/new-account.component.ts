@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-new-account',
@@ -19,5 +20,18 @@ export class NewAccountComponent {
     }
     this.visible = !this.visible;
     this.changetype = !this.changetype;
+  }
+  registerForm=this.fb.group({
+    MaKh:'',
+    MaTaiKhoan:'',
+    HoTenKh:'',
+    Phai:'',
+    Sdt:'',
+    GmailKh:'',
+  })
+  constructor(private fb:FormBuilder){}
+  onSubmit(): void{
+    console.log('submitted form', this.registerForm.value);
+    
   }
 }
