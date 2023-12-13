@@ -113,6 +113,8 @@ export class BookingTicketComponent {
   reloadValue() {
     // window.location.reload();
     // this.router.navigate(['/booking-ticket']);
-    this.ngOnInit();
+    // this.ngOnInit();
+    this.form = this.createForm();
+    this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
   }
 }
