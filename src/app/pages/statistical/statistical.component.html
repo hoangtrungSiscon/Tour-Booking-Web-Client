@@ -9,7 +9,7 @@
                             <div class="pie-chart card-img-top">
                                 <app-line-charts></app-line-charts>
                             </div>
-                            
+
                         </div>
                         <div class="card-body">
                             <p class="card-text">Số vé ECO đặt trong các chuyến</p>
@@ -20,18 +20,28 @@
                     <div class="card row1">
                         <div class="statis-card">
                             <p>Số khách tạo tài khoản</p>
+                            <p class="detail">Tổng số tài khoản được tạo: {{ tongSoTaiKhoan }}</p>
+                            <p class="detail">Đa số là nam giới</p>
                         </div>
                         <div class="card-body">
                             <p>Khách đặt nhiều vé nhất</p>
+                            <p class="detail">Khách đã đặt nhiều vé nhất là: {{ mostTicketsCustomerNames }}</p>
+                            <p class="detail" *ngIf="mostTicketsCustomer && mostTicketsCustomer.length > 0">
+                                Với số lượng vé đã đặt là: {{ mostTicketsCustomer[0]?.ticketCount }}
+                            </p>
                         </div>
                     </div>
 
                     <div class="card row1">
                         <div class="statis-card">
-                            <p>Số chuyến bay được nhiều người đặt nhất</p>
+                            <p>Chuyến bay được nhiều người đặt nhất</p>
+                            <p class="detail" style="padding-top: 3%;" *ngIf="mostBookedFlightCode">
+                                Là chuyến bay: {{ mostBookedFlightCode }}
+                            </p>                                                          
                         </div>
                         <div class="card-body">
                             <p>Ngày có số lượng khách đặt đông nhất</p>
+                            <p class="detail" style="padding-top: 3%;">Là ngày: {{mostBookedDate}}</p>
                         </div>
                     </div>
                 </div>
@@ -62,20 +72,25 @@
                 <div class="col-lg-6">
                     <div class="card row1">
                         <div class="statis-card">
-                            <p>Tổng doanh thu tháng *hiện tại*</p>
+                            <p>Tổng doanh thu tháng hiện tại</p>
+                            <p class="detail" style="padding-top: 3%;">Tổng doanh thu {{ currentMonth }} là:
+                                {{ currentMonthTotalRevenue}}</p>
                         </div>
                         <div class="card-body">
-                            <p>Tổng doanh thu tháng *tháng trước*</p>
+                            <p>Tổng doanh thu tháng tháng trước</p>
+                            <p class="detail" style="padding-top: 3%;">Tổng doanh thu {{ previousMonth }} là:
+                                {{ previousMonthTotalRevenue}}</p>
                         </div>
                     </div>
                     <div class="card row3">
                         <div class="statis-card">
                             <div class="pie-chart card-img-top">
-                                <app-column-charts></app-column-charts>
+                                <app-column-charts (chartDataUpdated)="onChartDataUpdated($event)"></app-column-charts>
                             </div>
                         </div>
                         <div class="card-body">
-                            <p>Doanh thu các tháng từ ... đến ...</p>
+                            <p>Doanh thu các tháng từ {{ thangNhoNhat | date: 'MM/yyyy' }} đến {{
+                                doanhThuCacThang[0]?.ngayDatVe | date: 'MM/yyyy' }}</p>
                         </div>
                     </div>
                 </div>
@@ -83,6 +98,6 @@
         </div>
 
 
-        
+
     </div>
 </div>

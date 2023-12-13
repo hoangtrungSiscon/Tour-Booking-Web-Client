@@ -12,6 +12,11 @@ export class GuestApiService {
     // return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
     return this.http.get<any>(this.guestAPIUrl + '/ThongTinkhachhangs');
   }
+  getGuest():Observable<any[]> {
+    // return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
+    return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
+  }
+  
   getGuestListById(id:string):Observable<any[]>{
     return this.http.get<any>(this.guestAPIUrl +`/ThongTinkhachhangs/${id}`);
   }

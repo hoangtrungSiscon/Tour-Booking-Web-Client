@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { TicketApiService } from './../../shared/services/ticket-api.service';
+import { Component, OnInit } from '@angular/core';
+
+export interface TicketDetails {
+	maVe: any;
+	maKH: any;
+	ngayDatVe: any;
+	loaiVe: any;
+	maChuyenBay: any;
+	soluong: any;
+	tinhTrang: any;
+	tongGia: any;
+}
 
 @Component({
 	selector: 'app-line-charts-bsn',
 	templateUrl: './line-charts-bsn.component.html',
 	styleUrls: ['./line-charts-bsn.component.scss']
 })
-export class LineChartsBSNComponent {
+export class LineChartsBSNComponent  implements OnInit {
+	TicketList: TicketDetails[] = [];
+
 	chartOptions = {
 		animationEnabled: true,
 		theme: "light1",
@@ -42,51 +56,88 @@ export class LineChartsBSNComponent {
 				e.chart.render();
 			}
 		},
-		data: [{
-			type: "line",
+		data: [
+			{
+				type: 'line',
+				showInLegend: true,
+				name: 'Total Ticket',
+				lineDashType: 'dash',
+				markerType: 'square',
+				xValueFormatString: 'DD MMM, YYYY',
+				dataPoints: [] as { x: Date; y: any; }[],
+			},
+			{
+				type: 'line',
+				showInLegend: true,
+				name: 'bsn Ticket',
+				lineDashType: 'dot',
+				markerType: 'circle',
+				xValueFormatString: 'DD MMM, YYYY',
+				dataPoints: [] as { x: Date; y: any; }[],
+			},
+		],
+	};
+
+	constructor(private service: TicketApiService) { }
+
+	updateChartData() {
+		const dateTicketMap = new Map<string, { total: number; bsn: number }>();
+	  
+		this.TicketList.forEach((ticket) => {
+		  const dateString = new Date(ticket.ngayDatVe).toLocaleDateString();
+	  
+		  if (!dateTicketMap.has(dateString)) {
+			dateTicketMap.set(dateString, { total: 0, bsn: 0 });
+		  }
+	  
+		  dateTicketMap.get(dateString)!.total += ticket.soluong;
+	  
+		  if (ticket.loaiVe.trim() === 'BSN') {
+			dateTicketMap.get(dateString)!.bsn += ticket.soluong;
+		  }
+		});
+	  
+		const totalTicketDataPoints = Array.from(dateTicketMap).map(([dateString, values]) => ({
+		  x: new Date(dateString),
+		  y: values.total,
+		}));
+	  
+		const bsnTicketDataPoints = Array.from(dateTicketMap).map(([dateString, values]) => ({
+		  x: new Date(dateString),
+		  y: values.bsn,
+		}));
+	  
+		// Update the chart data
+		this.chartOptions.data = [
+		  {
+			type: 'line',
 			showInLegend: true,
-			name: "Total Ticket",
-			lineDashType: "dash",
-			markerType: "square",
-			xValueFormatString: "DD MMM, YYYY",
-			dataPoints: [
-				{ x: new Date(2022, 0, 3), y: 650 },
-				{ x: new Date(2022, 0, 4), y: 700 },
-				{ x: new Date(2022, 0, 5), y: 710 },
-				{ x: new Date(2022, 0, 6), y: 658 },
-				{ x: new Date(2022, 0, 7), y: 734 },
-				{ x: new Date(2022, 0, 8), y: 963 },
-				{ x: new Date(2022, 0, 9), y: 847 },
-				{ x: new Date(2022, 0, 10), y: 853 },
-				{ x: new Date(2022, 0, 11), y: 869 },
-				{ x: new Date(2022, 0, 12), y: 943 },
-				{ x: new Date(2022, 0, 13), y: 970 },
-				{ x: new Date(2022, 0, 14), y: 869 },
-				{ x: new Date(2022, 0, 15), y: 890 },
-				{ x: new Date(2022, 0, 16), y: 930 }
-			]
-		},
-		{
-			type: "line",
+			name: 'Total Ticket',
+			lineDashType: 'dash',
+			markerType: 'square',
+			xValueFormatString: 'DD MMM, YYYY',
+			dataPoints: totalTicketDataPoints,
+		  },
+		  {
+			type: 'line',
 			showInLegend: true,
-			name: "BSN Ticket",
-			lineDashType: "dot",
-			dataPoints: [
-				{ x: new Date(2022, 0, 3), y: 140 },
-				{ x: new Date(2022, 0, 4), y: 140 },
-				{ x: new Date(2022, 0, 5), y: 170 },
-				{ x: new Date(2022, 0, 6), y: 100 },
-				{ x: new Date(2022, 0, 7), y: 190 },
-				{ x: new Date(2022, 0, 8), y: 270 },
-				{ x: new Date(2022, 0, 9), y: 190 },
-				{ x: new Date(2022, 0, 10), y: 190 },
-				{ x: new Date(2022, 0, 11), y: 230 },
-				{ x: new Date(2022, 0, 12), y: 270 },
-				{ x: new Date(2022, 0, 13), y: 310 },
-				{ x: new Date(2022, 0, 14), y: 307 },
-				{ x: new Date(2022, 0, 15), y: 247 },
-				{ x: new Date(2022, 0, 16), y: 360 }
-			]
-		}]
+			name: 'bsn Ticket',
+			lineDashType: 'dot',
+			markerType: 'circle',
+			xValueFormatString: 'DD MMM, YYYY',
+			dataPoints: bsnTicketDataPoints,
+		  },
+		];
+	  }
+	  
+
+	async ngOnInit(): Promise<void> {
+		try {
+			const data = await this.service.getTicketList().toPromise();
+			this.TicketList = data ?? [];
+			this.updateChartData();
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
