@@ -5,6 +5,7 @@ import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import { PlaneApiService } from 'src/app/shared/services/plane-api.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-flight',
@@ -26,42 +27,40 @@ export class EditFlightComponent {
   }
   public flightTime_Hour: string = '00';
   public flightTime_Minute: string = '00';
-  public flightTime_Second: string = '00';
   public planeList: any[] = []
-  constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router) {
+  BSN_Seats: number = 0;
+  ECO_Seats: number = 0;
+  constructor(private flightService: FlightApiService, private planeService: PlaneApiService, private router: Router, private ActivatedRoute: ActivatedRoute) {
 
   }
   ngOnInit(): void {
     this.planeService.getPlaneList().subscribe(data => {
-      console.log(data)
+      
       this.planeList = data;
-      console.log(this.planeList)
+      
     })
-    this.flightService.getFlightListById(this.router.url.replace('/admin-dashboard/edit-flight/','')).subscribe(data => {
-      // console.log(data)
+      this.flightService.getFlightListById(this.ActivatedRoute.snapshot.paramMap.get('id') as string).subscribe(data => {  
       this.editFlightRequest = data[0];
-      // this.editFlightRequest.gioBay = this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2];
-      // console.log(this.editFlightRequest.gioBay.split(':')[0] + ":" + this.editFlightRequest.gioBay.split(':')[1] + ":" + this.editFlightRequest.gioBay.split(':')[2])
+      console.log(this.editFlightRequest)
       this.flightTime_Hour = this.editFlightRequest.gioBay.split(':')[0];
       this.flightTime_Minute = this.editFlightRequest.gioBay.split(':')[1];
-      this.flightTime_Second = this.editFlightRequest.gioBay.split(':')[2];
       this.editFlightRequest.ngayXuatPhat = this.editFlightRequest.ngayXuatPhat.split('T')[0];
-      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0)
-      // if the default value is 255133, I want to make it to 255,133
-      // this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
-      // this.editFlightRequest.donGia = (parseInt(this.editFlightRequest.donGia.replace(/[^0-9]/g, '')) || 0).toPrecision(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " đ";
       console.log(this.editFlightRequest.donGia)
     })
-
-    console.log(this.router.url.replace('/admin-dashboard/edit-flight/',''))
+    setTimeout(() => {
+      this.BSN_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheBsn;
+      this.ECO_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheEco;
+    }, 1000);
+    
   }
 
-  updatePlaneName(event: any, id: any) : void{
+  updatePlaneInfo(id: any) : void{
     const element = this.planeList.find(element => element.maMayBay == id);
     if (element) {
       this.editFlightRequest.tenMayBay = element.tenMayBay;
-
+      this.BSN_Seats = element.slgheBsn;
+      this.ECO_Seats = element.slgheEco;
     }
 
   }
@@ -74,9 +73,6 @@ export class EditFlightComponent {
       this.editFlightRequest.noiXuatPhat == '' ||
       this.editFlightRequest.noiDen == '' ||
       this.editFlightRequest.ngayXuatPhat == '' ||
-      this.editFlightRequest.gioBay == '' ||
-      this.editFlightRequest.soLuongVeBsn == '' ||
-      this.editFlightRequest.soLuongVeEco == '' ||
       this.editFlightRequest.donGia == ''
     ){
       // 
@@ -88,12 +84,8 @@ export class EditFlightComponent {
       })
     }
     else {
-      this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ this.flightTime_Second.toString().padStart(2, '0');
-      // if (this.editFlightRequest.donGia.includes(',')) {
-      //   this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
-      // }
-      this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '');
-      // this.flightService.addFlight(this.editFlightRequest).subscribe();
+      this.editFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') +":"+ this.flightTime_Minute.toString().padStart(2, '0') +":"+ "00";
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.replace(/,/g, '').replace(/ đ/g, '');
       console.log(this.editFlightRequest);
       Swal.fire({
         title: 'Chỉnh sửa thông tin chuyến bay này?',
@@ -108,7 +100,6 @@ export class EditFlightComponent {
         if (result.isConfirmed) {
           this.flightService.updateFlight(this.editFlightRequest.maChuyenBay, this.editFlightRequest).subscribe(
             () => {
-              // console.log('Deleted successfully');
               Swal.fire(
                 'Chỉnh sửa thành công!',
                 'Chỉnh sửa thông tin chuyến bay thành công.',
@@ -130,7 +121,5 @@ export class EditFlightComponent {
         }
       })
     }
-    
-    // console.log(this.)
   }
 }

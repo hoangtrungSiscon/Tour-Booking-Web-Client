@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,8 +12,13 @@ export class FlightApiService {
 
   constructor(private http:HttpClient) { }
 
-  getFlightList():Observable<any[]>{
-    return this.http.get<any>(this.flightAPIUrl+'/ThongTinChuyenBays');
+  getFlightList(MaChuyenBay: string, NoiXuatPhat: string, NoiDen: string, NgayXuatPhat: string):Observable<any[]>{
+    const params = new HttpParams()
+    .set('MaChuyenBay', MaChuyenBay)
+    .set('NoiXuatPhat', NoiXuatPhat)
+    .set('NoiDen', NoiDen)
+    .set('NgayXuatPhat', NgayXuatPhat);
+    return this.http.get<any>(this.flightAPIUrl+'/ThongTinChuyenBays', { params });
   }
 
   getMostBookedFlight(): Observable<any> {

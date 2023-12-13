@@ -15,7 +15,7 @@
             Trang chủ</a>
         </li>
         <li class="nav-item" style="color: white !important">
-          <a class="nav-link text-color"  routerLink="/booking-history">
+          <a class="nav-link text-color"  (click)="canAccess('/booking-history')">
             Lịch sử vé</a>
         </li>
         <li class="nav-item" style="color: white">
@@ -23,7 +23,7 @@
             Chuyến bay</a>
         </li>
         <li class="nav-item" style="color: white !important">
-          <a class="nav-link text-color"  routerLink="/admin-dashboard/admin-flight-management">
+          <a class="nav-link text-color"  (click)="canAccessAdmin('/admin-dashboard/admin-flight-management')">
             Admin</a>
         </li>
         <li class="nav-item dropdown ">
@@ -43,7 +43,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item " routerLink="/view-profile">Xem thông tin</a></li>
             <li><a class="dropdown-item" routerLink="/change-pass">Đổi mật khẩu</a></li>
-            <li><a class="dropdown-item" routerLink="/login">Đăng xuất</a></li>
+            <li><a class="dropdown-item" (click)="onLogout()">Đăng xuất</a></li>
           </ul>
         </li>
         

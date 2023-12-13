@@ -94,7 +94,7 @@ import { FlightApiService } from './shared/services/flight-api.service';
     MatMenuModule,
     MatFormFieldModule,
     MatStepperModule,
-    FormsModule, FormsModule, ReactiveFormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpClientModule,
 
   ],

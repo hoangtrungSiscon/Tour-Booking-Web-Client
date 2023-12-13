@@ -232,110 +232,238 @@
 <app-footer></app-footer>
 
  -->
- <app-header-home></app-header-home>
- <app-navbar></app-navbar>
- <div class="container my-5">
-     <h1 class="text-center my-2 color-2 fw-bold" style="margin-bottom: 30px !important">DANH SÁCH CHUYẾN BAY</h1>
-     <div class="row">
-         <div class="col-3">
-             <label for="inputText" class="form-label fs-4 color-2 fw-bold ms-5">Tìm mã chuyến bay</label>
-         </div>
-         <div class="col-7" style="margin-bottom: 10px;margin-top: -10px;height: fit-content;">
-             <input type="text" id="inputText" class="form-control form-control-search" placeholder="Nhập mã chuyến bay">
-         </div>
-         <div class="col-2">
-             <button type="submit" class="btn btn-primary mb-3 background-1 fw-bold btn-search"
-                 style="margin-bottom: 10px;margin-top: -10px;height: fit-content;border-radius: 10px; width: 120px;height: 40px;">Tìm
-                 kiếm</button>
-         </div>
-     </div>
-     <div class="row test">
-         <div class="col-3 test-1"
-             style="border:3px solid #146C94;border-radius:  15px;padding: 10px;height: fit-content;margin-right: 50px;margin-left: 10px;">
-             <form [formGroup]="form">
-                 <!-- Điểm xuất phát bắt đầu -->
-                 <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM XUẤT PHÁT</h2>
-                 <div
-                     style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
-                     <ng-container *ngFor="let place of fromPlace; let i = index">
-                         <input type="radio" class="btn-check" name="check1" [id]="'check1-' + i">
-                         <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" [for]="'check1-' + i"
-                             (click)="inputFromPlace(place)"> {{place}} </label>
-                     </ng-container>
-                 </div>
-                 <!-- Điểm xuất phát kết thúc -->
- 
-                 <!-- Điểm đến bắt đầu -->
-                 <h1 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM ĐẾN</h1>
-                 <div
-                     style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
-                     <ng-container *ngFor="let place of toPlace; let i = index">
-                         <input type="radio" class="btn-check" name="check2" [id]="'check2-' + i">
-                         <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" [for]="'check2-' + i"
-                             (click)="inputToPlace(place)"> {{place}} </label>
-                     </ng-container>
-                 </div>
-                 <!-- Điểm đến kết thúc -->
- 
-                 <!-- Ngày xuất phát bắt đầu -->
-                 <h2 class="color-2 ms-2 mt-2 fw-bold">NGÀY XUẤT PHÁT</h2>
-                 <div class="input-group mb-3 px-2">
-                     <input type="date" class="form-control" formControlName="startDate"
-                         aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                 </div>
-                 <!-- Ngày xuất phát kết thúc -->
-                 <ng-container *ngIf="textError != ''">
-                     <span style="color: red;">{{textError}} </span>
-                 </ng-container>
-                 <div class="text-center">
-                     <button type="button" class="btn btn-primary my-2 px-5 background-1" data-bs-toggle="tooltip"
-                         data-bs-placement="left" title="Tooltip on left" (click)="onSubmit()">
-                         Lọc
-                     </button>
-                 </div>
-             </form>
-         </div>
-         <div class="col-8 test-2 border-color-2 px-4 py-3" style="padding:10px;border-radius: 15px;">
-             <h1 class="color-2 fw-bold">VÉ</h1>
-             <div class="ticket-items">
-                 <ng-container *ngFor="let ticket of tickets">
-                     <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"
-                         style="border-radius: 15px;">
-                         <div class="container">
-                             <div class="row ticket-info">
-                                 <div class="col-5">
-                                     <p class="color-1 dt fw-bold">NƠI ĐI - NƠI ĐẾN</p>
-                                     <h1 class="color-2 fw-bold">{{ticket?.noiXuatPhat}} - {{ticket?.noiDen}} </h1>
-                                     <div class="chair-info">
-                                         <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                                         <p class="color-1">SL CÒN: <span class="color-2"> {{ticket?.soLuongVeBsn}}
-                                             </span></p>
-                                     </div>
-                                     <p class="color-1">NGÀY/GIỜ: <span class="color-2"> {{ticket?.ngayXuatPhat | date:
-                                             'dd/MM/yyyy'}} /
-                                             {{ticket?.gioBay}} </span></p>
-                                 </div>
-                                 <div class="col-5 background-white color-1 fw-bold ">
-                                     <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                                     <p class="color-2 fw-bold">MÃ CHUYẾN BAY:<span class="color-1">
-                                             {{ticket.maChuyenBay}}</span></p>
-                                     <div class="chair-info">
-                                         <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                                         <p class="color-1">SL CÒN: <span class="color-2"> {{ticket?.soLuongVeEco}}
-                                             </span></p>
-                                     </div>
-                                     <p class="color-1">GIÁ VÉ: <span class="color-2">{{ticket.donGia}}</span></p>
-                                 </div>
-                                 <div class="col-2 background-white color-1 fw-bold ">
-                                     <a routerLink="/booking-ticket-detail"
-                                         class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </ng-container>
-             </div>
-         </div>
-     </div>
- </div>
- <app-footer></app-footer>
+<app-header-home></app-header-home>
+<app-navbar></app-navbar>
+<div class="container my-5">
+  <h1
+    class="text-center my-2 color-2 fw-bold"
+    style="margin-bottom: 30px !important"
+  >
+    DANH SÁCH CHUYẾN BAY
+  </h1>
+  <div class="row">
+    <div class="col-3">
+      <label for="inputText" class="form-label fs-4 color-2 fw-bold ms-5"
+        >Tìm mã chuyến bay</label
+      >
+    </div>
+    <div
+      class="col-7"
+      style="margin-bottom: 10px; margin-top: -10px; height: fit-content"
+    >
+      <input
+        type="text"
+        id="inputText"
+        class="form-control form-control-search"
+        placeholder="Nhập mã chuyến bay"
+      />
+    </div>
+    <div class="col-2">
+      <button
+        type="submit"
+        class="btn btn-primary mb-3 background-1 fw-bold btn-search"
+        style="
+          margin-bottom: 10px;
+          margin-top: -10px;
+          height: fit-content;
+          border-radius: 10px;
+          width: 120px;
+          height: 40px;
+        "
+      >
+        Tìm kiếm
+      </button>
+    </div>
+  </div>
+  <div class="row test">
+    <div
+      class="col-3 test-1"
+      style="
+        border: 3px solid #146c94;
+        border-radius: 15px;
+        padding: 10px;
+        height: fit-content;
+        margin-right: 50px;
+        margin-left: 10px;
+      "
+    >
+      <form [formGroup]="form">
+        <!-- Điểm xuất phát bắt đầu -->
+        <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 20px"
+        class="ms-2 mt-2" (click)="reloadValue()">
+          <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
+        </button>
+        <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px">
+          ĐIỂM XUẤT PHÁT
+        </h2>
+        
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+          "
+        >
+          <ng-container *ngFor="let place of fromPlace; let i = index">
+            <input
+              type="radio"
+              class="btn-check"
+              name="check1"
+              [id]="'check1-' + i"
+            />
+            <label
+              class="btn btn-primary background-white color-1 fw-bold w-40 m-2"
+              [for]="'check1-' + i"
+              (click)="inputFromPlace(place)"
+            >
+              {{ place }}
+            </label>
+          </ng-container>
+        </div>
+        <!-- Điểm xuất phát kết thúc -->
+
+        <!-- Điểm đến bắt đầu -->
+        <h1 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px">
+          ĐIỂM ĐẾN
+        </h1>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+          "
+        >
+          <ng-container *ngFor="let place of toPlace; let i = index">
+            <input
+              type="radio"
+              class="btn-check"
+              name="check2"
+              [id]="'check2-' + i"
+            />
+            <label
+              class="btn btn-primary background-white color-1 fw-bold w-40 m-2"
+              [for]="'check2-' + i"
+              (click)="inputToPlace(place)"
+            >
+              {{ place }}
+            </label>
+          </ng-container>
+        </div>
+        <!-- Điểm đến kết thúc -->
+
+        <!-- Ngày xuất phát bắt đầu -->
+        <h2 class="color-2 ms-2 mt-2 fw-bold">NGÀY XUẤT PHÁT</h2>
+        <div class="input-group mb-3 px-2">
+          <input
+            type="date"
+            class="form-control"
+            formControlName="startDate"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+            [(ngModel)]="inputStartDate"
+          />
+        </div>
+        <!-- Ngày xuất phát kết thúc -->
+        <ng-container *ngIf="textError != ''">
+          <span style="color: red">{{ textError }} </span>
+        </ng-container>
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-primary my-2 px-5 background-1"
+            data-bs-toggle="tooltip"
+            data-bs-placement="left"
+            title="Tooltip on left"
+            (click)="onSubmit()"
+          >
+            Lọc
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      class="col-8 test-2 border-color-2 px-4 py-3"
+      style="padding: 10px; border-radius: 15px"
+    >
+      <h1 class="color-2 fw-bold">VÉ</h1>
+      <div class="ticket-items">
+        <ng-container *ngFor="let ticket of tickets">
+          <div
+            class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"
+            style="border-radius: 15px"
+          >
+            <div class="container">
+              <div class="row ticket-info">
+                <div class="col-5">
+                  <p class="color-1 dt fw-bold">NƠI ĐI - NƠI ĐẾN</p>
+                  <h1 class="color-2 fw-bold">
+                    {{ ticket?.noiXuatPhat }} - {{ ticket?.noiDen }}
+                  </h1>
+                  <div class="chair-info">
+                    <p class="color-1">
+                      LOẠI GHẾ: <span class="color-2">BSN</span>
+                    </p>
+                    <p class="color-1">
+                      SL CÒN:
+                      <span class="color-2"> {{ ticket?.soLuongVeBsn }} </span>
+                    </p>
+                  </div>
+                  <p class="color-1">
+                    NGÀY/GIỜ:
+                    <span class="color-2">
+                      {{ ticket?.ngayXuatPhat | date : "dd/MM/yyyy" }} /
+                      {{ ticket?.gioBay }}
+                    </span>
+                  </p>
+                </div>
+                <div class="col-5 background-white color-1 fw-bold">
+                  <p class="color-1">
+                    MÁY BAY: <span class="color-2">VNAIRLINE</span>
+                  </p>
+                  <p class="color-2 fw-bold">
+                    MÃ CHUYẾN BAY:<span class="color-1">
+                      {{ ticket.maChuyenBay }}</span
+                    >
+                  </p>
+                  <div class="chair-info">
+                    <p class="color-1">
+                      LOẠI GHẾ: <span class="color-2">ECO</span>
+                    </p>
+                    <p class="color-1">
+                      SL CÒN:
+                      <span class="color-2"> {{ ticket?.soLuongVeEco }} </span>
+                    </p>
+                  </div>
+                  <p class="color-1">
+                    GIÁ VÉ: <span class="color-2">{{ ticket.donGia }}</span>
+                  </p>
+                </div>
+                <div class="col-2 background-white color-1 fw-bold">
+                  <span
+                    (click)="checkLogin(ticket.maChuyenBay)"
+                    class="btn btn-primary background-1 fw-bold px-4"
+                    *ngIf="
+                      ticket?.soLuongVeEco > 0 || ticket?.soLuongVeBsn > 0;
+                      else soldOut
+                    "
+                    >ĐẶT VÉ</span
+                  >
+                  <ng-template #soldOut
+                    ><span class="btn btn-primary background-1 fw-bold px-4"
+                      >HẾT VÉ</span
+                    >
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

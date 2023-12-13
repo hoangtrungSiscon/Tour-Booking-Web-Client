@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import Swal from 'sweetalert2';
 import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-flight-management',
@@ -14,7 +15,6 @@ import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 export class AdminFlightManagementComponent {
   dataSource = new MatTableDataSource<FlightDetails>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  flightList: any[] = [];
   searchValue: string = '';
   departureLocation: string = '';
   arrivalLocation: string = '';
@@ -33,10 +33,10 @@ export class AdminFlightManagementComponent {
     'edit',
     'delete',
   ];
-  
 
 
-  deleteFlight(event: any, id: any): void {
+
+  deleteFlight(id: any): void {
     Swal.fire({
       title: 'Xóa thông tin chuyến bay này?',
       text: "Thông tin chuyến bay bị xóa không thể được khôi phục lại!",
@@ -55,7 +55,9 @@ export class AdminFlightManagementComponent {
               'Xóa thông tin chuyến bay thành công.',
               'success'
             ).then(() => {
-              window.location.reload();
+              this.service.getFlightList("", "", "", "").subscribe(data => {
+                this.dataSource.data = data;
+              })
             })
           },
           (error) => {
@@ -66,99 +68,57 @@ export class AdminFlightManagementComponent {
             );
           }
         );
-        
+
       }
     })
   }
-  search(event: any, searchValue: any) {
+  search(searchValue: any) {
     if (this.searchValue == '') {
       this.dataSource.data = [];
-      this.flightList = [];
       this.ngOnInit();
     }
     else {
-
-      this.flightList = [];
       this.dataSource.data = [];
-      this.service.getFlightList().subscribe(data => {
-        data.forEach(element => {
-          if (element.maChuyenBay.toLowerCase().includes(this.searchValue.toLowerCase())){
-            this.flightList.push(
-              element
-            )
-          }
-          
-        });
-        this.dataSource.data = this.flightList;
-
+      this.service.getFlightListById(this.searchValue).subscribe(data => {
+        this.dataSource.data = data;
       })
     }
   }
 
-  filter(event : any
-    ){
-    if (
-
-      this.departureLocation == '' &&
-      this.arrivalLocation == '' &&
-      this.departureDate == ''
-    ) {
-      this.dataSource.data = [];
-      this.flightList = [];
-      this.ngOnInit();
-    }
-    else {
-      this.flightList = [];
-
-      this.dataSource.data = [];
-
-      if (
-        this.departureLocation != '' &&
-        this.arrivalLocation != '' &&
-        this.departureDate != ''
-      ){
-        this.service.getFlightList().subscribe(data => {
-          data.forEach(element => {
-            if (
-              element.ngayXuatPhat.slice(0,10) == this.departureDate &&
-              element.noiXuatPhat == this.departureLocation &&
-              element.noiDen == this.arrivalLocation
-            
-            ){
-              this.flightList.push(
-                element
-              )
-            }
-            
-          });
-          this.dataSource.data = this.flightList;
-        })
-      }
-    }
-  }
-
-  constructor(private service: FlightApiService) {
-
-  }
-
-  ngOnInit() : void{
-
-    this.service.getFlightList().subscribe(data => {
-      data.forEach(element => {
-        this.flightList.push(
-          element
-        )
-      });
-
-      this.dataSource.data = this.flightList;
+  filter() {
+    this.dataSource.data = [];
+    console.log(this.arrivalLocation + ' ' + this.departureLocation + ' ' + this.departureDate + ' ' + this.searchValue);
+    this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
+      this.dataSource.data = data
     })
   }
 
-  
-   
-  ngAfterViewInit(){
+  constructor(private service: FlightApiService, private router: Router) {
+
+  }
+
+  ngOnInit(): void {
+
+    this.service.getFlightList("", "", "", "").subscribe(data => {
+      this.dataSource.data = data;
+    })
+  }
+
+  toEdit(flightId: string) {
+    this.router.navigate(['/admin-dashboard/edit-flight', flightId])
+  }
+
+  ngAfterViewInit() {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
-    }, 1000);
+    }, 0);
+  }
+  reloadValue() {
+    this.arrivalLocation = '';
+    this.departureLocation = '';
+    this.departureDate = '';
+    this.searchValue = '';
+
+    this.ngOnInit();
   }
 }

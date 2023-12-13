@@ -13,43 +13,54 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgetPassComponent } from './pages/forget-pass/forget-pass.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-import { ChangePassComponent} from './pages/change-pass/change-pass.component';
+import { ChangePassComponent } from './pages/change-pass/change-pass.component';
 import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 
-
-
 const routes: Routes = [
-  { path: 'admin-dashboard', children: [
-    { path: 'admin-flight-management', component: AdminFlightManagementComponent },
-    { path: 'admin-ticket-management', component: AdminTicketManagementComponent },
-    { path: 'edit-flight/:id', component: EditFlightComponent },
-    { path: 'add-flight', component: AddFlightComponent},
-    { path: 'guest-management', component: GuestManagementComponent},
-    { path: 'statist',component: StatisticalComponent},
-    { path: '', redirectTo: 'admin-flight-management', pathMatch: 'full' },
-    { path: 'guest-management/new-account',component: NewAccountComponent},
-  ],component: AdminDashboardComponent},
-  
-  { path: 'new-account',component: NewAccountComponent},
-  
-  { path: 'guest-management/new-account',component: NewAccountComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'forget-pass', component: ForgetPassComponent},
-  { path: 'sign-up', component: SignUpComponent},
-  { path: '', redirectTo: '/home' , pathMatch: 'full'},
-  { path: 'change-pass', component:ChangePassComponent},
-  { path: 'view-profile', component:ViewProfileComponent},
-  { path: 'booking-history', component:BookingHistoryComponent},
+  {
+    path: 'admin-dashboard',
+    children: [
+      {
+        path: 'admin-flight-management',
+        component: AdminFlightManagementComponent,
+      },
+      {
+        path: 'admin-ticket-management',
+        component: AdminTicketManagementComponent,
+      },
+      { path: 'edit-flight/:id', component: EditFlightComponent },
+      { path: 'add-flight', component: AddFlightComponent },
+      { path: 'guest-management', component: GuestManagementComponent },
+      { path: 'statist', component: StatisticalComponent },
+      { path: '', redirectTo: 'admin-flight-management', pathMatch: 'full' },
+      { path: 'guest-management/new-account', component: NewAccountComponent },
+    ],
+    component: AdminDashboardComponent,
+  },
+
+  { path: 'new-account', component: NewAccountComponent },
+
+  { path: 'guest-management/new-account', component: NewAccountComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forget-pass', component: ForgetPassComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'change-pass', component: ChangePassComponent },
+  { path: 'view-profile', component: ViewProfileComponent },
+  { path: 'booking-history', component: BookingHistoryComponent },
   { path: 'booking-ticket', component: BookingTicketComponent },
-  { path: 'booking-ticket-detail', component: BookingTicketDetailComponent },
+  {
+    path: 'booking-ticket-detail/:code',
+    component: BookingTicketDetailComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
