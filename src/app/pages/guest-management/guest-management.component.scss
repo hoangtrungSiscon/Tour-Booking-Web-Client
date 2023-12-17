@@ -131,9 +131,7 @@ button:hover {
 .mat-column-Sdt,
 .mat-column-Phai,
 .mat-column-GmailKh,
-// .mat-column-MaChuyenBay,
-// .mat-column-MaVe
-.mat-column-MaTaiKhoan{
+.mat-column-ChiTiet{
     color: black;
     text-align: center;
     border-bottom: 1px solid currentColor;
@@ -194,4 +192,21 @@ mat-paginator {
     justify-content: left;
     
 }
-
+td button {
+    background-color: #19A7CE;
+    border: none;
+    color: white;
+    width: 80px;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+td button:hover {
+    background-color: white;
+    border: 1px solid #19A7CE;
+    color: #19A7CE;
+    cursor: pointer;
+    width: 80px;
+    padding: 5px;
+    border-radius: 10px;
+}

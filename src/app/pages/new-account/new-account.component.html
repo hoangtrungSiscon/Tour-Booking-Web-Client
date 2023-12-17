@@ -1,54 +1,77 @@
-
 <div class="container">
-    
     <div class="page-content">
-        <h1 class="page-title">THÊM TÀI KHOẢN MỚI</h1>
-        <form class="row g-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
-            <h1 style="font-weight: bold;padding-bottom: 20px;"> Thông tin khách hàng mới</h1>
+        <h1 class="page-title">Tài khoản khách hàng</h1>
+        <form class="row g-3" [formGroup]="registerForm">
+            <h1 style="font-weight: bold;padding-bottom: 20px;"> Thông tin khách hàng </h1>
             <div class="col-md-6" style="margin-top: 10px;">
-                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tài Khoản</label>
-                <input type="text" class="form-control" id="inputTaiKhoan" style="padding-inline: 10px;height: 50px; border: 2px solid #146C94">
+                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tài
+                    Khoản</label>
+                <input type="text" class="form-control" id="inputTaiKhoan" *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].tenTaiKhoan }}"
+                    style="padding-inline: 10px;height: 50px; border: 2px solid #146C94">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
-                <label for="inputPassword" class="form-label" id="labelPassword" style="font-weight: bold;font-size: 20px;">
+                <label for="inputPassword" class="form-label" id="labelPassword"
+                    style="font-weight: bold;font-size: 20px;">
                     <div>Mật khẩu</div>
-                    
+
                     <!-- <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây"> -->
-                <div class="eye-icon" (click)="viewpass()">
-                    <mat-icon id="eye-icon" style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>   
-                    <div id="show" [textContent]="text"></div>      
-                </div>
-                
+                    <div class="eye-icon" (click)="viewpass()">
+                        <mat-icon id="eye-icon" style="color: #146C94;"
+                            fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>
+                        <div id="show" [textContent]="text"></div>
+                    </div>
+
                 </label>
-                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" placeholder="Nhập mật khẩu của bạn vào đây">
+                <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
+                    *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].matKhau }}"
+                    >
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputName" class="form-label" style="font-weight: bold;font-size: 20px;">Họ tên</label>
-                <input type="text" class="form-control" id="inputName" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
+                <input type="text" class="form-control" id="inputName" 
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
+                    *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].hoTenKh }}"
+                    >
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
-                <label for="inputPhoneNumber" class="form-label" style="font-weight: bold;font-size: 20px;">Số điện thoại</label>
-                <input type="tel" class="form-control" id="inputPhoneNumber" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
+                <label for="inputPhoneNumber" class="form-label" style="font-weight: bold;font-size: 20px;">Số điện
+                    thoại</label>
+                <input type="tel" class="form-control" id="inputPhoneNumber"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
+                    *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].sdt }}">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputGmail" class="form-label" style="font-weight: bold;font-size: 20px;">Gmail</label>
-                <input type="email" class="form-control" id="inputGmail" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
+                <input type="email" class="form-control" id="inputGmail"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
+                    *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].gmailKh }}">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputGender" class="form-label" style="font-weight: bold;font-size: 20px;">Giới tính</label>
-                <select class="form-select" aria-label="Default select example" id="inputGender" style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
+                <!-- <select class="form-select" aria-label="Default select example" id="inputGender"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94">
                     <option selected value="HoTen">Nam</option>
                     <option value="MaKH">Nữ</option>
-                </select>
+                </select> -->
+                <input type="email" class="form-control" id="inputGmail"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
+                    *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].phai }}">
             </div>
             <div class="buttons">
-                <button type="submit" class="btn btn-primary" style="height: 50px;" id="quay-lai" [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
-                <button type="submit" class="btn btn-primary" style="height: 50px;"
-                [routerLink]="['/admin-dashboard', 'guest-management']">
-                Thêm tài khoản</button>
+                <button type="submit" class="btn btn-primary" style="height: 50px;" id="quay-lai"
+                    [routerLink]="['/admin-dashboard', 'guest-management']">Quay lại</button>
+                <!-- <button type="submit" class="btn btn-primary" style="height: 50px;"
+                    [routerLink]="['/admin-dashboard', 'guest-management']">
+                    Thêm tài khoản</button> -->
             </div>
         </form>
-        
+
     </div>
 </div>
-
