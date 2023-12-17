@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { CookieService } from 'src/app/shared/services/cookie.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -19,12 +20,19 @@ export class ViewProfileComponent {
     private formBuilder:FormBuilder,
     private guestApiService:GuestApiService,
     private authService:AuthService,
-    private router :Router
+    private router :Router,
+    private cookieService:CookieService
   ){};
   isDisabled = true
   
   async ngOnInit(){
     this.form=this.createForm();
+    if (!this.authService.getToken()) {
+      this.router.navigate(['/login']);
+    }
+    console.log(this.authService.getToken());
+    this.cookieService.setCookie('access_token',this.authService.getToken());
+
     this.authService.getUserId().subscribe((id) => {
       if(id !=0 ){
         this.guestApiService.getGuestListById(id).subscribe((data)=>{

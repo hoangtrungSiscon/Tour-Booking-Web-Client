@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,12 @@ export class HomeComponent {
   public date : any = "";
   public departure : any = "";
   public destination : any = "";
-  constructor(private router: Router, private transferDataService: TransferDataService) {
+  constructor(private router: Router, private transferDataService: TransferDataService, private authService: AuthService) {
 
+  }
+  ngOnInit(): void {
+    // console.log(localStorage.getItem('token'));
+    console.log(localStorage.getItem('currentUser')?.split(' ')[0]);
   }
   searchFlight() {
     let data = {

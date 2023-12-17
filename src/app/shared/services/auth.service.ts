@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { User } from '../models/taiKhoan';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +21,23 @@ export class AuthService {
   public changePassword(request: any): Observable<any> {
     return this.http.post(`${this.url}/changePassword`, request);
   }
-
+  private userToken = '';
   public login(request: any): Observable<any> {
     return this.http.post(`${this.url}/login`, request, {
       responseType: 'text',
-    });
+    }).pipe(
+      // tap((data) => {
+      //   localStorage.setItem('token', data[0]);
+      // })
+    );
   }
+  getToken(): any {
+    return localStorage.getItem('token');
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+  }
+
 
   public register(request: any): Observable<any> {
     return this.http.post(`${this.url}/register`, request);
