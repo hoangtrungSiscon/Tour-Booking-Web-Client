@@ -5,6 +5,68 @@
     text-decoration: none;
     
 }
+#header-admin{
+    height: 60px;
+    background-color: #146C94;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.title-header-admin{
+    font-size:16px;
+    font-weight:bold;
+    color: #F6F1F1;
+}
+.div-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:row;
+}
+.hambuger-btn{
+    background-color: #146C94;
+}
+.div-padding{
+    padding-inline:50px;
+}
+.offcanvas{
+    width:100px;
+}
+
+.item-offcanvas {
+    text-decoration:none;
+    font-size:16px;
+    font-weight:bold;
+    color: #F6F1F1;
+}
+.div-a{
+    height:48px;
+
+}
+.div-text-center{
+    margin: auto;
+    padding:10px
+}
+.div-a:hover {
+        background-color: #19A7CE;
+        border-radius:5px;
+}
+.div-padding{
+    padding-inline:50px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+.item-offcanvas:hover {
+    color: #F6F1F1;
+}
 .menu-bar {
     /* width: 20%; */
     /* display: block; */

@@ -10,6 +10,10 @@ import { da } from 'date-fns/locale';
   styleUrls: ['./booking-history.component.scss']
 })
 export class BookingHistoryComponent {
+  
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
   public tickets: any[] = [];
   constructor(
     private tickethistoryapi:TicketHistoryApiService,
@@ -29,5 +33,6 @@ export class BookingHistoryComponent {
 
       }
     });
+
   }
 }
