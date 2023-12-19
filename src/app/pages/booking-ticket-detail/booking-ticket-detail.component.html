@@ -253,7 +253,7 @@
               <div class="row" style="margin-top: -4px">
                 <div
                   class="col-6 h-50px"
-                  *ngIf="flightInfo?.chuyenBay.soLuongVeBsn != 0"
+                  *ngIf="flightInfo?.chuyenBay.soLuongVeBsn > 0"
                 >
                   <input
                     type="radio"
@@ -272,7 +272,7 @@
                 </div>
                 <div
                   class="col-6 h-50px"
-                  *ngIf="flightInfo?.chuyenBay.soLuongVeEco != 0"
+                  *ngIf="flightInfo?.chuyenBay.soLuongVeEco > 0"
                 >
                   <input
                     type="radio"

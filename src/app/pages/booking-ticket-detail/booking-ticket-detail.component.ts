@@ -38,6 +38,7 @@ export class BookingTicketDetailComponent implements OnInit {
       .subscribe((flight: any) => {
         this.flightInfo = flight;
       });
+      console.log(this.chuyenBayService.getByCode(this.activatedRoute.snapshot.paramMap.get('code')))
   }
 
   createForm() {
@@ -46,7 +47,7 @@ export class BookingTicketDetailComponent implements OnInit {
       maChuyenBay: [''],
       maTaiKhoan: [0],
       tenKh: [''],
-      soLuong: [0, Validators.required],
+      soLuong: [0, [Validators.required, Validators.max(20)]],
       gmailKh: [''],
       tongGia: [0],
       sdt: [''],
@@ -74,8 +75,8 @@ export class BookingTicketDetailComponent implements OnInit {
       .get('maChuyenBay')
       .setValue(this.flightInfo?.chuyenBay.maChuyenBay);
     console.log(this.form.value);
-    this.chiTietVeService.create(this.form.value).subscribe((data) => {
-      if (data) {
+    this.chiTietVeService.create(this.form.value).subscribe(
+      () => {
         Swal.fire(
           'Bạn đã đặt vé thành công',
           'Chúc bạn có một chuyến đi thật tuyệt vời, rất hân hạnh được phục vụ quý khách',
@@ -83,9 +84,10 @@ export class BookingTicketDetailComponent implements OnInit {
         ).then(() => {
           this.router.navigate(['/booking-ticket']);
         });
-      } else {
-        Swal.fire('Đề nghị điền đủ dữ liệu', 'Thiếu dữ liệu', 'error');
+      },
+      (error) => {
+        Swal.fire('Lỗi', 'Đã xảy ra lỗi khi thực hiện đặt vé chuyến bay. Vui lòng thử lại.', 'error');
       }
-    });
+    );
   }
 }
