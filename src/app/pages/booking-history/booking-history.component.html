@@ -36,15 +36,66 @@
                     <legend>THÔNG TIN VÉ</legend>
                 </div>
                 <!-- Thong tin ve -->
-                <div class="row margin-center justify-content-center" >
+                <div class="row margin-center justify-content-center" *ngFor=" let ticket of tickets">
                     <!-- Tóm tắt vé -->
                     <div class="col-2 text-center cover" style="height: 213px;padding-top: 10px;">
                         <span class="demuc lighter">MÃ VÉ</span><br>
+                        <span class="detail harder">{{ ticket?.idTicket }}</span><br>
+                        <span class="demuc lighter">NGÀY ĐẶT</span><br>
+                        <span class="detail harder" style="font-size: 22px;">{{ ticket?.ngaydatve }}</span>
+                    </div>
+                    <!-- Chi tiết vé -->
+                    <div class="col-9 cover margin-left mb-3 mx-3" >
+                        <div class="container" style="padding-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="row ">
+                                        <div class="col-12 lighter">NOI DI - NOI DEN</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 harder bigger">{{ ticket?.noidi }} - {{ ticket?.noiden }}</div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-6 lighter">
+                                            LOAI GHE: <span class="harder">{{ ticket?.loai }}</span>
+                                        </div>
+                                        <div class="col-md-6 lighter">
+                                            SO LUONG DAT: <span class="harder">{{ ticket?.soluong }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 lighter">
+                                            NGAY/GIO: <span class="harder">{{ ticket?.ngaydi }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-12 lighter">
+                                            MÃ CHUYẾN: <span class="harder">{{ ticket?.machuyen }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 lighter">
+                                            GIÁ VÉ: <span class="harder">{{ ticket?.gia }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 lighter">
+                                            TÌNH TRẠNG: <span class="harder">{{ ticket?.tinhtrang }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-2 text-center cover" style="height: 213px;padding-top: 10px;">
+                        <span class="demuc lighter">MÃ VÉ</span><br>
                         <span class="detail harder">1111</span><br>
                         <span class="demuc lighter">NGÀY ĐẶT</span><br>
                         <span class="detail harder" style="font-size: 22px;">NGÀY 8 THÁNG 10 NĂM 2023</span>
                     </div>
-                    <!-- Chi tiết vé -->
+                    
                     <div class="col-9 cover margin-left mb-3 mx-3" >
                         <div class="container" style="padding-bottom: 20px;">
                             <div class="row">
@@ -100,7 +151,7 @@
                         <span class="demuc lighter">NGÀY ĐẶT</span><br>
                         <span class="detail harder" style="font-size: 22px;">NGÀY 8 THÁNG 10 NĂM 2023</span>
                     </div>
-                    <!-- Chi tiết vé -->
+                    
                     <div class="col-9 cover margin-left mb-3 mx-3" >
                         <div class="container" style="padding-bottom: 20px;">
                             <div class="row">
@@ -149,63 +200,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-2 text-center cover" style="height: 213px;padding-top: 10px;">
-                        <span class="demuc lighter">MÃ VÉ</span><br>
-                        <span class="detail harder">1111</span><br>
-                        <span class="demuc lighter">NGÀY ĐẶT</span><br>
-                        <span class="detail harder" style="font-size: 22px;">NGÀY 8 THÁNG 10 NĂM 2023</span>
-                    </div>
-                    <!-- Chi tiết vé -->
-                    <div class="col-9 cover margin-left mb-3 mx-3" >
-                        <div class="container" style="padding-bottom: 20px;">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="row ">
-                                        <div class="col-12 lighter">NOI DI - NOI DEN</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 harder bigger">VIETNAM - THAILAND</div>
-                                    </div>
-                                    <div class="row ">
-                                        <div class="col-md-6 lighter">
-                                            LOAI GHE: <span class="harder">BSN</span>
-                                        </div>
-                                        <div class="col-md-6 lighter">
-                                            SO LUONG DAT: <span class="harder">1</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 lighter">
-                                            NGAY/GIO: <span class="harder">8 THÁNG 10 NĂM 2023</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="row">
-                                        <div class="col-12 lighter">
-                                            MÁY BAY: <span class="harder">VNAIRLINE</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 lighter">
-                                            MÃ CHUYẾN: <span class="harder">ALVN01</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 lighter">
-                                            GIÁ VÉ: <span class="harder">2.000.000</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 lighter">
-                                            TÌNH TRẠNG: <span class="harder">Chờ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center mt-4">
