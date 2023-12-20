@@ -4,6 +4,7 @@ import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
+import * as $ from 'jquery';
 export interface submitForm {
   fromPlace: string;
   toPlace: string;
@@ -15,6 +16,7 @@ export interface submitForm {
   styleUrls: ['./booking-ticket.component.scss'],
 })
 export class BookingTicketComponent {
+
   form: FormGroup | any;
   fromPlace: string[] = [
     'VIETNAM',
@@ -57,6 +59,13 @@ export class BookingTicketComponent {
     startDate: '',
   };
   ngOnInit() {
+    $(document).ready(function(){
+      $('#resetButton').click(function(){
+        $('.btn-check').prop('checked',false);
+        $('#inputstartdate').val(Date.now.toString())
+        
+      })
+    })
     if (this.data){
       this.SubmitForm.fromPlace = this.data.origin;
       this.SubmitForm.toPlace = this.data.destination;

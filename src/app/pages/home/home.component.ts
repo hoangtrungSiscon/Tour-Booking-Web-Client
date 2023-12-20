@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +14,7 @@ export class HomeComponent {
   constructor(private router: Router, private transferDataService: TransferDataService) {
 
   }
+
   searchFlight() {
     let data = {
       date: this.date,
