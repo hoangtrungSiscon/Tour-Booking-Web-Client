@@ -5,6 +5,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { ChiTietVeService } from 'src/app/shared/services/chiTietVe.service';
 import { ChiTietVe } from 'src/app/shared/models/chiTietVe';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 export interface TicketDetails {
   maCTV: number,
@@ -37,9 +38,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     'soLuong',
     'tongGia',
     'tinhTrang',
-    'approve',
-    'cancel', 
-    'delete'
+    'action'
   ];
   chiTietVes: TicketDetails[] = [];
   dataSource: any;
@@ -97,19 +96,28 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       TinhTrang: 'Đã duyệt',
       TongGia: element.tongGia,
     };
-    try{
-      this.chiTietVeService.update(request).subscribe();
-      alert("Duyệt thành công!");
-      this.dataSource.data = [];
-      this.chiTietVes = [];
-      this.getAllChiTietVe();
-    }
-    catch{
-      alert("Duyệt thất bại!");
-    }
+    this.chiTietVeService.update(request).subscribe(
+      () => {
+        Swal.fire(
+          'Duyệt thành công!',
+          'Đã duyệt vé thành công.',
+          'success'
+        ).then(() => {
+          this.dataSource.data = [];
+          this.chiTietVes = [];
+          this.getAllChiTietVe();
+        })
+      }, (error) => {
+        Swal.fire(
+          'Duyệt thất bại!',
+          'Duyệt vé không thành công.',
+          'error'
+        )
+      }
+    )
   }
 
-  onCancle(element: TicketDetails){
+  onCancel(element: TicketDetails){
     let request: ChiTietVe = {
       MaCTV: element.maCTV,
       MaVe: element.maVe,
@@ -122,32 +130,48 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       
       TinhTrang: 'Đã hủy',
       TongGia: element.tongGia,
-    };try{
-      this.chiTietVeService.update(request).subscribe();
-      alert("Hủy thành công!");
-      this.dataSource.data = [];
-      this.chiTietVes = [];
-      this.getAllChiTietVe();
-    }
-    catch{
-      alert("Hủy thất bại!");
-    }
+    };
+    this.chiTietVeService.update(request).subscribe(
+      () => {
+        Swal.fire(
+          'Hủy thành công!',
+          'Đã hủy vé thành công.',
+          'success'
+        ).then(() => {
+          this.dataSource.data = [];
+          this.chiTietVes = [];
+          this.getAllChiTietVe();
+        })
+      }, (error) => {
+        Swal.fire(
+          'Hủy thất bại!',
+          'Hủy vé không thành công.',
+          'error'
+        )
+      }
+    )
   }
 
   onDelete(elementId: number){
-    try{
-      this.chiTietVeService.delete(elementId).subscribe(()=>{
-        this.getAllChiTietVe();
-      });
-      alert("Xóa vé thành công!");
-      this.dataSource.data = [];
-      this.chiTietVes = [];
-      this.getAllChiTietVe();
-    }
-    catch{
-      alert("Xóa vé thất bại!");
-    }
-    
+    this.chiTietVeService.delete(elementId).subscribe(
+      () => {
+        Swal.fire(
+          'Xóa thành công!',
+          'Đã xóa vé thành công.',
+          'success'
+        ).then(() => {
+          this.dataSource.data = [];
+          this.chiTietVes = [];
+          this.getAllChiTietVe();
+        })
+      }, (error) => {
+        Swal.fire(
+          'Xóa thất bại!',
+          'Xóa vé không thành công.',
+          'error'
+        )
+      }
+    )
   }
 
 }

@@ -116,20 +116,28 @@
         <th mat-header-cell *matHeaderCellDef> Tình trạng </th>
         <td mat-cell *matCellDef="let element"> {{element.tinhTrang}} </td>
       </ng-container>
-      <ng-container matColumnDef="approve">
+      <!-- <ng-container matColumnDef="approve">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="onApprove(element)">Duyệt</button> </td>
+        <td mat-cell *matCellDef="let element"> <button *ngIf="element.tinhTrang == 'Đang xác nhận'"(click)="onApprove(element)">Duyệt</button> </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="button-list" style="white-space: nowrap;">
+            <button style="margin: 5px;" *ngIf="element.tinhTrang == 'Đang xác nhận'"(click)="onApprove(element)">Duyệt</button>
+            <button style="margin: 5px;" *ngIf="element.tinhTrang == 'Đang xác nhận'" (click)="onCancel(element)">Hủy</button>
+            <button style="margin: 5px;" *ngIf="element.tinhTrang != 'Đang xác nhận'" (click)="onDelete(element.maVe)">Xóa</button>
+            
+          </div>
+          
+        </td>
       </ng-container>
 
-      <ng-container matColumnDef="cancel">
+      <!-- <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="onCancle(element)">Hủy</button> </td>
-      </ng-container>
-
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="onDelete(element.maVe)">Xóa</button> </td>
-      </ng-container>
+        <td mat-cell *matCellDef="let element"> <button *ngIf="element.tinhTrang != 'Đang xác nhận'" (click)="onDelete(element.maVe)">Xóa</button> </td>
+      </ng-container> -->
 
 
 

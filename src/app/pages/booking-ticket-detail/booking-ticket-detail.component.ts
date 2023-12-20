@@ -23,9 +23,8 @@ export class BookingTicketDetailComponent implements OnInit {
     private chiTietVeService: ChiTietVeService,
     private router: Router,
     private authService: AuthService,
-    private khachHangService: KhachHangService
+    private khachHangService: KhachHangService,
   ) {}
-
   ngOnInit() {
     this.form = this.createForm();
     this.authService.getUserId().subscribe((data) => {
@@ -38,7 +37,6 @@ export class BookingTicketDetailComponent implements OnInit {
       .subscribe((flight: any) => {
         this.flightInfo = flight;
       });
-      console.log(this.chuyenBayService.getByCode(this.activatedRoute.snapshot.paramMap.get('code')))
   }
 
   createForm() {
@@ -47,7 +45,7 @@ export class BookingTicketDetailComponent implements OnInit {
       maChuyenBay: [''],
       maTaiKhoan: [0],
       tenKh: [''],
-      soLuong: [0, [Validators.required, Validators.max(20)]],
+      soLuong: [0, [Validators.required, Validators.pattern(/^\d+$/)]],
       gmailKh: [''],
       tongGia: [0],
       sdt: [''],
@@ -79,14 +77,21 @@ export class BookingTicketDetailComponent implements OnInit {
       () => {
         Swal.fire(
           'Bạn đã đặt vé thành công',
-          'Chúc bạn có một chuyến đi thật tuyệt vời, rất hân hạnh được phục vụ quý khách',
+          'Chúng tôi rất hân hạnh được phục vụ quý khách và chúc quý khách có một chuyến đi thật tuyệt vời.',
           'success'
         ).then(() => {
           this.router.navigate(['/booking-ticket']);
         });
       },
       (error) => {
-        Swal.fire('Lỗi', 'Đã xảy ra lỗi khi thực hiện đặt vé chuyến bay. Vui lòng thử lại.', 'error');
+
+        if (this.form.get('loaiVe').value == "BSN"){
+          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế hạng thương gia nhiều hơn so với số lượng ghế hạng thương gia hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
+        }
+        else {
+          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế hạng phổ thông nhiều hơn so với số lượng ghế hạng phổ thông hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
+        }
+        
       }
     );
   }

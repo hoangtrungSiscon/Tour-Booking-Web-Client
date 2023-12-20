@@ -84,11 +84,6 @@ export class BookingTicketComponent {
   inputFromPlace(place: string) {
     this.form.get('fromPlace').setValue(place);
     this.SubmitForm.fromPlace = place;
-    // if (this.selectedFromPlace === place) {
-    //   this.selectedFromPlace = null; // Deselect nếu đã chọn
-    // } else {
-    //   this.selectedFromPlace = place; // Chọn nếu chưa được chọn
-    // }
   }
   inputToPlace(place: string) {
     this.form.get('toPlace').setValue(place);
@@ -103,7 +98,7 @@ export class BookingTicketComponent {
       .subscribe((data) => (this.tickets = data));
   }
 
-  checkLogin(ma: string) {
+  checkLogin(ma: string, bsn: number, eco: number) {
     if (this.cookieService.getCookie('access_token')) {
       this.router.navigate([`/booking-ticket-detail/${ma}`]);
     } else {

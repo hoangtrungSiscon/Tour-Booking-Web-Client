@@ -1,237 +1,3 @@
-<!-- 
-<app-header-home></app-header-home>
-<app-navbar></app-navbar>
-  <div class="container my-5" >
-    <h1 class="text-center my-2 color-2 fw-bold">CHUYẾN BAY</h1>
-    <div class="row">
-      <div class="col-3">
-        <label for="inputText" class="form-label fs-4 color-2 fw-bold ms-5">Tìm mã chuyến bay</label>
-      </div>
-      <div class="col-7">
-        <input type="text" id="inputText" class="form-control form-control-search" placeholder="Nhập mã chuyến bay">
-      </div>
-      <div class="col-2">
-        <button type="submit" class="btn btn-primary mb-3 background-1 fw-bold btn-search">Tìm kiếm</button>
-      </div>
-    </div>
-    <div class="row test">
-      <div class="col-3 test-1" style="border:3px solid #146C94;border-radius:  15px;padding: 10px;height: fit-content;margin-right: 50px;margin-left: 10px;">
-        <form>
-        <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM XUẤT PHÁT</h2>
-        <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
-          <input type="radio" class="btn-check" name="check1" id="check-1" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-1">Thanh Hóa</label>
-          <input type="radio" class="btn-check" name="check1" id="check-2" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-2">Hải Phòng</label>
-          <input type="radio" class="btn-check" name="check1" id="check-3" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-3">TP.HCM</label>
-          <input type="radio" class="btn-check" name="check1" id="check-4" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-4">Hà Nội</label>
-          <input type="radio" class="btn-check" name="check1" id="check-5" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-5">Đà Nẵng</label>
-          <input type="radio" class="btn-check" name="check1" id="check-6" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-6">Cần Thơ</label>
-          <input type="radio" class="btn-check" name="check1" id="check-7" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-7">Quảng Nam</label>
-          <input type="radio" class="btn-check" name="check1" id="check-7" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-7">Quảng Nam</label>
-        </div>
-        <h1 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px;">ĐIỂM ĐẾN</h1>
-
-        <div style="display: flex;justify-content: center;align-items: center;flex-direction: row;flex-wrap: wrap;">
-          <input type="radio" class="btn-check" name="check2" id="check-8" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-8">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-9" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-9">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-10" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-10">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-11" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-11">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-12" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-12">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-13" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-13">BSN</label>
-          <input type="radio" class="btn-check" name="check2" id="check-14" autocomplete="off" checked>
-          <label class="btn btn-primary background-white color-1 fw-bold w-40 m-2" for="check-14">BSN</label>
-
-        </div>
-        <h2 class="color-2 ms-2 mt-2 fw-bold">Ngày xuất phát</h2>
-        <div class="input-group mb-3 px-2">
-          <input type="datetime-local" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-default">
-        </div>
-
-        <div class="text-center">
-          <button type="button" class="btn btn-primary my-2 px-5 background-1" data-bs-toggle="tooltip" data-bs-placement="left"
-            title="Tooltip on left">
-            Lọc
-          </button>
-        </div>
-      </form>
-      </div>
-      <div class="col-8 test-2 border-color-2 px-4 py-3" style="padding:10px;border-radius: 15px;">
-        <h1 class="color-2 fw-bold">VÉ</h1>
-        <div class="ticket-items">
-          <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2" style="border-radius: 15px;">
-            <div class="container">
-              <div class="row ticket-info">
-                <div class="col-5">
-                  <p class="color-1 dt fw-bold">NƠI ĐI - NƠI ĐẾN</p>
-                  <h1 class="color-2 fw-bold">VIETNAM - THAILAND</h1>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                    <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
-                  </div>
-                  <p class="color-1">NGÀY/GIỜ: <span class="color-2">28 THÁNG 9 NĂM 2023</span></p>
-                </div>
-                <div class="col-5 background-white color-1 fw-bold ">
-                  <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                  <p class="color-2 fw-bold">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                    <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
-                  </div>
-                  <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
-                </div>
-                <div class="col-2 background-white color-1 fw-bold ">
-                  <a routerLink="/booking-ticket-detail" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2" style="border-radius: 15px;">
-            <div class="container">
-              <div class="row ticket-info">
-                <div class="col-5">
-                  <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                  <h1 class="color-2 fw-bold">VIETNAM - THAILAND</h1>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                    <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
-                  </div>
-                  <p class="color-1">NGÀY/GIỜ: <span class="color-2">28 THÁNG 9 NĂM 2023</span></p>
-                </div>
-                <div class="col-5 background-white color-1 fw-bold ">
-                  <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                  <p class="color-2">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                    <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
-                  </div>
-                  <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
-                </div>
-                <div class="col-2 background-white color-1 fw-bold ">
-                  <a routerLink="/booking-ticket-detail" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"  style="border-radius: 15px;">
-            <div class="container">
-              <div class="row ticket-info">
-                <div class="col-5">
-                  <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                  <h1 class="color-2 fw-bold">VIETNAM - THAILAND</h1>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                    <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
-                  </div>
-                  <p class="color-1">NGÀY/GIỜ: <span class="color-2">28 THÁNG 9 NĂM 2023</span></p>
-                </div>
-                <div class="col-5 background-white color-1 fw-bold ">
-                  <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                  <p class="color-2">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                    <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
-                  </div>
-                  <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
-                </div>
-                <div class="col-2 background-white color-1 fw-bold ">
-                  <a routerLink="/booking-ticket-detail" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"  style="border-radius: 15px;">
-            <div class="container">
-              <div class="row ticket-info">
-                <div class="col-5">
-                  <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                  <h1 class="color-2 fw-bold">VIETNAM - THAILAND</h1>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                    <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
-                  </div>
-                  <p class="color-1">NGÀY/GIỜ: <span class="color-2">28 THÁNG 9 NĂM 2023</span></p>
-                </div>
-                <div class="col-5 background-white color-1 fw-bold ">
-                  <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                  <p class="color-2">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                    <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
-                  </div>
-                  <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
-                </div>
-                <div class="col-2 background-white color-1 fw-bold ">
-                  <a routerLink="/booking-ticket-detail" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="ticket background-white color-1 fw-bold border-color-2 py-3 px-2"  style="border-radius: 15px;">
-            <div class="container">
-              <div class="row ticket-info">
-                <div class="col-5">
-                  <p class="color-1 dt">NƠI ĐI - NƠI ĐẾN</p>
-                  <h1 class="color-2 fw-bold">VIETNAM - THAILAND</h1>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">BSN</span> </p>
-                    <p class="color-1">SL CÒN: <span class="color-2">10</span></p>
-                  </div>
-                  <p class="color-1">NGÀY/GIỜ: <span class="color-2">28 THÁNG 9 NĂM 2023</span></p>
-                </div>
-                <div class="col-5 background-white color-1 fw-bold ">
-                  <p class="color-1">MÁY BAY: <span class="color-2">VNAIRLINE</span></p>
-                  <p class="color-2">MÃ CHUYẾN BAY:<span class="color-1"> ALVN01</span></p>
-                  <div class="chair-info">
-                    <p class="color-1">LOẠI GHẾ: <span class="color-2">ECO</span></p>
-                    <p class="color-1">SL CÒN: <span class="color-2">20</span></p>
-                  </div>
-                  <p class="color-1">GIÁ VÉ: <span class="color-2">2.000.000</span></p>
-                </div>
-                <div class="col-2 background-white color-1 fw-bold ">
-                  <a routerLink="/booking-ticket-detail" class="btn btn-primary background-1 fw-bold px-4">ĐẶT VÉ</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center mt-4">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-<app-footer></app-footer>
-
- -->
 <app-header-home></app-header-home>
 <app-navbar></app-navbar>
 <div class="container my-5">
@@ -289,10 +55,7 @@
     >
       <form [formGroup]="form">
         <!-- Điểm xuất phát bắt đầu -->
-        <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 20px"
-        class="ms-2 mt-2" (click)="reloadValue()">
-          <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
-        </button>
+        
         <h2 class="color-2 ms-2 mt-2 fw-bold" style="font-size: 20px">
           ĐIỂM XUẤT PHÁT
         </h2>
@@ -382,6 +145,12 @@
           >
             Lọc
           </button>
+          <button id="resetButton" style="width:40px;height:40px;background-color:#146C94;border:2px solid #146C94; border-radius:5px; margin: 20px"
+        class="ms-2 mt-2" 
+        (click)="reloadValue()"
+        >
+          <img src="assets/Icon/refresh-icon.png" alt="Reset" style="width:20px;height:20px"/>
+        </button>
         </div>
       </form>
     </div>
@@ -409,7 +178,7 @@
                     </p>
                     <p class="color-1">
                       SL CÒN:
-                      <span class="color-2"> {{ ticket?.soLuongVeBsn }} </span>
+                      <span class="color-2"> {{ ticket.soLuongVeBsn }} </span>
                     </p>
                   </div>
                   <p class="color-1">
@@ -422,7 +191,7 @@
                 </div>
                 <div class="col-5 background-white color-1 fw-bold">
                   <p class="color-1">
-                    MÁY BAY: <span class="color-2">VNAIRLINE</span>
+                    MÁY BAY: <span class="color-2">{{ticket.tenMayBay}}</span>
                   </p>
                   <p class="color-2 fw-bold">
                     MÃ CHUYẾN BAY:<span class="color-1">
@@ -435,7 +204,7 @@
                     </p>
                     <p class="color-1">
                       SL CÒN:
-                      <span class="color-2"> {{ ticket?.soLuongVeEco }} </span>
+                      <span class="color-2"> {{ ticket.soLuongVeEco }} </span>
                     </p>
                   </div>
                   <p class="color-1">
@@ -444,7 +213,7 @@
                 </div>
                 <div class="col-2 background-white color-1 fw-bold">
                   <span
-                    (click)="checkLogin(ticket.maChuyenBay)"
+                    (click)="checkLogin(ticket.maChuyenBay, ticket.soLuongVeBsn, ticket.soLuongVeEco)"
                     class="btn btn-primary background-1 fw-bold px-4"
                     *ngIf="
                       ticket?.soLuongVeEco > 0 || ticket?.soLuongVeBsn > 0;
