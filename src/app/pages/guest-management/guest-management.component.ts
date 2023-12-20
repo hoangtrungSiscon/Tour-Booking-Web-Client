@@ -57,24 +57,31 @@ export class GuestManagementComponent {
   }
 
   onSearch() {
-
-    // Filter dữ liệu theo giá trị tìm kiếm
+    const searchValue = (document.getElementById('search') as HTMLInputElement).value;
+    const selectedField = (document.getElementById('select') as HTMLSelectElement).value;
+  
+    // Check if searchValue is empty, if so, return all data
+    if (!searchValue.trim()) {
+      this.dataSource.data = this.GuestList;
+      return;
+    }
+  
+    // Validate search value based on selected field
+    if (selectedField === 'HoTen' && !/^[a-zA-ZÀ-Ỹà-ỹ ]+$/.test(searchValue)) {
+      Swal.fire('Lỗi!', 'Tên không được chứa ký tự số!', 'error');
+      return;
+    }
+    if (selectedField === 'MaKH' && !/^[0-9]+$/.test(searchValue)) {
+      Swal.fire('Lỗi!', 'Mã khách hàng chỉ được chứa ký tự số!', 'error');
+      return;
+    }
+    if (selectedField === 'Sdt' && !/^[0-9]+$/.test(searchValue)) {
+      Swal.fire('Lỗi!', 'Số điện thoại chỉ được chứa ký tự số!', 'error');
+      return;
+    }
+  
+    // Filter data based on search criteria
     const filteredData = this.GuestList.filter(guest => {
-      const searchValue = (document.getElementById('search') as HTMLInputElement).value;
-      const selectedField = (document.getElementById('select') as HTMLSelectElement).value;
-
-      if (selectedField === 'HoTen' && !/^[a-zA-Z ]+$/.test(searchValue)) {
-        Swal.fire('Lỗi!', 'Tên không được chứa ký tự số!', 'error');
-        return;
-      }
-      if (selectedField === 'MaKH' && !/^[0-9]+$/.test(searchValue)) {
-        Swal.fire('Lỗi!', 'Mã khách hàng chỉ được chứa ký tự số!', 'error');
-        return;
-      }
-      if (selectedField === 'Sdt' && !/^[0-9]+$/.test(searchValue)) {
-        Swal.fire('Lỗi!', 'Số điện thoại chỉ được chứa ký tự số!', 'error');
-        return;
-      }            
       switch (selectedField) {
         case 'HoTen':
           return guest.hoTenKh.toLowerCase().includes(searchValue.toLowerCase());
@@ -88,14 +95,21 @@ export class GuestManagementComponent {
           return true;
       }
     });
-
-    // Cập nhật dataSource với dữ liệu đã lọc
+  
+    // Check if filteredData is empty and show a message
+    if (filteredData.length === 0) {
+      Swal.fire('Thông báo', 'Không có khách hàng trùng khớp thông tin cần tìm', 'info');
+    }
+  
+    // Update dataSource with the filtered data
     this.dataSource.data = filteredData;
   }
+  
+  
 
   ngOnInit(): void {
 
-    this.service.getGuestList().subscribe(data => {
+    this.service.getGuest().subscribe(data => {
       data.forEach(element => {
         this.GuestList.push(
           element

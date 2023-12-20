@@ -35,13 +35,16 @@ export class NewAccountComponent {
   }
   getGuestById(id: number) {
     this.guestApiService.getGuestListById(id).subscribe(guest => {
-      console.log(guest);
-      guest.forEach(element => {
-        this.GuestID.push(
-          element
-        )
-      });
+      if (Array.isArray(guest)) {
+        guest.forEach(element => {
+          this.GuestID.push(element);
+        });
+      } else {
+        // Handle non-array response (e.g., push the whole object)
+        this.GuestID.push(guest);
+      }
     });
+    
   }
   
   

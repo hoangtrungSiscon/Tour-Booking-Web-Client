@@ -4,53 +4,54 @@
         <form class="row g-3" [formGroup]="registerForm">
             <h1 style="font-weight: bold;padding-bottom: 20px;"> Thông tin khách hàng </h1>
             <div class="col-md-6" style="margin-top: 10px;">
-                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tài
+                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Tên tài
                     Khoản</label>
                 <input type="text" class="form-control" id="inputTaiKhoan" *ngIf="GuestID.length > 0" readonly
-                    value="{{ GuestID[0].tenTaiKhoan }}"
+                    value="{{ GuestID[0].TenTaiKhoan }}"
                     style="padding-inline: 10px;height: 50px; border: 2px solid #146C94">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
-                <label for="inputPassword" class="form-label" id="labelPassword"
+                <!-- <label for="inputPassword" class="form-label" id="labelPassword"
+                
                     style="font-weight: bold;font-size: 20px;">
                     <div>Mật khẩu</div>
 
-                    <!-- <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây"> -->
+                    <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
                     <div class="eye-icon" (click)="viewpass()">
                         <mat-icon id="eye-icon" style="color: #146C94;"
                             fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>
                         <div id="show" [textContent]="text"></div>
                     </div>
-
                 </label>
                 <input [type]="changetype?'password':'text'" class="form-control" id="inputPassword"
                     style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
                     *ngIf="GuestID.length > 0" readonly
                     value="{{ GuestID[0].matKhau }}"
-                    >
+                    > -->
+                <label for="inputTaiKhoan" class="form-label" style="font-weight: bold;font-size: 20px;">Mã tài
+                    Khoản</label>
+                <input type="text" class="form-control" id="inputTaiKhoan" *ngIf="GuestID.length > 0" readonly
+                    value="{{ GuestID[0].MaTaiKhoan }}"
+                    style="padding-inline: 10px;height: 50px; border: 2px solid #146C94">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputName" class="form-label" style="font-weight: bold;font-size: 20px;">Họ tên</label>
-                <input type="text" class="form-control" id="inputName" 
-                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
-                    *ngIf="GuestID.length > 0" readonly
-                    value="{{ GuestID[0].hoTenKh }}"
-                    >
+                <input type="text" class="form-control" id="inputName"
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" *ngIf="GuestID.length > 0"
+                    readonly value="{{ GuestID[0].HoTenKh }}">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputPhoneNumber" class="form-label" style="font-weight: bold;font-size: 20px;">Số điện
                     thoại</label>
                 <input type="tel" class="form-control" id="inputPhoneNumber"
-                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
-                    *ngIf="GuestID.length > 0" readonly
-                    value="{{ GuestID[0].sdt }}">
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" *ngIf="GuestID.length > 0"
+                    readonly value="{{ GuestID[0].Sdt }}">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputGmail" class="form-label" style="font-weight: bold;font-size: 20px;">Gmail</label>
                 <input type="email" class="form-control" id="inputGmail"
-                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
-                    *ngIf="GuestID.length > 0" readonly
-                    value="{{ GuestID[0].gmailKh }}">
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" *ngIf="GuestID.length > 0"
+                    readonly value="{{ GuestID[0].GmailKh }}">
             </div>
             <div class="col-md-6" style="margin-top: 10px;">
                 <label for="inputGender" class="form-label" style="font-weight: bold;font-size: 20px;">Giới tính</label>
@@ -60,9 +61,8 @@
                     <option value="MaKH">Nữ</option>
                 </select> -->
                 <input type="email" class="form-control" id="inputGmail"
-                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94"
-                    *ngIf="GuestID.length > 0" readonly
-                    value="{{ GuestID[0].phai }}">
+                    style="padding-inline: 10px; height: 50px;border: 2px solid #146C94" *ngIf="GuestID.length > 0"
+                    readonly value="{{ GuestID[0].Phai }}">
             </div>
             <div class="buttons">
                 <button type="submit" class="btn btn-primary" style="height: 50px;" id="quay-lai"
