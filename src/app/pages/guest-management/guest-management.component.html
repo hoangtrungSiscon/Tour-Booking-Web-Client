@@ -21,18 +21,17 @@
         style="padding-inline: 10px;border-radius: 10px;border: 2px solid #146C94;">
         <option selected value="HoTen">Họ Tên</option>
         <option value="MaKH">Mã Khách Hàng</option>
-        <option value="Phai">Phái</option>
         <option value="Gmail">Gmail</option>
-        <option value="MaChuyen">Mã chuyến</option>
-        <option value="MaVe">Mã vé</option>
+        <option value="Sdt">Số Điện Thoại</option>
       </select>
     </div>
     <div class="col-lg-5 col-md-6">
-      <input type="text" class="form-control" id="search"
+      <input type="text" class="form-control" id="search" [pattern]="getPattern()"
         style="padding-left: 15px;border-radius: 10px;border: 2px solid #146C94;">
     </div>
+
     <div class="col-lg-2 col-md-3" id="btnTimKiem">
-      <button type="button" class="btn btn-primary">Tìm kiếm</button>
+      <button type="button" class="btn btn-primary" (click)="onSearch()">Tìm kiếm</button>
     </div>
   </div>
 </div>
@@ -59,6 +58,16 @@
         <th mat-header-cell *matHeaderCellDef> Gmail </th>
         <td mat-cell *matCellDef="let element"> {{element.gmailKh}} </td>
       </ng-container>
+      <ng-container matColumnDef="ChiTiet" class="guest-table">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <a [routerLink]="['/admin-dashboard/guest-management/new-account', element.makhachhang]"
+            [state]="{ data: element }">
+            <button type="button" class="btn btn-info">Chi tiết</button>
+          </a>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
@@ -67,3 +76,4 @@
     <mat-paginator pageSize="20" hidePageSize="true" showFirstLastButtons>
     </mat-paginator>
   </div>
+</div>

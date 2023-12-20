@@ -43,7 +43,10 @@ const routes: Routes = [
 
   { path: 'new-account', component: NewAccountComponent },
 
-  { path: 'guest-management/new-account', component: NewAccountComponent },
+  {
+    path: 'admin-dashboard/guest-management/new-account/:id',
+    component: NewAccountComponent,
+  },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forget-pass', component: ForgetPassComponent },
