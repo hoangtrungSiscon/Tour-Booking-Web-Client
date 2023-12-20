@@ -47,16 +47,22 @@ export class LoginComponent implements OnInit {
         if (data && data != 'false') {
           let list: string[] = data.split(' ');
           let token: string = list[1];
+          localStorage.setItem('token', token);
+          // this.authService.setToken(token);
           let maTaiKhoan = Number.parseInt(list[0]);
           let vaiTro = Number.parseInt(list[2]);
+          JSON.stringify(data);
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          let currentUser = localStorage.getItem('currentUser')?.toString()[0];
+          console.log(currentUser);
           this.cookieService.setCookie('access_token', token);
           this.authService.setUserId(maTaiKhoan);
-          console.log(data);
+          // console.log(data);
           this.authService.setVaiTro(vaiTro);
           if (vaiTro == 1) {
             this.router.navigate(['/home']);
           } else {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/admin-dashboard']);
           }
         } else {
           Swal.fire('Đăng nhập không thành công!', 'Tên tài khoản hoặc mật khẩu không chính xác. Xin vui lòng thử lại', 'error');

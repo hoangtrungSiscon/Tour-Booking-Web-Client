@@ -52,6 +52,7 @@ export class NavbarComponent {
   onLogout(){
     this.cookieService.deleteCookie('access_token');
     this.router.navigate(['/login']);
+    localStorage.removeItem('token');
   }
 
   // onLogin(){
