@@ -12,9 +12,12 @@ import { map } from 'rxjs/operators';
 })
 export class NavbarComponent {
   form: FormGroup | any;
+  isLoggedIn: boolean = false
   constructor(private router: Router, private cookieService: CookieService, private authService: AuthService) { }
   ngOnInit(): void {
-    
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true
+    }
   }
   goToPart(fragment:any){
     this.router.navigateByUrl('home#' + fragment)
@@ -50,9 +53,9 @@ export class NavbarComponent {
   }
 
   onLogout(){
+    this.authService.logout()
     this.cookieService.deleteCookie('access_token');
     this.router.navigate(['/login']);
-    localStorage.removeItem('token');
   }
 
   // onLogin(){

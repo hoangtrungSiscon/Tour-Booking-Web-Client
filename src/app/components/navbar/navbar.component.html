@@ -49,7 +49,7 @@
         
       </ul>
       <span class="example-spacer"></span>
-        <div class="" style=" margin-top: 5px;margin-bottom: 5px;">
+        <div class="" style=" margin-top: 5px;margin-bottom: 5px;" *ngIf="!isLoggedIn">
           <a class="btn-signUp" mat-fab extended routerLink="/sign-up">
             <mat-icon>person_add</mat-icon>
             Sign Up

@@ -41,18 +41,21 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    // const itemExists = localStorage.getItem('token') !== null ? true : false;
+    // console.log(itemExists);
+    console.log(this.authService.isLoggedIn())
     this.authService
       .login(this.form.value)
       .subscribe(async (data: string | any) => {
         if (data && data != 'false') {
           let list: string[] = data.split(' ');
           let token: string = list[1];
-          localStorage.setItem('token', token);
-          // this.authService.setToken(token);
+          
           let maTaiKhoan = Number.parseInt(list[0]);
           let vaiTro = Number.parseInt(list[2]);
-          JSON.stringify(data);
-          localStorage.setItem('currentUser', JSON.stringify(data));
+          this.authService.storeData(token, maTaiKhoan, vaiTro);
+
+
           let currentUser = localStorage.getItem('currentUser')?.toString()[0];
           console.log(currentUser);
           this.cookieService.setCookie('access_token', token);

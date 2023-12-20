@@ -34,8 +34,18 @@ export class AuthService {
   getToken(): any {
     return localStorage.getItem('token');
   }
+  storeData(token : any, mataikhoan : any, vaitro : any): void{
+    localStorage.setItem('token', token);
+    localStorage.setItem('mataikhoan', mataikhoan.toString())
+    localStorage.setItem('vaitro', vaitro.toString());
+  }
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('mataikhoan');
+    localStorage.removeItem('vaitro');
+  }
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 
 
