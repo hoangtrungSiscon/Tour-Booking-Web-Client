@@ -15,7 +15,7 @@ export class GuestApiService {
   }
   getGuest():Observable<any[]> {
     // return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
-    return this.http.get<any>(this.guestAPIUrl + '/KhachHangs');
+    return this.http.get<any>(this.guestAPIUrl + '/KhachHangs/GetThongTinKhachHang');
   }
   getGuestListById(id:number):Observable<any[]>{
     return this.http.get<any>(this.guestAPIUrl +`/ThongTinkhachhangs/${id}`);
