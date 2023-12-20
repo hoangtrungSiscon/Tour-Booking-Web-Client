@@ -1,17 +1,66 @@
-<div class="menu-bar">
-    <div class="logo">
-        <img src="assets/Icon/icons8-plane-material-rounded (1)/icons8-plane-48.png" alt="logo" class="logo-image">
-        <button class="homepage">
-            <p style="margin: 0;">FLIGHTDOT</p>
-            <p style="margin: 0;">ADMIN</p>
+<header id="header-admin" class="row div-center sticky-top">
+    <div class="col-1 div-center" >
+        <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+            <img src="assets/icons8-menu-48.png" alt="logo" height="36px" width="36px">
         </button>
         
+        <div style="width:400px;background-color:white !important;padding: 20px;" class="offcanvas offcanvas-start text-bg-dark" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" style="color:#146C94;font-weight:bold;font-size: 24px;" id="offcanvasWithBothOptionsLabel">FLIGHTDOT Management</h5>
+                <button style="height: 15px;" type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <button class="menu-button item-offcanvas" routerLink="/admin-dashboard/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
+                <button class="menu-button item-offcanvas" routerLink="/admin-dashboard/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
+                <button class="menu-button item-offcanvas" routerLink="/admin-dashboard/guest-management" routerLinkActive="active">Quản lý khách hàng</button>
+                <button class="menu-button item-offcanvas" routerLink="/admin-dashboard/statist" routerLinkActive="active">Thống kê</button>
+                <button class="menu-button item-offcanvas" (click)="onLogout()">LOG OUT</button>
+            </div>
+        </div>
+        
+        
+
+
     </div>
-    <div class="menu-button-list">
-        <button class="menu-button" routerLink="/admin-dashboard/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
-        <button class="menu-button" routerLink="/admin-dashboard/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
-        <button class="menu-button" routerLink="/admin-dashboard/guest-management" routerLinkActive="active">Quản lý khách hàng</button>
-        <button class="menu-button" routerLink="/admin-dashboard/statist" routerLinkActive="active">Thống kê</button>
-        <button class="menu-button" (click)="onLogout()">LOG OUT</button>
+    <div class="col-11 div-center" >
+        <img src="assets/Icon/icons8-plane-material-rounded (1)/icons8-plane-48.png" alt="logo" height="36px" width="36px" />
+        <span class="title-header-admin">FLIGHTDOT ADMIN</span>
     </div>
-</div>
+</header>
+
+
+
+
+
+
+<!-- <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+    <img src="assets/icons8-menu-48.png" alt="logo" height="36px" width="36px">
+</button>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <div class="offcanvas-title logo" id="offcanvasExampleLabel">
+            <img src="assets/Icon/icons8-plane-material-rounded (1)/icons8-plane-48.png" alt="logo" class="logo-image">
+            <button class="homepage">
+                <p style="margin: 0;">FLIGHTDOT</p>
+                <p style="margin: 0;">ADMIN</p>
+            </button>
+            
+        </div>
+      <h5 >Offcanvas</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      
+        <div class="menu-button-list">
+            <button class="menu-button" routerLink="/admin-dashboard/admin-flight-management" routerLinkActive="active">Quản lý chuyến bay</button>
+            <button class="menu-button" routerLink="/admin-dashboard/admin-ticket-management" routerLinkActive="active">Quản lý vé</button>
+            <button class="menu-button" routerLink="/admin-dashboard/guest-management" routerLinkActive="active">Quản lý khách hàng</button>
+            <button class="menu-button" routerLink="/admin-dashboard/statist" routerLinkActive="active">Thống kê</button>
+            <button class="menu-button" (click)="onLogout()">LOG OUT</button>
+        </div>
+      
+    </div>
+  </div>
+
+ -->
