@@ -106,6 +106,7 @@ export class ViewProfileComponent {
         cancelButtonText: 'Hủy'  
       }).then((result) => {
         if (result.isConfirmed) {
+          console.log(updateGuest)
           this.guestApiService.updateGuest(this.form.value.Makhachhang, updateGuest).subscribe(() => {
             Swal.fire(
               'Đã cập nhật!',

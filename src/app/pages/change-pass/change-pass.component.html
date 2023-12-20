@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-4"></div>
       <div class="col-md-4">
-        <form class="row g-3">
+        <form class="row g-3" [formGroup]="form">
           <h1 style="margin-bottom: 20px;">ĐỔI MẬT KHẨU</h1>
           <div class="container">
             <div class="row">
@@ -19,7 +19,11 @@
                 <div style="display: flex; justify-content: space-between;align-items: flex-end;">
                     <label>MẬT KHẨU CŨ</label>
                 </div>
-                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu cũ của bạn vào đây" 
+                class="form-control" formControlName="oldPassword">
+                <div *ngIf="form.get('oldPassword').hasError('required') && form.get('oldPassword').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                  Không được để trống
+                </div>
                 <button class="eye-icon" (click)="viewpass()">
                     <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                 </button>
@@ -28,7 +32,11 @@
                 <div style="display: flex; justify-content: space-between;align-items: flex-end;">
                     <label>MẬT KHẨU MỚI</label>
                 </div>
-                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu mới của bạn vào đây"
+                class="form-control" formControlName="newPassword">
+                <div *ngIf="form.get('newPassword').hasError('required') && form.get('newPassword').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                  Không được để trống
+                </div>
                 <button class="eye-icon" (click)="viewpass()">
                     <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                 </button>
@@ -37,7 +45,11 @@
                 <div style="display: flex; justify-content: space-between;align-items: flex-end;">
                     <label> NHẬP LẠI MẬT KHẨU MỚI</label>
                 </div>
-                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập mật khẩu của bạn vào đây">
+                <input [type]="changetype?'password':'text'" name="user_password" id="password-container" placeholder="Nhập lại mật khẩu mới để xác nhận"
+                class="form-control" formControlName="confirmPassword">
+                <div *ngIf="form.get('confirmPassword').hasError('required') && form.get('confirmPassword').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                  Không được để trống
+                </div>
                 <button class="eye-icon" (click)="viewpass()">
                     <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                 </button>
@@ -46,7 +58,7 @@
             
         </div>
         <div class="row">
-          <div class="col-12 text-center "><button class="button-submit" >XÁC NHẬN</button></div>
+          <div class="col-12 text-center "><button class="button-submit" (click)="confirm()">XÁC NHẬN</button></div>
       </div>
         </form>
       </div>
