@@ -4,6 +4,7 @@ import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import * as $ from 'jquery';
 export interface submitForm {
   fromPlace: string;
@@ -50,7 +51,8 @@ export class BookingTicketComponent {
     private chuyenBayService: ChuyenBayService,
     private router: Router,
     private cookieService: CookieService,
-    private transferDataService: TransferDataService
+    private transferDataService: TransferDataService,
+    private authService: AuthService
   ) {}
   data = this.transferDataService.getData();
   SubmitForm: submitForm = {
@@ -108,16 +110,16 @@ export class BookingTicketComponent {
   }
 
   checkLogin(ma: string, bsn: number, eco: number) {
-    if (this.cookieService.getCookie('access_token')) {
+    if (this.authService.isUser()) {
       this.router.navigate([`/booking-ticket-detail/${ma}`]);
     } else {
       this.router.navigate(['/login']);
     }
   }
   reloadValue() {
-    // window.location.reload();
-    // this.router.navigate(['/booking-ticket']);
-    // this.ngOnInit();
+    this.SubmitForm.fromPlace = '';
+    this.SubmitForm.toPlace = '';
+    this.SubmitForm.startDate = '';
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
   }

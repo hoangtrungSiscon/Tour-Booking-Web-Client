@@ -14,19 +14,19 @@
           <a class="nav-link text-color actived"  routerLink="/home">
             Trang chủ</a>
         </li>
-        <li class="nav-item" style="color: white !important">
+        <li class="nav-item" style="color: white !important" *ngIf="isUser">
           <a class="nav-link text-color"  (click)="canAccess('/booking-history')">
             Lịch sử vé</a>
         </li>
-        <li class="nav-item" style="color: white">
+        <li class="nav-item" style="color: white" *ngIf="isUser">
           <a class="nav-link text-color"  routerLink="/booking-ticket">
             Chuyến bay</a>
         </li>
-        <!-- <li class="nav-item" style="color: white !important">
+        <li class="nav-item" style="color: white !important" *ngIf="isAdmin">
           <a class="nav-link text-color"  (click)="canAccessAdmin('/admin-dashboard/admin-flight-management')">
-            Admin</a>
-        </li> -->
-        <li class="nav-item dropdown ">
+            Quản lý</a>
+        </li>
+        <li class="nav-item dropdown " *ngIf="isLoggedIn">
           <a
             class="nav-link dropdown-toggle text-color"
             routerLink="."
@@ -41,7 +41,7 @@
             Tài khoản
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item " routerLink="/view-profile">Xem thông tin</a></li>
+            <li *ngIf="isUser"><a class="dropdown-item " routerLink="/view-profile">Xem thông tin</a></li>
             <li><a class="dropdown-item" routerLink="/change-pass">Đổi mật khẩu</a></li>
             <li><a class="dropdown-item" (click)="onLogout()">Đăng xuất</a></li>
           </ul>
@@ -52,7 +52,7 @@
         <div class="" style=" margin-top: 5px;margin-bottom: 5px;" *ngIf="!isLoggedIn">
           <a class="btn-signUp" mat-fab extended routerLink="/sign-up">
             <mat-icon>person_add</mat-icon>
-            Sign Up
+            Đăng ký
           </a>
           
           <a
@@ -61,6 +61,7 @@
             mat-fab
             extended
             routerLink="/login"
+            style="white-space: nowrap"
           >
             <mat-icon>login</mat-icon>
             Login

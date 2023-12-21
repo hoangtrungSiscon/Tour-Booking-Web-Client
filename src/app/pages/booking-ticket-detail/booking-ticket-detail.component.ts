@@ -27,11 +27,9 @@ export class BookingTicketDetailComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.createForm();
-    this.authService.getUserId().subscribe((data) => {
-      this.khachHangService.getByMaTaiKhoan(data).subscribe((info) => {
-        this.form.patchValue(info);
-      });
-    });
+    this.khachHangService.getByMaTaiKhoan(this.authService.thisAccountId()).subscribe((data)=>{
+      this.form.patchValue(data);
+    })
     this.chuyenBayService
       .getByCode(this.activatedRoute.snapshot.paramMap.get('code'))
       .subscribe((flight: any) => {
@@ -45,13 +43,13 @@ export class BookingTicketDetailComponent implements OnInit {
       maChuyenBay: [''],
       maTaiKhoan: [0],
       tenKh: [''],
-      soLuong: [0, [Validators.required, Validators.pattern(/^\d+$/)]],
+      soLuong: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(1)]],
       gmailKh: [''],
       tongGia: [0],
       sdt: [''],
       ngayDatVe: [new Date().toISOString()],
       phai: [''],
-      loaiVe: ['BSN', Validators.required],
+      loaiVe: ['', Validators.required],
       tinhTrang: ['', Validators.required],
     });
     let soLuong = form.get('soLuong');
@@ -69,11 +67,15 @@ export class BookingTicketDetailComponent implements OnInit {
   }
 
   showOnInit() {
-    this.form
+    if (this.form.value.soLuong == '' || this.form.value.loaiVe == '') {
+      Swal.fire('Lỗi', 'Vui lòng điền đầy đủ thông tin', 'error');
+    }
+    else {
+      this.form
       .get('maChuyenBay')
       .setValue(this.flightInfo?.chuyenBay.maChuyenBay);
-    console.log(this.form.value);
-    this.chiTietVeService.create(this.form.value).subscribe(
+      console.log(this.form.value);
+      this.chiTietVeService.create(this.form.value).subscribe(
       () => {
         Swal.fire(
           'Bạn đã đặt vé thành công',
@@ -86,13 +88,14 @@ export class BookingTicketDetailComponent implements OnInit {
       (error) => {
 
         if (this.form.get('loaiVe').value == "BSN"){
-          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế hạng thương gia nhiều hơn so với số lượng ghế hạng thương gia hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
+          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế BSN nhiều hơn so với số lượng ghế BSN hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
         }
         else {
-          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế hạng phổ thông nhiều hơn so với số lượng ghế hạng phổ thông hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
+          Swal.fire('Lỗi đặt vé', 'Có vẻ quý khách đã đặt số lượng ghế ECO nhiều hơn so với số lượng ghế ECO hiện đang còn trống. Chúng tôi rất lấy làm tiếc. Xin quý khách vui lòng thử lại', 'error');
         }
         
       }
     );
+    }
   }
 }

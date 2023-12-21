@@ -6,7 +6,6 @@ import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import Swal from 'sweetalert2';
 import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-admin-flight-management',
   templateUrl: './admin-flight-management.component.html',
@@ -87,7 +86,6 @@ export class AdminFlightManagementComponent {
 
   filter() {
     this.dataSource.data = [];
-    console.log(this.arrivalLocation + ' ' + this.departureLocation + ' ' + this.departureDate + ' ' + this.searchValue);
     this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
       this.dataSource.data = data
     })
@@ -98,7 +96,6 @@ export class AdminFlightManagementComponent {
   }
 
   ngOnInit(): void {
-
     this.service.getFlightList("", "", "", "").subscribe(data => {
       this.dataSource.data = data;
     })

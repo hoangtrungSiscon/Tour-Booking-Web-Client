@@ -48,6 +48,18 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
+  isUser(): boolean {
+    if (!localStorage.getItem('token')) return false;
+    else return localStorage.getItem('vaitro') == '1';
+  }
+  isAdmin(): boolean {
+    if (!localStorage.getItem('token')) return false;
+    else return localStorage.getItem('vaitro') == '0';
+  }
+  
+  public thisAccountId() : number{
+    return !localStorage.getItem('mataikhoan') ? 0 : parseInt(localStorage.getItem('mataikhoan')!)
+  }
 
   public register(request: any): Observable<any> {
     return this.http.post(`${this.url}/register`, request);

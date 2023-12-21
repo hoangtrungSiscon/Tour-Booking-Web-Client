@@ -38,10 +38,7 @@ export class ChangePassComponent {
   }
   ngOnInit(): void {
     this.form=this.createForm();
-    this.authService.getUserId().subscribe((data) => {
-      this.changePasswordRequest.accountId = data
-    })
-    // console.log()
+    this.changePasswordRequest.accountId = this.authService.thisAccountId()
   }
   viewpass(){
     this.visible = !this.visible;
