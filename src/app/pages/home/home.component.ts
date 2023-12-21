@@ -16,8 +16,7 @@ export class HomeComponent {
 
   }
   ngOnInit(): void {
-    // console.log(localStorage.getItem('token'));
-    console.log(localStorage.getItem('currentUser')?.split(' ')[0]);
+    console.log(this.authService.isUser() + ' ' + this.authService.isAdmin())
   }
   searchFlight() {
     let data = {

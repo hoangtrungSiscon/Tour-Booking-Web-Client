@@ -27,21 +27,14 @@ export class ViewProfileComponent {
   
   async ngOnInit(){
     this.form=this.createForm();
-    if (!this.authService.getToken()) {
+    if (!this.authService.isUser()) {
       this.router.navigate(['/login']);
     }
-    console.log(this.authService.getToken());
     this.cookieService.setCookie('access_token',this.authService.getToken());
-
-    this.authService.getUserId().subscribe((id) => {
-      if(id !=0 ){
-        this.guestApiService.getGuestListById(id).subscribe((data)=>{
-          console.log(data)
-          this.form.patchValue(data);
-        });
-
-      }
-    });
+    console.log(this.authService.getUserId())
+    this.guestApiService.getGuestListById(this.authService.thisAccountId()).subscribe((data)=>{
+      this.form.patchValue(data);
+    })
     
   }
   

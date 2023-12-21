@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SignUpComponent implements OnInit {
   checkPass: FormControl = this.formBuilder.control('');
   message: string = ''
 
-  constructor(private formBuilder:FormBuilder, private authService:AuthService){};
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router){};
   ngOnInit(){
     this.form=this.createForm();
     this.checkPass.valueChanges.pipe(debounceTime(300)).subscribe((data) => {
@@ -54,10 +55,15 @@ export class SignUpComponent implements OnInit {
 
   }
   alertSuccess(){
-    this.authService.register(this.form.value).subscribe(()=>{
+    this.authService.register(this.form.value).subscribe(
+    ()=>{
       Swal.fire('Chúc mừng',
-        'Đăng ký thành công!',
-        'success')
+        'Đăng ký tài khoản thành công!','success'
+        ).then(()=>{
+          this.router.navigate(['/login'])
+        })
+    }, (error) => {
+      Swal.fire('Lỗi đăng ký', 'Có vẻ đã có lỗi xảy ra khi thực hiện đăng ký tài khoản. Vui lòng thử lại.', 'error');
     })
     
   }

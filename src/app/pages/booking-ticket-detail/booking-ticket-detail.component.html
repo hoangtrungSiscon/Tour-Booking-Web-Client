@@ -126,6 +126,9 @@
             <div *ngIf="form.get('soLuong').hasError('pattern') && form.get('soLuong').touched" style="color: red; margin-top: 10px;margin-left: 10px">
               Chỉ được nhập số
             </div>
+            <div *ngIf="form.get('soLuong').hasError('min') && form.get('soLuong').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+              Số lượng ghế đặt phải ít nhất bằng 1
+            </div>
             <label
               for="inputSum"
               class="form-label fs-4 color-2 fw-bold mt-4 font-18"

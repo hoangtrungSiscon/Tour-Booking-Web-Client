@@ -21,18 +21,11 @@ export class BookingHistoryComponent {
     private router :Router
   ){}
   async ngOnInit(){
-    // this.form=this.createForm();
-    // console.log(this.authService.getUserId())
-    this.authService.getUserId().subscribe((id) => {
-      if(id !=0 ){
-        this.tickethistoryapi.getTicketHistoryList(id).subscribe((data)=>{
-          console.log(data)
-          this.tickets=data;
-          // this.form.patchValue(data);
-        });
-
-      }
-    });
-
+    if (!this.authService.isUser()){
+      this.router.navigate(['/login']);
+    }
+    this.tickethistoryapi.getTicketHistoryList(this.authService.thisAccountId()).subscribe((data) =>{
+      this.tickets = data
+    })
   }
 }
