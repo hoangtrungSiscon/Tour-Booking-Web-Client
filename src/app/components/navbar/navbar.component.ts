@@ -13,9 +13,16 @@ import { map } from 'rxjs/operators';
 export class NavbarComponent {
   form: FormGroup | any;
   isLoggedIn: boolean = false
+  isAdmin: boolean = false
+  isUser: boolean = false
   constructor(private router: Router, private cookieService: CookieService, private authService: AuthService) { }
   ngOnInit(): void {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.isAdmin()){
+      this.isAdmin = true
+      this.isLoggedIn = true
+    }
+    if (this.authService.isUser()){
+      this.isUser = true
       this.isLoggedIn = true
     }
   }
