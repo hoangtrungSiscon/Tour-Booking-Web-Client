@@ -67,7 +67,6 @@ export class EditFlightComponent {
 
   updateFlight(){
     if (
-      // this.editFlightRequest.maChuyenBay == '' ||
       this.editFlightRequest.maMayBay == '' ||
       this.editFlightRequest.tenMayBay == '' ||
       this.editFlightRequest.noiXuatPhat == '' ||
@@ -75,12 +74,10 @@ export class EditFlightComponent {
       this.editFlightRequest.ngayXuatPhat == '' ||
       this.editFlightRequest.donGia == ''
     ){
-      // 
       Swal.fire({
         icon: 'error',
         title: 'Chưa nhập đầy đủ thông tin!',
         text: 'Vui lòng nhập đầy đủ thông tin chuyến bay!',
-        // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
       })
     }
     else {

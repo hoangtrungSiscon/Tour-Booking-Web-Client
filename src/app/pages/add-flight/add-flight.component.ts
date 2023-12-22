@@ -5,6 +5,7 @@ import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import { PlaneApiService } from 'src/app/shared/services/plane-api.service';
 import Swal from 'sweetalert2';
+import { ReactiveFormsModule, FormsModule, FormGroup, Validators  } from '@angular/forms';
 
 @Component({
   selector: 'app-add-flight',
@@ -36,7 +37,7 @@ export class AddFlightComponent implements OnInit {
     this.planeService.getPlaneList().subscribe(data => {
       this.planeList = data;
       // console.log(this.planeList)
-      this.addFlightRequest.donGia = "0 đ";
+      this.addFlightRequest.donGia = "0";
       this.addFlightRequest.soLuongVeBsn = 0;
       this.addFlightRequest.soLuongVeEco = 0;
     })
@@ -54,99 +55,23 @@ export class AddFlightComponent implements OnInit {
   }
 
   addFlight() {
-    console.log(this.addFlightRequest)
-    if (
-      this.addFlightRequest.maMayBay == '' ||
-      this.addFlightRequest.tenMayBay == '' ||
-      this.addFlightRequest.noiXuatPhat == '' ||
-      this.addFlightRequest.noiDen == '' ||
-      this.addFlightRequest.ngayXuatPhat == '' ||
-      this.addFlightRequest.donGia == ''||
-      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00')
-    ) {
+    if (!this.dataIsNotNull()) {
       Swal.fire({
         icon: 'error',
         title: 'Thông tin không hợp lệ!',
         text: 'Vui lòng nhập đầy đủ thông tin của chuyến bay và đảm bảo thông tin hợp lệ!',
       })
     }
-    else {
-      this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') + ":" + this.flightTime_Minute.toString().padStart(2, '0') + ":" + "00";
-      this.addFlightRequest.donGia = this.addFlightRequest.donGia.replace(/,/g, '').replace(/ đ/g, '');
-      console.log(this.addFlightRequest.donGia)
-      let tmpDepartureLocation
-      let tmpArrivalLocation
-      switch (this.addFlightRequest.noiXuatPhat) {
-        case "VIETNAM":
-          tmpDepartureLocation = "VN"
-          break;
-        case "THAILAN":
-          tmpDepartureLocation = "TH"
-          break;
-        case "ANH":
-          tmpDepartureLocation = "UK"
-          break;
-        case "PHAP":
-          tmpDepartureLocation = "FR"
-          break;
-        case "NHATBAN":
-          tmpDepartureLocation = "JP"
-          break;
-        case "MY":
-          tmpDepartureLocation = "US"
-          break;
-        case "NGA":
-          tmpDepartureLocation = "RU"
-          break;
-        case "SINGAPORE":
-          tmpDepartureLocation = "SG"
-          break;
-        case "HONGKONG":
-          tmpDepartureLocation = "HK"
-          break;
-        case "HANQUOC":
-          tmpDepartureLocation = "KR"
-          break;
-        default:
-          break;
-      }
-      switch (this.addFlightRequest.noiDen) {
-        case "VIETNAM":
-          tmpArrivalLocation = "VN"
-          break;
-        case "THAILAN":
-          tmpArrivalLocation = "TH"
-          break;
-        case "ANH":
-          tmpArrivalLocation = "UK"
-          break;
-        case "PHAP":
-          tmpArrivalLocation = "FR"
-          break;
-        case "NHATBAN":
-          tmpArrivalLocation = "JP"
-          break;
-        case "MY":
-          tmpArrivalLocation = "US"
-          break;
-        case "NGA":
-          tmpArrivalLocation = "RU"
-          break;
-        case "SINGAPORE":
-          tmpArrivalLocation = "SG"
-          break;
-        case "HONGKONG":
-          tmpArrivalLocation = "HK"
-          break;
-        case "HANQUOC":
-          tmpArrivalLocation = "KR"
-          break;
-        default:
-          break;
-      }
-      this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "-" + this.addFlightRequest.maMayBay
-      // this.addFlightRequest.donGia = this.addFlightRequest.donGia.toString().
-      console.log(this.addFlightRequest)
+    else
+    if (this.addFlightRequest.ngayXuatPhat < new Date().toISOString().split('T')[0]){
+      console.log(new Date().toISOString().split('T')[0])
+      Swal.fire({
+        icon: 'error',
+        title: 'Thông tin không hợp lệ!',
+        text: 'Ngày khởi hành không được trước ngày hiện tại!',
+      })
+    } else {
+      this.formatFormData()
       Swal.fire({
         title: 'Thêm thông tin chuyến bay này?',
         text: "Bạn có muốn thực hiện việc thêm thông tin chuyến bay mới này không? Mã chuyến bay không thể được chỉnh sửa sau khi thông tin chuyến bay đã được tạo!",
@@ -180,5 +105,94 @@ export class AddFlightComponent implements OnInit {
         }
       })
     }
+  }
+  formatFormData(){
+    this.addFlightRequest.gioBay = this.flightTime_Hour.toString().padStart(2, '0') + ":" + this.flightTime_Minute.toString().padStart(2, '0') + ":" + "00";
+    this.addFlightRequest.donGia = this.addFlightRequest.donGia.replace(/,/g, '').replace(/ đ/g, '');
+    let tmpDepartureLocation
+    let tmpArrivalLocation
+    switch (this.addFlightRequest.noiXuatPhat) {
+      case "VIETNAM":
+        tmpDepartureLocation = "VN"
+        break;
+      case "THAILAN":
+        tmpDepartureLocation = "TH"
+        break;
+      case "ANH":
+        tmpDepartureLocation = "UK"
+        break;
+      case "PHAP":
+        tmpDepartureLocation = "FR"
+        break;
+      case "NHATBAN":
+        tmpDepartureLocation = "JP"
+        break;
+      case "MY":
+        tmpDepartureLocation = "US"
+        break;
+      case "NGA":
+        tmpDepartureLocation = "RU"
+        break;
+      case "SINGAPORE":
+        tmpDepartureLocation = "SG"
+        break;
+      case "HONGKONG":
+        tmpDepartureLocation = "HK"
+        break;
+      case "HANQUOC":
+        tmpDepartureLocation = "KR"
+        break;
+      default:
+        break;
+    }
+    switch (this.addFlightRequest.noiDen) {
+      case "VIETNAM":
+        tmpArrivalLocation = "VN"
+        break;
+      case "THAILAN":
+        tmpArrivalLocation = "TH"
+        break;
+      case "ANH":
+        tmpArrivalLocation = "UK"
+        break;
+      case "PHAP":
+        tmpArrivalLocation = "FR"
+        break;
+      case "NHATBAN":
+        tmpArrivalLocation = "JP"
+        break;
+      case "MY":
+        tmpArrivalLocation = "US"
+        break;
+      case "NGA":
+        tmpArrivalLocation = "RU"
+        break;
+      case "SINGAPORE":
+        tmpArrivalLocation = "SG"
+        break;
+      case "HONGKONG":
+        tmpArrivalLocation = "HK"
+        break;
+      case "HANQUOC":
+        tmpArrivalLocation = "KR"
+        break;
+      default:
+        break;
+    }
+    this.addFlightRequest.maChuyenBay = this.addFlightRequest.ngayXuatPhat.split('-')[2] + this.addFlightRequest.ngayXuatPhat.split('-')[1] + this.addFlightRequest.ngayXuatPhat.split('-')[0].slice(2) + tmpDepartureLocation + "TO" + tmpArrivalLocation + "-" + this.addFlightRequest.maMayBay
+  }
+  dataIsNotNull(): boolean{
+    if (
+      this.addFlightRequest.maMayBay == '' ||
+      this.addFlightRequest.tenMayBay == '' ||
+      this.addFlightRequest.noiXuatPhat == '' ||
+      this.addFlightRequest.noiDen == '' ||
+      this.addFlightRequest.ngayXuatPhat == '' ||
+      this.addFlightRequest.donGia == ''||
+      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00')
+    ) {
+      return false;
+    }
+    return true;
   }
 }
