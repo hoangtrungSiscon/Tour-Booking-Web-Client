@@ -2,7 +2,7 @@
 <app-navbar></app-navbar>
 <div class="container my-5">
   <h1 class="text-center color-2 fw-bold">ĐẶT VÉ</h1>
-  <div class="ticket-info border-color-1" style="border-radius: 15px">
+  <div class="ticket-info border-color-1" style="border-radius: 15px;padding: 15px;">
     <div class="row">
       <h1 class="color-2 ms-3 fw-bold">THÔNG TIN ĐẶT VÉ</h1>
       <div
@@ -169,8 +169,9 @@
                     checked
                   />
                   <label
-                    class="btn btn-outline-success w-100 h-100 form-control-input d-flex justify-content-center align-items-center"
+                    class="btn w-100 h-100 form-control-input d-flex justify-content-center align-items-center"
                     for="success-outlined"
+                    style="border: 2px solid #146C94;color: #146C94;"
                     (click)="changeType('BSN')"
                     >BSN</label
                   >
@@ -187,7 +188,8 @@
                     autocomplete="off"
                   />
                   <label
-                    class="btn btn-outline-danger w-100 h-100 form-control-input d-flex justify-content-center align-items-center"
+                    class="btn w-100 h-100 form-control-input d-flex justify-content-center align-items-center"
+                    style="border: 2px solid #146C94;color: #146C94;"
                     for="danger-outlined"
                     (click)="changeType('ECO')"
                     >ECO</label
@@ -195,11 +197,12 @@
                 </div>
               </div>
             </div>
-            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px">
+            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px" style="margin-top: 20px;">
               <input
+                style="background-color: #146C94 !important;color: white;"
                 type="submit"
                 (click)="showOnInit()"
-                class="btn btn-primary px-5 py-2 background-color-1 fw-bold border-color-1"
+                class="btn  px-5 py-2 fw-bold border-color-1"
                 value="Đặt vé"
               />
             </div>
