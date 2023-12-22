@@ -47,7 +47,7 @@ export class BookingTicketDetailComponent implements OnInit {
       gmailKh: [''],
       tongGia: [0],
       sdt: [''],
-      ngayDatVe: [new Date().toISOString()],
+      ngayDatVe: [new Date().toLocaleString()],
       phai: [''],
       loaiVe: ['', Validators.required],
       tinhTrang: ['', Validators.required],
