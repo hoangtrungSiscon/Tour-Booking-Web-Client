@@ -9,18 +9,43 @@
                     <div class="form-group">
                         <label style="margin-top: 0;">TÊN TÀI KHOẢN</label>
                         <input type="text" name="new_user_name" class="input-container" id="username-container" placeholder="Nhập tên tài khoản" formControlName="taiKhoan1">
+                        <div *ngIf="form.get('taiKhoan1').hasError('required') && form.get('taiKhoan1').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không được để trống tên tài khoản
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>HỌ VÀ TÊN</label>
+                        
                         <input type="text" name="new_user_fullname" class="input-container" id="fullname-container" placeholder="Nhập họ tên" formControlName="tenKH">
+                        <div *ngIf="form.get('tenKH').hasError('required') && form.get('tenKH').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không được để trống tên
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>SỐ ĐIỆN THOẠI</label>
                         <input type="text" name="new_user_phone" class="input-container" id="username-container" placeholder="Nhập số điện thoại" formControlName="sdt">
+                        <div *ngIf="form.get('sdt').hasError('required') && form.get('sdt').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không được để trống
+                          </div>
+                          <div *ngIf="form.get('sdt').hasError('pattern') && form.get('sdt').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Số điện thoại không hợp lệ (chỉ được nhập số)
+                          </div>
+                          <div *ngIf="form.get('sdt').hasError('minlength') && form.get('sdt').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Số điện thoại không được ngắn hơn 9 số
+                          </div>
+                          <div *ngIf="form.get('sdt').hasError('maxlength') && form.get('sdt').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Số điện thoại không được dài hơn 11 số
+                          </div>
                     </div>
                     <div class="form-group">
                         <label>EMAIL</label>
                         <input type="text" name="new_user_gmail" class="input-container" id="username-container" placeholder="Nhập email" formControlName="gamilKH">
+                        <div *ngIf="form.get('gamilKH').hasError('required') && form.get('gamilKH').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không được để trống
+                        </div>
+                        <div *ngIf="form.get('gamilKH').hasError('email') && form.get('gamilKH').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không đúng định dạng gmail
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>GIỚI TÍNH</label>
@@ -31,7 +56,10 @@
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="user-gender" id="inlineRadio2" value="Nữ" (click)="setPhai('Nữ')">
                             <label class="form-check-label" for="inlineRadio2">Nữ</label>
-                          </div>                 
+                          </div>     
+                          <div *ngIf="form.get('phai').hasError('required') && form.get('phai').touched" style="color: red; margin-top: 10px;margin-left: 10px">
+                            Không được để trống
+                        </div>          
                     </div>
                     <div class="div-center" style="margin-top: 20px;">
                         <button mat-button matStepperNext class="btn-next">Tiếp theo</button>
