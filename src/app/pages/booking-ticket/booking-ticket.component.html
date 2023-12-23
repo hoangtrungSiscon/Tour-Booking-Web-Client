@@ -212,7 +212,7 @@
                     GIÁ VÉ: <span class="color-2">{{ ticket.donGia }}</span>
                   </p>
                 </div>
-                <div class="col-2 background-white color-1 fw-bold">
+                <div class="col-2 background-white color-1 fw-bold" *ngIf="isAccessible">
                   <span
                     (click)="checkLogin(ticket.maChuyenBay, ticket.soLuongVeBsn, ticket.soLuongVeEco)"
                     class="btn btn-primary background-1 fw-bold px-4"

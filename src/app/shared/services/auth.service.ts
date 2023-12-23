@@ -25,11 +25,7 @@ export class AuthService {
   public login(request: any): Observable<any> {
     return this.http.post(`${this.url}/login`, request, {
       responseType: 'text',
-    }).pipe(
-      // tap((data) => {
-      //   localStorage.setItem('token', data[0]);
-      // })
-    );
+    });
   }
   getToken(): any {
     return localStorage.getItem('token');
