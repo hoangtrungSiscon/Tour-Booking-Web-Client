@@ -124,7 +124,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element">
-          <div class="button-list" style="white-space: nowrap;">
+          <div style="white-space: nowrap;">
             <button style="margin: 5px;" *ngIf="element.tinhTrang == 'Đang xác nhận'"(click)="onApprove(element)">Duyệt</button>
             <button style="margin: 5px;" *ngIf="element.tinhTrang == 'Đang xác nhận'" (click)="onCancel(element)">Hủy</button>
             <button style="margin: 5px;" *ngIf="element.tinhTrang != 'Đang xác nhận'" (click)="onDelete(element.maVe)">Xóa</button>

@@ -50,7 +50,7 @@ export class ForgetPassComponent {
     this.authService.sendOtp(this.request).subscribe((data: any) => {
       if (data) {
         this.sentOtp += data;
-        Swal.fire('Đã gửi mã');
+        Swal.fire('Đã gửi mã OTP. Vui lòng kiểm tra email của bạn', '', 'success');
       } else {
         Swal.fire('Không tìm thấy email', 'Vui lòng nhập lại', 'error');
       }
@@ -64,10 +64,12 @@ export class ForgetPassComponent {
       };
       this.authService.changePassword(requestChange).subscribe((data) => {
         if (data) {
-          this.router.navigate(['/login']);
-        } else {
-          Swal.fire('Mã nhập sai', 'Vui lòng nhập lại', 'error');
+          Swal.fire('Khôi phục mật khẩu của bạn thành công', 'Bạn sẽ được điều hướng trở lại trang đăng nhập.', 'success').then(() => {
+            this.router.navigate(['/login']);
+          });
         }
+      }, (error) => {
+        Swal.fire('Mã OTP không chính xác. Vui lòng thử lại', '', 'error');
       });
     }
   }
