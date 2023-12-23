@@ -189,6 +189,7 @@ export class AddFlightComponent implements OnInit {
       this.addFlightRequest.noiDen == '' ||
       this.addFlightRequest.ngayXuatPhat == '' ||
       this.addFlightRequest.donGia == ''||
+      this.addFlightRequest.donGia == '0' ||
       (this.flightTime_Hour == '00' && this.flightTime_Minute == '00')
     ) {
       return false;

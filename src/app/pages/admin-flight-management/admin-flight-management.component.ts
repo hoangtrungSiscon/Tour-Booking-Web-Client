@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
+import { PlaneApiService } from 'src/app/shared/services/plane-api.service';
 import Swal from 'sweetalert2';
 import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
 import { Router } from '@angular/router';
@@ -29,11 +30,37 @@ export class AdminFlightManagementComponent {
     'SoLuongVeBsn',
     'SoLuongVeEco',
     'DonGia',
-    'edit',
-    'delete',
+    // 'edit',
+    // 'delete',
+    'action'
   ];
+  public planeList: any[] = []
+  public flightList: any[] = []
+  constructor(
+    private service: FlightApiService,
+    private router: Router,
+    private planeService: PlaneApiService
+    ) {}
 
-
+  ngOnInit(): void {
+    this.planeService.getPlaneList().subscribe(data => {
+      this.planeList = data;
+    })
+    this.service.getFlightList("", "", "", "").subscribe(data => {
+      // this.dataSource.data = data;
+      this.flightList = data;
+      this.flightList.forEach(element => {
+        const planeData = this.planeList.find(x => x.maMayBay == element.maMayBay)
+        if (planeData){
+          element.soLuongVeBsn = element.soLuongVeBsn + '/' + planeData.slgheBsn
+          element.soLuongVeEco = element.soLuongVeEco + '/' + planeData.slgheEco
+        }
+      });
+      setTimeout(() => {
+        this.dataSource.data = this.flightList
+      }, 250);
+    })
+  }
 
   deleteFlight(id: any): void {
     Swal.fire({
@@ -61,7 +88,7 @@ export class AdminFlightManagementComponent {
           },
           (error) => {
             Swal.fire(
-              'Xóa không thành công!',
+              'Không thể xóa chuyến bay!',
               'Đã xảy ra lỗi khi xóa thông tin chuyến bay này.',
               'error'
             );
@@ -91,16 +118,6 @@ export class AdminFlightManagementComponent {
     })
   }
 
-  constructor(private service: FlightApiService, private router: Router) {
-
-  }
-
-  ngOnInit(): void {
-    this.service.getFlightList("", "", "", "").subscribe(data => {
-      this.dataSource.data = data;
-    })
-  }
-
   toEdit(flightId: string) {
     this.router.navigate(['/admin-dashboard/edit-flight', flightId])
   }
@@ -108,7 +125,7 @@ export class AdminFlightManagementComponent {
   ngAfterViewInit() {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
-    }, 0);
+    }, 500);
   }
   reloadValue() {
     this.arrivalLocation = '';

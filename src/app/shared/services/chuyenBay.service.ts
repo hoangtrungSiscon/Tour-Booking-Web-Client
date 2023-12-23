@@ -20,5 +20,8 @@ export class ChuyenBayService {
 
     public getByCode(code: string | null): Observable<any> {
         return this.http.get(`${this.url}/GetByCode?code=${code}`);
-    }   
+    }
+    public GetTop3NewestFlight(): Observable<any> {
+        return this.http.get(`${this.url}/Top3NewestFlight`);
+    }
 }
