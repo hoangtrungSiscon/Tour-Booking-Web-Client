@@ -77,9 +77,9 @@
                 [(ngModel)]="flightTime_Hour">
                 <span style="width: 10%;
                 align-self: center;
-    color: #146C94;
-    font-weight: bold;
-    text-align: center">giờ</span>
+                color: #146C94;
+                font-weight: bold;
+                text-align: center">giờ</span>
                 <input type="number" id="flight-time-minute" name="flight-time-minute" min="0" max="59"
                 oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
                 if (this.value < 10) {
@@ -89,16 +89,9 @@
                 [(ngModel)]="flightTime_Minute">
                 <span style="width: 10%;
                 align-self: center;
-    color: #146C94;
-    font-weight: bold;
-    text-align: center">phút</span>
-                <!-- <input type="number" id="flight-time-second" name="flight-time-second" min="0" max="59"
-                oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
-                if (this.value < 10) {
-                    this.value = '0' + this.value
-                }"
-                style="width: 20%;"
-                [(ngModel)]="flightTime_Second"> -->
+                color: #146C94;
+                font-weight: bold;
+                text-align: center">phút</span>
             </div>
         </div>
 
