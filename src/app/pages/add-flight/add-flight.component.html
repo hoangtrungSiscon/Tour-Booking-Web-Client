@@ -26,17 +26,17 @@
                 <select name="departure-location" id="departure-location"
                 
                 [(ngModel)]="addFlightRequest.noiXuatPhat">
-                    <option value="" id=""></option>
-                    <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAN" id="TH">Thái Lan</option>
-                    <option value="ANH" id="UK">Anh</option>
-                    <option value="NHATBAN" id="JP">Nhật Bản</option>
-                    <option value="MY" id="US">Mỹ</option>
-                    <option value="PHAP" id="FR">Pháp</option>
-                    <option value="NGA" id="RU">Nga</option>
-                    <option value="SINGAPORE" id="SG">Singapore</option>
-                    <option value="HONGKONG" id="HK">Hồng Kông</option>
-                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
+                <option value="" id=""></option>
+                <option value="VIETNAM" id="VN" *ngIf="addFlightRequest.noiDen != 'VIETNAM'">Việt Nam</option>
+                <option value="THAILAN" id="TH" *ngIf="addFlightRequest.noiDen != 'THAILAN'">Thái Lan</option>
+                <option value="ANH" id="UK" *ngIf="addFlightRequest.noiDen != 'ANH'">Anh</option>
+                <option value="NHATBAN" id="JP" *ngIf="addFlightRequest.noiDen != 'NHATBAN'">Nhật Bản</option>
+                <option value="MY" id="US" *ngIf="addFlightRequest.noiDen != 'MY'">Mỹ</option>
+                <option value="PHAP" id="FR" *ngIf="addFlightRequest.noiDen != 'PHAP'">Pháp</option>
+                <option value="NGA" id="RU" *ngIf="addFlightRequest.noiDen != 'NGA'">Nga</option>
+                <option value="SINGAPORE" id="SG" *ngIf="addFlightRequest.noiDen != 'SINGAPORE'">Singapore</option>
+                <option value="HONGKONG" id="HK" *ngIf="addFlightRequest.noiDen != 'HONGKONG'">Hồng Kông</option>
+                <option value="HANQUOC" id="KR" *ngIf="addFlightRequest.noiDen != 'HANQUOC'">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -46,16 +46,16 @@
                 
                 [(ngModel)]="addFlightRequest.noiDen">
                     <option value="" id=""></option>
-                    <option value="VIETNAM" id="VN">Việt Nam</option>
-                    <option value="THAILAN" id="TH">Thái Lan</option>
-                    <option value="ANH" id="UK">Anh</option>
-                    <option value="NHATBAN" id="JP">Nhật Bản</option>
-                    <option value="MY" id="US">Mỹ</option>
-                    <option value="PHAP" id="FR">Pháp</option>
-                    <option value="NGA" id="RU">Nga</option>
-                    <option value="SINGAPORE" id="SG">Singapore</option>
-                    <option value="HONGKONG" id="HK">Hồng Kông</option>
-                    <option value="HANQUOC" id="KR">Hàn Quốc</option>
+                    <option value="VIETNAM" id="VN" *ngIf="addFlightRequest.noiXuatPhat != 'VIETNAM'">Việt Nam</option>
+                    <option value="THAILAN" id="TH" *ngIf="addFlightRequest.noiXuatPhat != 'THAILAN'">Thái Lan</option>
+                    <option value="ANH" id="UK" *ngIf="addFlightRequest.noiXuatPhat != 'ANH'">Anh</option>
+                    <option value="NHATBAN" id="JP" *ngIf="addFlightRequest.noiXuatPhat != 'NHATBAN'">Nhật Bản</option>
+                    <option value="MY" id="US" *ngIf="addFlightRequest.noiXuatPhat != 'MY'">Mỹ</option>
+                    <option value="PHAP" id="FR" *ngIf="addFlightRequest.noiXuatPhat != 'PHAP'">Pháp</option>
+                    <option value="NGA" id="RU" *ngIf="addFlightRequest.noiXuatPhat != 'NGA'">Nga</option>
+                    <option value="SINGAPORE" id="SG" *ngIf="addFlightRequest.noiXuatPhat != 'SINGAPORE'">Singapore</option>
+                    <option value="HONGKONG" id="HK" *ngIf="addFlightRequest.noiXuatPhat != 'HONGKONG'">Hồng Kông</option>
+                    <option value="HANQUOC" id="KR" *ngIf="addFlightRequest.noiXuatPhat != 'HANQUOC'">Hàn Quốc</option>
                 </select>
             </div>
     
@@ -77,9 +77,9 @@
                 [(ngModel)]="flightTime_Hour">
                 <span style="width: 10%;
                 align-self: center;
-    color: #146C94;
-    font-weight: bold;
-    text-align: center">giờ</span>
+                color: #146C94;
+                font-weight: bold;
+                text-align: center">giờ</span>
                 <input type="number" id="flight-time-minute" name="flight-time-minute" min="0" max="59"
                 oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
                 if (this.value < 10) {
@@ -89,16 +89,9 @@
                 [(ngModel)]="flightTime_Minute">
                 <span style="width: 10%;
                 align-self: center;
-    color: #146C94;
-    font-weight: bold;
-    text-align: center">phút</span>
-                <!-- <input type="number" id="flight-time-second" name="flight-time-second" min="0" max="59"
-                oninput="this.value = !!this.value && Math.abs(this.value) <= 59 ? Math.abs(this.value) : null;
-                if (this.value < 10) {
-                    this.value = '0' + this.value
-                }"
-                style="width: 20%;"
-                [(ngModel)]="flightTime_Second"> -->
+                color: #146C94;
+                font-weight: bold;
+                text-align: center">phút</span>
             </div>
         </div>
 
@@ -161,9 +154,9 @@
                 style="text-align: right;">
             </div>
             <div class="form-field">
-                <label for="price">Giá</label><br>
+                <label for="price">Giá (đ)</label><br>
                 <input type="text" id="price" name="price"
-                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString() + ' đ'"
+                oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) ).toLocaleString()"
                 [(ngModel)]="addFlightRequest.donGia"
                 style="text-align: right;">
             </div>

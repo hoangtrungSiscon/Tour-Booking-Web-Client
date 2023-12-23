@@ -45,8 +45,7 @@ export class EditFlightComponent {
       this.flightTime_Hour = this.editFlightRequest.gioBay.split(':')[0];
       this.flightTime_Minute = this.editFlightRequest.gioBay.split(':')[1];
       this.editFlightRequest.ngayXuatPhat = this.editFlightRequest.ngayXuatPhat.split('T')[0];
-      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " đ";
-      console.log(this.editFlightRequest.donGia)
+      this.editFlightRequest.donGia = this.editFlightRequest.donGia.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     })
     setTimeout(() => {
       this.BSN_Seats = this.planeList.find(element => element.maMayBay == this.editFlightRequest.maMayBay).slgheBsn;
@@ -67,20 +66,19 @@ export class EditFlightComponent {
 
   updateFlight(){
     if (
-      // this.editFlightRequest.maChuyenBay == '' ||
       this.editFlightRequest.maMayBay == '' ||
       this.editFlightRequest.tenMayBay == '' ||
       this.editFlightRequest.noiXuatPhat == '' ||
       this.editFlightRequest.noiDen == '' ||
       this.editFlightRequest.ngayXuatPhat == '' ||
-      this.editFlightRequest.donGia == ''
+      this.editFlightRequest.donGia == '' ||
+      this.editFlightRequest.donGia == '0' ||
+      (this.flightTime_Hour == '00' && this.flightTime_Minute == '00')
     ){
-      // 
       Swal.fire({
         icon: 'error',
-        title: 'Chưa nhập đầy đủ thông tin!',
-        text: 'Vui lòng nhập đầy đủ thông tin chuyến bay!',
-        // footer: '<a href="">Tạo sao tôi lại gặp lỗi này?</a>'
+        title: 'Thông tin nhập vào chưa hợp lệ!',
+        text: 'Vui lòng nhập lại đầy đủ thông tin chuyến bay và đảm bảo thông tin hợp lệ!',
       })
     }
     else {
