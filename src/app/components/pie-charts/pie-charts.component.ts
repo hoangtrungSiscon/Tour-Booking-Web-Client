@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PieChartsComponent implements OnInit {
   ticketData: any[] = [];
+  loading = true;
 
   chartOptions = {
     animationEnabled: true,
@@ -37,8 +38,10 @@ export class PieChartsComponent implements OnInit {
       const data = await this.service.getTicketList().toPromise();
       this.ticketData = data ?? [];
       this.calculatePercentage();
+      this.loading = false; // Đã tải xong dữ liệu
     } catch (error) {
       console.error(error);
+      this.loading = false; // Có lỗi, cũng đặt loading thành false để không hiển thị biểu đồ
     }
   }
 
