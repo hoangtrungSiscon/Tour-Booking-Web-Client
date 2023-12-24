@@ -30,8 +30,6 @@ export class AdminFlightManagementComponent {
     'SoLuongVeBsn',
     'SoLuongVeEco',
     'DonGia',
-    // 'edit',
-    // 'delete',
     'action'
   ];
   public planeList: any[] = []
@@ -58,7 +56,7 @@ export class AdminFlightManagementComponent {
       });
       setTimeout(() => {
         this.dataSource.data = this.flightList
-      }, 250);
+      }, 500);
     })
   }
 
@@ -125,7 +123,7 @@ export class AdminFlightManagementComponent {
   ngAfterViewInit() {
     setTimeout(() => {
       this.dataSource.paginator = this.paginator;
-    }, 500);
+    }, 1000);
   }
   reloadValue() {
     this.arrivalLocation = '';

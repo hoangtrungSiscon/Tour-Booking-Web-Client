@@ -55,9 +55,6 @@ export class LoginComponent implements OnInit {
           let vaiTro = Number.parseInt(list[2]);
           this.authService.storeData(token, maTaiKhoan, vaiTro);
 
-
-          let currentUser = localStorage.getItem('currentUser')?.toString()[0];
-          console.log(currentUser);
           this.cookieService.setCookie('access_token', token);
           this.authService.setUserId(maTaiKhoan);
           this.authService.setVaiTro(vaiTro);
