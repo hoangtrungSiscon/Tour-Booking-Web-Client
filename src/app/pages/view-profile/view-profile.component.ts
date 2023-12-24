@@ -31,7 +31,6 @@ export class ViewProfileComponent {
       this.router.navigate(['/login']);
     }
     this.cookieService.setCookie('access_token',this.authService.getToken());
-    console.log(this.authService.getUserId())
     this.guestApiService.getGuestListById(this.authService.thisAccountId()).subscribe((data)=>{
       this.form.patchValue(data);
     })
@@ -87,7 +86,6 @@ export class ViewProfileComponent {
         maChuyenBay: '',
         maVe: 0
       }
-      console.log(updateGuest)
       Swal.fire({
         title: 'Chỉnh sửa',
         text: "Bạn có muốn lưu các thay đổi về thông tin cá nhân của mình không?",
@@ -99,7 +97,6 @@ export class ViewProfileComponent {
         cancelButtonText: 'Hủy'  
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(updateGuest)
           this.guestApiService.updateGuest(this.form.value.Makhachhang, updateGuest).subscribe(() => {
             Swal.fire(
               'Đã cập nhật!',

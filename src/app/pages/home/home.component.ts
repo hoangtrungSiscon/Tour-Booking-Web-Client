@@ -19,7 +19,6 @@ export class HomeComponent {
 
   }
   async ngOnInit(){
-    console.log(this.authService.isUser() + ' ' + this.authService.isAdmin())
     this.newestflight.getTop3NewestFlight().subscribe((data)=>this.newestflights=data)
   }
   searchFlight() {

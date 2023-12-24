@@ -41,9 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    // const itemExists = localStorage.getItem('token') !== null ? true : false;
-    // console.log(itemExists);
-    console.log(this.authService.isLoggedIn())
     this.authService
       .login(this.form.value)
       .subscribe(async (data: string | any) => {
