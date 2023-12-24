@@ -68,7 +68,7 @@ export class BookingTicketComponent {
         
       })
     })
-    if (this.authService.isUser()){
+    if (!this.authService.isAdmin()){
       this.isAccessible = true
     }
     if (this.data){

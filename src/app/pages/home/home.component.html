@@ -106,48 +106,22 @@
         <div class="container  text-center row" style=" border-radius: 20px;height: 350px;display: flex;justify-content: center;align-items: center;">
       </div>
       
-        <div class="col-sm-4 mb-3 mb-sm-0" style="height: 300px;padding-inline: 15px;">
-          <div class="card" style="height: 300px;padding: 5px;border-radius: 20px;border: 2px solid #146c94;">
-            <div class="card-body div-center" style="flex-direction: column;">
-              <h5 class="card-title" style="font-size: 20px;color: #146c94;font-weight: bold;">{{newestflights[0].noiXuatPhat}} - {{newestflights[0].noiDen}}</h5>
-              <p class="card-text" style="font-weight: bold;color: #19A7CE;">
-                Mã chuyến bay: {{newestflights[0].maChuyenBay}} <br> Máy bay: {{newestflights[0].tenMayBay}}
-                <br>
-                Ngày xuất phát: {{newestflights[0].ngayXuatPhat | date : "dd/MM/yyyy"}} <br> Giờ bay: {{newestflights[0].gioBay}}
-                <br>
-                Đơn giá: {{newestflights[0].donGia}}</p>
-                <a routerLink="/booking-ticket" routerLinkActive="active" class="btn" style="text-align: center;color: white;background-color: #146c94;border-radius: 5px;width: 100px;">Xem ngay</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4 mb-3 mb-sm-0" style="height: 300px;padding-inline: 15px;">
-          <div class="card" style="height: 300px;padding: 5px;border-radius: 20px;border: 2px solid #146c94;">
-            <div class="card-body div-center" style="flex-direction: column;">
-              <h5 class="card-title" style="font-size: 20px;color: #146c94;font-weight: bold;">{{newestflights[1].noiXuatPhat}} - {{newestflights[1].noiDen}}</h5>
-              <p class="card-text" style="font-weight: bold;color: #19A7CE;">
-                Mã chuyến bay: {{newestflights[1].maChuyenBay}} <br> Máy bay: {{newestflights[1].tenMayBay}}
-                <br>
-                Ngày xuất phát: {{newestflights[1].ngayXuatPhat | date : "dd/MM/yyyy"}} <br> Giờ bay: {{newestflights[1].gioBay}}
-                <br>
-                Đơn giá: {{newestflights[1].donGia}}</p>
-                <a routerLink="/booking-ticket" routerLinkActive="active" class="btn" style="text-align: center;color: white;background-color: #146c94;border-radius: 5px;width: 100px;">Xem ngay</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4 mb-3 mb-sm-0" style="height: 300px;padding-inline: 15px;">
-          <div class="card" style="height: 300px;padding: 5px;border-radius: 20px;border: 2px solid #146c94;">
-            <div class="card-body div-center" style="flex-direction: column;">
-              <h5 class="card-title" style="font-size: 20px;color: #146c94;font-weight: bold;">{{newestflights[2].noiXuatPhat}} - {{newestflights[2].noiDen}}</h5>
-              <p class="card-text" style="font-weight: bold;color: #19A7CE;">
-                Mã chuyến bay: {{newestflights[2].maChuyenBay}} <br> Máy bay: {{newestflights[2].tenMayBay}}
-                <br>
-                Ngày xuất phát: {{newestflights[2].ngayXuatPhat | date : "dd/MM/yyyy"}} <br> Giờ bay: {{newestflights[2].gioBay}}
-                <br>
-                Đơn giá: {{newestflights[2].donGia}}</p>
+      <div class="col-sm-4 mb-3 mb-sm-0" style="height: 300px;padding-inline: 15px;" *ngFor="let flight of newestflights">
+        <div class="card" style="height: 300px;padding: 5px;border-radius: 20px;border: 2px solid #146c94;">
+          <div class="card-body div-center" style="flex-direction: column;">
+            <h5 class="card-title" style="font-size: 20px;color: #146c94;font-weight: bold;">{{flight.noiXuatPhat}} - {{flight.noiDen}}</h5>
+            <p class="card-text" style="font-weight: bold;color: #19A7CE;">
+              Mã chuyến bay: {{flight.maChuyenBay}} <br> Máy bay: {{flight.tenMayBay}}
+              <br>
+              Ngày xuất phát: {{flight.ngayXuatPhat | date : "dd/MM/yyyy"}} <br> Giờ bay: {{flight.gioBay}}
+              <br>
+              Đơn giá: {{flight.donGia}}</p>
               <a routerLink="/booking-ticket" routerLinkActive="active" class="btn" style="text-align: center;color: white;background-color: #146c94;border-radius: 5px;width: 100px;">Xem ngay</a>
-            </div>
           </div>
         </div>
+      </div>
+        
+        
     </div>
     <div class="div-center margin" style="flex-direction: column">
       <h1 class="font-title">CÁC NƠI BẠN CÓ THỂ ĐI</h1>
