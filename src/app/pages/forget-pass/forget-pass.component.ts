@@ -64,13 +64,16 @@ export class ForgetPassComponent {
       };
       this.authService.changePassword(requestChange).subscribe((data) => {
         if (data) {
-          Swal.fire('Khôi phục mật khẩu của bạn thành công', 'Bạn sẽ được điều hướng trở lại trang đăng nhập.', 'success').then(() => {
+          Swal.fire('Khôi phục mật khẩu của bạn thành công', 'Mật khẩu mới của bạn đã được gửi qua email. Bạn sẽ được điều hướng trở lại trang đăng nhập.', 'success').then(() => {
             this.router.navigate(['/login']);
           });
         }
       }, (error) => {
         Swal.fire('Mã OTP không chính xác. Vui lòng thử lại', '', 'error');
       });
+    }
+    else {
+      Swal.fire('Mã OTP không chính xác. Vui lòng nhập lại', '', 'error');
     }
   }
 }

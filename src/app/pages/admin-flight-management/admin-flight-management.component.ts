@@ -32,8 +32,6 @@ export class AdminFlightManagementComponent {
     'DonGia',
     'action'
   ];
-  public planeList: any[] = []
-  public flightList: any[] = []
   constructor(
     private service: FlightApiService,
     private router: Router,
@@ -41,21 +39,8 @@ export class AdminFlightManagementComponent {
     ) {}
 
   ngOnInit(): void {
-    this.planeService.getPlaneList().subscribe(data => {
-      this.planeList = data;
-    })
     this.service.getFlightList("", "", "", "").subscribe(data => {
-      this.flightList = data;
-      this.flightList.forEach(element => {
-        const planeData = this.planeList.find(x => x.maMayBay == element.maMayBay)
-        if (planeData){
-          element.soLuongVeBsn = element.soLuongVeBsn + '/' + planeData.slgheBsn
-          element.soLuongVeEco = element.soLuongVeEco + '/' + planeData.slgheEco
-        }
-      });
-      setTimeout(() => {
-        this.dataSource.data = this.flightList
-      }, 500);
+      this.dataSource.data = data;
     })
   }
 
@@ -97,20 +82,9 @@ export class AdminFlightManagementComponent {
   }
 
   filter() {
-    this.flightList = [];
     this.dataSource.data = [];
     this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
-      this.flightList = data;
-      this.flightList.forEach(element => {
-        const planeData = this.planeList.find(x => x.maMayBay == element.maMayBay)
-        if (planeData){
-          element.soLuongVeBsn = element.soLuongVeBsn + '/' + planeData.slgheBsn
-          element.soLuongVeEco = element.soLuongVeEco + '/' + planeData.slgheEco
-        }
-      });
-      setTimeout(() => {
-        this.dataSource.data = this.flightList
-      }, 500);
+      this.dataSource.data = data;
     })
   }
 

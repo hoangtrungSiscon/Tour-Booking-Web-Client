@@ -86,12 +86,10 @@ export class AddFlightComponent implements OnInit {
           this.flightService.addFlight(this.addFlightRequest).subscribe(
             () => {
               Swal.fire(
-                'Đã thêm thông tin chuyến bay!',
+                'Đã thêm chuyến bay!',
                 'Thêm thông tin chuyến bay thành công.',
                 'success'
-              ).then(() => {
-                this.router.navigateByUrl('/admin-dashboard/admin-flight-management');
-              })
+              )
             },
             (error) => {
               Swal.fire(
