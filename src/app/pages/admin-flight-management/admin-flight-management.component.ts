@@ -45,7 +45,6 @@ export class AdminFlightManagementComponent {
       this.planeList = data;
     })
     this.service.getFlightList("", "", "", "").subscribe(data => {
-      // this.dataSource.data = data;
       this.flightList = data;
       this.flightList.forEach(element => {
         const planeData = this.planeList.find(x => x.maMayBay == element.maMayBay)
@@ -96,23 +95,22 @@ export class AdminFlightManagementComponent {
       }
     })
   }
-  search(searchValue: any) {
-    if (this.searchValue == '') {
-      this.dataSource.data = [];
-      this.ngOnInit();
-    }
-    else {
-      this.dataSource.data = [];
-      this.service.getFlightListById(this.searchValue).subscribe(data => {
-        this.dataSource.data = data;
-      })
-    }
-  }
 
   filter() {
+    this.flightList = [];
     this.dataSource.data = [];
     this.service.getFlightList(this.searchValue, this.departureLocation, this.arrivalLocation, this.departureDate.toString()).subscribe(data => {
-      this.dataSource.data = data
+      this.flightList = data;
+      this.flightList.forEach(element => {
+        const planeData = this.planeList.find(x => x.maMayBay == element.maMayBay)
+        if (planeData){
+          element.soLuongVeBsn = element.soLuongVeBsn + '/' + planeData.slgheBsn
+          element.soLuongVeEco = element.soLuongVeEco + '/' + planeData.slgheEco
+        }
+      });
+      setTimeout(() => {
+        this.dataSource.data = this.flightList
+      }, 500);
     })
   }
 
