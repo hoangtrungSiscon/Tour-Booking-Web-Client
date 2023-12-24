@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as $ from 'jquery';
+import { NewestFlightService } from 'src/app/shared/services/newest-flight.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,11 +13,14 @@ export class HomeComponent {
   public date : any = "";
   public departure : any = "";
   public destination : any = "";
-  constructor(private router: Router, private transferDataService: TransferDataService, private authService: AuthService) {
+  public newestflights: any[] = [];
+  constructor(private router: Router, private transferDataService: TransferDataService, private authService: AuthService, private newestflight: NewestFlightService) {
+
 
   }
-  ngOnInit(): void {
+  async ngOnInit(){
     console.log(this.authService.isUser() + ' ' + this.authService.isAdmin())
+    this.newestflight.getTop3NewestFlight().subscribe((data)=>this.newestflights=data)
   }
   searchFlight() {
     let data = {
@@ -24,6 +28,7 @@ export class HomeComponent {
       origin: this.departure,
       destination: this.destination
     }
+    console.log(data)
     this.transferDataService.setData(data)
     this.router.navigate(['/booking-ticket']);
   }

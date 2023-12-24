@@ -17,7 +17,7 @@ export interface submitForm {
   styleUrls: ['./booking-ticket.component.scss'],
 })
 export class BookingTicketComponent {
-
+  public isAccessible: boolean = false;
   form: FormGroup | any;
   fromPlace: string[] = [
     'VIETNAM',
@@ -68,6 +68,9 @@ export class BookingTicketComponent {
         
       })
     })
+    if (!this.authService.isAdmin()){
+      this.isAccessible = true
+    }
     if (this.data){
       this.SubmitForm.fromPlace = this.data.origin;
       this.SubmitForm.toPlace = this.data.destination;

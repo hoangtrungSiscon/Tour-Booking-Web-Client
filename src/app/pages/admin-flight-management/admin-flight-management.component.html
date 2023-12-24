@@ -6,19 +6,19 @@
   <form>
     <div class="form-field">
       <label for="departure-location" class="font-20">Nơi xuất phát</label><br>
-      <select name="arrival-location" id="arrival-location" style="height: 40px;"
+      <select name="departure-location" id="departure-location" style="height: 40px;"
       [(ngModel)]="departureLocation">
         <option value="" id=""></option>
-        <option value="VIETNAM" id="VN">Việt Nam</option>
-        <option value="THAILAN" id="TH">Thái Lan</option>
-        <option value="ANH" id="UK">Anh</option>
-        <option value="NHATBAN" id="JP">Nhật Bản</option>
-        <option value="MY" id="US">Mỹ</option>
-        <option value="PHAP" id="FR">Pháp</option>
-        <option value="NGA" id="RU">Nga</option>
-        <option value="SINGAPORE" id="SG">Singapore</option>
-        <option value="HONGKONG" id="HK">Hồng Kông</option>
-        <option value="HANQUOC" id="KR">Hàn Quốc</option>
+        <option value="VIETNAM" id="VN" *ngIf="arrivalLocation != 'VIETNAM'">Việt Nam</option>
+        <option value="THAILAN" id="TH" *ngIf="arrivalLocation != 'THAILAN'">Thái Lan</option>
+        <option value="ANH" id="UK" *ngIf="arrivalLocation != 'ANH'">Anh</option>
+        <option value="NHATBAN" id="JP" *ngIf="arrivalLocation != 'NHATBAN'">Nhật Bản</option>
+        <option value="MY" id="US" *ngIf="arrivalLocation != 'MY'">Mỹ</option>
+        <option value="PHAP" id="FR" *ngIf="arrivalLocation != 'PHAP'">Pháp</option>
+        <option value="NGA" id="RU" *ngIf="arrivalLocation != 'NGA'">Nga</option>
+        <option value="SINGAPORE" id="SG" *ngIf="arrivalLocation != 'SINGAPORE'">Singapore</option>
+        <option value="HONGKONG" id="HK" *ngIf="arrivalLocation != 'HONGKONG'">Hồng Kông</option>
+        <option value="HANQUOC" id="KR" *ngIf="arrivalLocation != 'HANQUOC'">Hàn Quốc</option>
       </select>
     </div>
     <div class="form-field">
@@ -31,16 +31,16 @@
       <select name="arrival-location" id="arrival-location" style="height: 40px;"
       [(ngModel)]="arrivalLocation">
         <option value="" id=""></option>
-        <option value="VIETNAM" id="VN">Việt Nam</option>
-        <option value="THAILAN" id="TH">Thái Lan</option>
-        <option value="ANH" id="UK">Anh</option>
-        <option value="NHATBAN" id="JP">Nhật Bản</option>
-        <option value="MY" id="US">Mỹ</option>
-        <option value="PHAP" id="FR">Pháp</option>
-        <option value="NGA" id="RU">Nga</option>
-        <option value="SINGAPORE" id="SG">Singapore</option>
-        <option value="HONGKONG" id="HK">Hồng Kông</option>
-        <option value="HANQUOC" id="KR">Hàn Quốc</option>
+        <option value="VIETNAM" id="VN" *ngIf="departureLocation != 'VIETNAM'">Việt Nam</option>
+        <option value="THAILAN" id="TH" *ngIf="departureLocation != 'THAILAN'">Thái Lan</option>
+        <option value="ANH" id="UK" *ngIf="departureLocation != 'ANH'">Anh</option>
+        <option value="NHATBAN" id="JP" *ngIf="departureLocation != 'NHATBAN'">Nhật Bản</option>
+        <option value="MY" id="US" *ngIf="departureLocation != 'MY'">Mỹ</option>
+        <option value="PHAP" id="FR" *ngIf="departureLocation != 'PHAP'">Pháp</option>
+        <option value="NGA" id="RU" *ngIf="departureLocation != 'NGA'">Nga</option>
+        <option value="SINGAPORE" id="SG" *ngIf="departureLocation != 'SINGAPORE'">Singapore</option>
+        <option value="HONGKONG" id="HK" *ngIf="departureLocation != 'HONGKONG'">Hồng Kông</option>
+        <option value="HANQUOC" id="KR" *ngIf="departureLocation != 'HANQUOC'">Hàn Quốc</option>
       </select>
     </div>
     <!-- <div class="form-field" style="justify-content: right;">
@@ -119,18 +119,27 @@
         <td mat-cell *matCellDef="let element"> {{element.donGia | number:'1.0-3'}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="edit">
+      <!-- <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> 
-          <!-- <button routerLink="/admin-dashboard/edit-flight/{{element.maChuyenBay}}"
-            routerLinkActive="active">Sửa</button> -->
-            <button (click)="toEdit(element.maChuyenBay)">Sửa</button>
-          </td>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="toEdit(element.maChuyenBay)">Sửa</button>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="deleteFlight(element.maChuyenBay)">Xóa</button> </td>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="deleteFlight(element.maChuyenBay)">Xóa</button>
+        </td>
+      </ng-container> -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <div style="white-space: nowrap;">
+            <button (click)="toEdit(element.maChuyenBay)">Sửa</button>
+            <button style="margin: 5px;" *ngIf="element.soLuongVeEco.startsWith('0/') && element.soLuongVeBsn.startsWith('0/')"(click)="deleteFlight(element.maChuyenBay)">Xóa</button>
+          </div>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
