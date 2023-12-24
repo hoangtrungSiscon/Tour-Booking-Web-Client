@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlightApiService } from 'src/app/shared/services/flight-api.service';
 import { DatePipe, registerLocaleData } from '@angular/common'; // Import DatePipe and CurrencyPipe
 import localeVi from '@angular/common/locales/vi';
+import { da } from 'date-fns/locale';
 
 registerLocaleData(localeVi);
 @Component({
@@ -13,6 +14,7 @@ registerLocaleData(localeVi);
   providers: [DatePipe]
 })
 export class StatisticalComponent implements OnInit {
+  majorityGender: string = '';
   doanhThuCacThang: any[] = [];
   thangNhoNhat: Date = new Date();
   tongSoTaiKhoan: number = 0;
@@ -229,12 +231,12 @@ export class StatisticalComponent implements OnInit {
   
   async loadData() {
     try {
-      const data = await this.ticketService.getTicketList().toPromise();
-  
+      const data = await this.ticketService.getTicketList().toPromise();    
       // Kiểm tra xem data có tồn tại không
       if (data) {
         this.doanhThuCacThang = this.getLastFourMonthsData(data as any);
         this.thangNhoNhat = this.getSmallestMonth(data as any);
+        
       } else {
         console.error('Data is undefined or null.');
       }
@@ -246,12 +248,12 @@ export class StatisticalComponent implements OnInit {
   async loadGuestData() {
     try {
       const data = await this.guestService.getGuest().toPromise();
-  
       // Kiểm tra xem data có tồn tại không
       if (data) {
         // Tính tổng số tài khoản và số lượng khách hàng từ dữ liệu API
         this.tongSoTaiKhoan = data.length;
         this.soLuongKhachHang = data.length;
+        this.calculateMajorityGender(data);
       } else {
         console.error('Data is undefined or null.');
       }
@@ -260,7 +262,15 @@ export class StatisticalComponent implements OnInit {
     }
   }
   
-
+  calculateMajorityGender(data: any[]): void {
+    // Tính toán giới tính đa số từ dữ liệu khách hàng
+    
+    const maleCount = data.filter(customer => customer.phai === 'Nam').length;
+    const femaleCount = data.filter(customer => customer.phai === 'Nữ').length;
+  
+    // So sánh và gán giới tính đa số
+    this.majorityGender = maleCount > femaleCount ? 'nam giới' : 'nữ giới';
+  }
   onChartDataUpdated(updatedData: any[]) {
     this.doanhThuCacThang = updatedData;
   }
