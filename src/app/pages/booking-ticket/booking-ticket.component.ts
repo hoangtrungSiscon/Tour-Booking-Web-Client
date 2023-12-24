@@ -10,6 +10,7 @@ export interface submitForm {
   fromPlace: string;
   toPlace: string;
   startDate: string;
+  id: string;
 }
 @Component({
   selector: 'app-booking-ticket',
@@ -59,6 +60,7 @@ export class BookingTicketComponent {
     fromPlace: '',
     toPlace: '',
     startDate: '',
+    id: '',
   };
   ngOnInit() {
     $(document).ready(function(){
@@ -75,6 +77,7 @@ export class BookingTicketComponent {
       this.SubmitForm.fromPlace = this.data.origin;
       this.SubmitForm.toPlace = this.data.destination;
       this.SubmitForm.startDate = this.data.date;
+      this.SubmitForm.id = ''
       this.chuyenBayService
       .filterChuyenBay(this.SubmitForm)
       .subscribe((data) => (this.tickets = data));
@@ -92,6 +95,7 @@ export class BookingTicketComponent {
       fromPlace: this.formBuilder.control(['']),
       toPlace: this.formBuilder.control(['']),
       startDate: this.formBuilder.control(['']),
+      id: this.formBuilder.control(['']),
     });
   }
   selectedFromPlace: string | null = null;
@@ -123,6 +127,7 @@ export class BookingTicketComponent {
     this.SubmitForm.fromPlace = '';
     this.SubmitForm.toPlace = '';
     this.SubmitForm.startDate = '';
+    this.SubmitForm.id = '';
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
   }

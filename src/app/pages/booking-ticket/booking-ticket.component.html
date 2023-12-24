@@ -22,6 +22,7 @@
         id="inputText"
         class="form-control form-control-search"
         placeholder="Nhập mã chuyến bay"
+        [(ngModel)]="SubmitForm.id"
       />
     </div>
     <div class="col-2">
@@ -36,7 +37,8 @@
           width: 120px;
           height: 40px;
         "
-      >
+        (click)="onSubmit()"
+        >
         Tìm kiếm
       </button>
     </div>
