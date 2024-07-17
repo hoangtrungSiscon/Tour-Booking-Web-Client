@@ -45,6 +45,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,6 @@ import { FlightApiService } from './shared/services/flight-api.service';
     EditFlightComponent,
     AddFlightComponent,
     GuestManagementComponent,
-    // AdminNaviComponent,
     NewAccountComponent,
     StatisticalComponent,
     PieChartsComponent,
@@ -75,7 +76,8 @@ import { FlightApiService } from './shared/services/flight-api.service';
     ViewProfileComponent,
     BookingHistoryComponent,
     BookingTicketComponent,
-    BookingTicketDetailComponent
+    BookingTicketDetailComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +98,7 @@ import { FlightApiService } from './shared/services/flight-api.service';
     MatStepperModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
-
+    NgxPayPalModule
   ],
   providers: [FlightApiService],
   bootstrap: [AppComponent]
