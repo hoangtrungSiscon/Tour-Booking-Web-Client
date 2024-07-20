@@ -7,6 +7,8 @@ import { debounceTime } from 'rxjs';
 import { ChiTietVeService } from '../../shared/services/chiTietVe.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { KhachHangService } from '../../shared/services/khachHang.service';
+import { Meta, Title } from '@angular/platform-browser';
+import { GetCountryService } from '../../shared/services/get-country.service';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -24,18 +26,46 @@ export class BookingTicketDetailComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private khachHangService: KhachHangService,
+    private meta: Meta,
+    private title: Title,
+    private getCountryService: GetCountryService
   ) {}
   ngOnInit() {
     this.form = this.createForm();
     this.khachHangService.getByMaTaiKhoan(this.authService.thisAccountId()).subscribe((data)=>{
       this.form.patchValue(data);
     })
-    this.chuyenBayService
-      .getByCode(this.activatedRoute.snapshot.paramMap.get('code'))
+
+    const slug = this.activatedRoute.snapshot.paramMap.get('slug');
+    this.loadTicketData(slug);
+  }
+
+  loadTicketData(slug: string | null): void {
+    if (!slug) {
+
+    } else {
+      const parts = slug.split('-');
+      const flightId = parts[6];
+      this.chuyenBayService
+      .getByCode(flightId)
       .subscribe((flight: any) => {
         this.flightInfo = flight;
+        this.updateMetaTags();
       });
+    }
   }
+
+
+  updateMetaTags(): void {
+    if (this.flightInfo) {
+      const origin = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8));
+      const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
+      this.title.setTitle(`Chi tiết vé máy bay từ ${origin} đến ${destination}`);
+      this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
+      this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch` });
+    }
+  }
+
 
   createForm() {
     let form: FormGroup | any = this.formBuilder.group({

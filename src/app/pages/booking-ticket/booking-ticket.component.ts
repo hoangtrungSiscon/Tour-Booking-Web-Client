@@ -6,6 +6,9 @@ import { CookieService } from '../../shared/services/cookie.service';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as $ from 'jquery';
+import { Meta, Title } from '@angular/platform-browser';
+import { GetCountryService } from 'src/app/shared/services/get-country.service';
+import slugify from 'slugify';
 export interface submitForm {
   fromPlace: string;
   toPlace: string;
@@ -53,7 +56,10 @@ export class BookingTicketComponent {
     private router: Router,
     private cookieService: CookieService,
     private transferDataService: TransferDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private meta: Meta,
+    private title: Title,
+    private getCountryService: GetCountryService
   ) {}
   data = this.transferDataService.getData();
   SubmitForm: submitForm = {
@@ -86,6 +92,13 @@ export class BookingTicketComponent {
     this.form = this.createForm();
     this.chuyenBayService.getAll().subscribe((data) => (this.tickets = data));
     console.log(this.data)
+    this.updateMetaTags();
+  }
+
+  updateMetaTags(): void {
+    this.title.setTitle(`Đặt vé máy bay`);
+      this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay.` });
+      this.meta.updateTag({ name: 'keywords', content: `vé máy bay` });
   }
 
   ngOnDestroy() {}
@@ -118,10 +131,17 @@ export class BookingTicketComponent {
 
   checkLogin(ma: string, bsn: number, eco: number) {
     if (this.authService.isUser()) {
-      this.router.navigate([`/booking-ticket-detail/${ma}`]);
+      // this.router.navigate([`/booking-ticket-detail/${ma}`]);
+      this.navigateToDetailPage(ma);
     } else {
       this.router.navigate(['/login']);
     }
+  }
+  navigateToDetailPage(id: string) {
+    const origin = slugify(this.getCountryService.getCountryName(id.substring(6, 8)), { lower: true });
+    const destination = slugify(this.getCountryService.getCountryName(id.substring(10, 12)), { lower: true });
+    const slug = `thong-tin-chi-tiet-chuyen-bay-${id}-tu-${origin}-den-${destination}`;
+    this.router.navigate([`/booking-ticket-detail`, slug]);
   }
   reloadValue() {
     this.SubmitForm.fromPlace = '';
