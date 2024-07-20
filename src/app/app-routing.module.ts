@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'booking-history', component: BookingHistoryComponent },
   { path: 'booking-ticket', component: BookingTicketComponent },
   {
-    path: 'booking-ticket-detail/:code',
+    path: 'booking-ticket-detail/:slug',
     component: BookingTicketDetailComponent,
   },
 ];
