@@ -45,6 +45,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { FlightApiService } from './shared/services/flight-api.service';
     ViewProfileComponent,
     BookingHistoryComponent,
     BookingTicketComponent,
-    BookingTicketDetailComponent
+    BookingTicketDetailComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

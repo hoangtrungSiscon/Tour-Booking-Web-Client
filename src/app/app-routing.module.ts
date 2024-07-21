@@ -18,6 +18,7 @@ import { ViewProfileComponent } from './pages/view-profile/view-profile.componen
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,8 @@ const routes: Routes = [
     path: 'booking-ticket-detail/:slug',
     component: BookingTicketDetailComponent,
   },
+
+  { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 
 @NgModule({
