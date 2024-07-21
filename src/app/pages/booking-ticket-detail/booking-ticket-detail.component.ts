@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import Swal from 'sweetalert2';
@@ -18,6 +18,11 @@ import slugify from 'slugify';
 })
 export class BookingTicketDetailComponent implements OnInit {
   flightInfo: any;
+  imgKeyList = [
+    { keyword: 'NHATBAN', fileName: 'japan.png' },
+    { keyword: 'ANH', fileName: 'london.png' },
+  ];
+
   form: FormGroup | any;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,8 +46,12 @@ export class BookingTicketDetailComponent implements OnInit {
     
     // const expectedSlug = 
     this.loadTicketData(slug);
-  }
 
+  }
+  ImageUrl(keyword: string): string {
+    const image = this.imgKeyList.find(img => img.keyword === keyword);
+    return image ? `../../../assets/img/${image.fileName}` : ``;
+  }
   loadTicketData(slug: string | null): void {
     if (!slug) {
       this.router.navigate(['/booking-ticket']);
