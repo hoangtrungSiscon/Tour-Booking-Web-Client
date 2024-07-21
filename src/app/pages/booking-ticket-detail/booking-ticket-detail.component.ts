@@ -9,6 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { KhachHangService } from '../../shared/services/khachHang.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from '../../shared/services/get-country.service';
+import slugify from 'slugify';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -37,21 +38,31 @@ export class BookingTicketDetailComponent implements OnInit {
     })
 
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
+    
+    // const expectedSlug = 
     this.loadTicketData(slug);
   }
 
   loadTicketData(slug: string | null): void {
     if (!slug) {
-
+      this.router.navigate(['/booking-ticket']);
     } else {
-      const parts = slug.split('-');
-      const flightId = parts[6];
+      const flightId = slug.split('-')[6];
       this.chuyenBayService
       .getByCode(flightId)
-      .subscribe((flight: any) => {
+      .subscribe({next: (flight: any) => {
         this.flightInfo = flight;
         this.updateMetaTags();
-      });
+        //verify slug
+        const origin = slugify(this.getCountryService.getCountryName(flightId.substring(6, 8)), { lower: true });
+        const destination = slugify(this.getCountryService.getCountryName(flightId.substring(10, 12)), { lower: true });
+        const expectedSlug = `thong-tin-chi-tiet-chuyen-bay-${flightId}-tu-${origin}-den-${destination}`;
+        if (slug !== expectedSlug) {
+          this.router.navigate([`/booking-ticket-detail`, expectedSlug], { replaceUrl: true });
+        }
+      }, error: (err) => {
+        this.router.navigate(['/booking-ticket']);
+      }});
     }
   }
 
