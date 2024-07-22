@@ -21,6 +21,16 @@ export class BookingTicketDetailComponent implements OnInit {
   imgKeyList = [
     { keyword: 'NHATBAN', fileName: 'japan.png' },
     { keyword: 'ANH', fileName: 'london.png' },
+    { keyword: 'VIETNAM', fileName: 'vietnam.png' },
+    { keyword: 'MY', fileName: 'usa.png' },
+    { keyword: 'SINGAPORE', fileName: 'singapore.png' },
+    { keyword: 'PHAP', fileName: 'paris.png' },
+    { keyword: 'NGA', fileName: 'nga.png' },
+    { keyword: 'HONGKONG', fileName: 'hongkong.png' },
+    { keyword: 'HANQUOC', fileName: 'hanquoc.png' },
+    { keyword: 'THAILAN', fileName: 'thailand.png' },
+
+
   ];
 
   form: FormGroup | any;
@@ -81,12 +91,12 @@ export class BookingTicketDetailComponent implements OnInit {
       const origin = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8));
       const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
       this.title.setTitle(`Chi tiết vé máy bay từ ${origin} đến ${destination}`);
-      this.meta.updateTag({ property: 'og:image', content: this.ImageUrl(this.flightInfo?.chuyenBay.noiXuatPhat) });
-      this.meta.updateTag({ property: 'og:image:width', content: '1200' });
-      this.meta.updateTag({ property: 'og:image:height', content: '630' });
-      this.meta.updateTag({ property: 'og:image:alt', content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}` });
-      this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
-      this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch` });
+      this.meta.addTag({ property: 'og:image', content: this.ImageUrl(this.flightInfo?.chuyenBay.noiXuatPhat) });
+      this.meta.addTag({ property: 'og:image:width', content: '1000' });
+      this.meta.addTag({ property: 'og:image:height', content: '530' });
+      this.meta.addTag({ property: 'og:image:alt', content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}` });
+      this.meta.addTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
+      this.meta.addTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch` });
     }
   }
 
