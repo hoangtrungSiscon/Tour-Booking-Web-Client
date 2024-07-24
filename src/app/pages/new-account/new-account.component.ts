@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GuestApiService } from 'src/app/shared/services/guest-api.service';
-
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',
@@ -17,10 +16,12 @@ export class NewAccountComponent {
   text = "Show";
   registerForm: FormGroup;
   GuestID: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private guestApiService: GuestApiService
+    private guestApiService: GuestApiService,
+
   ) {
     this.registerForm = this.fb.group({
       TenTaiKhoan: '',
@@ -33,6 +34,7 @@ export class NewAccountComponent {
     const id = this.activatedRoute.snapshot.params['id'];
     this.getGuestById(id);
   }
+
   getGuestById(id: number) {
     this.guestApiService.getGuestListById(id).subscribe(guest => {
       if (Array.isArray(guest)) {
@@ -46,6 +48,7 @@ export class NewAccountComponent {
     });
     
   }
+
   
   
   

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-forget-pass',
@@ -18,7 +19,7 @@ export class ForgetPassComponent {
     message: this.generateOTP(),
   };
   sentOtp: string = '';
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,    private meta: Meta,private title: Title,) {}
 
   ngOnInit() {
     this.email.valueChanges.pipe(debounceTime(500)).subscribe((data: any) => {
@@ -33,8 +34,17 @@ export class ForgetPassComponent {
           this.request.message = data;
         }
       });
+      this.setMetaForForgetPassPage();
   }
-
+  setMetaForForgetPassPage() {
+    this.title.setTitle(`Quên mật khẩu - Flight Dot`);
+    this.meta.updateTag({ property: 'og:image', content: 'assets/img/suport-hotline.png' });
+    this.meta.updateTag({ property: 'og:image:width', content: '1000' });
+    this.meta.updateTag({ property: 'og:image:height', content: '530' });
+    this.meta.updateTag({ property: 'og:image:alt', content: 'Hình ảnh trang quên mật khẩu' });
+    this.meta.updateTag({ name: 'description', content: 'Thông tin trang quên mật khẩu - Flight Dot' });
+    this.meta.updateTag({ name: 'keywords', content: `vé máy bay, FlightDot,quên mật khẩu, đặt vé, du lịch` });
+  }
   generateOTP() {
     // Declare a digits variable
     // which stores all digits

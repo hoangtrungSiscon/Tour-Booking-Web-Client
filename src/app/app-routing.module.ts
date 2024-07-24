@@ -19,6 +19,9 @@ import { BookingHistoryComponent } from './pages/booking-history/booking-history
 import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.component';
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 const routes: Routes = [
   {
