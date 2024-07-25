@@ -3,25 +3,59 @@
   <app-navbar></app-navbar>
 
   <div class="container-fuild">
-    
-    <div class="container-fuild background-img div-center row" style="width: 100%;padding: 20px;">
-
+    <div
+      class="container-fuild background-img div-center row"
+      style="width: 100%; padding: 20px"
+    >
       <div class="col-12 col-xl-4">
-        <div style="background-color: #d9d9d9;width: fit-content;border-radius: 5px;">        
-          <h1 style="color: #146c94;font-size: 32px;font-weight:bold;">ĐI XA HƠN <br> CHẠM TỚI ƯỚC MƠ</h1>
+        <div
+          style="
+            background-color: #d9d9d9;
+            width: fit-content;
+            border-radius: 5px;
+          "
+        >
+          <h1 style="color: #146c94; font-size: 32px; font-weight: bold">
+            ĐI XA HƠN <br />
+            CHẠM TỚI ƯỚC MƠ
+          </h1>
         </div>
-        <div style="background-color: #146c94;width: fit-content;border-radius: 5px;">
-          <h2 style="color: #d9d9d9;font-weight:bold;">Hãy xuất phát và tìm điểm dừng cho ước mơ của bạn</h2>
+        <div
+          style="
+            background-color: #146c94;
+            width: fit-content;
+            border-radius: 5px;
+          "
+        >
+          <h2 style="color: #d9d9d9; font-weight: bold">
+            Hãy xuất phát và tìm điểm dừng cho ước mơ của bạn
+          </h2>
         </div>
       </div>
       <div class="col-12 col-xl-5">
         <form class="d-flex row">
-          <input class="form-control me-2 input-date " type="date" name="date_flight" [(ngModel)]="date">
-          <div  style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
-            
+          <input
+            class="form-control me-2 input-date"
+            type="date"
+            name="date_flight"
+            [(ngModel)]="date"
+          />
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
             <!-- <input class="form-control me-2 input-sreach col-1" type="search" placeholder="NƠI CẦN ĐẾN" aria-label="Search" name="date_flight" value="" [(ngModel)]="departure"> -->
-            <select class="form-control me-2 input-select" name="arrival-location" id="arrival-location" style="height: 40px;"
-            [(ngModel)]="departure">
+            <select
+              class="form-control me-2 input-select"
+              name="arrival-location"
+              id="arrival-location"
+              style="height: 40px"
+              [(ngModel)]="departure"
+            >
               <option value="" id="">Nơi đi</option>
               <option value="VIETNAM" id="VN">Việt Nam</option>
               <option value="THAILAN" id="TH">Thái Lan</option>
@@ -34,8 +68,13 @@
               <option value="HONGKONG" id="HK">Hồng Kông</option>
               <option value="HANQUOC" id="KR">Hàn Quốc</option>
             </select>
-            <select class="form-control me-2 input-select" name="arrival-location" id="arrival-location" style="height: 40px;"
-            [(ngModel)]="destination">
+            <select
+              class="form-control me-2 input-select"
+              name="arrival-location"
+              id="arrival-location"
+              style="height: 40px"
+              [(ngModel)]="destination"
+            >
               <option value="" id="">Nơi đến</option>
               <option value="VIETNAM" id="VN">Việt Nam</option>
               <option value="THAILAN" id="TH">Thái Lan</option>
@@ -48,10 +87,15 @@
               <option value="HONGKONG" id="HK">Hồng Kông</option>
               <option value="HANQUOC" id="KR">Hàn Quốc</option>
             </select>
-          <button class="btn btn-outline-success btn-sreach col-1" type="submit" (click)="searchFlight()">TÌM</button>
+            <button
+              class="btn btn-outline-success btn-sreach col-1"
+              type="submit"
+              (click)="searchFlight()"
+            >
+              TÌM
+            </button>
           </div>
         </form>
-
       </div>
     </div>
     <div class="div-center margin" style="flex-direction: column">
@@ -100,206 +144,330 @@
       </div>
     </div>
     <!-- newestflights -->
-    <div class="div-center " style="flex-direction: column">
+    <div class="div-center" style="flex-direction: column">
       <h1 class="font-title">CHUYẾN BAY MỚI NHẤT</h1>
       <div class="div-center">
-        <div class="container  text-center row" style=" border-radius: 20px;height: 350px;display: flex;justify-content: center;align-items: center;">
-      </div>
-      
-      <div class="col-sm-4 mb-3 mb-sm-0" style="height: 300px;padding-inline: 15px;" *ngFor="let flight of newestflights">
-        <div class="card" style="height: 300px;padding: 5px;border-radius: 20px;border: 2px solid #146c94;">
-          <div class="card-body div-center" style="flex-direction: column;">
-            <h5 class="card-title" style="font-size: 20px;color: #146c94;font-weight: bold;">{{flight.noiXuatPhat}} - {{flight.noiDen}}</h5>
-            <p class="card-text" style="font-weight: bold;color: #19A7CE;">
-              Mã chuyến bay: {{flight.maChuyenBay}} <br> Máy bay: {{flight.tenMayBay}}
-              <br>
-              Ngày xuất phát: {{flight.ngayXuatPhat | date : "dd/MM/yyyy"}} <br> Giờ bay: {{flight.gioBay}}
-              <br>
-              Đơn giá: {{flight.donGia}}</p>
-              <a routerLink="/booking-ticket" routerLinkActive="active" class="btn" style="text-align: center;color: white;background-color: #146c94;border-radius: 5px;width: 100px;">Xem ngay</a>
-          </div>
-        </div>
-      </div>
-        
-        
-    </div>
-    <div class="div-center margin" style="flex-direction: column">
-      <h1 class="font-title">CÁC NƠI BẠN CÓ THỂ ĐI</h1>
-      <div class="container overflow-hidden text-center">
-        <div class="row gy-5 justify-content-evenly">
-          <div class="col-12 col-xl-8 margin-top " style="border: 2px solid #146c94; border-radius: 20px;overflow: hidden;">
-            <div id="carouselExample2" class="carousel" data-bs-ride="carousel" >
-              <div class="carousel-inner">
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/usa.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/london.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/thailand.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/singapore.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item active" data-bs-interval="3000">
-                  <img src="../../../assets/img/vietnam.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/hongkong.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/australia .png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item"data-bs-interval="3000">
-                  <img src="../../../assets/img/paris.png" class="d-block w-100" alt="...">
-                </div>
+        <div
+          class="container text-center row"
+          style="
+            border-radius: 20px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        ></div>
 
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-          <div class="col-12 col-xl-4 margin-top div-center">
-            <div class="p-3 div-center" style="width: fit-content;margin-left: 90px;">
-              <img src="assets/img/Screenshot 2023-10-19 223629.png" alt="img" width="300px"/>
+        <div
+          class="col-sm-4 mb-3 mb-sm-0"
+          style="height: 300px; padding-inline: 15px"
+          *ngFor="let flight of newestflights"
+        >
+          <div
+            class="card"
+            style="
+              height: 300px;
+              padding: 5px;
+              border-radius: 20px;
+              border: 2px solid #146c94;
+            "
+          >
+            <div class="card-body div-center" style="flex-direction: column">
+              <h5
+                class="card-title"
+                style="font-size: 20px; color: #146c94; font-weight: bold"
+              >
+                {{ flight.noiXuatPhat }} - {{ flight.noiDen }}
+              </h5>
+              <p class="card-text" style="font-weight: bold; color: #19a7ce">
+                Mã chuyến bay: {{ flight.maChuyenBay }} <br />
+                Máy bay: {{ flight.tenMayBay }}
+                <br />
+                Ngày xuất phát: {{ flight.ngayXuatPhat | date : "dd/MM/yyyy" }}
+                <br />
+                Giờ bay: {{ flight.gioBay }}
+                <br />
+                Đơn giá: {{ flight.donGia }}
+              </p>
+              <a
+                routerLink="/booking-ticket"
+                routerLinkActive="active"
+                class="btn"
+                style="
+                  text-align: center;
+                  color: white;
+                  background-color: #146c94;
+                  border-radius: 5px;
+                  width: 100px;
+                "
+                >Xem ngay</a
+              >
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <section class="margin" id="aboutus">
-      <h1 class="font-title">VỀ CHÚNG TÔI:</h1>
-      <p >Giới thiệu ngắn</p>
-    </section>
-    <div
-      class="div-center margin row accordion-border"
-      style="background-color: #d9d9d9"
-    >
-      <div class="col-12 col-xl-3" style="height: 50px; padding: 10px">
-        <h2 style="color: #146c94">FAQ về Booking:</h2>
-      </div>
-      <div class="col-12 col-xl-9" style="background-color: white">
-        <div class="accordion accordion-flush" id="accordionExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="false"
-                aria-controls="collapseOne"
-              >
-                Tại sao lại chọn FLIGHTDOT ?
-              </button>
-            </h2>
+      <div class="div-center margin" style="flex-direction: column">
+        <h1 class="font-title">CÁC NƠI BẠN CÓ THỂ ĐI</h1>
+        <div class="container overflow-hidden text-center">
+          <div class="row gy-5 justify-content-evenly">
             <div
-              id="collapseOne"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionExample"
+              class="col-12 col-xl-8 margin-top"
+              style="
+                border: 2px solid #146c94;
+                border-radius: 20px;
+                overflow: hidden;
+              "
             >
-              <div class="accordion-body">
-                Chọn FlightDot không chỉ là việc đặt vé máy bay, mà là trải nghiệm tuyệt vời từ đầu đến cuối. Chúng tôi tự hào về sự thuận tiện, linh hoạt và độ chính xác cao trong quá trình đặt vé. Không chỉ vậy, FlightDot cam kết mang đến cho bạn những ưu đãi độc quyền và giá vé hấp dẫn nhất trên thị trường
+              <div
+                id="carouselExample2"
+                class="carousel"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/usa.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/london.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/thailand.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/singapore.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item active" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/vietnam.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/hongkong.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/australia .png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" data-bs-interval="3000">
+                    <img
+                      src="../../../assets/img/paris.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselExample2"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselExample2"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo"
-                aria-expanded="false"
-                aria-controls="collapseTwo"
-                
+            <div class="col-12 col-xl-4 margin-top div-center">
+              <div
+                class="p-3 div-center"
+                style="width: fit-content; margin-left: 90px"
               >
-                Cách thức đặt vé máy bay
-              </button>
-            </h2>
-            <div
-              id="collapseTwo"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                Đặt vé trên FlightDot chưa bao giờ dễ dàng như vậy. Với giao diện thân thiện, chỉ cần vài bước đơn giản, bạn có thể chọn lựa giữa hàng nghìn chuyến bay và lựa chọn các dịch vụ bổ sung. Quá trình thanh toán an toàn và nhanh chóng giúp bạn tiết kiệm thời gian và tận hưởng chuyến đi của mình mà không gặp phải bất kỳ phiền toái nào.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseThree"
-                aria-expanded="false"
-                aria-controls="collapseThree"
-              >
-                Với dịch vụ chúng tôi có thể làm gì
-              </button>
-            </h2>
-            <div
-              id="collapseThree"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                FlightDot không chỉ đơn giản là nơi đặt vé, chúng tôi là đối tác lý tưởng cho mọi hành trình của bạn. Tận hưởng những tiện ích đặc biệt như đặt khách sạn, thuê xe, và thậm chí là đặt tour du lịch - tất cả chỉ trong một trang web. Chúng tôi cam kết đem đến trải nghiệm du lịch toàn diện và không gì là quá khó khăn.
-              </div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button
-                class="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseFour"
-                aria-expanded="false"
-                aria-controls="collapseFour"
-              >
-               Giải quyết thắc mắc và sự cố:
-              </button>
-            </h2>
-            <div
-              id="collapseFour"
-              class="accordion-collapse collapse"
-              data-bs-parent="#accordionExample"
-            >
-              <div class="accordion-body">
-                Chúng tôi hiểu rằng có những thời điểm bạn cần sự hỗ trợ. Đội ngũ chăm sóc khách hàng của chúng tôi luôn sẵn sàng giải quyết mọi thắc mắc và sự cố. Liên hệ với chúng tôi qua đường dây nóng hoặc email, chúng tôi cam kết đảm bảo rằng mọi vấn đề của bạn sẽ được giải quyết một cách nhanh chóng và hiệu quả nhất. FlightDot - luôn bên bạn, từ lúc bắt đầu đến khi kết thúc chuyến đi.
+                <img
+                  src="assets/img/Screenshot 2023-10-19 223629.png"
+                  alt="img"
+                  width="300px"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="div-center margin-bottom" style="height: 250px;">
-      <div class="div-contact row">
-        <div class="col-4 div-center" >
-          <img src="assets/img/ticket.png" alt=".." width="100px">
+      <section class="margin" id="aboutus">
+        <h1 class="font-title">VỀ CHÚNG TÔI:</h1>
+        <p>Giới thiệu ngắn</p>
+      </section>
+      <div
+        class="div-center margin row accordion-border"
+        style="background-color: #d9d9d9"
+      >
+        <div class="col-12 col-xl-3" style="height: 50px; padding: 10px">
+          <h2 style="color: #146c94">FAQ về Booking:</h2>
         </div>
-        <div class="col-8 div-center">
-          <div class="rotatingText div-center" style="margin-right: 30px;">
-            <div class="rotatingText-content">
-              <p class="rotatingText-description">
-                Đặt vé ngay với Hotline: 1021 4333 hoặc chọn đặt vé ngay để hưởng nhiều                    &hellip;
+        <div class="col-12 col-xl-9" style="background-color: white">
+          <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
+                >
+                  Tại sao lại chọn FLIGHTDOT ?
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  Chọn FlightDot không chỉ là việc đặt vé máy bay, mà là trải
+                  nghiệm tuyệt vời từ đầu đến cuối. Chúng tôi tự hào về sự thuận
+                  tiện, linh hoạt và độ chính xác cao trong quá trình đặt vé.
+                  Không chỉ vậy, FlightDot cam kết mang đến cho bạn những ưu đãi
+                  độc quyền và giá vé hấp dẫn nhất trên thị trường
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  Cách thức đặt vé máy bay
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  Đặt vé trên FlightDot chưa bao giờ dễ dàng như vậy. Với giao
+                  diện thân thiện, chỉ cần vài bước đơn giản, bạn có thể chọn
+                  lựa giữa hàng nghìn chuyến bay và lựa chọn các dịch vụ bổ
+                  sung. Quá trình thanh toán an toàn và nhanh chóng giúp bạn
+                  tiết kiệm thời gian và tận hưởng chuyến đi của mình mà không
+                  gặp phải bất kỳ phiền toái nào.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  Với dịch vụ chúng tôi có thể làm gì
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  FlightDot không chỉ đơn giản là nơi đặt vé, chúng tôi là đối
+                  tác lý tưởng cho mọi hành trình của bạn. Tận hưởng những tiện
+                  ích đặc biệt như đặt khách sạn, thuê xe, và thậm chí là đặt
+                  tour du lịch - tất cả chỉ trong một trang web. Chúng tôi cam
+                  kết đem đến trải nghiệm du lịch toàn diện và không gì là quá
+                  khó khăn.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFour"
+                  aria-expanded="false"
+                  aria-controls="collapseFour"
+                >
+                  Giải quyết thắc mắc và sự cố:
+                </button>
+              </h2>
+              <div
+                id="collapseFour"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body">
+                  Chúng tôi hiểu rằng có những thời điểm bạn cần sự hỗ trợ. Đội
+                  ngũ chăm sóc khách hàng của chúng tôi luôn sẵn sàng giải quyết
+                  mọi thắc mắc và sự cố. Liên hệ với chúng tôi qua đường dây
+                  nóng hoặc email, chúng tôi cam kết đảm bảo rằng mọi vấn đề của
+                  bạn sẽ được giải quyết một cách nhanh chóng và hiệu quả nhất.
+                  FlightDot - luôn bên bạn, từ lúc bắt đầu đến khi kết thúc
+                  chuyến đi.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="div-center margin-bottom" style="height: 250px">
+        <div class="div-contact row">
+          <div class="col-4 div-center">
+            <img src="assets/img/ticket.png" alt=".." width="100px" />
+          </div>
+          <div class="col-8 div-center">
+            <div class="rotatingText div-center" style="margin-right: 30px">
+              <div class="rotatingText-content">
+                <!-- <p class="rotatingText-description"> -->
+                <!-- Đặt vé ngay với Hotline: 1021 4333 hoặc chọn đặt vé ngay để hưởng nhiều                    &hellip;
               </p>
           
               <h4 class="rotatingText-adjective">Ưu đãi</h4>
               <h4 class="rotatingText-adjective">Nhiệt tình</h4>
               <h4 class="rotatingText-adjective">Quyền lợi</h4>
               <h4 class="rotatingText-adjective">Hỗ trợ</h4>
-              <h4 class="rotatingText-adjective">Nhiệt tình, Hỗ trợ, Quyền lợi, Ưu đãi</h4>
+              <h4 class="rotatingText-adjective">Nhiệt tình, Hỗ trợ, Quyền lợi, Ưu đãi</h4> -->
+              
             </div>
           </div>
         </div>
