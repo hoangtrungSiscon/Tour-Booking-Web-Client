@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CookieService } from '../../shared/services/cookie.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +15,30 @@ export class LoginComponent implements OnInit {
   visible: boolean = true;
   changetype: boolean = true;
   hide = true;
+  
   form: FormGroup | any;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private meta: Meta,
+    private title: Title,
   ) {}
 
   ngOnInit() {
     this.form = this.createForm();
+    this.setMetaForLoginPage()
   }
-
+  setMetaForLoginPage() {
+    this.title.setTitle('Đăng nhập - Flight Dot');
+    this.meta.updateTag({ property: 'og:image', content: 'assets/img/background2.jpeg' });
+    this.meta.updateTag({ property: 'og:image:width', content: '1000' });
+    this.meta.updateTag({ property: 'og:image:height', content: '530' });
+    this.meta.updateTag({ property: 'og:image:alt', content: 'Hình ảnh trang đăng nhập' });
+    this.meta.updateTag({ name: 'description', content: 'Thông tin trang đăng nhập tài khoản đặt vé - Flight Dot' });
+    this.meta.updateTag({ name: 'keywords', content: `vé máy bay, FlightDot, đặt vé, du lịch` });
+  }
   createForm() {
     let form = this.formBuilder.group({
       taiKhoan1: [''],

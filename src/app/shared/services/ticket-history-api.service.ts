@@ -7,7 +7,7 @@ import { Observable,map } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketHistoryApiService {
-  readonly TicketAPIUrl = "https://localhost:7000/api/TicketHistory";
+  readonly TicketAPIUrl = "https://flightdotapi.azurewebsites.net/api/TicketHistory";
   constructor(private http:HttpClient) { }
   getTicketHistoryList (id:number){
     return this.http.get<any>(this.TicketAPIUrl + `/${id}`);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import Swal from 'sweetalert2';
@@ -7,6 +7,9 @@ import { debounceTime } from 'rxjs';
 import { ChiTietVeService } from '../../shared/services/chiTietVe.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { KhachHangService } from '../../shared/services/khachHang.service';
+import { Meta, Title } from '@angular/platform-browser';
+import { GetCountryService } from '../../shared/services/get-country.service';
+import slugify from 'slugify';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -15,6 +18,21 @@ import { KhachHangService } from '../../shared/services/khachHang.service';
 })
 export class BookingTicketDetailComponent implements OnInit {
   flightInfo: any;
+  imgKeyList = [
+    { keyword: 'NHATBAN', fileName: 'japan.png' },
+    { keyword: 'ANH', fileName: 'london.png' },
+    { keyword: 'VIETNAM', fileName: 'vietnam.png' },
+    { keyword: 'MY', fileName: 'usa.png' },
+    { keyword: 'SINGAPORE', fileName: 'singapore.png' },
+    { keyword: 'PHAP', fileName: 'paris.png' },
+    { keyword: 'NGA', fileName: 'nga.png' },
+    { keyword: 'HONGKONG', fileName: 'hongkong.png' },
+    { keyword: 'HANQUOC', fileName: 'hanquoc.png' },
+    { keyword: 'THAILAN', fileName: 'thailand.png' },
+
+
+  ];
+
   form: FormGroup | any;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,18 +42,64 @@ export class BookingTicketDetailComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private khachHangService: KhachHangService,
+    private meta: Meta,
+    private title: Title,
+    private getCountryService: GetCountryService
   ) {}
   ngOnInit() {
     this.form = this.createForm();
     this.khachHangService.getByMaTaiKhoan(this.authService.thisAccountId()).subscribe((data)=>{
       this.form.patchValue(data);
     })
-    this.chuyenBayService
-      .getByCode(this.activatedRoute.snapshot.paramMap.get('code'))
-      .subscribe((flight: any) => {
-        this.flightInfo = flight;
-      });
+
+    const slug = this.activatedRoute.snapshot.paramMap.get('slug');
+    
+    // const expectedSlug = 
+    this.loadTicketData(slug);
+
   }
+  ImageUrl(keyword: string): string {
+    const image = this.imgKeyList.find(img => img.keyword === keyword);
+    return image ? `../../../assets/img/${image.fileName}` : ``;
+  }
+  loadTicketData(slug: string | null): void {
+    if (!slug) {
+      this.router.navigate(['/booking-ticket']);
+    } else {
+      const flightId = slug.split('-')[6];
+      this.chuyenBayService
+      .getByCode(flightId)
+      .subscribe({next: (flight: any) => {
+        this.flightInfo = flight;
+        this.updateMetaTags();
+        //verify slug
+        const origin = slugify(this.getCountryService.getCountryName(flightId.substring(6, 8)), { lower: true });
+        const destination = slugify(this.getCountryService.getCountryName(flightId.substring(10, 12)), { lower: true });
+        const expectedSlug = `thong-tin-chi-tiet-chuyen-bay-${flightId}-tu-${origin}-den-${destination}`;
+        if (slug !== expectedSlug) {
+          this.router.navigate([`/booking-ticket-detail`, expectedSlug], { replaceUrl: true });
+        }
+      }, error: (err) => {
+        this.router.navigate(['/booking-ticket']);
+      }});
+    }
+  }
+
+
+  updateMetaTags(): void {
+    if (this.flightInfo) {
+      const origin = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8));
+      const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
+      this.title.setTitle(`Chi tiết vé máy bay từ ${origin} đến ${destination}`);
+      this.meta.updateTag({ property: 'og:image', content: this.ImageUrl(this.flightInfo?.chuyenBay.noiXuatPhat) });
+      this.meta.updateTag({ property: 'og:image:width', content: '1000' });
+      this.meta.updateTag({ property: 'og:image:height', content: '530' });
+      this.meta.updateTag({ property: 'og:image:alt', content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}` });
+      this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
+      this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch` });
+    }
+  }
+
 
   createForm() {
     let form: FormGroup | any = this.formBuilder.group({

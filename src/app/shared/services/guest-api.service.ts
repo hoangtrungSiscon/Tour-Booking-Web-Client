@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GuestApiService {
-  readonly guestAPIUrl = "https://localhost:7000/api";
+  readonly guestAPIUrl = "https://flightdotapi.azurewebsites.net/api";
   constructor(private http:HttpClient) { }
 
   getGuestList():Observable<any[]> {

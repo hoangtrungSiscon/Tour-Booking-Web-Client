@@ -14,40 +14,61 @@
           align-items: center;
         "
       >
+      <div class="row" style="          display: flex;
+      justify-content: center;
+      align-items: center;">
         <div
-          class="row border-color-2 p-3 border-ra"
-          style="border-radius: 20px; width: 1000px"
+          class="row p-3 "
+          style="border-radius: 20px; width: 1000px; margin-top:16px"
         >
-          <div class="col-7">
-            <h3 class="color-1 fw-bold font-20">NƠI ĐI - NƠI ĐẾN</h3>
+          <div class="col-4" style="height: 300px;">
+            <img [src]="ImageUrl(flightInfo?.chuyenBay.noiXuatPhat)" alt="ImageNoiDi" sizes="center" style="width: 300px;height: 300px;">
+          </div>
+          <div class="col-4" style="height: 300px;justify-content: center;align-items: center;display: flex;">
             <h1 class="color-2 fw-bold font-28">
-              {{ flightInfo?.chuyenBay.noiXuatPhat }} -
+              {{ flightInfo?.chuyenBay.noiXuatPhat }} đến
               {{ flightInfo?.chuyenBay.noiDen }}
             </h1>
-            <h3 class="color-1 fw-bold font-20">
-              NGÀY/GIỜ:
-              <span class="color-2"
-                >{{ flightInfo?.chuyenBay.ngayXuatPhat }}
-              </span>
-            </h3>
           </div>
-          <div class="col-5">
-            <h3 class="color-1 fw-bold font-20">
-              MÁY BAY:
-              <span class="color-2">{{ flightInfo?.mayBay.tenMayBay }} </span>
-            </h3>
-            <h3 class="color-1 fw-bold font-20">
-              MÃ CHUYẾN:
-              <span class="color-2">{{
-                flightInfo?.chuyenBay.maChuyenBay
-              }}</span>
-            </h3>
-            <h3 class="color-1 fw-bold font-20">
-              GIÁ ĐƠN VÉ:
-              <span class="color-2">{{ flightInfo?.chuyenBay.donGia }} </span>
-            </h3>
+          <div class="col-4" style="height: 300px;">
+            <img [src]="ImageUrl(flightInfo?.chuyenBay.noiDen)" alt="ImageNoiDen" sizes="center" style="width: 300px;height: 300px;">
           </div>
         </div>
+        <div
+        class="row border-color-2 p-3 border-ra"
+        style="border-radius: 20px; width: 1000px; margin-top: 24px;"
+      >
+        <div class="col-7">
+          <h3 class="color-1 fw-bold font-20">NƠI ĐI - NƠI ĐẾN</h3>
+          <h1 class="color-2 fw-bold font-28">
+            {{ flightInfo?.chuyenBay.noiXuatPhat }} -
+            {{ flightInfo?.chuyenBay.noiDen }}
+          </h1>
+          <h3 class="color-1 fw-bold font-20">
+            NGÀY/GIỜ:
+            <span class="color-2"
+              >{{ flightInfo?.chuyenBay.ngayXuatPhat }}
+            </span>
+          </h3>
+        </div>
+        <div class="col-5">
+          <h3 class="color-1 fw-bold font-20">
+            MÁY BAY:
+            <span class="color-2">{{ flightInfo?.mayBay.tenMayBay }} </span>
+          </h3>
+          <h3 class="color-1 fw-bold font-20">
+            MÃ CHUYẾN:
+            <span class="color-2">{{
+              flightInfo?.chuyenBay.maChuyenBay
+            }}</span>
+          </h3>
+          <h3 class="color-1 fw-bold font-20">
+            GIÁ ĐƠN VÉ:
+            <span class="color-2">{{ flightInfo?.chuyenBay.donGia }} </span>
+          </h3>
+        </div>
+      </div>
+    </div>
       </div>
       <div class="col-12">
         <div class="row" [formGroup]="form">

@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Validator } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +20,7 @@ export class SignUpComponent implements OnInit {
   checkPass: FormControl = this.formBuilder.control('');
   message: string = ''
 
-  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router){};
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router,private meta:Meta,private title:Title){};
   ngOnInit(){
     this.form=this.createForm();
     this.checkPass.valueChanges.pipe(debounceTime(300)).subscribe((data) => {
@@ -30,8 +31,17 @@ export class SignUpComponent implements OnInit {
         this.message = ""
       }
     })
+    this.setMetaForSignUpPage()
   }
-  
+  setMetaForSignUpPage() {
+    this.title.setTitle(`Đăng kí tài khoản - Flight Dot`);
+    this.meta.updateTag({ property: 'og:image', content: 'assets/img/background 2.jpeg' });
+    this.meta.updateTag({ property: 'og:image:width', content: '1000' });
+    this.meta.updateTag({ property: 'og:image:height', content: '530' });
+    this.meta.updateTag({ property: 'og:image:alt', content: 'Hình ảnh trang đăng kí tài khoản' });
+    this.meta.updateTag({ name: 'description', content: 'Thông tin trang đăng kí tài khoản - Flight Dot' });
+    this.meta.updateTag({ name: 'keywords', content: `vé máy bay, FlightDot,quên mật khẩu, đặt vé, du lịch` });
+  }
   createForm(){
     return this.formBuilder.group({
       taiKhoan1: ['',[Validators.required]],
