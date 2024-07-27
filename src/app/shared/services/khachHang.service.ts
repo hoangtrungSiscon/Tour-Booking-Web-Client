@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class KhachHangService {
-  protected url: string = 'https://flightdotapi.azurewebsites.net/api/KhachHangs';
+  protected url: string = '/api/KhachHangs';
   constructor(protected http: HttpClient) {}
 
   public getByMaTaiKhoan(code: number): Observable<any> {

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AccountApiService {
-  readonly accountAPIUrl = "https://flightdotapi.azurewebsites.net/api/TaiKhoan";
+  readonly accountAPIUrl = "/api/TaiKhoan";
 
   constructor(private http:HttpClient) { }
   

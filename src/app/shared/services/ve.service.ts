@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class VeService {
 
-    protected url: string = 'https://flightdotapi.azurewebsites.net/api/services/ve';
+    protected url: string = '/api/services/ve';
     constructor(protected http: HttpClient) { }
 
     public getAll(): Observable<any> {

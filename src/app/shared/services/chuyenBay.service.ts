@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ChuyenBayService {
 
-    protected url: string = 'https://flightdotapi.azurewebsites.net/api/chuyenbay';
+    protected url: string = '/api/chuyenbay';
     constructor(protected http: HttpClient) { }
 
     public getAll(): Observable<any> {

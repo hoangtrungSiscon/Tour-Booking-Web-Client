@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ChiTietVeService {
-  protected url: string = 'https://flightdotapi.azurewebsites.net/api/ChiTietVe';
+  protected url: string = '/api/ChiTietVe';
   constructor(protected http: HttpClient) {}
 
   public getAll(): Observable<any> {

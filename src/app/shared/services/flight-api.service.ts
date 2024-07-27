@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class FlightApiService {
 
-  readonly flightAPIUrl = "https://flightdotapi.azurewebsites.net/api";
+  readonly flightAPIUrl = "/api";
 
   constructor(private http:HttpClient) { }
 
@@ -22,7 +22,7 @@ export class FlightApiService {
   }
 
   getMostBookedFlight(): Observable<any> {
-    return this.http.get<any[]>("https://flightdotapi.azurewebsites.net/api/ChuyenBay/GetAll").pipe(
+    return this.http.get<any[]>("/api/ChuyenBay/GetAll").pipe(
       map(chuyenBays => {
         const chuyenBayGroups: { [key: string]: any[] } = {};
 

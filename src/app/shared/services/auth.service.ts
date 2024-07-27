@@ -12,7 +12,7 @@ export class AuthService {
   private maTaiKhoanGet = this.maTaiKhoanSource.asObservable();
   private vaiTroSource = new BehaviorSubject<any | null>(null);
   private vaiTroGet = this.vaiTroSource.asObservable();
-  protected url: string = 'https://flightdotapi.azurewebsites.net/api/auth';
+  protected url: string = '/api/auth';
   constructor(protected http: HttpClient) {}
 
   public sendOtp(request: any): Observable<any> {
