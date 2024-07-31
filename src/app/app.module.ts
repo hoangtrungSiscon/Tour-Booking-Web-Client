@@ -46,6 +46,8 @@ import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.co
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MailchimpService } from './shared/services/mailchimp.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,9 +100,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MatStepperModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
-
+    
   ],
-  providers: [FlightApiService],
+  providers: [FlightApiService,MailchimpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
