@@ -18,7 +18,7 @@ export class HomeComponent {
   public departure: any = '';
   public destination: any = '';
   public newestflights: any[] = [];
-  private apiKey = '66766b530d88886b075697636ac8f03d-us22';    
+  private apiKey = '87fef4d87cd58971310ba6b22cf1ffdd-us22';    
 
   constructor(
     private router: Router,
@@ -32,8 +32,8 @@ export class HomeComponent {
   ) {}
 
   AddEmail() {
-
-    const apiUrl = 'https://us22.api.mailchimp.com/3.0/lists/1d043ea14e/members';
+    
+    const apiUrl = `mailchimpapi/3.0/lists/1d043ea14e/members`;
     const data = {
       email_address: this.email,
       status: 'subscribed'
@@ -41,7 +41,8 @@ export class HomeComponent {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Basic ${btoa('anystring:' + this.apiKey)}`
+      'Authorization': `Basic ${btoa('anystring:' + this.apiKey)}`,
+      'Access-Control-Allow-Origin': '*'
     });
 
     this.http.post(apiUrl, data, { headers }).subscribe(

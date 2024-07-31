@@ -4,5 +4,13 @@
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
+    },
+    "/mailchimpapi":{
+        "target": "https://us22.api.mailchimp.com/3.0",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    
     }
+
 }
