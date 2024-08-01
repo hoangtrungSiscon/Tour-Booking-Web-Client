@@ -7,7 +7,7 @@
       class="container-fuild background-img div-center row"
       style="width: 100%; padding: 20px"
     >
-      <div class="col-12 col-xl-4">
+      <div class="col-12 col-xl-4" style="margin: 10px">
         <div
           style="
             background-color: #d9d9d9;
@@ -28,11 +28,12 @@
           "
         >
           <h2 style="color: #d9d9d9; font-weight: bold">
-            Hãy xuất phát và tìm điểm dừng cho ước mơ của bạn
+            Hãy xuất phát và tìm điểm đi cho ước mơ của bạn
           </h2>
         </div>
       </div>
-      <div class="col-12 col-xl-5">
+
+      <div class="col-12 col-xl-5" style="margin: 10px">
         <form class="d-flex row">
           <input
             class="form-control me-2 input-date"
@@ -457,22 +458,29 @@
           </div>
           <div class="col-8 div-center">
             <div class="rotatingText div-center" style="margin-right: 30px">
-              <div class="rotatingText-content">
-                <!-- <p class="rotatingText-description"> -->
-                <!-- Đặt vé ngay với Hotline: 1021 4333 hoặc chọn đặt vé ngay để hưởng nhiều                    &hellip;
-              </p>
-          
-              <h4 class="rotatingText-adjective">Ưu đãi</h4>
-              <h4 class="rotatingText-adjective">Nhiệt tình</h4>
-              <h4 class="rotatingText-adjective">Quyền lợi</h4>
-              <h4 class="rotatingText-adjective">Hỗ trợ</h4>
-              <h4 class="rotatingText-adjective">Nhiệt tình, Hỗ trợ, Quyền lợi, Ưu đãi</h4> -->
-              
+              <div class="rotatingText-content" style="margin-top: 40px">
+
+                <div class="email-registration-container">
+                  <form (ngSubmit)="AddEmail()">
+                    <h2>Đăng kí để nhận thông tin mới nhất</h2>
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                  </form>
+                </div>
+                
+                
+                
+            
+                
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <app-footer></app-footer>
   </div>
-  <app-footer></app-footer>
 </div>
