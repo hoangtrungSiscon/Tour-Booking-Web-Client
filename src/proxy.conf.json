@@ -4,15 +4,7 @@
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
-    },
-    "/mailchimpapi": {
-        "target": "https://us22.api.mailchimp.com",
-        "secure": false,
-        "changeOrigin": true,
-        "pathRewrite": {
-          "^/mailchimpapi": ""
-        }
-      }
+    }
     
 
 }
