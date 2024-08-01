@@ -10,6 +10,8 @@ import { KhachHangService } from '../../shared/services/khachHang.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from '../../shared/services/get-country.service';
 import slugify from 'slugify';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -32,6 +34,8 @@ export class BookingTicketDetailComponent implements OnInit {
 
 
   ];
+  public payPalConfig?: IPayPalConfig;
+
 
   form: FormGroup | any;
   constructor(
@@ -44,8 +48,9 @@ export class BookingTicketDetailComponent implements OnInit {
     private khachHangService: KhachHangService,
     private meta: Meta,
     private title: Title,
-    private getCountryService: GetCountryService
+    private getCountryService: GetCountryService,
   ) {}
+  
   ngOnInit() {
     this.form = this.createForm();
     this.khachHangService.getByMaTaiKhoan(this.authService.thisAccountId()).subscribe((data)=>{
@@ -56,12 +61,97 @@ export class BookingTicketDetailComponent implements OnInit {
     
     // const expectedSlug = 
     this.loadTicketData(slug);
-
+    this.initConfig();
   }
   ImageUrl(keyword: string): string {
     const image = this.imgKeyList.find(img => img.keyword === keyword);
     return image ? `../../../assets/img/${image.fileName}` : ``;
   }
+
+  private initConfig(): void {
+    this.payPalConfig = {
+    currency: 'EUR',
+    clientId: 'ASzbDbw5YCZBXa_XcOuIHQNW_nMUKuem-c6xdgprJ77xRKLAr8DcXLQVHPnSeinenvQu7wLND9mNtaM8',
+    createOrderOnClient: (data) => <ICreateOrderRequest>{
+      intent: 'CAPTURE',
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'USD',
+            value: '9.99',
+            breakdown: {
+              item_total: {
+                currency_code: 'EUR',
+                value: '9.99'
+              }
+            }
+          },
+          items: [
+            {
+              name: 'Enterprise Subscription',
+              quantity: '1',
+              category: 'DIGITAL_GOODS',
+              unit_amount: {
+                currency_code: 'EUR',
+                value: '9.99',
+              },
+            }
+          ]
+        }
+      ]
+    },
+    advanced: {
+      commit: 'true'
+    },
+    style: {
+      label: 'paypal',
+      layout: 'vertical'
+    },
+    onApprove: (data, actions) => {
+      console.log('onApprove - transaction was approved, but not authorized', data, actions);
+      actions.order.get().then((details:any) => {
+        console.log('onApprove - you can get full order details inside onApprove: ', details);
+      });
+    },
+    onClientAuthorization: (data) => {
+      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+    },
+    onCancel: (data, actions) => {
+      console.log('OnCancel', data, actions);
+    },
+    onError: err => {
+      console.log('OnError', err);
+    },
+    
+    onClick: (data, actions) => {
+      console.log('onClick', data, actions);
+
+      this.form
+      .get('maChuyenBay')
+      .setValue(this.flightInfo?.chuyenBay.maChuyenBay);
+      
+      // this.chiTietVeService.checkValidity(this.form.value).subscribe({next: (data: any) => {
+      //   return actions.resolve();
+      // }, error: (err) => {
+      //   console.error(err);
+      //   return actions.reject();
+      // }});
+      console.log(this.form.value);
+      return this.chiTietVeService.checkValidity(this.form.value).toPromise()
+        .then(response => {
+            console.log('Order is valid', response);
+            return actions.resolve();
+          })
+          .catch(error => {
+            console.error('Order is invalid', error);
+            alert('Đơn hàng không hợp lệ!');
+            return actions.reject();
+          });
+    },
+  };
+  }
+
+
   loadTicketData(slug: string | null): void {
     if (!slug) {
       this.router.navigate(['/booking-ticket']);
@@ -107,7 +197,7 @@ export class BookingTicketDetailComponent implements OnInit {
       maChuyenBay: [''],
       maTaiKhoan: [0],
       tenKh: [''],
-      soLuong: ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.min(1)]],
+      soLuong: [0, [Validators.required, Validators.pattern(/^\d+$/), Validators.min(1)]],
       gmailKh: [''],
       tongGia: [0],
       sdt: [''],
@@ -141,12 +231,20 @@ export class BookingTicketDetailComponent implements OnInit {
       console.log(this.form.value);
       this.chiTietVeService.create(this.form.value).subscribe(
       () => {
-        Swal.fire(
-          'Bạn đã đặt vé thành công',
-          'Chúng tôi rất hân hạnh được phục vụ quý khách và chúc quý khách có một chuyến đi thật tuyệt vời.',
-          'success'
-        ).then(() => {
-          this.router.navigate(['/booking-ticket']);
+        Swal.fire({
+          title:'Bạn đã đặt vé thành công',
+          text:'Quý khánh hãy thực hiện thủ tục thanh toán trong thời gian sớm nhất qua ví điện tử hoặc thanh toán trực tiếp tại quầy thu ngân. Chúng tôi rất hân hạnh được phục vụ quý khách và chúc quý khách có một chuyến đi thật tuyệt vời.',
+          icon:'success',
+          confirmButtonText: 'Thanh toán ngay',
+          showDenyButton: true,
+          denyButtonText: 'Để sau',
+          denyButtonColor: '#aaa',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/invoices']);
+          } else if (result.isDenied) {
+            this.router.navigate(['/booking-ticket']);
+          }
         });
       },
       (error) => {

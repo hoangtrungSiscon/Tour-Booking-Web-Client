@@ -1,0 +1,97 @@
+<app-header-home></app-header-home>
+<app-navbar></app-navbar>
+<div class="container"> 
+    <div class="row">
+        <h1 class="text-center harder title">THÔNG TIN HÓA ĐƠN</h1>
+    </div>
+</div>
+
+<div style="padding: 20px 300px 0px; font-size: 15px">
+    <dl class="row">
+        <h4 style="margin-bottom:20px">Thông tin khách hàng</h4>
+        <dt class = "col-sm-4">
+            Họ tên khách hàng
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.tenKh}}
+        </dd>
+        <dt class = "col-sm-4">
+            Số điện thoại
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.sdt}}
+        </dd>
+        <dt class = "col-sm-4">
+            Giới tính
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.phai}}
+        </dd>
+        <hr style="background-color:black;opacity:1;"/>
+        <h4 style="margin-bottom:20px">Thông tin chuyến bay</h4>
+        <dt class = "col-sm-4">
+            Mã chuyến bay
+        </dt>
+        <dd class = "col-sm-8">
+            {{flight?.MaChuyenBay}}
+        </dd>
+        <dt class = "col-sm-4">
+            Máy bay chuyên chở
+        </dt>
+        <dd class = "col-sm-8">
+            {{flight?.TenMayBay}}
+        </dd>
+        <dt class = "col-sm-4">
+            Địa điểm cất cánh
+        </dt>
+        <dd class = "col-sm-8">
+            {{returnCountryName(flight?.NoiXuatPhat)}}
+        </dd>
+        <dt class = "col-sm-4">
+            Địa điểm hạ cánh
+        </dt>
+        <dd class = "col-sm-8">
+            {{returnCountryName(flight?.NoiDen)}}
+        </dd>
+        <dt class = "col-sm-4">
+            Thời gian khởi hành
+        </dt>
+        <dd class = "col-sm-8">
+            {{flight?.NgayXuatPhat | date:'dd-MM-yyyy'}} - {{flight?.gioBay | date:'h:mm a'}}
+        </dd>
+        
+        <hr style="background-color:black;opacity:1;"/>
+        <h4 style="margin-bottom:20px">Thông tin đặt vé</h4>
+        <dt class = "col-sm-4">
+            Loại ghế
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.loaiGhe == 'BSN' ? 'Thương gia' : 'Phổ thông'}}
+        </dd>
+        <dt class = "col-sm-4">
+            Số ghế đã đặt
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.soGhe}}
+        </dd>
+        <dt class = "col-sm-4">
+            Thời điểm đặt vé
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.ngayDatVe | date:'dd-MM-yyyy, h:mm a'}}
+        </dd>
+        <dt class = "col-sm-4">
+            Tổng giá
+        </dt>
+        <dd class = "col-sm-8">
+            {{invoice?.tongGia | number:'1.0-3'}} $
+
+        </dd>
+        <!-- <hr style="background-color:black;opacity:1;"/> -->
+        <p class="text-center harder" style="margin-top: 20px; font-weight: bold">THANH TOÁN NGAY</p>
+        <div class="paypal">
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+        </div>
+        
+    </dl>
+</div>

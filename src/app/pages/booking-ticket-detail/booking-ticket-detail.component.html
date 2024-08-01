@@ -215,15 +215,19 @@
                 </div>
               </div>
             </div>
-            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px" style="margin-top: 20px;">
+            <div class="ticket-btn mt-6 d-flex justify-content-center h-50px" style="margin-top: 20px; align-items: top">
               <input
-                style="background-color: #146C94 !important;color: white;"
+                style="background-color: #146C94 !important;color: white; height: 50px;"
                 type="submit"
                 (click)="showOnInit()"
                 class="btn  px-5 py-2 fw-bold border-color-1"
                 value="Đặt vé"
               />
+              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
             </div>
+            
+            
           </div>
         </div>
       </div>

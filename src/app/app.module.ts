@@ -46,6 +46,17 @@ import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.co
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +88,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     BookingHistoryComponent,
     BookingTicketComponent,
     BookingTicketDetailComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    InvoicesComponent,
+    InvoiceDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +111,12 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MatStepperModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
-
+    NgxPayPalModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCardModule,
   ],
   providers: [FlightApiService],
   bootstrap: [AppComponent]

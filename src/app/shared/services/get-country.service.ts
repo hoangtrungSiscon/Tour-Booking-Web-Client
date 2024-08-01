@@ -22,4 +22,19 @@ export class GetCountryService {
     };
     return countryMap[code];
   }
+  getCountryNameInUnicode(name: string): string {
+    const countryMap: { [key: string]: string } = {
+      NHATBAN: 'Nhật Bản',
+      ANH: 'Anh',
+      THAILAN: 'Thái Lan',
+      VIETNAM: 'Việt Nam',
+      PHAP: 'Pháp',
+      NGA: 'Nga',
+      SINGAPORE: 'Singapore',
+      HONGKONG: 'Hồng Kông',
+      HANQUOC: 'Hàn Quốc',
+      MY: 'Mỹ',
+    };
+    return countryMap[name];
+  }
 }

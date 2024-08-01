@@ -1,0 +1,64 @@
+.harder{
+  color: #146C94;
+  font-size: 25px;
+}
+.title{
+  font-size: xx-large;
+}
+.container {
+  margin-top: 2%;
+}
+h1{
+  font-weight: bold;
+}
+.invoice-list-container {
+    padding: 16px;
+  }
+  
+  .mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  
+  .filter-container {
+    margin-bottom: 16px;
+  }
+  
+  .invoice-list {
+    margin-top: 16px;
+  }
+  
+  .mat-column-actions {
+    display: flex;
+    justify-content: center
+  }
+
+  .mat-mdc-table {
+    text-wrap: nowrap;
+    text-align: center;
+  }
+.mat-mdc-header-row {
+    color: white;
+    background-color: #19A7CE;
+}
+.mat-mdc-row {
+    background-color: white;
+    color: #121010;
+    text-align: center;
+}
+
+/* Đặt độ rộng cụ thể cho các cột */
+.column-id {
+    flex: 0 0 100px; /* Độ rộng cố định là 50px */
+}
+
+
+/* Đảm bảo bảng chiếm toàn bộ chiều rộng container */
+.mat-table {
+    width: 100%;
+}
+mat-header-cell, mat-cell {
+  justify-content: center;
+}
+
