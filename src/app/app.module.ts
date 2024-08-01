@@ -47,6 +47,8 @@ import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/book
 import { FlightApiService } from './shared/services/flight-api.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MailchimpService } from './shared/services/mailchimp.service';
+import { RssFeedComponent } from './components/rss-feed/rss-feed.component';
+import { RssFeedService } from './shared/services/rss.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,8 @@ import { MailchimpService } from './shared/services/mailchimp.service';
     BookingHistoryComponent,
     BookingTicketComponent,
     BookingTicketDetailComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RssFeedComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +105,7 @@ import { MailchimpService } from './shared/services/mailchimp.service';
     HttpClientModule,
     
   ],
-  providers: [FlightApiService,MailchimpService],
+  providers: [FlightApiService,MailchimpService,RssFeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
