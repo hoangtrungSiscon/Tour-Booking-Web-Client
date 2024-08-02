@@ -57,7 +57,7 @@
             Thời gian khởi hành
         </dt>
         <dd class = "col-sm-8">
-            {{flight?.NgayXuatPhat | date:'dd-MM-yyyy'}} - {{flight?.gioBay | date:'h:mm a'}}
+            {{flight?.NgayXuatPhat | date:'dd-MM-yyyy'}} - {{flight?.GioBay}}
         </dd>
         
         <hr style="background-color:black;opacity:1;"/>
@@ -85,13 +85,48 @@
         </dt>
         <dd class = "col-sm-8">
             {{invoice?.tongGia | number:'1.0-3'}} $
-
         </dd>
+        <hr style="background-color:black;opacity:1;"/>
+
+        <h4 style="margin-bottom:20px" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">Thông tin thanh toán</h4>
+        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+            Phương thức thanh toán
+        </dt>
+        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice?.kieuThanhToan}}
+        </dd>
+
+        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+            Thời điểm thanh toán
+        </dt>
+        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice?.ngayThanhToan | date:'dd-MM-yyyy, h:mm a'}}
+        </dd>
+
+        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán' && (invoice?.kieuThanhToan == 'Ngân hàng' || invoice?.kieuThanhToan == 'Paypal')">
+            Mã giao dịch
+        </dt>
+        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice?.maGiaoDich}}
+        </dd>
+
         <!-- <hr style="background-color:black;opacity:1;"/> -->
-        <p class="text-center harder" style="margin-top: 20px; font-weight: bold">THANH TOÁN NGAY</p>
-        <div class="paypal">
-            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+         <div class="payment-action" *ngIf="invoice?.tinhTrangThanhToan != 'Ðã thanh toán'">
+            <p class="text-center harder" style="margin-top: 20px; font-weight: bold">THANH TOÁN NGAY</p>
+            <div class="paypal">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+         </div>
+
+         
+
+        <div class="warning" *ngIf="invoice?.tinhTrangThanhToan != 'Ðã thanh toán'">
+            <h2 style="color: red;">Lưu ý:</h2>
+            <ul>
+                <li><strong>Hoàn trả vé:</strong> Vé đã được thanh toán sẽ không được hoàn trả lại dưới bất kỳ hình thức nào. Chúng tôi khuyến nghị quý khách hãy kiểm tra kỹ lưỡng tất cả thông tin trước khi hoàn tất giao dịch.</li>
+                <li><strong>Kiểm tra thông tin:</strong> Vui lòng chắc chắn rằng tất cả thông tin cá nhân trên vé là chính xác. Mọi sai sót có thể ảnh hưởng đến các thủ tục liên quan.</li>
+            </ul>
+            <p>Cảm ơn quý khách đã lựa chọn dịch vụ của chúng tôi! Kính chúc quý khách có một chuyến đi vui vẻ!</p>
         </div>
-        
     </dl>
 </div>
