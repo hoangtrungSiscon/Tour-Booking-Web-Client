@@ -57,6 +57,8 @@ export class InvoiceDetailComponent {
         if (slug !== expectedSlug){
           this.router.navigate([`/invoice-detail`, id, expectedSlug], {replaceUrl: true});
         }
+      }, error: () => {
+        this.router.navigate(['/invoices'])
       }})
     }
   }
@@ -115,19 +117,16 @@ export class InvoiceDetailComponent {
         console.log('onApprove - you can get full order details inside onApprove: ', details);
       });
     },
-    onClientAuthorization: (data) => {
+    onClientAuthorization: async (data) => {
       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      this.invoiceService.updatePayStatus(this.invoice?.idhoadon, "BANKING", data.id).subscribe({next: (data) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Thanh toán thành công',
-          text: 'Thanh toán hóa đơn thành công.',
-        }).then(() => {
-          this.router.navigate(['/invoices']);
-        }, error => {
-          console.log(error)
-        })
-      }})
+      try {
+        await this.invoiceService.updatePayStatus(this.invoice?.idhoadon, "PAYPAL", data.id).toPromise();
+        await Swal.fire('Thanh toán thành công', 'Thanh toán hóa đơn thành công.', 'success');
+        this.router.navigate(['/invoices']);
+    } catch (error) {
+        console.error('Error updating payment status:', error);
+        Swal.fire('Lỗi', 'Đã xảy ra lỗi trong quá trình thanh toán.', 'error');
+    }
     },
     onCancel: (data, actions) => {
       console.log('OnCancel', data, actions);
