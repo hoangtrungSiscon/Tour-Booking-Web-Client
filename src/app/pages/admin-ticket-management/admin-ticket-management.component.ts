@@ -87,7 +87,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       MaCTV: element.maCTV,
       MaVe: element.maVe,
 
-      LoaiVe: element.loaiVe,
+      LoaiVe: element.loaiVe.trim(),
       
       MaChuyenBay: element.maChuyenBay,
       
@@ -96,6 +96,7 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
       TinhTrang: 'Đã duyệt',
       TongGia: element.tongGia,
     };
+    console.log(request);
     this.chiTietVeService.update(request).subscribe(
       () => {
         Swal.fire(
