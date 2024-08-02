@@ -1,8 +1,22 @@
-
-<!-- src/app/rss-feed/rss-feed.component.html -->
-<article *ngFor="let article of articles">
-  <h2>{{ article.title }}</h2>
-  <p class="pubDate">{{ article.pubDate }}</p>
-  <p class="description" [innerHTML]="article.description"></p>
-  <a [href]="article.link" target="_blank">Read more</a>
-</article>
+<!-- src/app/components/rss-feed/rss-feed.component.html -->
+<div id="rssCarousel" class="carousel slide" data-bs-ride="carousel" style="border-radius: 5px;">
+  <div class="carousel-inner">
+    <div style="border-radius: 5px;" class="carousel-item" *ngFor="let article of articles; let i = index" [ngClass]="{'active': i === 0}">
+      <img [src]="article.image" class="d-block w-100 rss-image" alt="Article Image" style="border-radius: 5px;">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ article.title }}</h5>
+        <p class="pubDate">{{ article.pubDate }}</p>
+        <p class="description" [innerHTML]="article.description"></p>
+        <a [href]="article.link" target="_blank" class="btn btn-primary">Read more</a>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#rssCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#rssCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
