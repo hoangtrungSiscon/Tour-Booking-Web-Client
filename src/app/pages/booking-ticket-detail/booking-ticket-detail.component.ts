@@ -102,7 +102,7 @@ export class BookingTicketDetailComponent implements OnInit {
       this.meta.updateTag({ property: 'og:image:width', content: '100' });
       this.meta.updateTag({ property: 'og:image:height', content: '130' });
       this.meta.updateTag({ property: 'og:image:alt', content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}` });
-      this.meta.updateTag({ name: 'og:description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
+      this.meta.updateTag({ property: 'og:description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
       this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch, flightdot` });
     }
   }
