@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "https://localhost:7000",
+        "target": "https://flightdotapi.azurewebsites.net",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
