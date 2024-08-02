@@ -84,7 +84,13 @@ export class BookingTicketDetailComponent implements OnInit {
       }});
     }
   }
-
+  // <meta property="og:title" content="FlightDot - Đặt vé máy bay">
+  // <meta property="og:description" content="Website đặt vé máy bay FlightDot">
+  // <meta property="og:image" content="src\assets\icons8-plane-48.png">
+  // <meta property="og:alt" content="hình ảnh">
+  // <meta property="og:url" content="">
+  // <meta property="og:type" content="website">
+  // <meta property="keywords" content="angular, SEO flightdot, flightdot, tmdt flightdot">
 
   updateMetaTags(): void {
     if (this.flightInfo) {
@@ -92,11 +98,11 @@ export class BookingTicketDetailComponent implements OnInit {
       const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
       this.title.setTitle(`Chi tiết vé máy bay từ ${origin} đến ${destination}`);
       this.meta.updateTag({ property: 'og:image', content: this.ImageUrl(this.flightInfo?.chuyenBay.noiXuatPhat) });
-      this.meta.updateTag({ property: 'og:image:width', content: '1000' });
-      this.meta.updateTag({ property: 'og:image:height', content: '530' });
+      this.meta.updateTag({ property: 'og:image:width', content: '100' });
+      this.meta.updateTag({ property: 'og:image:height', content: '130' });
       this.meta.updateTag({ property: 'og:image:alt', content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}` });
       this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.` });
-      this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch` });
+      this.meta.updateTag({ name: 'keywords', content: `vé máy bay, ${this.flightInfo?.chuyenBay.noiXuatPhat}, ${this.flightInfo?.chuyenBay.noiDen}, ${this.flightInfo.MaChuyenBay}, đặt vé, du lịch, flightdot` });
     }
   }
 
