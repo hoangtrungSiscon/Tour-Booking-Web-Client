@@ -1,0 +1,42 @@
+/* src/app/rss-feed/rss-feed.component.css */
+
+/* Container for each article */
+article {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title of the article */
+  article h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  /* Publication date */
+  article p.pubDate {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+  }
+  
+  /* Description of the article */
+  article p.description {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  /* Read more link */
+  article a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  article a:hover {
+    text-decoration: underline;
+  }
+  

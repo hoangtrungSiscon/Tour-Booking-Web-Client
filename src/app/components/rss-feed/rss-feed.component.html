@@ -1,8 +1,8 @@
+
 <!-- src/app/rss-feed/rss-feed.component.html -->
-<div *ngFor="let article of articles">
-    <h2>{{ article.title }}</h2>
-    <p>{{ article.pubDate }}</p>
-    <p [innerHTML]="article.description"></p>
-    <a [href]="article.link" target="_blank">Read more</a>
-  </div>
-  
+<article *ngFor="let article of articles">
+  <h2>{{ article.title }}</h2>
+  <p class="pubDate">{{ article.pubDate }}</p>
+  <p class="description" [innerHTML]="article.description"></p>
+  <a [href]="article.link" target="_blank">Read more</a>
+</article>

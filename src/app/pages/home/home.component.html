@@ -225,56 +225,56 @@
                 data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/usa.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/london.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/thailand.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/singapore.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item active" data-bs-interval="3000">
+                  <div class="carousel-item active" >
                     <img
                       src="../../../assets/img/vietnam.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/hongkong.png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/australia .png"
                       class="d-block w-100"
                       alt="..."
                     />
                   </div>
-                  <div class="carousel-item" data-bs-interval="3000">
+                  <div class="carousel-item" >
                     <img
                       src="../../../assets/img/paris.png"
                       class="d-block w-100"
@@ -322,12 +322,19 @@
             </div>
           </div>
         </div>
-      </div>
-      <section class="margin" id="aboutus">
-<!-- src/app/app.component.html -->
-<app-rss-feed></app-rss-feed>
+      </div>    
+      <h1 class="font-title text-center">TIN TỨC THẾ GIỚI MỚI NHẤT</h1>
 
-      </section>
+      <div
+      class="col-12 col-xl-8 margin-top"
+      style="height: 600px;overflow-y: hidden;"
+      
+    >
+    <app-rss-feed>
+
+</app-rss-feed>
+
+    </div>
       <div
         class="div-center margin row accordion-border"
         style="background-color: #d9d9d9"
@@ -461,14 +468,14 @@
             <div class="rotatingText div-center" style="margin-right: 30px">
               <div class="rotatingText-content" style="margin-top: 40px">
 
-                <div class="email-registration-container">
+                <div class="email-registration-container" style="">
                   <form (ngSubmit)="AddEmail()">
                     <h2>Đăng kí để nhận thông tin mới nhất</h2>
                     <div class="form-group">
                       <label for="email">Email Address</label>
                       <input type="email" id="email" [(ngModel)]="email" name="email" required>
                     </div>
-                    <button type="submit">Subscribe</button>
+                    <button class="btn-sreach" style="height: 36px;border-radius: 6px;" type="submit">Subscribe</button>
                   </form>
                 </div>
                 
