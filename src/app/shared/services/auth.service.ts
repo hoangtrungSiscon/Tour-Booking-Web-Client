@@ -12,7 +12,12 @@ export class AuthService {
   private maTaiKhoanGet = this.maTaiKhoanSource.asObservable();
   private vaiTroSource = new BehaviorSubject<any | null>(null);
   private vaiTroGet = this.vaiTroSource.asObservable();
+
+  private onLoginSuccessRedirect: string = '';
+
+
   protected url: string = 'https://flightdotapi.azurewebsites.net/api/auth';
+
   constructor(protected http: HttpClient) {}
 
   public sendOtp(request: any): Observable<any> {
@@ -75,5 +80,16 @@ export class AuthService {
 
   public getVaiTro(): Observable<any> {
     return this.vaiTroGet;
+  }
+  public getLoginSuccessRedirect(): string {
+    let path = this.onLoginSuccessRedirect != ''? this.onLoginSuccessRedirect : '/home';
+    this.removeLoginSuccessRedirect();
+    return path;
+  }
+  public setLoginSuccessRedirect() {
+    this.onLoginSuccessRedirect = window.location.pathname;
+  }
+  public removeLoginSuccessRedirect() {
+    this.onLoginSuccessRedirect = '';
   }
 }

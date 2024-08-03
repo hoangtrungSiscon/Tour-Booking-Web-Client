@@ -63,14 +63,18 @@
             }}</span>
           </h3>
           <h3 class="color-1 fw-bold font-20">
-            GIÁ ĐƠN VÉ:
-            <span class="color-2">{{ flightInfo?.chuyenBay.donGia }} </span>
+            GIÁ VÉ ECO:
+            <span class="color-2">{{ flightInfo?.chuyenBay.donGia }} $ / 1 vé </span>
+          </h3>
+          <h3 class="color-1 fw-bold font-20">
+            GIÁ VÉ BSN:
+            <span class="color-2">{{ flightInfo?.chuyenBay.donGia*3 }} $ / 1 vé </span>
           </h3>
         </div>
       </div>
     </div>
       </div>
-      <div class="col-12">
+      <div class="col-12" *ngIf="isLoggedIn()">
         <div class="row" [formGroup]="form">
           <div class="col-6">
             <label
@@ -150,7 +154,7 @@
             <label
               for="inputSum"
               class="form-label fs-4 color-2 fw-bold mt-4 font-18"
-              >Tổng giá</label
+              >Tổng giá ($)</label
             >
             <input
               type="text"
@@ -215,16 +219,35 @@
                 </div>
               </div>
             </div>
-            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px" style="margin-top: 20px;">
+            <div class="ticket-btn mt-6 d-flex justify-content-end h-50px" style="margin-top: 20px">
               <input
-                style="background-color: #146C94 !important;color: white;"
+                style="background-color: #146C94 !important;color: white; height: 50px;"
                 type="submit"
                 (click)="showOnInit()"
                 class="btn  px-5 py-2 fw-bold border-color-1"
                 value="Đặt vé"
               />
+
             </div>
+            
+            
           </div>
+        </div>
+      </div>
+
+      <div class="col-12" *ngIf="!isLoggedIn()">
+        <p class="mt-4 color-2 text-justify fs-5 text-second justify-content-center d-flex">
+          <span style="color: red;">*</span> Vui lòng đăng nhập để thực hiện việc đặt vé máy bay
+        </p>
+        <div class="ticket-btn mt-6 d-flex justify-content-center h-50px" style="margin-top: 20px">
+          <input
+            style="background-color: #146C94 !important;color: white; height: 50px;"
+            type="submit"
+            (click)="toLogin()"
+            class="btn  px-5 py-2 fw-bold border-color-1"
+            value="Đăng nhập"
+          />
+
         </div>
       </div>
     </div>

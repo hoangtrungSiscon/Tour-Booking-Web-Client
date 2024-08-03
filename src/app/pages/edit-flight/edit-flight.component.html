@@ -164,7 +164,7 @@
                 [(ngModel)]="editFlightRequest.soLuongVeEco">
             </div>
             <div class="form-field">
-                <label for="price">Giá (đ)</label><br>
+                <label for="price">Giá ($)</label><br>
                 <input type="text" id="price" name="price"
                 oninput="this.value = (parseInt(this.value.replace(/[^0-9]/g, '')) || 0).toLocaleString()"
                 [(ngModel)]="editFlightRequest.donGia"

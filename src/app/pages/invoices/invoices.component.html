@@ -1,0 +1,45 @@
+<app-header-home></app-header-home>
+<app-navbar></app-navbar>
+<div class="container"> 
+    <div class="row">
+        <h1 class="text-center harder title">HÓA ĐƠN</h1>
+    </div>
+</div>
+<div class="invoice-list-container">
+    <div class="invoice-list">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            
+            <ng-container matColumnDef="maVe">
+                <mat-header-cell *matHeaderCellDef style="flex: 0 0 10%;"> Mã vé </mat-header-cell>
+                <mat-cell *matCellDef="let invoice" style="flex: 0 0 10%;"> {{invoice.maVe}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="ngayDatVe">
+                <mat-header-cell *matHeaderCellDef> Ngày đặt vé </mat-header-cell>
+                <mat-cell *matCellDef="let invoice"> {{invoice.ngayDatVe | date:'dd-MM-yyyy, h:mm a'}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="tinhTrangThanhToan">
+                <mat-header-cell *matHeaderCellDef> Tình trạng </mat-header-cell>
+                <mat-cell *matCellDef="let invoice" [ngStyle]="{'color': invoice.tinhTrangThanhToan == 'Ðã thanh toán' ? '#34eb37' : '#fa0202'}"> {{invoice.tinhTrangThanhToan}} </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="tongGia">
+                <mat-header-cell *matHeaderCellDef style="flex: 0 0 10%;"> Tổng tiền </mat-header-cell>
+                <mat-cell *matCellDef="let invoice" style="flex: 0 0 10%;"> {{invoice.tongGia}} $ </mat-cell>
+            </ng-container>
+        
+            
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let invoice">
+                    <!-- <button mat-icon-button (click)="editInvoice(invoice)" style="color: rgb(16, 227, 16);"><mat-icon>payment</mat-icon></button> -->
+                    <button mat-icon-button (click)="goesToInvoiceDetail(invoice.idhoadon)" style="color: rgb(16, 227, 16);"><mat-icon>launch</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+</div>

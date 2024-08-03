@@ -22,6 +22,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
 
 const routes: Routes = [
   {
@@ -64,7 +66,8 @@ const routes: Routes = [
     path: 'booking-ticket-detail/:slug',
     component: BookingTicketDetailComponent,
   },
-
+  { path: 'invoices', component: InvoicesComponent },
+  { path: 'invoice-detail/:id/:slug', component: InvoiceDetailComponent },
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 
