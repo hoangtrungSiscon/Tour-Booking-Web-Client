@@ -130,12 +130,7 @@ export class BookingTicketComponent {
   }
 
   checkLogin(ma: string, bsn: number, eco: number) {
-    if (this.authService.isUser()) {
-      // this.router.navigate([`/booking-ticket-detail/${ma}`]);
-      this.navigateToDetailPage(ma);
-    } else {
-      this.router.navigate(['/login']);
-    }
+    this.navigateToDetailPage(ma);
   }
   navigateToDetailPage(id: string) {
     const origin = slugify(this.getCountryService.getCountryName(id.substring(6, 8)), { lower: true });
