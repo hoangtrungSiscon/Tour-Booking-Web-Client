@@ -211,7 +211,10 @@
                     </p>
                   </div>
                   <p class="color-1">
-                    GIÁ VÉ: <span class="color-2">{{ ticket.donGia }}</span>
+                    GIÁ VÉ ECO: <span class="color-2">{{ ticket.donGia }} $ / 1 vé</span>
+                  </p>
+                  <p class="color-1">
+                    GIÁ VÉ BSN: <span class="color-2">{{ ticket.donGia*3 }} $ / 1 vé</span>
                   </p>
                 </div>
                 <div class="col-2 background-white color-1 fw-bold" *ngIf="isAccessible">
