@@ -46,6 +46,7 @@ import { BookingTicketComponent } from './pages/booking-ticket/booking-ticket.co
 import { BookingTicketDetailComponent } from './pages/booking-ticket-detail/booking-ticket-detail.component';
 import { FlightApiService } from './shared/services/flight-api.service';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 import { NgxPayPalModule } from 'ngx-paypal';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 
@@ -56,6 +57,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
+
+import { MailchimpService } from './shared/services/mailchimp.service';
+import { RssFeedComponent } from './components/rss-feed/rss-feed.component';
+import { RssFeedService } from './shared/services/rss.service';
 
 @NgModule({
   declarations: [
@@ -89,8 +94,12 @@ import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.co
     BookingTicketComponent,
     BookingTicketDetailComponent,
     NotFoundComponent,
+
     InvoicesComponent,
     InvoiceDetailComponent
+
+    RssFeedComponent
+
   ],
   imports: [
     BrowserModule,
@@ -117,8 +126,9 @@ import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.co
     MatInputModule,
     MatSelectModule,
     MatCardModule,
+
   ],
-  providers: [FlightApiService],
+  providers: [FlightApiService,MailchimpService,RssFeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

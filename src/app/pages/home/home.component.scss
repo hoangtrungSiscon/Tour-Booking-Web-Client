@@ -225,7 +225,27 @@
       transform: translate3d(0, 0, 0);
     }
   }
+  .email-registration-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
 
+  
+
+
+  
 #carouselExample1 .carousel-item img {
     object-fit: cover;
     object-position: center;
