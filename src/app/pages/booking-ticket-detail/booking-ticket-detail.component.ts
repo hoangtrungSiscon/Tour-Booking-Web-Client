@@ -130,12 +130,6 @@ export class BookingTicketDetailComponent implements OnInit {
       .get('maChuyenBay')
       .setValue(this.flightInfo?.chuyenBay.maChuyenBay);
       
-      // this.chiTietVeService.checkValidity(this.form.value).subscribe({next: (data: any) => {
-      //   return actions.resolve();
-      // }, error: (err) => {
-      //   console.error(err);
-      //   return actions.reject();
-      // }});
       console.log(this.form.value);
       return this.chiTietVeService.checkValidity(this.form.value).toPromise()
         .then(response => {
@@ -208,8 +202,15 @@ export class BookingTicketDetailComponent implements OnInit {
     });
     let soLuong = form.get('soLuong');
     let tongGia = form.get('tongGia');
+    let loaiVe = form.get('loaiVe');
     soLuong?.valueChanges.pipe(debounceTime(300)).subscribe((newData: any) => {
-      tongGia?.setValue(newData * this.flightInfo?.chuyenBay.donGia, {
+      tongGia?.setValue(newData * this.flightInfo?.chuyenBay.donGia * (this.form.value.loaiVe === 'BSN'? 3 : 1), {
+        emitEvent: false,
+      });
+    });
+
+    loaiVe?.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+      tongGia?.setValue(this.flightInfo?.chuyenBay.donGia * (this.form.value.loaiVe === 'BSN'? 3 : 1), {
         emitEvent: false,
       });
     });
@@ -259,5 +260,12 @@ export class BookingTicketDetailComponent implements OnInit {
       }
     );
     }
+  }
+  isLoggedIn(): boolean {
+    return this.authService.isUser();
+  }
+  toLogin(){
+    this.authService.setLoginSuccessRedirect();
+    this.router.navigate(['/login']);
   }
 }
