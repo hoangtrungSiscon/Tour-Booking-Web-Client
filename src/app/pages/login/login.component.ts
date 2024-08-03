@@ -68,7 +68,10 @@ export class LoginComponent implements OnInit {
           this.cookieService.setCookie('access_token', token);
           this.authService.setUserId(maTaiKhoan);
           this.authService.setVaiTro(vaiTro);
-          this.router.navigate(['/home']);
+
+
+
+          this.router.navigate([this.authService.getLoginSuccessRedirect()]);
         } else {
           Swal.fire('Đăng nhập không thành công!', 'Tên tài khoản hoặc mật khẩu không chính xác. Xin vui lòng thử lại', 'error');
         }
