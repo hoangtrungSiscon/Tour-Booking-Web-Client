@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class InvoiceService {
 
-  protected url: string = '/api/Hoadons';
+  protected url: string = 'https://flightdotapi.azurewebsites.net/api/Hoadons';
   constructor(protected http: HttpClient) { }
 
   public getInvoiceById(id: any, accountId: any): Observable<any> {
