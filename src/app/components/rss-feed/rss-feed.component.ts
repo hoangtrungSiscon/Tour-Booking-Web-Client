@@ -18,7 +18,7 @@ export class RssFeedComponent implements OnInit {
     this.rssFeedService.getRssFeed().subscribe((data: Article[]) => {
       this.articles = data.map((article: Article) => ({
         ...article,
-        image: article.image || 'path/to/default/image.jpg' // Provide a default image if none is present
+        image: article.image || '../../../assets/icons8-error-globe-48.png' // Provide a default image if none is present
       }));
     });
   }

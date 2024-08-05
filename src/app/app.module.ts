@@ -62,7 +62,7 @@ import { MailchimpService } from './shared/services/mailchimp.service';
 import { RssFeedComponent } from './components/rss-feed/rss-feed.component';
 import { RssFeedService } from './shared/services/rss.service';
 import { PaymentResultComponent } from './pages/payment-result/payment-result.component';
-
+import { FloatingIconComponent } from './components/floating-icon/floating-icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +100,8 @@ import { PaymentResultComponent } from './pages/payment-result/payment-result.co
     InvoiceDetailComponent,
 
     RssFeedComponent,
-    PaymentResultComponent
+    PaymentResultComponent,
+    FloatingIconComponent
 
   ],
   imports: [
