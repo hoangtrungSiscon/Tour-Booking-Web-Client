@@ -46,12 +46,13 @@ export class HomeComponent {
   }
 
   async ngOnInit() {
+    this.setMetaForHomePage();
+
     this.newestflight
       .getTop3NewestFlight()
       .subscribe((data) => (this.newestflights = data));
-    this.setMetaForHomePage();
   }
-  setMetaForHomePage() {
+  setMetaForHomePage() :void{
     this.title.setTitle(`Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot`);
     this.meta.updateTag({
       property: 'og:image',
