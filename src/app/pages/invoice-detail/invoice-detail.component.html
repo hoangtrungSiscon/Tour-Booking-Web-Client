@@ -13,19 +13,19 @@
             Họ tên khách hàng
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.tenKh}}
+            {{invoice.tenKh}}
         </dd>
         <dt class = "col-sm-4">
             Số điện thoại
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.sdt}}
+            {{invoice.sdt}}
         </dd>
         <dt class = "col-sm-4">
             Giới tính
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.phai}}
+            {{invoice.phai}}
         </dd>
         <hr style="background-color:black;opacity:1;"/>
         <h4 style="margin-bottom:20px">Thông tin chuyến bay</h4>
@@ -33,31 +33,31 @@
             Mã chuyến bay
         </dt>
         <dd class = "col-sm-8">
-            {{flight?.MaChuyenBay}}
+            {{flight.MaChuyenBay}}
         </dd>
         <dt class = "col-sm-4">
             Máy bay chuyên chở
         </dt>
         <dd class = "col-sm-8">
-            {{flight?.TenMayBay}}
+            {{flight.TenMayBay}}
         </dd>
         <dt class = "col-sm-4">
             Địa điểm cất cánh
         </dt>
         <dd class = "col-sm-8">
-            {{returnCountryName(flight?.NoiXuatPhat)}}
+            {{returnCountryName(flight.NoiXuatPhat)}}
         </dd>
         <dt class = "col-sm-4">
             Địa điểm hạ cánh
         </dt>
         <dd class = "col-sm-8">
-            {{returnCountryName(flight?.NoiDen)}}
+            {{returnCountryName(flight.NoiDen)}}
         </dd>
         <dt class = "col-sm-4">
             Thời gian khởi hành
         </dt>
         <dd class = "col-sm-8">
-            {{flight?.NgayXuatPhat | date:'dd-MM-yyyy'}} - {{flight?.GioBay}}
+            {{flight.NgayXuatPhat | date:'dd-MM-yyyy'}} - {{flight.GioBay}}
         </dd>
         
         <hr style="background-color:black;opacity:1;"/>
@@ -66,61 +66,62 @@
             Loại ghế
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.loaiGhe == 'BSN' ? 'Thương gia' : 'Phổ thông'}}
+            {{invoice.loaiGhe == 'BSN' ? 'Thương gia' : 'Phổ thông'}}
         </dd>
         <dt class = "col-sm-4">
             Số ghế đã đặt
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.soGhe}}
+            {{invoice.soGhe}}
         </dd>
         <dt class = "col-sm-4">
             Thời điểm đặt vé
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.ngayDatVe | date:'dd-MM-yyyy, h:mm a'}}
+            {{invoice.ngayDatVe | date:'dd-MM-yyyy, h:mm a'}}
         </dd>
         <dt class = "col-sm-4">
             Tổng giá
         </dt>
         <dd class = "col-sm-8">
-            {{invoice?.tongGia | number:'1.0-3'}} $
+            {{invoice.tongGia | number:'1.0-3'}} $
         </dd>
         <hr style="background-color:black;opacity:1;"/>
 
-        <h4 style="margin-bottom:20px" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">Thông tin thanh toán</h4>
-        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+        <h4 style="margin-bottom:20px" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">Thông tin thanh toán</h4>
+        <dt class = "col-sm-4" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">
             Phương thức thanh toán
         </dt>
-        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
-            {{invoice?.kieuThanhToan}}
+        <dd class = "col-sm-8" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice.kieuThanhToan}}
         </dd>
 
-        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
+        <dt class = "col-sm-4" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">
             Thời điểm thanh toán
         </dt>
-        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
-            {{invoice?.ngayThanhToan | date:'dd-MM-yyyy, h:mm a'}}
+        <dd class = "col-sm-8" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice.ngayThanhToan | date:'dd-MM-yyyy, h:mm a'}}
         </dd>
 
-        <dt class = "col-sm-4" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán' && (invoice?.kieuThanhToan == 'Ngân hàng' || invoice?.kieuThanhToan == 'Paypal')">
+        <dt class = "col-sm-4" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán' && (invoice.kieuThanhToan == 'Ngân hàng' || invoice.kieuThanhToan == 'Paypal' || invoice.kieuThanhToan == 'VnPay')">
             Mã giao dịch
         </dt>
-        <dd class = "col-sm-8" *ngIf="invoice?.tinhTrangThanhToan == 'Ðã thanh toán'">
-            {{invoice?.maGiaoDich}}
+        <dd class = "col-sm-8" *ngIf="invoice.tinhTrangThanhToan == 'Ðã thanh toán'">
+            {{invoice.maGiaoDich}}
         </dd>
 
-        <!-- <hr style="background-color:black;opacity:1;"/> -->
-         <div class="payment-action" *ngIf="invoice?.tinhTrangThanhToan != 'Ðã thanh toán'">
+         <div class="payment-action" *ngIf="invoice.tinhTrangThanhToan != 'Ðã thanh toán'">
             <p class="text-center harder" style="margin-top: 20px; font-weight: bold">THANH TOÁN NGAY</p>
-            <div class="paypal">
+            <div class="payment">
                 <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                <span class="text-center harder" style="margin: 20px">hoặc</span>
+                <button class="vnpay-btn" (click)="payWithVnpay()"><img src="assets/Icon/vnpay_logo.png" alt="vnpay"></button>
             </div>
          </div>
 
          
 
-        <div class="warning" *ngIf="invoice?.tinhTrangThanhToan != 'Ðã thanh toán'">
+        <div class="warning" *ngIf="invoice.tinhTrangThanhToan != 'Ðã thanh toán'">
             <h2 style="color: red;">Lưu ý:</h2>
             <ul>
                 <li><strong>Hoàn trả vé:</strong> Vé đã được thanh toán sẽ không được hoàn trả lại dưới bất kỳ hình thức nào. Chúng tôi khuyến nghị quý khách hãy kiểm tra kỹ lưỡng tất cả thông tin trước khi hoàn tất giao dịch.</li>

@@ -11,8 +11,26 @@
   h1{
     font-weight: bold;
   }
-  .paypal{
+  .payment{
     display: flex;
     // flex: auto;
     justify-content: center;
+  }
+  .vnpay-btn{
+    background: rgb(255, 255, 255);
+    width: 150px;
+    height: 50px;
+    border: 0px;
+    pointer-events: all;
+  }
+  .vnpay-btn:hover{
+    pointer-events: all;
+    cursor: pointer;
+  }
+  .vnpay-btn img{
+    width: 120px;
+  }
+  button:hover{
+    pointer-events: all;
+    cursor: pointer;
   }
