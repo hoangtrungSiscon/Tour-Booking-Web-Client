@@ -55,16 +55,20 @@ export class HomeComponent {
     this.title.setTitle(`Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot`);
     this.meta.updateTag({
       property: 'og:image',
-      content: 'src/assets/icons8-plane-48.png',
+      content: '../../../assets/Icon/icons8-plane-material-rounded/icons8-plane-48.png',
     });
-    this.meta.updateTag({ property: 'og:image:width', content: '100' });
-    this.meta.updateTag({ property: 'og:image:height', content: '130' });
+    this.meta.updateTag({ property: 'og:image:width', content: '48' });
+    this.meta.updateTag({ property: 'og:image:height', content: '48' });
     this.meta.updateTag({
       property: 'og:image:alt',
       content: 'Hình ảnh trang chủ',
     });
     this.meta.updateTag({
       name: 'description',
+      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
+    });
+    this.meta.updateTag({
+      name: 'og:description',
       content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
     });
     this.meta.updateTag({
