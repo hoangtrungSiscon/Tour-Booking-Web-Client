@@ -56,7 +56,7 @@ export class HomeComponent {
     this.title.setTitle(`Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot`);
     this.meta.updateTag({
       property: 'og:image',
-      content: '../../../assets/Icon/icons8-plane-material-rounded/icons8-plane-48.png',
+      content: 'https://i.imgur.com/z5UKe3U.png',
     });
     this.meta.updateTag({ property: 'og:image:width', content: '48' });
     this.meta.updateTag({ property: 'og:image:height', content: '48' });

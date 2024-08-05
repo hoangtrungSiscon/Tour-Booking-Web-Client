@@ -221,7 +221,7 @@ export class BookingTicketDetailComponent implements OnInit {
         property: 'og:image:alt',
         content: `Hình ảnh nơi đến: ${this.flightInfo?.chuyenBay.noiXuatPhat}`,
       });
-
+      
       this.meta.updateTag({
         property: 'og:description',
         content: `Thông tin chi tiết vé cho chuyến bay ${this.flightInfo?.chuyenBay.maChuyenBay} từ ${this.flightInfo?.chuyenBay.noiXuatPhat} đến ${this.flightInfo?.chuyenBay.noiDen}.`,
