@@ -30,9 +30,7 @@ export class InvoicesComponent {
     this.loadInvoices();
   }
   loadInvoices(){
-    console.log(this.authService.thisAccountId())
     this.invoiceService.getInvoicesByAccountId(this.authService.thisAccountId()).subscribe((data) => {
-      console.log(data)
       this.dataSource.data = data;
     })
   }
