@@ -1,9 +1,9 @@
 .floating-icon {
     position: fixed;
-    bottom: 20px; /* Khoảng cách từ dưới lên */
-    right: 20px; /* Khoảng cách từ phải qua */
-    width: 50px; /* Chiều rộng của biểu tượng */
-    height: 50px; /* Chiều cao của biểu tượng */
+    bottom:  60px; /* Khoảng cách từ dưới lên */
+    right: 24px; /* Khoảng cách từ phải qua */
+    width: 56px; /* Chiều rộng của biểu tượng */
+    height: 56px; /* Chiều cao của biểu tượng */
     z-index: 1000; /* Đảm bảo biểu tượng luôn ở trên cùng */
   }
   
@@ -12,5 +12,6 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%; /* Nếu muốn biểu tượng hình tròn */
+    
   }
   
