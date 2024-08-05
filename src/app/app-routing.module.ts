@@ -24,6 +24,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
+import { PaymentResultComponent } from './pages/payment-result/payment-result.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
   },
   { path: 'invoices', component: InvoicesComponent },
   { path: 'invoice-detail/:id/:slug', component: InvoiceDetailComponent },
+  { path: 'payment-result/:id', component: PaymentResultComponent },
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 

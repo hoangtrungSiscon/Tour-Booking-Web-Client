@@ -61,6 +61,7 @@ import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.co
 import { MailchimpService } from './shared/services/mailchimp.service';
 import { RssFeedComponent } from './components/rss-feed/rss-feed.component';
 import { RssFeedService } from './shared/services/rss.service';
+import { PaymentResultComponent } from './pages/payment-result/payment-result.component';
 
 @NgModule({
   declarations: [
@@ -96,9 +97,10 @@ import { RssFeedService } from './shared/services/rss.service';
     NotFoundComponent,
 
     InvoicesComponent,
-    InvoiceDetailComponent
+    InvoiceDetailComponent,
 
-    RssFeedComponent
+    RssFeedComponent,
+    PaymentResultComponent
 
   ],
   imports: [

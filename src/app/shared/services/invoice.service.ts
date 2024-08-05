@@ -23,11 +23,12 @@ export class InvoiceService {
   public getFlightInfoOfInvoice(machuyenbay: any): Observable<any> {
     return this.http.get<any>(this.url+`/GetFlightInfoOfInvoice/${machuyenbay}`, machuyenbay);
   }
-  public updatePayStatus(id: any, kieuthanhtoan: string, magiaodich: string): Observable<any> {
+  public updatePayStatus(id: any, accountId: any, kieuthanhtoan: string, magiaodich: string): Observable<any> {
     const params = new HttpParams()
     .set('id', id)
+    .set('accountId',accountId)
     .set('kieuthanhtoan',kieuthanhtoan)
     .set('magiaodich',magiaodich)
-    return this.http.put(this.url+`/UpdatePayStatus/${id}/${kieuthanhtoan}/${magiaodich}`, {params});
+    return this.http.put(this.url+`/UpdatePayStatus/${id}/${accountId}/${kieuthanhtoan}/${magiaodich}`, {params});
   }
 }

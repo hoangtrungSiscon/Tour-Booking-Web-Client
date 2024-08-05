@@ -7,15 +7,8 @@ import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { GetCountryService } from 'src/app/shared/services/get-country.service';
 import Swal from 'sweetalert2';
 import { error } from 'jquery';
-
-// interface Flight {
-//   maChuyenBay: string,
-//   tenMayBay: string,
-//   noiXuatPhat: string,
-//   noiDen: string,
-//   ngayXuatPhat: Date,
-//   gioBay: any
-// }
+import { PaymentInfo } from 'src/app/shared/models/paymentInfo';
+import { VnpayService } from 'src/app/shared/services/vnpay.service';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -25,7 +18,7 @@ import { error } from 'jquery';
 
 export class InvoiceDetailComponent {
   public payPalConfig?: IPayPalConfig;
-  invoice: Invoice | undefined;
+  invoice!: Invoice;
   flight: any | undefined;
   
   constructor(
@@ -33,7 +26,8 @@ export class InvoiceDetailComponent {
     private router: Router,
     private invoiceService: InvoiceService,
     private activatedRoute: ActivatedRoute,
-    private getCountryService: GetCountryService
+    private getCountryService: GetCountryService,
+    private vnpayService: VnpayService
   ) { }
   ngOnInit() {
     if (!this.authService.isUser()){
@@ -82,22 +76,22 @@ export class InvoiceDetailComponent {
         {
           amount: {
             currency_code: 'USD',
-            value: this.invoice?.tongGia.toString(),
+            value: this.invoice.tongGia.toString(),
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: this.invoice?.tongGia.toString(),
+                value: this.invoice.tongGia.toString(),
               }
             }
           },
           items: [
             {
-              name: `Giá vé chuyến bay ${this.invoice?.maChuyenBay} từ ${this.returnCountryName(this.flight?.NoiXuatPhat)} đến ${this.returnCountryName(this.flight?.NoiDen)}`,
+              name: `Giá vé chuyến bay ${this.invoice.maChuyenBay} từ ${this.returnCountryName(this.flight.NoiXuatPhat)} đến ${this.returnCountryName(this.flight.NoiDen)}`,
               quantity: '1',
               category: 'DIGITAL_GOODS',
               unit_amount: {
                 currency_code: 'USD',
-                value: this.invoice?.tongGia.toString(),
+                value: this.invoice.tongGia.toString(),
               },
             }
           ]
@@ -120,7 +114,7 @@ export class InvoiceDetailComponent {
     onClientAuthorization: async (data) => {
       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
       try {
-        await this.invoiceService.updatePayStatus(this.invoice?.idhoadon, "PAYPAL", data.id).toPromise();
+        await this.invoiceService.updatePayStatus(this.invoice.idhoadon, this.authService.thisAccountId(), "PAYPAL", data.id).toPromise();
         await Swal.fire('Thanh toán thành công', 'Thanh toán hóa đơn thành công.', 'success');
         this.router.navigate(['/invoices']);
     } catch (error) {
@@ -138,5 +132,16 @@ export class InvoiceDetailComponent {
       console.log('onClick', data, actions);
     },
   };
+  }
+  payWithVnpay(){
+    let paymentinfo : PaymentInfo = {
+      orderType: "FlightTicket",
+      amount: this.invoice.tongGia * 25089,
+      orderDescription: `Thanh toan hoa don ${this.invoice.idhoadon}`,
+      name: `Khach hang co ma ${this.authService.thisAccountId()}`
+    }
+    this.vnpayService.createPaymentURL(paymentinfo, this.invoice.idhoadon).subscribe({next: (data) => {
+      window.location.href = data.url;
+    }})
   }
 }

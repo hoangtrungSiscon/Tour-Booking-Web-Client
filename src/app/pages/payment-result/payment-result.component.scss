@@ -1,0 +1,26 @@
+.screen {
+    height: 400px;
+    width: 400px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+    display: flex;
+    flex-direction: column;
+}
+button {
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 10px;
+    border-width: 2px;
+}
+.harder{
+    color: #146C94;
+    font-size: 25px;
+  }
+.title{
+    font-size: xx-large;
+}
