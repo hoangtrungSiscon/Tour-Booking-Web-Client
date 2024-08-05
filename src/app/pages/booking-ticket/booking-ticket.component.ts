@@ -97,8 +97,6 @@ export class BookingTicketComponent {
 
   updateMetaTags(): void {
     this.title.setTitle(`Đặt vé máy bay`);
-      this.meta.updateTag({ name: 'description', content: `Thông tin chi tiết vé cho chuyến bay.` });
-      this.meta.updateTag({ name: 'keywords', content: `vé máy bay` });
   }
 
   ngOnDestroy() {}

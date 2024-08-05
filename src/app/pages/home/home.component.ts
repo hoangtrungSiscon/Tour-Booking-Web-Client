@@ -73,10 +73,6 @@ export class HomeComponent {
       content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
     });
     this.meta.updateTag({
-      name: 'og:description',
-      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
-    });
-    this.meta.updateTag({
       name: 'og:title',
       content: 'Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot',
     });
