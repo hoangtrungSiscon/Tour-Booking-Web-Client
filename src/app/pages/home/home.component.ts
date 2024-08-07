@@ -7,6 +7,7 @@ import { NewestFlightService } from 'src/app/shared/services/newest-flight.servi
 import { Meta, Title } from '@angular/platform-browser';
 import { MailchimpService } from 'src/app/shared/services/mailchimp.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -32,18 +33,25 @@ export class HomeComponent {
   ) {}
 
   AddEmail() {
-    this.mailchimpService.subscribe(this.email).subscribe({
-      next: (response) => {
-        this.successMessage = 'Successfully subscribed!';
-        this.errorMessage = '';
-        this.email = '';
+    this.mailchimpService.subscribe(this.email).subscribe(
+      response => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Thành công <3',
+          text: 'Đã đăng kí thành công',
+        });
       },
-      error: (error) => {
-        this.errorMessage = 'Subscription failed: ' + error.message;
-        this.successMessage = '';
+      error => {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Đăng kí thất bại. Vui lòng thử lại sau',
+        });
       }
-  });
+    );
   }
+  
 
   async ngOnInit() {
     this.setMetaForHomePage();

@@ -472,14 +472,14 @@
           </div>
           <div class="col-8 div-center">
             <div class="rotatingText div-center" style="margin-right: 30px">
-              <div class="rotatingText-content" style="margin-top: 40px">
+              <div class="rotatingText-content" style="margin-top: 36px">
 
                 <div class="email-registration-container">
                   <form (ngSubmit)="AddEmail()">
                     <h2>Đăng kí để nhận thông tin mới nhất</h2>
                     <div class="form-group">
-                      <label for="email">Email Address</label>
-                      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+                      <label for="email">Địa chỉ email của bạn: </label>
+                      <input style="width: 280px;height: 32px;border: 1px #146c94 solid;border-radius: 5px;" type="email" id="email" [(ngModel)]="email" name="email" required>
                     </div>
                     <button class="btn-sreach" style="height: 36px;border-radius: 6px;" type="submit">Subscribe</button>
                   </form>
