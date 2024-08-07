@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MailchimpService {
-  private url: string = 'https://localhost:7000/api/Mailchimp';
+  private url: string = 'https://flightdotapi.azurewebsites.net/api/Mailchimp';
 
   constructor(private http: HttpClient) { }
 
