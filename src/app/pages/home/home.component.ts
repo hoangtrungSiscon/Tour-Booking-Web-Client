@@ -32,17 +32,17 @@ export class HomeComponent {
   ) {}
 
   AddEmail() {
-    this.mailchimpService.subscribeToList(this.email).subscribe(
-      response => {
+    this.mailchimpService.subscribe(this.email).subscribe({
+      next: (response) => {
         this.successMessage = 'Successfully subscribed!';
         this.errorMessage = '';
         this.email = '';
       },
-      error => {
+      error: (error) => {
         this.errorMessage = 'Subscription failed: ' + error.message;
         this.successMessage = '';
       }
-    );
+  });
   }
 
   async ngOnInit() {

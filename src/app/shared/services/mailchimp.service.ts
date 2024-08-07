@@ -6,22 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MailchimpService {
-    private apiUrl = '/mailchimpapi/3.0/lists/1d043ea14e/members';
-    private apiKey = '3fa1cbf5ff7aac166eca0ed3fd7e86a5-us22';    
+  private url: string = 'https://flightdotapi.azurewebsites.net/api/Mailchimp';
 
   constructor(private http: HttpClient) { }
 
-  subscribeToList(email: string): Observable<any> {
-    const data = {
-      email_address: email,
-      status: 'subscribed'
+  subscribe(email: string): Observable<any> {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    const body = {
+      email: email
     };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${btoa('anystring:' + this.apiKey)}`
-    });
-
-    return this.http.post(this.apiUrl,data, { headers });
+    return this.http.post(this.url+'/subscribe', body, { headers: headers });
   }
 }
