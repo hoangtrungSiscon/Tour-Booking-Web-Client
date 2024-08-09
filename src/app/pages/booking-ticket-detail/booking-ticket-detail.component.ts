@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import Swal from 'sweetalert2';
@@ -11,6 +11,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from '../../shared/services/get-country.service';
 import slugify from 'slugify';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -67,7 +68,8 @@ export class BookingTicketDetailComponent implements OnInit {
     private khachHangService: KhachHangService,
     private meta: Meta,
     private title: Title,
-    private getCountryService: GetCountryService
+    private getCountryService: GetCountryService,
+    @Inject(DOCUMENT) private dom: Document
   ) {}
 
   ngOnInit() {
@@ -252,9 +254,21 @@ export class BookingTicketDetailComponent implements OnInit {
       this.meta.updateTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
       this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
       this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});
-      this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
-
+      // this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
+      const currentURL = 'https://flightdotclient.azurewebsites.net/booking-ticket-detail';
+      this.updateCanonicalUrl(currentURL)
     }
+  }
+
+  updateCanonicalUrl(url:string){
+    const head = this.dom.getElementsByTagName('head')[0];
+    var element: HTMLLinkElement= this.dom.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
+    if (element==null) {
+      element= this.dom.createElement('link') as HTMLLinkElement;
+      head.appendChild(element);
+    }
+    element.setAttribute('rel','canonical')
+    element.setAttribute('href',url)
   }
 
   createForm() {
