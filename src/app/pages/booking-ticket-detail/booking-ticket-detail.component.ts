@@ -42,17 +42,18 @@ export class BookingTicketDetailComponent implements OnInit {
   // KR: 'Hàn Quốc',
   // US: 'Mỹ',
   imgKeyUrl = [
-    { keyword: 'Nhật Bản', fileName: 'https://imgur.com/qtdmOJH' },
-    { keyword: 'Anh', fileName: 'https://imgur.com/iiPFSWE' },
-    { keyword: 'Việt Nam', fileName: 'https://imgur.com/ZOLPohm' },
-    { keyword: 'Mỹ', fileName: 'https://imgur.com/fETT6bg' },
-    { keyword: 'Singapore', fileName: 'https://imgur.com/vdq4nK4' },
-    { keyword: 'Pháp', fileName: 'https://imgur.com/2fOCFSI' },
-    { keyword: 'Nga', fileName: 'https://imgur.com/q744Z65' },
-    { keyword: 'Hồng Kông', fileName: 'https://imgur.com/rcHqR4R' },
-    { keyword: 'Hàn Quốc', fileName: 'https://imgur.com/Tfc5ukM' },
-    { keyword: 'Mỹ', fileName: 'https://imgur.com/8SYJYFS' },
+    { keyword: 'Nhật Bản', fileName: 'https://i.imgur.com/qtdmOJH.png' },
+    { keyword: 'Anh', fileName: 'https://i.imgur.com/iiPFSWE.png' },
+    { keyword: 'Việt Nam', fileName: 'https://i.imgur.com/ZOLPohm.png' },
+    { keyword: 'Mỹ', fileName: 'https://i.imgur.com/fETT6bg.png' },
+    { keyword: 'Singapore', fileName: 'https://i.imgur.com/vdq4nK4.png' },
+    { keyword: 'Pháp', fileName: 'https://i.imgur.com/2fOCFSI.png' },
+    { keyword: 'Nga', fileName: 'https://i.imgur.com/q744Z65.png' },
+    { keyword: 'Hồng Kông', fileName: 'https://i.imgur.com/rcHqR4R.png' },
+    { keyword: 'Hàn Quốc', fileName: 'https://i.imgur.com/Tfc5ukM.png' },
+    { keyword: 'Mỹ', fileName: 'https://i.imgur.com/8SYJYFS.png' },
   ];
+  //https://i.imgur.com/WaACbcs.png
   public payPalConfig?: IPayPalConfig;
 
   form: FormGroup | any;
