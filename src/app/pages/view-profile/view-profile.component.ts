@@ -6,7 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CookieService } from 'src/app/shared/services/cookie.service';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -21,7 +21,8 @@ export class ViewProfileComponent {
     private guestApiService:GuestApiService,
     private authService:AuthService,
     private router :Router,
-    private cookieService:CookieService
+    private cookieService:CookieService,
+    private title:Title
   ){};
   isDisabled = true
   
@@ -34,7 +35,8 @@ export class ViewProfileComponent {
     this.guestApiService.getGuestListById(this.authService.thisAccountId()).subscribe((data)=>{
       this.form.patchValue(data);
     })
-    
+    this.title.setTitle("FlightDot - Thông tin tài khoản bạn")
+
   }
   
 

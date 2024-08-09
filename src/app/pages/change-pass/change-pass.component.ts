@@ -5,7 +5,7 @@ import { CookieService } from 'src/app/shared/services/cookie.service';
 import Swal from 'sweetalert2'
 import { AccountApiService } from 'src/app/shared/services/account-api.service';
 import { Router } from '@angular/router';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-change-pass',
   templateUrl: './change-pass.component.html',
@@ -18,7 +18,8 @@ export class ChangePassComponent {
     private cookieService: CookieService,
     private formBuilder:FormBuilder,
     private accountApiService: AccountApiService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ){
   }
   visible:boolean = true;
@@ -39,6 +40,8 @@ export class ChangePassComponent {
   ngOnInit(): void {
     this.form=this.createForm();
     this.changePasswordRequest.accountId = this.authService.thisAccountId()
+    this.title.setTitle("FlightDot - Đổi mật khẩu mới")
+
   }
   viewpass(){
     this.visible = !this.visible;

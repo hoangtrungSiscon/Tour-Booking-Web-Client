@@ -4,6 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { da } from 'date-fns/locale';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-booking-history',
   templateUrl: './booking-history.component.html',
@@ -18,7 +19,8 @@ export class BookingHistoryComponent {
   constructor(
     private tickethistoryapi:TicketHistoryApiService,
     private authService:AuthService,
-    private router :Router
+    private router :Router,
+    private title:Title
   ){}
   async ngOnInit(){
     if (!this.authService.isUser()){
@@ -27,5 +29,6 @@ export class BookingHistoryComponent {
     this.tickethistoryapi.getTicketHistoryList(this.authService.thisAccountId()).subscribe((data) =>{
       this.tickets = data
     })
+    this.title.setTitle("FlightDot - Lịch sử đặt vé")
   }
 }

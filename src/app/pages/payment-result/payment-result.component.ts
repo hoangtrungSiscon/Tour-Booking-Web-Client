@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon'
 import { InvoiceService } from 'src/app/shared/services/invoice.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-payment-result',
   templateUrl: './payment-result.component.html',
@@ -16,7 +16,8 @@ export class PaymentResultComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private invoiceService: InvoiceService,
-    private authService: AuthService
+    private authService: AuthService,
+    private title: Title
   ) { }
 
   ngOnInit() {
@@ -31,6 +32,8 @@ export class PaymentResultComponent {
       // }})
       this.updatePayStatus(invoiceId, params)
     });
+    this.title.setTitle("FlightDot - Kết quả giao dịch")
+
   }
   updatePayStatus(id: any, params: any) {
     if (params['vnp_TransactionStatus'] === '00') {

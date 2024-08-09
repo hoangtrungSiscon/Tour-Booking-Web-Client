@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { InvoiceService } from 'src/app/shared/services/invoice.service';
 import { Invoice } from 'src/app/shared/models/invoiceModel';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-invoices',
   templateUrl: './invoices.component.html',
@@ -20,14 +20,16 @@ export class InvoicesComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private title: Title,
   ) { }
-
+ 
   ngOnInit() {
     if (!this.authService.isUser()){
       this.router.navigate(['/login']);
     }
     this.loadInvoices();
+    this.title.setTitle("FlightDot - Danh sách giao dịch")
   }
   loadInvoices(){
     this.invoiceService.getInvoicesByAccountId(this.authService.thisAccountId()).subscribe((data) => {
