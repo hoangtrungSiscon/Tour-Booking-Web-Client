@@ -55,39 +55,42 @@ export class HomeComponent {
 
   async ngOnInit() {
     this.setMetaForHomePage();
-
     this.newestflight
       .getTop3NewestFlight()
       .subscribe((data) => (this.newestflights = data));
   }
-  setMetaForHomePage() :void{
-    this.title.setTitle(`Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot`);
-    this.meta.updateTag({
-      property: 'og:image',
-      content: 'https://i.imgur.com/z5UKe3U.png',
-    });
-    this.meta.updateTag({ property: 'og:image:width', content: '48' });
-    this.meta.updateTag({ property: 'og:image:height', content: '48' });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content: 'Hình ảnh trang chủ',
-    });
-    this.meta.updateTag({
-      name: 'description',
-      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: 'Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content: `vé máy bay, FlightDot, đặt vé, du lịch`,
-    });
+  
+  removeUnwantedMetaTags(): void {
+    // Lấy tất cả các thẻ meta
+    const metaTags = document.getElementsByTagName('meta');
+    
+    // Duyệt qua tất cả các thẻ meta và xóa những thẻ không mong muốn
+    for (let i = metaTags.length - 1; i >= 0; i--) {
+      const metaTag = metaTags[i];
+      const name = metaTag.getAttribute('name');
+      const property = metaTag.getAttribute('property');
+      
+      // Giữ lại các thẻ cụ thể
+      if (name === 'google-site-verification' || name === 'viewport' || name === 'charset') {
+        continue;
+      }
+
+      // Xóa các thẻ meta không mong muốn
+      metaTag.parentNode?.removeChild(metaTag);
+    }
+  }
+  setMetaForHomePage() : void {
+    this.removeUnwantedMetaTags();
+    // Cập nhật tiêu đề
+    this.title.setTitle('FlightDot - Đặt Vé Máy Bay Online - Nhanh Chóng, Tiện Lợi, Giá Tốt');
+    
+    // Thêm các thẻ meta mới
+    this.meta.addTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
+    this.meta.addTag({ name: 'description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
+    this.meta.addTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/home' });
+    this.meta.addTag({ property: 'og:title', content: 'FlightDot - Đặt Vé Máy Bay Online - Nhanh Chóng, Tiện Lợi, Giá Tốt' });
+    this.meta.addTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
+    this.meta.addTag({ property: 'og:image', content: 'https://imgur.com/WaACbcs' });    
   }
   searchFlight() {
     let data = {
