@@ -35,12 +35,7 @@ export class SignUpComponent implements OnInit {
   }
   setMetaForSignUpPage() {
     this.title.setTitle(`Đăng kí tài khoản - Flight Dot`);
-    this.meta.updateTag({ property: 'og:image', content: 'assets/img/background 2.jpeg' });
-    this.meta.updateTag({ property: 'og:image:width', content: '1000' });
-    this.meta.updateTag({ property: 'og:image:height', content: '530' });
-    this.meta.updateTag({ property: 'og:image:alt', content: 'Hình ảnh trang đăng kí tài khoản' });
-    this.meta.updateTag({ name: 'description', content: 'Thông tin trang đăng kí tài khoản - Flight Dot' });
-    this.meta.updateTag({ name: 'keywords', content: `vé máy bay, FlightDot,quên mật khẩu, đặt vé, du lịch` });
+    
   }
   createForm(){
     return this.formBuilder.group({

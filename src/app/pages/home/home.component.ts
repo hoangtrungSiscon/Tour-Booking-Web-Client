@@ -62,32 +62,7 @@ export class HomeComponent {
   }
   setMetaForHomePage() :void{
     this.title.setTitle(`Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot`);
-    this.meta.updateTag({
-      property: 'og:image',
-      content: 'https://i.imgur.com/z5UKe3U.png',
-    });
-    this.meta.updateTag({ property: 'og:image:width', content: '48' });
-    this.meta.updateTag({ property: 'og:image:height', content: '48' });
-    this.meta.updateTag({
-      property: 'og:image:alt',
-      content: 'Hình ảnh trang chủ',
-    });
-    this.meta.updateTag({
-      name: 'description',
-      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'og:description',
-      content: 'Thông tin trang chủ đặt vé máy bay trực tuyến - Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'og:title',
-      content: 'Đặt vé máy bay - Thực hiện ước mơ cùng Flight Dot',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content: `vé máy bay, FlightDot, đặt vé, du lịch`,
-    });
+    
   }
   searchFlight() {
     let data = {
