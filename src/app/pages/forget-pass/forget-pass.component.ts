@@ -56,17 +56,16 @@ export class ForgetPassComponent {
     }
   }
   setMetaForForgetPassPage() : void {
-    this.removeUnwantedMetaTags();
     // Cập nhật tiêu đề
     this.title.setTitle('FlightDot - Phục hồi mật khẩu của bạn');
     
     // Thêm các thẻ meta mới
-    this.meta.addTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
-    this.meta.addTag({ name: 'description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
-    this.meta.addTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/forget-pass' });
-    this.meta.addTag({ property: 'og:title', content: 'FlightDot - Phục hồi mật khẩu của bạn' });
-    this.meta.addTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
-    this.meta.addTag({ property: 'og:image', content: 'https://imgur.com/WaACbcs' });    
+    this.meta.updateTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
+    this.meta.updateTag({ name: 'description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
+    this.meta.updateTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/forget-pass' });
+    this.meta.updateTag({ property: 'og:title', content: 'FlightDot - Phục hồi mật khẩu của bạn' });
+    this.meta.updateTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
+    this.meta.updateTag({ property: 'og:image', content: 'https://imgur.com/WaACbcs' });    
   }
   generateOTP() {
     // Declare a digits variable

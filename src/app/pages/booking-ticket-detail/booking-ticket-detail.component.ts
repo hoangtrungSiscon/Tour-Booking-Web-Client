@@ -234,7 +234,6 @@ export class BookingTicketDetailComponent implements OnInit {
   }
 
   updateMetaTagForBookingDetails(): void {
-    this.removeUnwantedMetaTags();
     if (this.flightInfo) {
       const origin = this.getCountryService.getCountryName(
         this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8)
@@ -245,12 +244,12 @@ export class BookingTicketDetailComponent implements OnInit {
       this.title.setTitle(
         `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}`
       );
-      this.meta.addTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
-      this.meta.addTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.addTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/booking-ticket' });
-      this.meta.addTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
-      this.meta.addTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.addTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});    
+      this.meta.updateTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
+      this.meta.updateTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
+      this.meta.updateTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/booking-ticket' });
+      this.meta.updateTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
+      this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
+      this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});    
     }
   }
 
