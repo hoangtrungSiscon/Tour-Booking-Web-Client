@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -6,6 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Validator } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +21,8 @@ export class SignUpComponent implements OnInit {
   checkPass: FormControl = this.formBuilder.control('');
   message: string = ''
 
-  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router,private meta:Meta,private title:Title){};
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, private router:Router,private meta:Meta,private title:Title,    @Inject(DOCUMENT) private dom: Document
+){};
   ngOnInit(){
     this.form=this.createForm();
     this.checkPass.valueChanges.pipe(debounceTime(300)).subscribe((data) => {
@@ -63,8 +65,20 @@ export class SignUpComponent implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: 'FlightDot - Đăng kí tài khoản' });
     this.meta.updateTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
     this.meta.updateTag({ property: 'og:image', content: 'https://i.imgur.com/WaACbcs.png' });
-    this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/sign-up' });
+    //this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/sign-up' });
+    const currentURL = 'https://flightdotclient.azurewebsites.net/sign-up';
+    this.updateCanonicalUrl(currentURL);
+  }
 
+  updateCanonicalUrl(url:string){
+    const head = this.dom.getElementsByTagName('head')[0];
+    var element: HTMLLinkElement= this.dom.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
+    if (element==null) {
+      element= this.dom.createElement('link') as HTMLLinkElement;
+      head.appendChild(element);
+    }
+    element.setAttribute('rel','canonical')
+    element.setAttribute('href',url)
   }
   createForm(){
     return this.formBuilder.group({

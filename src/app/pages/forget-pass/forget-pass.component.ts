@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import { Meta, Title } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-forget-pass',
@@ -19,7 +20,8 @@ export class ForgetPassComponent {
     message: this.generateOTP(),
   };
   sentOtp: string = '';
-  constructor(private authService: AuthService, private router: Router,    private meta: Meta,private title: Title,) {}
+  constructor(private authService: AuthService, private router: Router,    private meta: Meta,private title: Title,    @Inject(DOCUMENT) private dom: Document
+) {}
 
   ngOnInit() {
     this.email.valueChanges.pipe(debounceTime(500)).subscribe((data: any) => {
@@ -66,8 +68,19 @@ export class ForgetPassComponent {
     this.meta.updateTag({ property: 'og:title', content: 'FlightDot - Phục hồi mật khẩu của bạn' });
     this.meta.updateTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
     this.meta.updateTag({ property: 'og:image', content: 'https://i.imgur.com/WaACbcs.png' }); 
-    this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/forget-pass' });
-
+    //this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/forget-pass' });
+    const currentURL = 'https://flightdotclient.azurewebsites.net/forget-pass';
+    this.updateCanonicalUrl(currentURL)
+  }
+  updateCanonicalUrl(url:string){
+    const head = this.dom.getElementsByTagName('head')[0];
+    var element: HTMLLinkElement= this.dom.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
+    if (element==null) {
+      element= this.dom.createElement('link') as HTMLLinkElement;
+      head.appendChild(element);
+    }
+    element.setAttribute('rel','canonical')
+    element.setAttribute('href',url)
   }
   generateOTP() {
     // Declare a digits variable
