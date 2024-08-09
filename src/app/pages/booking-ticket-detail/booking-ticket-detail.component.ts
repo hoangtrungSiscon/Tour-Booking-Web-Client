@@ -31,6 +31,28 @@ export class BookingTicketDetailComponent implements OnInit {
     { keyword: 'HANQUOC', fileName: 'hanquoc.png' },
     { keyword: 'THAILAN', fileName: 'thailand.png' },
   ];
+  // JP: 'Nhật Bản',
+  // UK: 'Anh',
+  // TH: 'Thái Lan',
+  // VN: 'Việt Nam',
+  // FR: 'Pháp',
+  // RU: 'Nga',
+  // SG: 'Singapore',
+  // HK: 'Hồng Kông',
+  // KR: 'Hàn Quốc',
+  // US: 'Mỹ',
+  imgKeyUrl = [
+    { keyword: 'Nhật Bản', fileName: 'https://imgur.com/qtdmOJH' },
+    { keyword: 'Anh', fileName: 'https://imgur.com/iiPFSWE' },
+    { keyword: 'Việt Nam', fileName: 'https://imgur.com/ZOLPohm' },
+    { keyword: 'Mỹ', fileName: 'https://imgur.com/fETT6bg' },
+    { keyword: 'Singapore', fileName: 'https://imgur.com/vdq4nK4' },
+    { keyword: 'Pháp', fileName: 'https://imgur.com/2fOCFSI' },
+    { keyword: 'Nga', fileName: 'https://imgur.com/q744Z65' },
+    { keyword: 'Hồng Kông', fileName: 'https://imgur.com/rcHqR4R' },
+    { keyword: 'Hàn Quốc', fileName: 'https://imgur.com/Tfc5ukM' },
+    { keyword: 'Mỹ', fileName: 'https://imgur.com/8SYJYFS' },
+  ];
   public payPalConfig?: IPayPalConfig;
 
   form: FormGroup | any;
@@ -65,7 +87,10 @@ export class BookingTicketDetailComponent implements OnInit {
     const image = this.imgKeyList.find((img) => img.keyword === keyword);
     return image ? `../../../assets/img/${image.fileName}` : ``;
   }
-
+  ImageUrlMeta(keyword: string): string {
+    const image = this.imgKeyUrl.find((img) => img.keyword === keyword);
+    return image ? image.fileName : ``;
+  }
   private initConfig(): void {
     this.payPalConfig = {
       currency: 'EUR',
@@ -165,7 +190,7 @@ export class BookingTicketDetailComponent implements OnInit {
       this.chuyenBayService.getByCode(flightId).subscribe({
         next: (flight: any) => {
           this.flightInfo = flight;
-          this.updateMetaTags();
+          this.updateMetaTagForBookingDetails();
           //verify slug
           const origin = slugify(
             this.getCountryService.getCountryName(flightId.substring(6, 8)),
@@ -188,15 +213,28 @@ export class BookingTicketDetailComponent implements OnInit {
       });
     }
   }
-  // <meta property="og:title" content="FlightDot - Đặt vé máy bay">
-  // <meta property="og:description" content="Website đặt vé máy bay FlightDot">
-  // <meta property="og:image" content="src\assets\icons8-plane-48.png">
-  // <meta property="og:alt" content="hình ảnh">
-  // <meta property="og:url" content="">
-  // <meta property="og:type" content="website">
-  // <meta property="keywords" content="angular, SEO flightdot, flightdot, tmdt flightdot">
+  removeUnwantedMetaTags(): void {
+    // Lấy tất cả các thẻ meta
+    const metaTags = document.getElementsByTagName('meta');
+    
+    // Duyệt qua tất cả các thẻ meta và xóa những thẻ không mong muốn
+    for (let i = metaTags.length - 1; i >= 0; i--) {
+      const metaTag = metaTags[i];
+      const name = metaTag.getAttribute('name');
+      const property = metaTag.getAttribute('property');
+      
+      // Giữ lại các thẻ cụ thể
+      if (name === 'google-site-verification' || name === 'viewport' || name === 'charset') {
+        continue;
+      }
 
-  updateMetaTags(): void {
+      // Xóa các thẻ meta không mong muốn
+      metaTag.parentNode?.removeChild(metaTag);
+    }
+  }
+
+  updateMetaTagForBookingDetails(): void {
+    this.removeUnwantedMetaTags();
     if (this.flightInfo) {
       const origin = this.getCountryService.getCountryName(
         this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8)
@@ -205,9 +243,14 @@ export class BookingTicketDetailComponent implements OnInit {
         this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12)
       );
       this.title.setTitle(
-        `Chi tiết vé máy bay từ ${origin} đến ${destination}`
+        `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}`
       );
-      
+      this.meta.addTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
+      this.meta.addTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
+      this.meta.addTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/booking-ticket' });
+      this.meta.addTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
+      this.meta.addTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
+      this.meta.addTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});    
     }
   }
 
