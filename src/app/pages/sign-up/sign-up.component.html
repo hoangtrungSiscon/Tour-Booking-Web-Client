@@ -4,7 +4,7 @@
         <section class="container-fluid div-center" style="height: calc(100vh);margin-bottom: 10px;margin-top: -40px;">
             
             <div class="signUp-container" style="margin-top: 20px;" >
-                <h1 style="margin-bottom: 20px;">ĐĂNG KÍ</h1>
+                <h1 style="margin-bottom: 20px;font-size: 26px;font-weight: bold;">ĐĂNG KÍ</h1>
 
                     <div class="form-group">
                         <label style="margin-top: 0;">TÊN TÀI KHOẢN</label>
@@ -72,7 +72,7 @@
     <mat-step label="Nhập mật khẩu" >
         <section class="container-fluid div-center" style="height: calc(100vh - 48px);">
             <div class="signUp-container">
-                <h1 style="margin-bottom: 20px;">ĐĂNG KÍ</h1>
+                <h1 style="margin-bottom: 20px;font-size: 26px;font-weight: bold;">ĐĂNG KÍ</h1>
 
                 <div class="form-group">
                     <div style="display: flex; justify-content: space-between;align-items: flex-end;">
@@ -92,6 +92,21 @@
                         <mat-icon style="color: #146C94;" fontIcon="{{visible?'visibility':'visibility_off'}}"></mat-icon>            
                     </button>
                 </div>
+                <div>
+                    <h3>Điều kiện tạo mật khẩu:</h3>
+                    <ul>
+                        <li>Độ dài: Mật khẩu nên có ít nhất 8 ký tự, tốt nhất từ 12 ký tự trở lên.</li>
+                        <li>Đa dạng ký tự:
+                            <ul>
+                                <li>Chữ cái in hoa (A-Z)</li>
+                                <li>Chữ cái in thường (a-z)</li>
+                                <li>Chữ số (0-9)</li>
+                                <li>Ký tự đặc biệt (như <code>!@#$%^&*()</code>)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
                     <div class="" style="color: red;"> {{message}}  </div>
                     <div class="div-center div-spacebetween" style="margin-top: 20px;">
                         <button mat-button matStepperPrevious class="btn-previous">Trở lại</button>
