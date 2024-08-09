@@ -4,7 +4,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { da } from 'date-fns/locale';
-import { Title } from '@angular/platform-browser';
+import { Title,Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-booking-history',
   templateUrl: './booking-history.component.html',
@@ -20,7 +20,8 @@ export class BookingHistoryComponent {
     private tickethistoryapi:TicketHistoryApiService,
     private authService:AuthService,
     private router :Router,
-    private title:Title
+    private title:Title,
+    private meta:Meta
   ){}
   async ngOnInit(){
     if (!this.authService.isUser()){
@@ -30,5 +31,6 @@ export class BookingHistoryComponent {
       this.tickets = data
     })
     this.title.setTitle("FlightDot - Lịch sử đặt vé")
+    this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/booking-history' });
   }
 }

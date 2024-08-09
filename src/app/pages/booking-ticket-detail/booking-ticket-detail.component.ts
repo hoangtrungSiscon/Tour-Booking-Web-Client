@@ -191,7 +191,6 @@ export class BookingTicketDetailComponent implements OnInit {
       this.chuyenBayService.getByCode(flightId).subscribe({
         next: (flight: any) => {
           this.flightInfo = flight;
-          this.updateMetaTagForBookingDetails();
           //verify slug
           const origin = slugify(
             this.getCountryService.getCountryName(flightId.substring(6, 8)),
@@ -202,11 +201,13 @@ export class BookingTicketDetailComponent implements OnInit {
             { lower: true }
           );
           const expectedSlug = `thong-tin-chi-tiet-chuyen-bay-${flightId}-tu-${origin}-den-${destination}`;
+          this.updateMetaTagForBookingDetails(expectedSlug);
           if (slug !== expectedSlug) {
             this.router.navigate([`/booking-ticket-detail`, expectedSlug], {
               replaceUrl: true,
             });
           }
+
         },
         error: (err) => {
           this.router.navigate(['/booking-ticket']);
@@ -234,7 +235,7 @@ export class BookingTicketDetailComponent implements OnInit {
     }
   }
 
-  updateMetaTagForBookingDetails(): void {
+  updateMetaTagForBookingDetails(slug:string): void {
     if (this.flightInfo) {
       const origin = this.getCountryService.getCountryName(
         this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8)
@@ -247,10 +248,12 @@ export class BookingTicketDetailComponent implements OnInit {
       );
       this.meta.updateTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
       this.meta.updateTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.updateTag({ property: 'og:url', content: 'https://flightdotclient.azurewebsites.net/booking-ticket' });
+      this.meta.updateTag({ property: 'og:url', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
       this.meta.updateTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
       this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});    
+      this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});
+      this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
+
     }
   }
 
