@@ -1,3 +1,4 @@
+import { GetPlaneNameService } from './../../shared/services/get-plane-name.service';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
@@ -11,6 +12,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from '../../shared/services/get-country.service';
 import slugify from 'slugify';
 import { DOCUMENT } from '@angular/common';
+import { UrlReaderService } from 'src/app/shared/services/url-reader.service';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -67,7 +69,9 @@ export class BookingTicketDetailComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private getCountryService: GetCountryService,
-    @Inject(DOCUMENT) private dom: Document
+    @Inject(DOCUMENT) private dom: Document,
+    private urlReaderService: UrlReaderService,
+    private getPlanenameService: GetPlaneNameService
   ) {}
 
   ngOnInit() {
@@ -93,35 +97,19 @@ export class BookingTicketDetailComponent implements OnInit {
   }
   
 
-  loadTicketData(slug: string | null): void {
+  loadTicketData(slug: string | null) {
     if (!slug) {
       this.router.navigate(['/booking-ticket']);
     } else {
-      const flightId = slug.split('-')[6];
-      this.chuyenBayService.getByCode(flightId).subscribe({
-        next: (flight: any) => {
-          this.flightInfo = flight;
-          //verify slug
-          const origin = slugify(
-            this.getCountryService.getCountryName(flightId.substring(6, 8)),
-            { lower: true }
-          );
-          const destination = slugify(
-            this.getCountryService.getCountryName(flightId.substring(10, 12)),
-            { lower: true }
-          );
-          const expectedSlug = `thong-tin-chi-tiet-chuyen-bay-${flightId}-tu-${origin}-den-${destination}`;
-          this.updateMetaTagForBookingDetails(expectedSlug);
-          if (slug !== expectedSlug) {
-            this.router.navigate([`/booking-ticket-detail`, expectedSlug], {
-              replaceUrl: true,
-            });
+      this.urlReaderService.generateFlightIdFromSlug(slug).then((flightId) => {
+        console.log(flightId);
+        this.chuyenBayService.getByCode(flightId).subscribe({
+          next: (flight: any) => {
+            this.flightInfo = flight;
+          }, error: (err) => {
+            this.router.navigate(['/booking-ticket']);
           }
-
-        },
-        error: (err) => {
-          this.router.navigate(['/booking-ticket']);
-        },
+        })
       });
     }
   }

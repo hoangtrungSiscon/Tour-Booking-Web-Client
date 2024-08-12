@@ -37,4 +37,49 @@ export class GetCountryService {
     };
     return countryMap[name];
   }
+  getCountryCodeFromSlug(code: string): string {
+    const countryMap: { [key: string]: string } = {
+      'nhat-ban': 'JP',
+      'anh': 'UK',
+      'thai-lan' : 'TH',
+      'viet-nam' : 'VN',
+      'phap' : 'FR',
+      'nga' : 'RU',
+      'singapore' : 'SG',
+      'hong-kong' : 'HK',
+      'han-quoc' : 'KR',
+      'my' : 'US',
+    };
+    return countryMap[code];
+  }
+  // getCountryCodeFromSlugAsync(code: string): Promise<string> {
+  //   const countryMap: { [key: string]: string } = {
+  //     'nhat-ban': 'JP',
+  //     'anh': 'UK',
+  //     'thai-lan' : 'TH',
+  //     'viet-nam' : 'VN',
+  //     'phap' : 'FR',
+  //     'nga' : 'RU',
+  //     'singapore' : 'SG',
+  //     'hong-kong' : 'HK',
+  //     'han-quoc' : 'KR',
+  //     'my' : 'US',
+  //   };
+  //   return countryMap[code];
+  // }
+  getSlugFromCountryCode(code: string): string {
+    const countryMap: { [key: string]: string } = {
+      JP: 'nhat-ban',
+      UK: 'anh',
+      TH: 'thai-lan',
+      VN: 'viet-nam',
+      FR: 'phap',
+      RU: 'nga',
+      SG: 'singapore',
+      HK: 'hong-kong',
+      KR: 'han-quoc',
+      US: 'my',
+    };
+    return countryMap[code];
+  }
 }

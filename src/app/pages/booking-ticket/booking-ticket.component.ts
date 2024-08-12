@@ -10,6 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from 'src/app/shared/services/get-country.service';
 import slugify from 'slugify';
 import { DOCUMENT } from '@angular/common';
+import { UrlReaderService } from 'src/app/shared/services/url-reader.service';
 export interface submitForm {
   fromPlace: string;
   toPlace: string;
@@ -61,8 +62,8 @@ export class BookingTicketComponent {
     private meta: Meta,
     private title: Title,
     private getCountryService: GetCountryService,
-    @Inject(DOCUMENT) private dom: Document
-
+    @Inject(DOCUMENT) private dom: Document,
+    private urlReaderService: UrlReaderService
   ) {}
   data = this.transferDataService.getData();
   SubmitForm: submitForm = {
@@ -173,12 +174,22 @@ export class BookingTicketComponent {
   checkLogin(ma: string, bsn: number, eco: number) {
     this.navigateToDetailPage(ma);
   }
+  // navigateToDetailPage(id: string) {
+  //   const slug = this.urlReaderService.generateSlugFromFlightId(id);
+  //   console.log(slug)
+  //   // this.router.navigate([`/booking-ticket-detail`, slug]);
+  // }
   navigateToDetailPage(id: string) {
-    const origin = slugify(this.getCountryService.getCountryName(id.substring(6, 8)), { lower: true });
-    const destination = slugify(this.getCountryService.getCountryName(id.substring(10, 12)), { lower: true });
-    const slug = `thong-tin-chi-tiet-chuyen-bay-${id}-tu-${origin}-den-${destination}`;
-    this.router.navigate([`/booking-ticket-detail`, slug]);
+    this.urlReaderService.generateSlugFromFlightId(id)
+      .then((slug) => {
+        console.log(slug);
+        this.router.navigate([`/booking-ticket-detail`, slug]);
+      })
+      .catch((error) => {
+        console.error('Error generating slug:', error);
+      });
   }
+  
   reloadValue() {
     this.SubmitForm.fromPlace = '';
     this.SubmitForm.toPlace = '';
