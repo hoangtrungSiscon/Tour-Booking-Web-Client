@@ -18,6 +18,8 @@ export interface TicketDetails {
   soLuong: number;
   tongGia: number;
   tinhTrang: string;
+  maGiaoDich: string;
+  tenKieuThanhToan: string;
 }
 
 @Component({
@@ -38,6 +40,8 @@ export class AdminTicketManagementComponent implements AfterViewInit, OnInit{
     'soLuong',
     'tongGia',
     'tinhTrang',
+    'maGiaoDich',
+    'tenKieuThanhToan',
     'action'
   ];
   chiTietVes: TicketDetails[] = [];
