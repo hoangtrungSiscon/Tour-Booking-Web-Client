@@ -92,7 +92,7 @@ export class HomeComponent {
     this.meta.updateTag({ property: 'og:title', content: 'FlightDot - Đặt Vé Máy Bay Online - Nhanh Chóng, Tiện Lợi, Giá Tốt' });
     this.meta.updateTag({ property: 'og:description', content: 'Website đặt vé máy bay - FlightDot tiện lợi và nhanh chóng, giúp bạn tìm kiếm, so sánh giá vé, và đặt chỗ chỉ trong vài bước đơn giản. Với giao diện thân thiện và hỗ trợ 24/7, chúng tôi mang đến trải nghiệm mua vé dễ dàng và an toàn cho mọi chuyến bay của bạn.' });
     this.meta.updateTag({ property: 'og:image', content: 'https://i.imgur.com/WaACbcs.png' });    
-    //this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/home' });
+    this.meta.updateTag({ name: 'canonical', content: 'https://flightdotclient.azurewebsites.net/home' });
     const currentURL = 'https://flightdotclient.azurewebsites.net/home';
     this.updateCanonicalUrl(currentURL)
   }

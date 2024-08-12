@@ -83,6 +83,7 @@ export class BookingTicketDetailComponent implements OnInit {
       });
 
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
+    this.updateMetaTagForBookingDetails(slug);
 
     // const expectedSlug =
     this.loadTicketData(slug);
@@ -106,6 +107,8 @@ export class BookingTicketDetailComponent implements OnInit {
         this.chuyenBayService.getByCode(flightId).subscribe({
           next: (flight: any) => {
             this.flightInfo = flight;
+            this.updateMetaTagForBookingDetails(slug);
+
           }, error: (err) => {
             this.router.navigate(['/booking-ticket']);
           }
@@ -133,7 +136,7 @@ export class BookingTicketDetailComponent implements OnInit {
     }
   }
 
-  updateMetaTagForBookingDetails(slug:string): void {
+  updateMetaTagForBookingDetails(slug:string | null): void {
     if (this.flightInfo) {
       const origin = this.getCountryService.getCountryName(
         this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8)
@@ -151,8 +154,7 @@ export class BookingTicketDetailComponent implements OnInit {
       this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
       this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});
       this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-detail/${slug}` });
-      const currentURL = `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`;
-      this.updateCanonicalUrl(currentURL)
+      this.updateCanonicalUrl(`https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`);
       //this.updateCanonicalURL2();
     }
   }
