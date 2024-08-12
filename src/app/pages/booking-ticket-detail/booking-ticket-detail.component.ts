@@ -83,7 +83,6 @@ export class BookingTicketDetailComponent implements OnInit {
       });
 
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
-    this.updateMetaTagForBookingDetails(slug);
 
     // const expectedSlug =
     this.loadTicketData(slug);
@@ -136,28 +135,20 @@ export class BookingTicketDetailComponent implements OnInit {
     }
   }
 
-  updateMetaTagForBookingDetails(slug:string | null): void {
+  updateMetaTagForBookingDetails(slug: string | null): void {
     if (this.flightInfo) {
-      const origin = this.getCountryService.getCountryName(
-        this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8)
-      );
-      const destination = this.getCountryService.getCountryName(
-        this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12)
-      );
-      this.title.setTitle(
-        `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}`
-      );
-      this.meta.updateTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
-      this.meta.updateTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
+      const origin = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8));
+      const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
+  
+      this.title.setTitle(`FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}`);
+      this.meta.updateTag({ name: 'description', content: `Chuyến bay từ ${origin} đến ${destination}.` });
       this.meta.updateTag({ property: 'og:url', content: `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}` });
-      this.meta.updateTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
-      this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});
-      this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-detail/${slug}` });
+      this.meta.updateTag({ property: 'og:title', content: `Chi tiết vé máy bay từ ${origin} đến ${destination}` });
+      this.meta.updateTag({ property: 'og:image', content: this.ImageUrlMeta(destination) });
       this.updateCanonicalUrl(`https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`);
-      //this.updateCanonicalURL2();
     }
   }
+  
   updateCanonicalURL2() {
     const slug = this.activatedRoute.snapshot.paramMap.get('slug');
     const url = `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`;
