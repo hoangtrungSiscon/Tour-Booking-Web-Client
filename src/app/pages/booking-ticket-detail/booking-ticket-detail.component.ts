@@ -146,16 +146,28 @@ export class BookingTicketDetailComponent implements OnInit {
       );
       this.meta.updateTag({ name: 'keywords', content: 'Đặt vé máy bay qua flightdot, FlightDot, flightdot booking, flightdot azure, minhkhanh, hoangtrung, flight.' });
       this.meta.updateTag({ name: 'description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
-      this.meta.updateTag({ property: 'og:url', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
+      this.meta.updateTag({ property: 'og:url', content: `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}` });
       this.meta.updateTag({ property: 'og:title', content: `FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}` });
       this.meta.updateTag({ property: 'og:description', content: `Website đặt vé máy bay - Chuyến bay từ ${origin} đến ${destination} hiện tại.` });
       this.meta.updateTag({ property: 'og:image', content:  this.ImageUrlMeta(destination)});
-      // this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-ticket/${slug}` });
-      const currentURL = 'https://flightdotclient.azurewebsites.net/booking-ticket-detail';
+      this.meta.updateTag({ name: 'canonical', content: `https://flightdotclient.azurewebsites.net/booking-detail/${slug}` });
+      const currentURL = `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`;
       this.updateCanonicalUrl(currentURL)
+      //this.updateCanonicalURL2();
     }
   }
-
+  updateCanonicalURL2() {
+    const slug = this.activatedRoute.snapshot.paramMap.get('slug');
+    const url = `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`;
+    
+    var link: HTMLLinkElement= this.dom.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
+    if (!link) {
+      link = this.dom.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      document.head.appendChild(link);
+    }
+    link.setAttribute('href', url);
+  }
   updateCanonicalUrl(url:string){
     const head = this.dom.getElementsByTagName('head')[0];
     var element: HTMLLinkElement= this.dom.querySelector(`link[rel='canonical']`) as HTMLLinkElement;
