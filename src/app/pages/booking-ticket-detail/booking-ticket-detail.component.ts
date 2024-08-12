@@ -139,12 +139,12 @@ export class BookingTicketDetailComponent implements OnInit {
     if (this.flightInfo) {
       const origin = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(6, 8));
       const destination = this.getCountryService.getCountryName(this.flightInfo?.chuyenBay.maChuyenBay.substring(10, 12));
-  
+      const link = this.ImageUrlMeta(destination).toString();
       this.title.setTitle(`FlightDot - Chi tiết vé máy bay từ ${origin} đến ${destination}`);
       this.meta.updateTag({ name: 'description', content: `Chuyến bay từ ${origin} đến ${destination}.` });
       this.meta.updateTag({ property: 'og:url', content: `https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}` });
       this.meta.updateTag({ property: 'og:title', content: `Chi tiết vé máy bay từ ${origin} đến ${destination}` });
-      this.meta.updateTag({ property: 'og:image', content: this.ImageUrlMeta(destination) });
+      this.meta.updateTag({ property: 'og:image', content: link });
       this.updateCanonicalUrl(`https://flightdotclient.azurewebsites.net/booking-ticket-detail/${slug}`);
     }
   }
