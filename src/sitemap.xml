@@ -54,6 +54,14 @@
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+
+  </url>
+    <url>
+    <loc>  https://flightdotclient.azurewebsites.net/booking-ticket-detail/thong-tin-chi-tiet-chuyen-bay-240824HKTOUKMT-tu-hong-kong-den-anh</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+
   </url>
   <!-- Thêm các URL khác của bạn tại đây -->
 </urlset>
