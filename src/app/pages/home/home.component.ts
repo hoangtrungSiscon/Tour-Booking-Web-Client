@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router,NavigationEnd  } from '@angular/router';
 import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as $ from 'jquery';
@@ -9,6 +9,8 @@ import { MailchimpService } from 'src/app/shared/services/mailchimp.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { DOCUMENT } from '@angular/common';
+import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -31,6 +33,7 @@ export class HomeComponent {
     private title: Title,
     private mailchimpService: MailchimpService,
     private http: HttpClient,
+    private route:ActivatedRoute,
     @Inject(DOCUMENT) private dom: Document
   ) {}
 
@@ -57,6 +60,12 @@ export class HomeComponent {
 
   async ngOnInit() {
     this.setMetaForHomePage();
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.setMetaForHomePage();
+    });
     this.newestflight
       .getTop3NewestFlight()
       .subscribe((data) => (this.newestflights = data));
