@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AdminNavigationComponent } from './admin-navigation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -25,6 +24,7 @@ describe('AdminNavigationComponent', () => {
   });
 
   it('should create', () => {
+    // Kiểm tra xem component có được tạo thành công không
     expect(component).toBeTruthy();
   });
 });
