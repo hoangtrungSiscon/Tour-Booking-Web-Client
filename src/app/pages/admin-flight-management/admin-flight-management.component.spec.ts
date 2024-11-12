@@ -11,7 +11,7 @@ describe('AdminFlightManagementComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AdminFlightManagementComponent],
-      imports: [MatTableModule, MatPaginatorModule, HttpClientModule],  // Đảm bảo đã import các module cần thiết
+      imports: [MatTableModule, MatPaginatorModule, HttpClientModule ],  // Đảm bảo đã import các module cần thiết
       providers: [] // Các dịch vụ cần thiết, nếu có
     });
     fixture = TestBed.createComponent(AdminFlightManagementComponent);

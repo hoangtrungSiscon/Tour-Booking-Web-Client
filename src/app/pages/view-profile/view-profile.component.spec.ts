@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ViewProfileComponent } from './view-profile.component';
 import { of } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Mock the ProfileService
 class MockProfileService {
@@ -16,6 +19,12 @@ describe('ViewProfileComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ViewProfileComponent],
+      imports: [
+        ReactiveFormsModule, // Import các module cần thiết
+        FormsModule,
+        HttpClientModule,
+        RouterTestingModule
+      ],
       providers: [
         {  useClass: MockProfileService }
       ]

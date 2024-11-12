@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PaymentResultComponent } from './payment-result.component';
 import { of } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // Mock service
 class MockPaymentService {
@@ -16,6 +19,12 @@ describe('PaymentResultComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [PaymentResultComponent],
+      imports: [
+        ReactiveFormsModule, // Import các module cần thiết
+        FormsModule,
+        HttpClientModule,
+        RouterTestingModule
+      ],
       providers: [
         {  useClass: MockPaymentService }
       ]

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +11,13 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent],
+      imports: [
+        ReactiveFormsModule, // Import các module cần thiết
+        FormsModule,
+        HttpClientModule,
+        RouterTestingModule
+      ],
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
