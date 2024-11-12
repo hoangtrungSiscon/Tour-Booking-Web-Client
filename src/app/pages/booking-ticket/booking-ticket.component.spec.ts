@@ -137,3 +137,140 @@ describe('BookingTicketComponent', () => {
   });
 
 });
+describe('BookingDetailComponent', () => {
+  let component: BookingTicketComponent;
+  let fixture: ComponentFixture<BookingTicketComponent>;
+  let flightService: ChuyenBayService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      declarations: [BookingTicketComponent],
+      providers: [BookingTicketComponent]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BookingTicketComponent);
+    component = fixture.componentInstance;
+    flightService = TestBed.inject(ChuyenBayService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  it('should retrieve flights from API and bind to component', () => {
+    const mockFlights = [
+      { maChuyenBay: '001', tenMayBay: 'Boeing 777', noiDen: 'London', gia: 5000000 }
+    ];
+    
+    // Gọi phương thức để lấy thông tin chuyến bay
+    component.ngOnInit();
+    
+    const req = httpMock.expectOne('https://api.flight.com/flights');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockFlights); // Giả lập dữ liệu trả về từ API
+    
+    // Kiểm tra xem dữ liệu có được gán vào component không
+    expect(component.tickets).toEqual(mockFlights);
+  });
+
+  afterEach(() => {
+    httpMock.verify(); // Kiểm tra xem có request nào chưa được xử lý không
+  });
+});
+
+describe('BookingTicketModule', () => {
+  let service: ChuyenBayService;
+  let httpMock: HttpTestingController;
+  let fixture: ComponentFixture<BookingTicketComponent>;
+  let component: BookingTicketComponent;
+
+  const mockChuyenBays = [
+    {
+      "maChuyenBay": "070124JPTOUKVJ",
+      "maMayBay": "PlaneVJ",
+      "tenMayBay": "Máy bay VietJack",
+      "gioBay": "07:00:00",
+      "noiXuatPhat": "NHATBAN",
+      "noiDen": "ANH",
+      "ngayXuatPhat": "2024-01-07T00:00:00",
+      "donGia": 6400001,
+      "soLuongVeBsn": 11,
+      "soLuongVeEco": 23
+    },
+    {
+      "maChuyenBay": "311223VNTOTHAB",
+      "maMayBay": "PlaneAB",
+      "tenMayBay": "Máy bay Air Bud",
+      "gioBay": "00:10:00",
+      "noiXuatPhat": "VIETNAM",
+      "noiDen": "THAILAN",
+      "ngayXuatPhat": "2023-12-31T00:00:00",
+      "donGia": 1600000,
+      "soLuongVeBsn": 5,
+      "soLuongVeEco": 25
+    }
+    // Thêm dữ liệu mock khác nếu cần
+  ];
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule, // Giả lập các yêu cầu HTTP
+        RouterTestingModule,     // Kiểm tra router
+        FormsModule,             // Nếu component sử dụng FormsModule
+        ReactiveFormsModule,     // Nếu sử dụng ReactiveForms
+        MatButtonModule          // Nếu component sử dụng Angular Material
+      ],
+      declarations: [BookingTicketComponent],  // Đăng ký component cần kiểm thử
+      providers: [ChuyenBayService]            // Đảm bảo service được tiêm vào đúng cách
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(BookingTicketComponent);
+    component = fixture.componentInstance;
+    service = TestBed.inject(ChuyenBayService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  it('should create the module and inject the service correctly', () => {
+    expect(component).toBeTruthy();
+    expect(service).toBeTruthy();
+  });
+
+  it('should retrieve all chuyến bay data and bind to the component', () => {
+    spyOn(service, 'getAll').and.callThrough();
+
+    // Gọi phương thức ngOnInit để lấy dữ liệu chuyến bay
+    component.ngOnInit();
+
+    // Kiểm tra yêu cầu HTTP
+    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockChuyenBays); // Giả lập dữ liệu trả về
+
+    // Kiểm tra xem dữ liệu có được gán vào component không
+    expect(component.tickets).toEqual(mockChuyenBays);
+    expect(service.getAll).toHaveBeenCalled();
+  });
+
+  it('should handle error when API call fails', () => {
+    service.getAll().subscribe(
+      () => fail('Expected an error, not chuyến bay data'),
+      (error) => {
+        expect(error.status).toBe(500);
+      }
+    );
+
+    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll');
+    expect(req.request.method).toBe('GET');
+
+    // Giả lập lỗi trả về từ server
+    req.flush('Error fetching data', { status: 500, statusText: 'Internal Server Error' });
+  });
+
+  afterEach(() => {
+    httpMock.verify(); // Kiểm tra xem không còn yêu cầu HTTP nào chưa xử lý
+  });
+});
