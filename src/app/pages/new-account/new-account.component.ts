@@ -3,7 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { GuestApiService } from 'src/app/shared/services/guest-api.service';
+import { GuestApiService } from '../../shared/services/guest-api.service';
 @Component({
   selector: 'app-new-account',
   templateUrl: './new-account.component.html',

@@ -1,4 +1,4 @@
-import { GetPlaneNameService } from './../../shared/services/get-plane-name.service';
+import { GetPlaneNameService } from '../../shared/services/get-plane-name.service';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
@@ -12,7 +12,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { GetCountryService } from '../../shared/services/get-country.service';
 import slugify from 'slugify';
 import { DOCUMENT } from '@angular/common';
-import { UrlReaderService } from 'src/app/shared/services/url-reader.service';
+import { UrlReaderService } from '../../shared/services/url-reader.service';
 
 @Component({
   selector: 'app-booking-ticket-detail',
@@ -89,7 +89,7 @@ export class BookingTicketDetailComponent implements OnInit {
   }
   ImageUrl(keyword: string): string {
     const image = this.imgKeyList.find((img) => img.keyword === keyword);
-    return image ? `../../../assets/img/${image.fileName}` : ``;
+    return image ? `@../assets/img/${image.fileName}` : ``;
   }
   ImageUrlMeta(keyword: string): string {
     const image = this.imgKeyUrl.find((img) => img.keyword === keyword);

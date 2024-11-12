@@ -4,7 +4,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
-import { GuestApiService } from 'src/app/shared/services/guest-api.service';
+import { GuestApiService } from '../../shared/services/guest-api.service';
 import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 export interface GuestDetails {

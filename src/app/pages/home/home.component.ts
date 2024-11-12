@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import {ActivatedRoute, Router,NavigationEnd  } from '@angular/router';
-import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { TransferDataService } from '../../shared/services/transfer-data.service';
+import { AuthService } from '../../shared/services/auth.service';
 import * as $ from 'jquery';
-import { NewestFlightService } from 'src/app/shared/services/newest-flight.service';
+import { NewestFlightService } from '../../shared/services/newest-flight.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { MailchimpService } from 'src/app/shared/services/mailchimp.service';
+import { MailchimpService } from '../../shared/services/mailchimp.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { DOCUMENT } from '@angular/common';

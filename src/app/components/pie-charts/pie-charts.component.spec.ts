@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PieChartsComponent } from './pie-charts.component';
 
 describe('PieChartsComponent', () => {
@@ -8,7 +7,8 @@ describe('PieChartsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PieChartsComponent]
+      declarations: [PieChartsComponent],
+      imports: [],  // Add ChartModule to imports
     });
     fixture = TestBed.createComponent(PieChartsComponent);
     component = fixture.componentInstance;
@@ -16,6 +16,6 @@ describe('PieChartsComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy();  // Verify component creation
   });
 });

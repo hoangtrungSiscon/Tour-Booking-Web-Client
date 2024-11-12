@@ -2,8 +2,8 @@ import { Time } from '@angular/common';
 import { Component, ViewChild, AfterViewInit, OnInit  } from '@angular/core';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import { ChiTietVeService } from 'src/app/shared/services/chiTietVe.service';
-import { ChiTietVe } from 'src/app/shared/models/chiTietVe';
+import { ChiTietVeService } from '../../shared/services/chiTietVe.service';
+import { ChiTietVe } from '../../shared/models/chiTietVe';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 

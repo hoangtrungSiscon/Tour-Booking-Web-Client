@@ -1,7 +1,7 @@
-import { TicketApiService } from './../../shared/services/ticket-api.service';
-import { GuestApiService } from './../../shared/services/guest-api.service';
+import { TicketApiService } from '../../shared/services/ticket-api.service';
+import { GuestApiService } from '../../shared/services/guest-api.service';
 import { Component, OnInit } from '@angular/core';
-import { FlightApiService } from 'src/app/shared/services/flight-api.service';
+import { FlightApiService } from '../../shared/services/flight-api.service';
 import { DatePipe, registerLocaleData } from '@angular/common'; // Import DatePipe and CurrencyPipe
 import localeVi from '@angular/common/locales/vi';
 import { da } from 'date-fns/locale';

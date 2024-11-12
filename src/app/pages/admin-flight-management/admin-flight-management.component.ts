@@ -2,10 +2,10 @@ import { Component, OnInit, Optional, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
-import { FlightApiService } from 'src/app/shared/services/flight-api.service';
-import { PlaneApiService } from 'src/app/shared/services/plane-api.service';
+import { FlightApiService } from '../../shared/services/flight-api.service';
+import { PlaneApiService } from '../../shared/services/plane-api.service';
 import Swal from 'sweetalert2';
-import { FlightDetails } from 'src/app/shared/models/FlightDetailModel';
+import { FlightDetails } from '../../shared/models/FlightDetailModel';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-flight-management',

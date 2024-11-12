@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -76,7 +76,6 @@ import { FloatingIconComponent } from './components/floating-icon/floating-icon.
     // AdminNaviComponent,
     NewAccountComponent,
     StatisticalComponent,
-    PieChartsComponent,
     LineChartsComponent,
     LineChartsBSNComponent,
     ColumnChartsComponent,
@@ -129,8 +128,9 @@ import { FloatingIconComponent } from './components/floating-icon/floating-icon.
     MatInputModule,
     MatSelectModule,
     MatCardModule,
-
+    
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [FlightApiService,MailchimpService,RssFeedService],
   bootstrap: [AppComponent]
 })

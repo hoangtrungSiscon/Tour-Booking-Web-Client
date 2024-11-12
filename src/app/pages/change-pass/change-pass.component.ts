@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { CookieService } from 'src/app/shared/services/cookie.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { CookieService } from '../../shared/services/cookie.service';
 import Swal from 'sweetalert2'
-import { AccountApiService } from 'src/app/shared/services/account-api.service';
+import { AccountApiService } from '../../shared/services/account-api.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 @Component({

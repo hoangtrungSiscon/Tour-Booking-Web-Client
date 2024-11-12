@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router'
 import { RouterModule, Routes } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 // import { routingComponents } from 'src/app/app-routing.module';
 
 @Component({

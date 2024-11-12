@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ChuyenBayService } from '../../shared/services/chuyenBay.service';
 import { Router } from '@angular/router';
 import { CookieService } from '../../shared/services/cookie.service';
-import { TransferDataService } from 'src/app/shared/services/transfer-data.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { TransferDataService } from '../../shared/services/transfer-data.service';
+import { AuthService } from '../../shared/services/auth.service';
 import * as $ from 'jquery';
 import { Meta, Title } from '@angular/platform-browser';
-import { GetCountryService } from 'src/app/shared/services/get-country.service';
+import { GetCountryService } from '../../shared/services/get-country.service';
 import slugify from 'slugify';
 import { DOCUMENT } from '@angular/common';
-import { UrlReaderService } from 'src/app/shared/services/url-reader.service';
+import { UrlReaderService } from '../../shared/services/url-reader.service';
 export interface submitForm {
   fromPlace: string;
   toPlace: string;

@@ -2,8 +2,8 @@ import { error } from 'jquery';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon'
-import { InvoiceService } from 'src/app/shared/services/invoice.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { InvoiceService } from '../../shared/services/invoice.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-payment-result',

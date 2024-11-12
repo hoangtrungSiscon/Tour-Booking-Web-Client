@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
-import { InvoiceService } from 'src/app/shared/services/invoice.service';
-import { Invoice } from 'src/app/shared/models/invoiceModel';
+import { InvoiceService } from '../../shared/services/invoice.service';
+import { Invoice } from '../../shared/models/invoiceModel';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Title } from '@angular/platform-browser';
 @Component({

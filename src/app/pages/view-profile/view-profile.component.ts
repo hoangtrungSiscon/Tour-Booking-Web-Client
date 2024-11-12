@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../../shared/services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { CookieService } from 'src/app/shared/services/cookie.service';
+import { CookieService } from '../../shared/services/cookie.service';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-view-profile',

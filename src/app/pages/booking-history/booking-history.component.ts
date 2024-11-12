@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { TicketHistoryApiService } from 'src/app/shared/services/ticket-history-api.service';
+import { TicketHistoryApiService } from '../../shared/services/ticket-history-api.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ export class BookingHistoryComponent {
   count: number = 0;
   tableSize: number = 7;
   public tickets: any[] = [];
+  ticketHistory: any;
   constructor(
     private tickethistoryapi:TicketHistoryApiService,
     private authService:AuthService,

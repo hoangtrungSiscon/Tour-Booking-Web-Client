@@ -1,4 +1,4 @@
-import { TicketApiService } from './../../shared/services/ticket-api.service';
+import { TicketApiService } from '../../shared/services/ticket-api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

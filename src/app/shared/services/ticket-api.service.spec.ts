@@ -1,12 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';  // Import this module
 import { TicketApiService } from './ticket-api.service';
 
-describe('GuestApiService', () => {
+describe('TicketApiService', () => {
   let service: TicketApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],  // Provide HttpClientTestingModule for HTTP requests
+    });
     service = TestBed.inject(TicketApiService);
   });
 

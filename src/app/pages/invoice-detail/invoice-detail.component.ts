@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InvoiceService } from 'src/app/shared/services/invoice.service';
-import { Invoice } from 'src/app/shared/models/invoiceModel';
+import { InvoiceService } from '../../shared/services/invoice.service';
+import { Invoice } from '../../shared/models/invoiceModel';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
-import { GetCountryService } from 'src/app/shared/services/get-country.service';
+import { GetCountryService } from '../../shared/services/get-country.service';
 import Swal from 'sweetalert2';
 import { error } from 'jquery';
-import { PaymentInfo } from 'src/app/shared/models/paymentInfo';
-import { VnpayService } from 'src/app/shared/services/vnpay.service';
+import { PaymentInfo } from '../../shared/models/paymentInfo';
+import { VnpayService } from '../../shared/services/vnpay.service';
 
 @Component({
   selector: 'app-invoice-detail',

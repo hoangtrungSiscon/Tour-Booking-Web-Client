@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';  // For mocking HTTP requests
 import { RssFeedComponent } from './rss-feed.component';
 
 describe('RssFeedComponent', () => {
@@ -8,6 +8,7 @@ describe('RssFeedComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],  // Import HttpClientTestingModule if HTTP is used
       declarations: [RssFeedComponent]
     });
     fixture = TestBed.createComponent(RssFeedComponent);
