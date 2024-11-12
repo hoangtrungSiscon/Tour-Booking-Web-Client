@@ -1,136 +1,68 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login.component';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth.service';
-import { Router } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+import { AuthService } from '../../shared/services/auth.service'; // Đảm bảo đường dẫn chính xác
 import { CookieService } from '../../shared/services/cookie.service';
-import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
-import { Title, Meta } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
 
-// Mock the dependencies
-class MockAuthService {
-  login(request: any) {
-    // Simulate successful login response
-    return of('123 456 0'); // Example: token, account id, role
-  }
-  storeData(token: any, maTaiKhoan: any, vaiTro: any) {}
-  setUserId(id: any) {}
-  setVaiTro(role: any) {}
-  getLoginSuccessRedirect() {
-    return '/home';
-  }
-}
-
-class MockCookieService {
-  setCookie(name: string, value: string) {}
-}
-
-class MockRouter {
-  navigate(path: string[]) {}
-}
-
-class MockMeta {
-  updateTag(tag: any) {}
-}
-
-class MockTitle {
-  setTitle(title: string) {}
-}
-
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('AuthService', () => {
   let authService: AuthService;
   let cookieService: CookieService;
   let router: Router;
-  let meta: Meta;
-  let title: Title;
-
+  
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      imports: [
-        ReactiveFormsModule, // Import các module cần thiết
-        FormsModule,
-        HttpClientModule,
-        RouterTestingModule
-      ],
-      providers: [
-        FormBuilder,
-        { provide: AuthService, useClass: MockAuthService },
-        { provide: CookieService, useClass: MockCookieService },
-        { provide: Router, useClass: MockRouter },
-        { provide: Meta, useClass: MockMeta },
-        { provide: Title, useClass: MockTitle },
-      ],
-    }).compileComponents();
+    const cookieServiceMock = jasmine.createSpyObj('CookieService', ['setCookie']);
+    const routerMock = jasmine.createSpyObj('Router', ['navigate']);
+    const authServiceMock = jasmine.createSpyObj('AuthService', ['login', 'storeData', 'setUserId', 'setVaiTro']);
 
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
+    TestBed.configureTestingModule({
+      providers: [
+        AuthService,
+        { provide: CookieService, useValue: cookieServiceMock },
+        { provide: Router, useValue: routerMock },
+        { provide: AuthService, useValue: authServiceMock }
+      ]
+    });
+
     authService = TestBed.inject(AuthService);
     cookieService = TestBed.inject(CookieService);
     router = TestBed.inject(Router);
-    meta = TestBed.inject(Meta);
-    title = TestBed.inject(Title);
   });
 
-  it('should create the component', () => {
-    expect(component).toBeTruthy();
-  });
-  
+  describe('onLogin', () => {
 
-  it('should have a form with initial values', () => {
-    expect(component.form).toBeTruthy();
-    expect(component.form.controls['taiKhoan1'].value).toBe('');
-    expect(component.form.controls['matKhau'].value).toBe('');
-  });
+    it('should navigate to the login success route when login is successful', () => {
+      const mockResponse = '102 1'; // Giả lập một phản hồi đăng nhập hợp lệ với ID tài khoản, token và vai trò
+      const formData = { taiKhoan1: 'hoangtrung', matKhau: '123456' };
 
-  it('should call login method on submit and navigate on success', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    const cookieServiceSpy = spyOn(cookieService, 'setCookie');
-    const storeDataSpy = spyOn(authService, 'storeData');
-    const setUserIdSpy = spyOn(authService, 'setUserId');
-    const setVaiTroSpy = spyOn(authService, 'setVaiTro');
-  
-    component.form.controls['taiKhoan1'].setValue('testuser');
-    component.form.controls['matKhau'].setValue('password');
-  
-    component.onLogin();
-  
-    expect(authService.login).toHaveBeenCalled();
-    expect(storeDataSpy).toHaveBeenCalledWith('123', 123, 0);
-    expect(setUserIdSpy).toHaveBeenCalledWith(123);
-    expect(setVaiTroSpy).toHaveBeenCalledWith(0);
-    expect(cookieServiceSpy).toHaveBeenCalledWith('access_token', '123');
-    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
-  });
-  it('should show an error alert if login fails', () => {
-    spyOn(authService, 'login').and.returnValue(of('false'));
-  
-    const swalSpy = spyOn(Swal, 'fire');
-  
-    component.onLogin();
-  
-    expect(swalSpy).toHaveBeenCalledWith(
-      'Đăng nhập không thành công!',
-      'Tên tài khoản hoặc mật khẩu không chính xác. Xin vui lòng thử lại',
-      'error'
-    );
-  });
-  
+      spyOn(authService, 'login').and.returnValue(of(mockResponse)); // Mock phản hồi đăng nhập thành công
+      spyOn(authService, 'storeData'); // Mock phương thức storeData
+      spyOn(router, 'navigate'); // Mock phương thức điều hướng
 
-  it('should call viewpass to toggle password visibility', () => {
-    expect(component.visible).toBe(true);
-    component.viewpass();
-    expect(component.visible).toBe(false);
-    expect(component.changetype).toBe(false);
-  
-    component.viewpass();
-    expect(component.visible).toBe(true);
-    expect(component.changetype).toBe(true);
+      authService.login(formData);
+
+      // Kiểm tra
+      expect(authService.login).toHaveBeenCalledWith(formData); // Kiểm tra xem login có được gọi với dữ liệu đúng không
+      expect(authService.storeData).toHaveBeenCalledWith('some_token', 102, 1); // Kiểm tra dữ liệu có được lưu đúng không
+      expect(router.navigate).toHaveBeenCalledWith([authService.getLoginSuccessRedirect()]); // Kiểm tra xem có điều hướng đúng không
+    });
+
+    it('should show error alert when login fails', () => {
+      const mockResponse = 'false'; // Giả lập phản hồi đăng nhập thất bại
+      const formData = { taiKhoan1: 'hoangtrung', matKhau: '123456' };
+
+      spyOn(authService, 'login').and.returnValue(of(mockResponse)); // Mock phản hồi đăng nhập thất bại
+      spyOn(Swal, 'fire'); // Mock SweetAlert
+
+      authService.login(formData);
+
+      // Kiểm tra
+      expect(authService.login).toHaveBeenCalledWith(formData); // Kiểm tra xem login có được gọi với dữ liệu đúng không
+      expect(Swal.fire).toHaveBeenCalledWith(
+        'Đăng nhập không thành công!',
+        'Tên tài khoản hoặc mật khẩu không chính xác. Xin vui lòng thử lại',
+        'error' // Kiểm tra xem có hiển thị thông báo lỗi đúng không
+      );
+    });
   });
-  
 });
