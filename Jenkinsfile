@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/username/TourBookingWeb.git'
+                git branch: 'master', url: 'https://github.com/hoangtrungSiscon/Tour-Booking-Web-Client.git'
             }
         }
         stage('Install Dependencies') {
