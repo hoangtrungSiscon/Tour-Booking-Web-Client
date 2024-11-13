@@ -1,20 +1,23 @@
 module.exports = function (config) {
     config.set({
-      basePath: "",
       frameworks: ["jasmine", "@angular-devkit/build-angular"],
       plugins: [
-        require("karma-jasmine"),
-        require("karma-chrome-launcher"),
-        require("karma-jasmine-html-reporter"),
-        require("karma-coverage-istanbul-reporter"),
-        require("@angular-devkit/build-angular/plugins/karma"),
+        require('karma-jasmine'),
+        require('karma-chrome-launcher'),
+        require('karma-jasmine-html-reporter'),
+        require('karma-coverage'),
+        require('@angular-devkit/build-angular/plugins/karma')
       ],
       client: {
         clearContext: false, // leave Jasmine Spec Runner output visible in browser
       },
       coverageIstanbulReporter: {
-        reports: ["html", "lcovonly"],
-        fixWebpackSourcePaths: true,
+        dir: require('path').join(__dirname, './coverage/tour-booking-web'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' }
+      ]
       },
       // files: ["src/**/*.spec.js"],
       // include: ["src/**/*.spec.js"],
@@ -28,5 +31,6 @@ module.exports = function (config) {
       autoWatch: true,
       browsers: ["Chrome"],
       singleRun: false,
+      restartOnFileChange: true
     });
   };
