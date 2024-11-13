@@ -8,16 +8,17 @@ pipeline {
             }
         }
         stage('Install Dependencies') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh 'npm install'
-                    } else {
-                        bat 'npm install'
-                    }
-                }
+    steps {
+        script {
+            if (isUnix()) {
+                sh 'npm install --legacy-peer-deps'
+            } else {
+                bat 'npm install --legacy-peer-deps'
             }
         }
+    }
+}
+
         stage('Build Project') {
             steps {
                 script {
