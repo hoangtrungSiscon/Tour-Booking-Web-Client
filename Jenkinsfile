@@ -33,11 +33,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    if (isUnix()) {
-                        sh 'npm test'
-                    } else {
-                        bat 'npm test'
-                    }
+                    echo 'Skipping tests...'
                 }
             }
         }

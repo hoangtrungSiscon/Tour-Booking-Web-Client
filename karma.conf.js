@@ -1,13 +1,20 @@
 module.exports = function (config) {
-    config.set({
-      frameworks: ["jasmine", "@angular-devkit/build-angular"],
-      plugins: [
-        require('karma-jasmine'),
-        require('karma-chrome-launcher'),
-        require('karma-jasmine-html-reporter'),
-        require('karma-coverage'),
-        require('@angular-devkit/build-angular/plugins/karma')
-      ],
+  config.set({
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma'),
+      require('karma-webpack')
+    ],
+    webpack: {
+      resolve: {
+        alias: {
+          'bootstrap': 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+        }
+      }
+    },
       client: {
         clearContext: false, // leave Jasmine Spec Runner output visible in browser
       },
