@@ -83,11 +83,11 @@ pipeline {
             steps {
                 script {
                     // Kiểm tra container có tồn tại hay không
-                    def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
+                    def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = isUnix() ? sh(script: checkContainerCmd, returnStdout: true).trim() : bat(script: checkContainerCmd, returnStdout: true).trim()
 
                     if (containerExists) {
-                        echo "Container 'tourbookingweb' is already running. Refreshing it."
+                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
 
                         // Dừng và xóa container cũ
                         def stopAndRemoveCmd = "docker stop tourbookingweb && docker rm tourbookingweb"
@@ -97,7 +97,7 @@ pipeline {
                             bat stopAndRemoveCmd
                         }
                     } else {
-                        echo "Container 'tourbookingweb' is not running."
+                        echo "No existing container found for 'tourbookingweb'."
                     }
 
                     // Khởi động lại container
