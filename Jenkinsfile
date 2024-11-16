@@ -68,14 +68,16 @@ pipeline {
                     if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' found. Stopping and removing the old container."
 
-                        // Dừng và xóa container cũ
+                        // Dừng container cũ
                         bat "docker stop tourbookingweb"
+
+                        // Xóa container cũ
                         bat "docker rm tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
                     }
 
-                    // Khởi động lại container
+                    // Tạo container mới
                     echo "Starting a new container for 'tourbookingweb'."
                     bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
