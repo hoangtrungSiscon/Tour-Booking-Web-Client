@@ -69,7 +69,8 @@ pipeline {
                         echo "Container 'tourbookingweb' found. Stopping and removing the old container."
 
                         // Dừng và xóa container cũ
-                        bat "docker stop tourbookingweb && docker rm tourbookingweb"
+                        bat "docker stop tourbookingweb"
+                        bat "docker rm tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
                     }
@@ -80,7 +81,7 @@ pipeline {
                 }
             }
         }
-    }
+
 
     // Hành động sau khi pipeline chạy xong
     post {
@@ -92,6 +93,7 @@ pipeline {
         }
         always {
             echo 'Pipeline execution completed.'
+            }
         }
     }
 }
