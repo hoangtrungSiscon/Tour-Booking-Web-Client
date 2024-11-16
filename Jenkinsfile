@@ -19,26 +19,14 @@ pipeline {
         // Cài đặt các dependencies của FE
         stage('Install Dependencies') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'npm install --legacy-peer-deps'
-                    } else {
-                        bat 'npm install --legacy-peer-deps'
-                    }
-                }
+                bat 'npm install --legacy-peer-deps'
             }
         }
 
         // Build project (FE)
         stage('Build Project') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'npm run build'
-                    } else {
-                        bat 'npm run build'
-                    }
-                }
+                bat 'npm run build'
             }
         }
 
@@ -46,12 +34,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def dockerCmd = "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                    if (isUnix()) {
-                        sh dockerCmd
-                    } else {
-                        bat dockerCmd
-                    }
+                    bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -62,17 +45,13 @@ pipeline {
                 script {
                     // Kiểm tra container FE đã chạy chưa
                     def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
-                    def containerExists = isUnix() ? sh(script: checkContainerCmd, returnStdout: true).trim() : bat(script: checkContainerCmd, returnStdout: true).trim()
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (containerExists) {
+                    if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' is already running. Skipping creation."
                     } else {
-                        def dockerRunCmd = "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                        if (isUnix()) {
-                            sh dockerRunCmd
-                        } else {
-                            bat dockerRunCmd
-                        }
+                        echo "Starting a new container for 'tourbookingweb'."
+                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
                 }
             }
@@ -84,29 +63,20 @@ pipeline {
                 script {
                     // Kiểm tra container có tồn tại hay không
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def containerExists = isUnix() ? sh(script: checkContainerCmd, returnStdout: true).trim() : bat(script: checkContainerCmd, returnStdout: true).trim()
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (containerExists) {
+                    if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' found. Stopping and removing the old container."
 
                         // Dừng và xóa container cũ
-                        def stopAndRemoveCmd = "docker stop tourbookingweb && docker rm tourbookingweb"
-                        if (isUnix()) {
-                            sh stopAndRemoveCmd
-                        } else {
-                            bat stopAndRemoveCmd
-                        }
+                        bat "docker stop tourbookingweb && docker rm tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
                     }
 
                     // Khởi động lại container
-                    def dockerRunCmd = "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                    if (isUnix()) {
-                        sh dockerRunCmd
-                    } else {
-                        bat dockerRunCmd
-                    }
+                    echo "Starting a new container for 'tourbookingweb'."
+                    bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
