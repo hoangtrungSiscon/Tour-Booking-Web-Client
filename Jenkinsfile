@@ -81,8 +81,7 @@ pipeline {
                 }
             }
         }
-
-
+    }
     // Hành động sau khi pipeline chạy xong
     post {
         success {
@@ -93,7 +92,6 @@ pipeline {
         }
         always {
             echo 'Pipeline execution completed.'
-            }
         }
     }
 }
