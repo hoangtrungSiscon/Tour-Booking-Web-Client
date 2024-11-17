@@ -34,7 +34,7 @@ pipeline {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         bat 'node -v' // Kiểm tra phiên bản Node.js
-                        bat 'ng test --watch=false --code-coverage'
+                        bat 'npx ng test --watch=false --code-coverage'
                     }
                 }
             }
