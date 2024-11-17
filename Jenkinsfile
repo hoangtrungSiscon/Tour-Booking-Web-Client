@@ -32,11 +32,9 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    try {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         bat 'node -v' // Kiểm tra phiên bản Node.js
                         bat 'ng test --watch=false --code-coverage'
-                    } catch (Exception e) {
-                        error "Test failed: ${e}"
                     }
                 }
             }
@@ -95,8 +93,6 @@ pipeline {
                 }
             }
         }
-
-        
     }
 
     // Hành động sau khi pipeline chạy xong
