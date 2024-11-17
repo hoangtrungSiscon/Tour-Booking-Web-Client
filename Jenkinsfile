@@ -59,13 +59,25 @@ pipeline {
         }
 
         // Build Docker image cho FE
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                }
-            }
-        }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+        //         }
+        //     }
+        // }
+      stage('Build Docker Image') {
+          steps {
+              script {
+                  // Clear cache before build
+                  bat "docker system prune -f"
+      
+                  // Build Docker image with network optimizations
+                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+              }
+          }
+      }
+
 
         // Kiểm tra và chạy container
         stage('Run Docker Container') {
