@@ -33,6 +33,7 @@ pipeline {
             steps {
                 script {
                     try {
+                        bat 'node -v' // Kiểm tra phiên bản Node.js
                         bat 'ng test --watch=false --code-coverage'
                     } catch (Exception e) {
                         error "Test failed: ${e}"
