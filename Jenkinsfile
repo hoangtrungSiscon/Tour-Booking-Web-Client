@@ -40,6 +40,17 @@ pipeline {
             }
         }
 
+        // Chạy Cypress Tests
+        stage('Run Cypress Tests') {
+            steps {
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        bat 'npx cypress run'
+                    }
+                }
+            }
+        }
+
         // Build project (FE)
         stage('Build Project') {
             steps {
