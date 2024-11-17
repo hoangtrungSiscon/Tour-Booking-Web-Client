@@ -22,13 +22,18 @@ pipeline {
                 bat 'npm install --legacy-peer-deps'
             }
         }
-
+        // Cài đặt Angular CLI
+        stage('Install Angular CLI') {
+            steps {
+                bat 'npm install -g @angular/cli'
+            }
+        }
         // Chạy các bài kiểm tra
         stage('Run Tests') {
             steps {
                 script {
                     try {
-                        bat 'npm test -- --watch=false --code-coverage'
+                        bat 'ng test --watch=false --code-coverage'
                     } catch (Exception e) {
                         error "Test failed: ${e}"
                     }
@@ -89,6 +94,8 @@ pipeline {
                 }
             }
         }
+
+        
     }
 
     // Hành động sau khi pipeline chạy xong
