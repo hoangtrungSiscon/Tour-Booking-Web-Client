@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        bat 'npx cypress run'
+                        bat 'npx cypress run --config-file cypress.config.ts'
                     }
                 }
             }
