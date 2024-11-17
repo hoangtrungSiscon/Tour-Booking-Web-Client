@@ -19,7 +19,7 @@ pipeline {
         // Cài đặt các dependencies của FE
         stage('Install Dependencies') {
             steps {
-                bat 'npm install --legacy-peer-deps'
+                bat 'npm install --force'
             }
         }
         // Cài đặt Angular CLI
