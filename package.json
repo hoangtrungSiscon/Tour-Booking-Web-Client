@@ -25,7 +25,7 @@
     "@ngx-share/button": "^7.1.4",
     "@ngx-share/core": "^7.1.4",
     "axios": "^1.7.2",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.1",
     "chart.js": "^4.4.6",
     "cypress": "^13.15.2",
