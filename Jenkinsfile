@@ -23,6 +23,19 @@ pipeline {
             }
         }
 
+        // Chạy các bài kiểm tra
+        stage('Run Tests') {
+            steps {
+                script {
+                    try {
+                        bat 'npm test -- --watch=false --code-coverage'
+                    } catch (Exception e) {
+                        error "Test failed: ${e}"
+                    }
+                }
+            }
+        }
+
         // Build project (FE)
         stage('Build Project') {
             steps {
@@ -43,7 +56,6 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    // Kiểm tra container FE đã chạy chưa
                     def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
@@ -61,29 +73,24 @@ pipeline {
         stage('Refresh Docker Container') {
             steps {
                 script {
-                    // Kiểm tra container có tồn tại hay không
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
                     if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' found. Stopping and removing the old container."
-
-                        // Dừng container cũ
                         bat "docker stop tourbookingweb"
-
-                        // Xóa container cũ
                         bat "docker rm tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
                     }
 
-                    // Tạo container mới
                     echo "Starting a new container for 'tourbookingweb'."
                     bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
     }
+
     // Hành động sau khi pipeline chạy xong
     post {
         success {
