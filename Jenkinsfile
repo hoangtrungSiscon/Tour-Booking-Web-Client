@@ -22,14 +22,12 @@ pipeline {
                 bat 'npm install --force'
             }
         }
-        
         // Cài đặt Angular CLI
         stage('Install Angular CLI') {
             steps {
                 bat 'npm install -g @angular/cli'
             }
         }
-        
         // Chạy các bài kiểm tra
         stage('Run Tests') {
             steps {
@@ -61,39 +59,25 @@ pipeline {
         }
 
         // Build Docker image cho FE
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Clear cache before build
-                    bat "docker system prune -f"
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+        //         }
+        //     }
+        // }
+      stage('Build Docker Image') {
+          steps {
+              script {
+                  // Clear cache before build
+                  bat "docker system prune -f"
       
-                    // Build Docker image with network optimizations
-                    bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                }
-            }
-        }
+                  // Build Docker image with network optimizations
+                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+              }
+          }
+      }
 
-        // Refresh Docker Container
-        stage('Refresh Docker Container') {
-            steps {
-                script {
-                    // Kiểm tra container có tồn tại không
-                    def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
-
-                    if (!containerExists.isEmpty()) {
-                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
-                        bat "docker stop tourbookingweb"
-                        bat "docker rm tourbookingweb"
-                    } else {
-                        echo "No existing container found for 'tourbookingweb'."
-                    }
-
-                    echo "Starting a new container for 'tourbookingweb'."
-                    bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                }
-            }
-        }
 
         // Kiểm tra và chạy container
         stage('Run Docker Container') {
@@ -111,6 +95,28 @@ pipeline {
                 }
             }
         }
+
+        stage('Refresh Docker Container') {
+            steps {
+                script {
+                // Kiểm tra container có tồn tại không
+                def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
+                def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
+
+                if (!containerExists.isEmpty()) {
+                    echo "Container 'tourbookingweb' found. Stopping and removing the old container."
+                    bat "docker stop tourbookingweb"
+                    bat "docker rm tourbookingweb"
+                } else {
+                    echo "No existing container found for 'tourbookingweb'."
+                }
+
+                echo "Starting a new container for 'tourbookingweb'."
+                bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                }
+            }
+        }
+
     }
 
     // Hành động sau khi pipeline chạy xong
