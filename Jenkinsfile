@@ -77,26 +77,7 @@ pipeline {
               }
           }
       }
-
-
-        // Kiểm tra và chạy container
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
-                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
-
-                    if (!containerExists.isEmpty()) {
-                        echo "Container 'tourbookingweb' is already running. Skipping creation."
-                    } else {
-                        echo "Starting a new container for 'tourbookingweb'."
-                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
-                    }
-                }
-            }
-        }
-
-        // Refresh Docker Container nếu cần
+// Refresh Docker Container nếu cần
         stage('Refresh Docker Container') {
             steps {
                 script {
@@ -116,6 +97,25 @@ pipeline {
                 }
             }
         }
+
+        // Kiểm tra và chạy container
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
+
+                    if (!containerExists.isEmpty()) {
+                        echo "Container 'tourbookingweb' is already running. Skipping creation."
+                    } else {
+                        echo "Starting a new container for 'tourbookingweb'."
+                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    }
+                }
+            }
+        }
+
+        
     }
 
     // Hành động sau khi pipeline chạy xong
