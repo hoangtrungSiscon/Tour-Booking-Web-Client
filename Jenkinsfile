@@ -65,10 +65,10 @@ pipeline {
             steps {
                 script {
                     // Clear cache before building
-                    bat "docker system prune -f"
+                    bat "docker system prune -f -a --volumes"
                     
-                    // Build Docker image with network optimizations
-                    bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                    // Build Docker image
+                    bat "docker build --no-cache -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -77,14 +77,16 @@ pipeline {
         stage('Run or Refresh Docker Container') {
             steps {
                 script {
-                    // Check if the container exists (running or stopped)
+                    // Check if the container exists
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
                     if (!containerExists.isEmpty()) {
-                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
-                        bat "docker stop tourbookingweb"
+                        echo "Container 'tourbookingweb' found. Stopping and removing it."
+                        bat "docker stop tourbookingweb || echo 'Container already stopped.'"
                         bat "docker rm tourbookingweb"
+                    } else {
+                        echo "No existing container found for 'tourbookingweb'."
                     }
 
                     // Run the Docker container
