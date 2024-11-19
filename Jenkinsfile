@@ -22,12 +22,14 @@ pipeline {
                 bat 'npm install --force'
             }
         }
+        
         // Cài đặt Angular CLI
         stage('Install Angular CLI') {
             steps {
                 bat 'npm install -g @angular/cli'
             }
         }
+        
         // Chạy các bài kiểm tra
         stage('Run Tests') {
             steps {
@@ -59,28 +61,23 @@ pipeline {
         }
 
         // Build Docker image cho FE
-        // stage('Build Docker Image') {
-        //     steps {
-        //         script {
-        //             bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-        //         }
-        //     }
-        // }
-      stage('Build Docker Image') {
-          steps {
-              script {
-                  // Clear cache before build
-                  bat "docker system prune -f"
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Clear cache before build
+                    bat "docker system prune -f"
       
-                  // Build Docker image with network optimizations
-                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-              }
-          }
-      }
-// Refresh Docker Container nếu cần
+                    // Build Docker image with network optimizations
+                    bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                }
+            }
+        }
+
+        // Refresh Docker Container
         stage('Refresh Docker Container') {
             steps {
                 script {
+                    // Kiểm tra container có tồn tại không
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
@@ -114,8 +111,6 @@ pipeline {
                 }
             }
         }
-
-        
     }
 
     // Hành động sau khi pipeline chạy xong
