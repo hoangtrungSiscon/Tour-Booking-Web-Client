@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'tourbookingweb' // Docker image name for FE
-        DOCKER_TAG = 'latest'           // Docker image tag
+        DOCKER_IMAGE = 'tourbookingweb' // Tên Docker image cho FE
+        DOCKER_TAG = 'latest'           // Tag của Docker image
     }
 
     stages {
-        // Clone the repository from GitHub
+        // Lấy mã nguồn từ GitHub
         stage('Clone Repository') {
             steps {
                 git branch: 'master', 
@@ -16,33 +16,31 @@ pipeline {
             }
         }
 
-        // Install dependencies for FE
+        // Cài đặt các dependencies của FE
         stage('Install Dependencies') {
             steps {
                 bat 'npm install --force'
             }
         }
-
-        // Install Angular CLI
+        // Cài đặt Angular CLI
         stage('Install Angular CLI') {
             steps {
                 bat 'npm install -g @angular/cli'
             }
         }
-
-        // Run unit tests
+        // Chạy các bài kiểm tra
         stage('Run Tests') {
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        bat 'node -v' // Check Node.js version
+                        bat 'node -v' // Kiểm tra phiên bản Node.js
                         bat 'npx ng test --watch=false --code-coverage'
                     }
                 }
             }
         }
 
-        // Run Cypress tests
+        // Chạy Cypress Tests
         stage('Run Cypress Tests') {
             steps {
                 script {
@@ -53,60 +51,74 @@ pipeline {
             }
         }
 
-        // Build the frontend project
+        // Build project (FE)
         stage('Build Project') {
             steps {
                 bat 'npm run build'
             }
         }
 
-        // Build Docker image for FE
-        stage('Build Docker Image') {
+        // Build Docker image cho FE
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+        //         }
+        //     }
+        // }
+      stage('Build Docker Image') {
+          steps {
+              script {
+                  // Clear cache before build
+                  bat "docker system prune -f"
+      
+                  // Build Docker image with network optimizations
+                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+              }
+          }
+      }
+
+
+        // Kiểm tra và chạy container
+        stage('Run Docker Container') {
             steps {
                 script {
-                    // Clear cache before building
-                    bat "docker system prune -f"
-                    
-                    // Build Docker image
-                    bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                    def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
+
+                    if (!containerExists.isEmpty()) {
+                        echo "Container 'tourbookingweb' is already running. Skipping creation."
+                    } else {
+                        echo "Starting a new container for 'tourbookingweb'."
+                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    }
                 }
             }
         }
 
-        // Run or refresh Docker container
-        stage('Run or Refresh Docker Container') {
+        // Refresh Docker Container nếu cần
+        stage('Refresh Docker Container') {
             steps {
                 script {
-                    // Check if the container exists (running or stopped)
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def containerId = bat(script: checkContainerCmd, returnStdout: true).trim()
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    echo "Container Check Result: ${containerId}"
-
-                    if (containerId) {
+                    if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' found. Stopping and removing the old container."
-                        bat "docker stop ${containerId}"
-                        bat "docker rm ${containerId}"
+                        bat "docker stop tourbookingweb"
+                        bat "docker rm tourbookingweb"
                     } else {
-                        echo "No existing container for 'tourbookingweb'."
+                        echo "No existing container found for 'tourbookingweb'."
                     }
 
-                    // Run the Docker container
                     echo "Starting a new container for 'tourbookingweb'."
                     bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
-
-                    // Verify the container was created successfully
-                    def verifyContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def newContainerId = bat(script: verifyContainerCmd, returnStdout: true).trim()
-                    echo "New Container ID: ${newContainerId}"
-                    if (!newContainerId) {
-                        error("Failed to create the Docker container for 'tourbookingweb'.")
-                    }
                 }
             }
         }
     }
 
+    // Hành động sau khi pipeline chạy xong
     post {
         success {
             echo 'Frontend Docker Deployment Successful!'
