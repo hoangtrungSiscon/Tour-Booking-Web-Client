@@ -65,10 +65,10 @@ pipeline {
             steps {
                 script {
                     // Clear cache before building
-                    bat "docker system prune -f -a --volumes"
+                    bat "docker system prune -f"
                     
                     // Build Docker image
-                    bat "docker build --no-cache -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                    bat "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
                 }
             }
         }
@@ -77,21 +77,31 @@ pipeline {
         stage('Run or Refresh Docker Container') {
             steps {
                 script {
-                    // Check if the container exists
+                    // Check if the container exists (running or stopped)
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
+                    def containerId = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (!containerExists.isEmpty()) {
-                        echo "Container 'tourbookingweb' found. Stopping and removing it."
-                        bat "docker stop tourbookingweb || echo 'Container already stopped.'"
-                        bat "docker rm tourbookingweb"
+                    echo "Container Check Result: ${containerId}"
+
+                    if (containerId) {
+                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
+                        bat "docker stop ${containerId}"
+                        bat "docker rm ${containerId}"
                     } else {
-                        echo "No existing container found for 'tourbookingweb'."
+                        echo "No existing container for 'tourbookingweb'."
                     }
 
                     // Run the Docker container
                     echo "Starting a new container for 'tourbookingweb'."
                     bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
+
+                    // Verify the container was created successfully
+                    def verifyContainerCmd = "docker ps -a -q -f name=tourbookingweb"
+                    def newContainerId = bat(script: verifyContainerCmd, returnStdout: true).trim()
+                    echo "New Container ID: ${newContainerId}"
+                    if (!newContainerId) {
+                        error("Failed to create the Docker container for 'tourbookingweb'.")
+                    }
                 }
             }
         }
