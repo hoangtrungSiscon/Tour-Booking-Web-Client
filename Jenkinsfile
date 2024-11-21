@@ -83,7 +83,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    def checkContainerCmd = "docker ps -a -f name=tourbookingweb"
+                    def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
                     if (containerExists) {
