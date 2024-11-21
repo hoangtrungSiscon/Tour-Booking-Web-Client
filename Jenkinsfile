@@ -66,28 +66,31 @@ pipeline {
         //         }
         //     }
         // }
-      stage('Build Docker Image') {
-          steps {
-              script {
-                  // Clear cache before build
-                  bat "docker system prune -f"
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Clear cache before build
+                    bat "docker system prune -f"
       
                   // Build Docker image with network optimizations
-                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-              }
-          }
-      }
+                    bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                }
+            }
+        }
 
 
         // Kiểm tra và chạy container
         stage('Run Docker Container') {
             steps {
                 script {
-                    def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
-                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
+                    def containerStatusCmd = "docker ps -a --filter 'name=tourbookingweb' --format '{{.Status}}'"
+                    def containerStatus = bat(script: containerStatusCmd, returnStdout: true).trim()
 
-                    if (containerExists) {
+                    if (containerStatus.contains("Up")) {
                         echo "Container 'tourbookingweb' is already running. Skipping creation."
+                    } else if (containerStatus) {
+                        echo "Container 'tourbookingweb' exists but is stopped. Restarting it."
+                        bat "docker container start tourbookingweb"
                     } else {
                         echo "Starting a new container for 'tourbookingweb'."
                         bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
@@ -95,6 +98,7 @@ pipeline {
                 }
             }
         }
+
 
         // Refresh Docker Container nếu cần
         stage('Refresh Docker Container') {
