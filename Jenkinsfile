@@ -86,7 +86,7 @@ pipeline {
                     def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (!containerExists.isEmpty()) {
+                    if (containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' is already running. Skipping creation."
                     } else {
                         echo "Starting a new container for 'tourbookingweb'."
