@@ -103,15 +103,14 @@ pipeline {
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (!containerExists.isEmpty()) {
+                    if (containerExists) {
                         echo "Container 'tourbookingweb' found. Restarting the old container."
                         bat "docker container restart tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
+                        echo "Starting a new container for 'tourbookingweb'."
+                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
-
-                    echo "Starting a new container for 'tourbookingweb'."
-                    bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
