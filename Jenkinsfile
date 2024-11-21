@@ -104,9 +104,8 @@ pipeline {
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
                     if (!containerExists.isEmpty()) {
-                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
-                        bat "docker stop tourbookingweb"
-                        bat "docker rm tourbookingweb"
+                        echo "Container 'tourbookingweb' found. Restarting the old container."
+                        bat "docker container restart tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
                     }
