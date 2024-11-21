@@ -66,31 +66,28 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Clear cache before build
-                    bat "docker system prune -f"
+      stage('Build Docker Image') {
+          steps {
+              script {
+                  // Clear cache before build
+                  bat "docker system prune -f"
       
                   // Build Docker image with network optimizations
-                    bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                }
-            }
-        }
+                  bat "docker build --no-cache --network=host -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+              }
+          }
+      }
 
 
         // Kiểm tra và chạy container
         stage('Run Docker Container') {
             steps {
                 script {
-                    def containerStatusCmd = "docker ps -a --filter 'name=tourbookingweb' --format '{{.Status}}'"
-                    def containerStatus = bat(script: containerStatusCmd, returnStdout: true).trim()
+                    def checkContainerCmd = "docker ps -q -f name=tourbookingweb"
+                    def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (containerStatus.contains("Up")) {
+                    if (!containerExists.isEmpty()) {
                         echo "Container 'tourbookingweb' is already running. Skipping creation."
-                    } else if (containerStatus) {
-                        echo "Container 'tourbookingweb' exists but is stopped. Restarting it."
-                        bat "docker container start tourbookingweb"
                     } else {
                         echo "Starting a new container for 'tourbookingweb'."
                         bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
@@ -98,7 +95,6 @@ pipeline {
                 }
             }
         }
-
 
         // Refresh Docker Container nếu cần
         stage('Refresh Docker Container') {
@@ -107,14 +103,16 @@ pipeline {
                     def checkContainerCmd = "docker ps -a -q -f name=tourbookingweb"
                     def containerExists = bat(script: checkContainerCmd, returnStdout: true).trim()
 
-                    if (containerExists) {
-                        echo "Container 'tourbookingweb' found. Restarting the old container."
-                        bat "docker container restart tourbookingweb"
+                    if (!containerExists.isEmpty()) {
+                        echo "Container 'tourbookingweb' found. Stopping and removing the old container."
+                        bat "docker stop tourbookingweb"
+                        bat "docker rm tourbookingweb"
                     } else {
                         echo "No existing container found for 'tourbookingweb'."
-                        echo "Starting a new container for 'tourbookingweb'."
-                        bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
+
+                    echo "Starting a new container for 'tourbookingweb'."
+                    bat "docker run -d -p 3000:80 --name tourbookingweb ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
