@@ -78,7 +78,7 @@ describe('Chuyến Bay - Kiểm thử getAll()', () => {
 
   beforeEach(() => {
     // Giả lập API trả về dữ liệu chuyến bay mock
-    cy.intercept('GET', 'https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll', {
+    cy.intercept('GET', 'https://localhost:7000/api/chuyenbay/getAll', {
       statusCode: 200,
       body: mockChuyenBays,
     }).as('getAllChuyenBays'); // Tạo alias cho intercept để dễ dàng tham chiếu sau này
@@ -102,7 +102,7 @@ describe('Chuyến Bay - Kiểm thử getAll()', () => {
 
   it('should show an error if the API request fails', () => {
     // Giả lập API trả về lỗi 500
-    cy.intercept('GET', 'https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll', {
+    cy.intercept('GET', 'https://localhost:7000/api/chuyenbay/getAll', {
       statusCode: 500,
       body: { message: 'Internal Server Error' },
     }).as('getAllChuyenBaysError');

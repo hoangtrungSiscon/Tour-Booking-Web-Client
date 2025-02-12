@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PlaneApiService {
 
-  readonly PlaneAPIUrl = "https://flightdotapi.azurewebsites.net/api";
+  readonly PlaneAPIUrl = "https://localhost:7000/api";
 
   constructor(private http:HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class VnpayService {
 
-  protected url: string = 'https://flightdotapi.azurewebsites.net/api/VnPay';
+  protected url: string = 'https://localhost:7000/api/VnPay';
 
   constructor(protected http: HttpClient) { }
 

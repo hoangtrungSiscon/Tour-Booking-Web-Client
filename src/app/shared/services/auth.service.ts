@@ -16,7 +16,7 @@ export class AuthService {
   private onLoginSuccessRedirect: string = '';
 
 
-  protected url: string = 'https://flightdotapi.azurewebsites.net/api/auth';
+  protected url: string = 'https://localhost:7000/api/auth';
 
   constructor(protected http: HttpClient) {}
 

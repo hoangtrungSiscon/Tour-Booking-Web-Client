@@ -105,7 +105,7 @@ describe('BookingTicketComponent', () => {
       }
     });
 
-    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll'); // Kiểm tra xem URL có chính xác không
+    const req = httpMock.expectOne('https://localhost:7000/api/chuyenbay/getAll'); // Kiểm tra xem URL có chính xác không
     expect(req.request.method).toBe('GET'); // Kiểm tra phương thức HTTP là GET
     req.flush(mockChuyenBays); // Giả lập dữ liệu trả về từ server
   });
@@ -124,7 +124,7 @@ describe('BookingTicketComponent', () => {
     );
 
     // Expect an HTTP request to be made to the correct URL
-    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll');
+    const req = httpMock.expectOne('https://localhost:7000/api/chuyenbay/getAll');
     expect(req.request.method).toBe('GET'); // Verify the HTTP method is GET
 
     // Simulate a server error response
@@ -246,7 +246,7 @@ describe('BookingTicketModule', () => {
     component.ngOnInit();
 
     // Kiểm tra yêu cầu HTTP
-    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll');
+    const req = httpMock.expectOne('https://localhost:7000/api/chuyenbay/getAll');
     expect(req.request.method).toBe('GET');
     req.flush(mockChuyenBays); // Giả lập dữ liệu trả về
 
@@ -263,7 +263,7 @@ describe('BookingTicketModule', () => {
       }
     );
 
-    const req = httpMock.expectOne('https://flightdotapi.azurewebsites.net/api/chuyenbay/getAll');
+    const req = httpMock.expectOne('https://localhost:7000/api/chuyenbay/getAll');
     expect(req.request.method).toBe('GET');
 
     // Giả lập lỗi trả về từ server

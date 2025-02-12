@@ -7,7 +7,7 @@ import { Observable,map } from 'rxjs';
 })
 export class NewestFlightService {
 
-  readonly flightAPIUrl = "https://flightdotapi.azurewebsites.net/api/ChuyenBay/Top3NewestFlight";
+  readonly flightAPIUrl = "https://localhost:7000/api/ChuyenBay/Top3NewestFlight";
   constructor(private http:HttpClient) { }
   getTop3NewestFlight(){
     return this.http.get<any>(this.flightAPIUrl);
